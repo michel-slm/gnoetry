@@ -10,8 +10,7 @@ import sys, string, time
 sys.path.append("..") # add path for gnoetics library
 import gnoetics
 
-from poemtileview import *
-from poemtextview import *
+from appwindow import *
 
 #############################################################################
 
@@ -61,6 +60,8 @@ def solve_step(verse):
     
     if verse.is_not_fully_bound():
 
+        verse.bind_mandatory_breaks()
+
         i = verse.find_first_unbound()
         u = verse[i]
 
@@ -100,28 +101,45 @@ def solve_step(verse):
             tok = right_solns.pop(0)
             verse.bind_right(i, tok)
 
+    if verse.is_fully_bound():
+        actions = []
+
 
 
 #############################################################################
 
+def die_die_die(b, p):
+
+    i = 0
+    p.freeze_changed()
+    while i < len(p):
+        u = p[i]
+        if u.get_flag() and u.is_bound():
+            u.set_flag(False)
+            if u.is_punctuation() and i+1 < len(p):
+                u2 = p[i+1]
+                if u2.is_break():
+                    poem.unbind(i+1)
+            poem.unbind(i)
+        else:
+            i += 1
+    p.thaw_changed()
+            
+############################################################################
+
 poem = gnoetics.BlankVerse(3, 4)
+appwin = AppWindow()
+appwin.set_poem(poem)
+appwin.show_all()
+
 solve_start(poem)
 
 def timeout_cb(p):
-    solve_step(p)
-    return not p.is_fully_bound()
+    if p.is_not_fully_bound():
+        solve_step(p)
+    return True
     
-win = gtk.Window()
-win.show_all()
-tv = PoemTileView(poem)
-tv.show_all()
-win.add(tv)
 
-win = gtk.Window()
-win.show_all()
-tv = PoemTextView(poem)
-tv.show_all()
-win.add(tv)
 
 
 gtk.timeout_add(100, timeout_cb, poem)

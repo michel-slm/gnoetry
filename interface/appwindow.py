@@ -1,8 +1,12 @@
 
-import random
-import gtk, gnoetics
-import tilemodel, tileview, tiletextview
+import gnoetics
+
+import gtk
+import red_menubar, red_toolbar
 import about
+
+from poemtileview import *
+from poemtextview import *
 
 class AppWindow(gtk.Window):
 
@@ -15,127 +19,97 @@ class AppWindow(gtk.Window):
         AppWindow.__total_app_window_count += 1
         self.connect("delete_event", lambda aw, ev: aw.__close_window())
 
-        vbox = gtk.VBox()
-        self.add(vbox)
+        self.__vbox = gtk.VBox(0, 0)
+        self.add(self.__vbox)
 
-        menubar = self.__assemble_menubar()
-        vbox.pack_start(menubar, expand=0, fill=0)
+        self.__accel_group = gtk.AccelGroup()
+        self.add_accel_group(self.__accel_group)
 
+        ### Menubar
+        self.__menubar = red_menubar.MenuBar(self.__accel_group)
+        self.__menubar.set_user_data(self)
+        self.__assemble_menubar(self.__menubar)
+        self.__vbox.pack_start(self.__menubar, expand=0, fill=1)
+
+        ### Toolbar
+        #self.__toolbar = red_toolbar.Toolbar()
+        #self.__assemble_toolbar(self.__toolbar)
+        #self.__vbox.pack_start(self.__toolbar, expand=0, fill=1)
+
+
+        ### The poem views
+        self.__tileview = PoemTileView()
+        self.__textview = PoemTextView()
 
         vpaned = gtk.VPaned()
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        #sw.add_with_viewport(self.__tile_view)
+        sw.add_with_viewport(self.__tileview)
 
         vpaned.pack1(sw, 1, 1)
        
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        #sw.add_with_viewport(self.__tile_text_view)
+        sw.add_with_viewport(self.__textview)
 
         vpaned.pack2(sw, 0, 1)
 
-        vbox.pack_start(vpaned, expand=1, fill=1)
+        self.__vbox.pack_start(vpaned, expand=1, fill=1)
 
-        vbox.show_all()
+        ### Statusbar
+        self.__statusbar = gtk.Statusbar()
+        self.__statusbar.show()
+        self.__vbox.pack_start(self.__statusbar, expand=0, fill=1)
+        self.__menubar.set_statusbar(self.__statusbar)
 
-
-        
-        
-
-    def __assemble_menubar(self):
-
-        menubar = gtk.MenuBar()
-
-        ##
-        ## File Menu
-        ##
-
-        file_item = gtk.MenuItem("File")
-        file_subm = gtk.Menu()
-        file_item.set_submenu(file_subm)
-
-        new_item = gtk.ImageMenuItem(gtk.STOCK_NEW)
-        file_subm.append(new_item)
-        new_item.connect("activate",
-                         lambda mi, aw: aw.__new_window(),
-                         self)
-
-        open_item = gtk.ImageMenuItem(gtk.STOCK_OPEN)
-        file_subm.append(open_item)
-        open_item.set_sensitive(0)
-
-        file_subm.append(gtk.SeparatorMenuItem())
-
-        save_item = gtk.ImageMenuItem(gtk.STOCK_SAVE)
-        file_subm.append(save_item)
-        save_item.set_sensitive(0)
-
-        save_as_item = gtk.ImageMenuItem(gtk.STOCK_SAVE_AS)
-        file_subm.append(save_as_item)
-        save_as_item.set_sensitive(0)
-
-        file_subm.append(gtk.SeparatorMenuItem())
-
-        quit_item = gtk.ImageMenuItem(gtk.STOCK_QUIT)
-        file_subm.append(quit_item)
-        quit_item.connect("activate",
-                          lambda mi, aw: aw.__close_window(),
-                          self)
-
-        menubar.append(file_item)
-        file_item.show_all()
+        self.__vbox.show_all()
 
 
-        ##
-        ## Edit Menu
-        ##
-
-        edit_item = gtk.MenuItem("Edit")
-        edit_subm = gtk.Menu()
-        edit_item.set_submenu(edit_subm)
-
-        undo_item = gtk.ImageMenuItem(gtk.STOCK_UNDO)
-        edit_subm.append(undo_item)
-        undo_item.set_sensitive(0) # FIXME
-
-        redo_item = gtk.ImageMenuItem(gtk.STOCK_REDO)
-        edit_subm.append(redo_item)
-        redo_item.set_sensitive(0) # FIXME
-
-        menubar.append(edit_item)
-        edit_item.show_all()
+    def set_poem(self, p):
+        self.__tileview.set_poem(p)
+        self.__textview.set_poem(p)
         
 
-        ##
-        ## Help Menu
-        ##
-        
-        help_item = gtk.MenuItem("Help")
-        help_subm = gtk.Menu()
-        help_item.set_submenu(help_subm)
+    def __assemble_menubar(self, bar):
+        bar.add("/_File")
+        bar.add("/_Edit")
+        bar.add("/_Help")
 
-        about_item = gtk.MenuItem("About Gnoetry")
-        help_subm.append(about_item)
-        about_item.connect("activate",
-                           lambda mi: about.show_about_gnoetry())
+        bar.add("/_File/_New",
+                stock=gtk.STOCK_NEW,
+                description="Open a new Gnoetry window")
+        bar.add("/_File/_Save",
+                stock=gtk.STOCK_SAVE,
+                description="Save the current poem to a text file")
+        bar.add("/_File/_Print",
+                stock=gtk.STOCK_PRINT,
+                description="Print the current poem")
+        bar.add("/_File/sep", is_separator=1)
+        bar.add("/_File/_Close",
+                stock=gtk.STOCK_CLOSE,
+                description="Close this window")
+        bar.add("/_File/_Quit",
+                stock=gtk.STOCK_QUIT,
+                description="Close all windows and exit Gnoetry")
 
-        about_bob_item = gtk.MenuItem("About Beard of Bees")
-        help_subm.append(about_bob_item)
-        about_bob_item.connect("activate",
-                               lambda mi: about.show_about_beard_of_bees())
+        bar.add("/_Edit/Clear",
+                stock=gtk.STOCK_CLEAR,
+                description="Clear this poem")
 
-        about_ubu_item = gtk.MenuItem("About Ubu Roi")
-        help_subm.append(about_ubu_item)
-        about_ubu_item.connect("activate",
-                               lambda mi: about.show_about_ubu_roi())
+        bar.add("/_Help/About Gnoetry",
+                description="Learn more about Gnoetry",
+                callback=lambda x: about.show_about_gnoetry())
+        bar.add("/_Help/About Beard of Bees",
+                description="Learn more about Beard of Bees",
+                callback=lambda x: about.show_about_beard_of_bees())
+        bar.add("/_Help/About Ubu Roi",
+                description="Learn more about Ubu Roi",
+                callback=lambda x: about.show_about_ubu_roi())
 
-        menubar.append(help_item)
-        help_item.show_all()
 
-
-        return menubar
+    def __assemble_toolbar(self, bar):
+        pass
 
 
     def __new_window(self):
@@ -144,7 +118,6 @@ class AppWindow(gtk.Window):
         
 
     def __close_window(self):
-
         self.destroy()
         AppWindow.__total_app_window_count -= 1
         if AppWindow.__total_app_window_count == 0:

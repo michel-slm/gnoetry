@@ -1,6 +1,7 @@
 
-import gtk
-import pixbuf
+import string
+import gtk, pango
+import red_pixbuf, manifesto
 
 _about_dict = {}
 
@@ -40,14 +41,40 @@ def _show_about_window(title):
 
 #############################################################################
 
+manifesto_lines = map(string.strip, manifesto.text.split("\n"))
+
+i = 0
+while i < len(manifesto_lines)-1:
+    if manifesto_lines[i] and manifesto_lines[i+1]:
+        manifesto_lines[i] = manifesto_lines[i] + " " + manifesto_lines[i+1]
+        manifesto_lines.pop(i+1)
+    else:
+        i += 1
+
+
+#############################################################################
 
 def show_about_gnoetry():
 
     about = _show_about_window("About Gnoetry")
 
     if about:
-        about.pack_start(gtk.Label("Insert 'About Gnoetry' Here"),
-                         expand=1, fill=1)
+        vbox = gtk.VBox(0, 0)
+        img = red_pixbuf.get_widget("roussel")
+        vbox.pack_start(img, expand=1, fill=1, padding=10)
+        
+        for line in manifesto_lines:
+            x = gtk.Label()
+            x.set_markup(line)
+            x.set_line_wrap(gtk.TRUE)
+            x.set_justify(gtk.JUSTIFY_CENTER)
+            vbox.pack_start(x, expand=1, fill=1)
+        vbox.show_all()
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        sw.add_with_viewport(vbox)
+        sw.set_size_request(-1, 400)
+        about.add(sw)
 
 
 
@@ -69,7 +96,7 @@ def show_about_ubu_roi():
 
         hbox = gtk.HBox()
         
-        img = pixbuf.get_widget("ubu-roi-about")
+        img = red_pixbuf.get_widget("ubu-roi-about")
         hbox.pack_start(img, expand=0, fill=0, padding=5)
 
         txt_vbox = gtk.VBox()

@@ -1,6 +1,6 @@
 # This is -*- Python -*-
 
-import string
+import string, time
 import gobject
 
 import gnoetics
@@ -168,6 +168,25 @@ class Poem(gobject.GObject):
         self.emit_changed()
 
 
+    def get_flag(self, i):
+        i = self.__fix_index(i)
+        assert self.__good_index(i)
+
+        u = self.__units[i]
+        return u.get_flag()
+    
+
+    def set_flag(self, i, x):
+        i = self.__fix_index(i)
+        assert self.__good_index(i)
+
+        u = self.__units[i]
+
+        if x != u.get_flag():
+            u.set_flag(x)
+            self.emit("changed_flag", i)
+
+
     def extract_surrounding_tokens(self, i):
 
         assert 0 <= i < len(self.__units)
@@ -203,55 +222,6 @@ class Poem(gobject.GObject):
         return leading_tokens, trailing_tokens
 
 
-    def to_string(self, highlight=None, show_line_break_info=False):
-        out_str = ""
-        if highlight is not None:
-            highlight = self.__fix_index(highlight)
-        last_was_break = False
-        need_end_of_line = False
-        need_end_of_stanza = False
-        for i, u in enumerate(self.__units):
-
-            if u.is_not_bound() or not u.is_punctuation():
-                if need_end_of_line:
-                    out_str += "\n"
-                    need_end_of_line = False
-                if need_end_of_stanza:
-                    out_str += "\n"
-                    need_end_of_stanza = False
-
-            if not u.is_beginning_of_line() \
-               and not u.has_left_glue() \
-               and out_str \
-               and out_str[-1] != "\n":
-                out_str += " "
-
-
-            if u.is_bound():
-                if not u.is_break():
-                    s = u.get_binding().get_word()
-                    if last_was_break:
-                        s = s[0].upper() + s[1:]
-                    out_str += s
-            else:
-                out_str += "<%s>" % u
-            
-            if u.is_end_of_line():
-                need_end_of_line = True
-            if u.is_end_of_stanza():
-                need_end_of_stanza = True
-
-            last_was_break = u.is_break()
-
-        if need_end_of_line:
-            out_str += "\n"
-        if need_end_of_stanza:
-            out_str += "\n"
-        
-
-        return out_str
-
-
     def to_list_with_breaks(self):
         L = []
         for u in self.__units:
@@ -282,6 +252,93 @@ class Poem(gobject.GObject):
                 i += 1
 
         return L
+
+
+    def to_string(self,
+                  add_timestamp=False,
+                  add_latex_markup=False,
+                  add_latex_wrapper=False):
+        lines = []
+        current_line = ""
+
+        stanza_break = ""
+        if add_latex_markup:
+            stanza_break = "\\vskip 1ex plus 0.4ex minus 0.4ex"
+
+        if add_latex_wrapper:
+            lines.append("\\documentclass[12pt]{article}")
+            lines.append("\\begin{document}")
+            lines.append("\\pagestyle{empty}")
+
+        if add_latex_markup:
+            lines.append("{\\obeylines\\parindent=0in")
+
+        if add_timestamp:
+            time_str = time.asctime(time.localtime())
+            if add_latex_markup:
+                time_str = "{\\it " + time_str + "}"
+            lines.append(time_str)
+            lines.append(stanza_break)
+
+        last_was_break = False
+
+        for x in self.to_list_with_breaks():
+            if x == "end of line":
+                lines.append(current_line)
+                current_line = ""
+            elif x == "end of stanza":
+                lines.append(current_line)
+                lines.append(stanza_break)
+                current_line = ""
+            elif type(x) == gnoetics.Token:
+                if x.is_break():
+                    last_was_break = True
+                else:
+                    word = x.get_word()
+
+                    if last_was_break:
+                        word = word[0].upper() + word[1:]
+
+                    if word == "i":
+                        word = "I"
+
+                    # extra space at beginning of sentence
+                    if current_line and last_was_break:
+                        current_line += " "
+                        
+                    if current_line and not x.has_left_glue():
+                        current_line += " "
+
+                    current_line += word
+
+                    if not x.is_punctuation():
+                        last_was_break = False
+
+            else: # is a unit
+                if current_line:
+                    current_line += " "
+                current_line += "_" * x.get_syllables()
+
+        if current_line:
+            lines.append(current_line)
+
+        if add_latex_markup:
+            lines.append("}")
+
+        if add_latex_wrapper:
+            lines.append("\\end{document}")
+
+        def quote_latex_special_chars(line):
+            line = line.replace("%", "\%")
+            line = line.replace("&", "\&")
+            line = line.replace("$", "\$")
+            line = line.replace("#", "\#")
+            return line
+
+        if add_latex_markup:
+            lines = map(quote_latex_special_chars, lines)
+
+        return string.join(lines, "\n")
 
 
 
@@ -329,7 +386,13 @@ gobject.signal_new("changed",
                    gobject.SIGNAL_RUN_LAST,
                    gobject.TYPE_NONE,
                    ())
-        
+
+gobject.signal_new("changed_flag",
+                   Poem,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   (gobject.TYPE_INT,))
+
 ##############################################################################
 
 class SonnetStanza(Poem):

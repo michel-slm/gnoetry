@@ -6,7 +6,7 @@ import gnoetics, tilemodel
 class PoemTileView(gtk.DrawingArea,
                    gnoetics.PoemListener):
 
-    def __init__(self, poem):
+    def __init__(self, poem=None):
         gtk.DrawingArea.__init__(self)
         gnoetics.PoemListener.__init__(self, poem)
 
@@ -107,6 +107,7 @@ class PoemTileView(gtk.DrawingArea,
                 if type(item) == gnoetics.Token:
                     if item.is_break():
                         last_was_break = True
+                        i += 1
                     else:
                         txt = item.get_word()
                         if last_was_break:
@@ -163,8 +164,10 @@ class PoemTileView(gtk.DrawingArea,
 
         i, x, y, w, h, txt, layout = self.__tile_info_index[i]
 
+        poem = self.get_poem()
+
         highlighted = (i == self.__pointing_at)
-        selected = False
+        selected = poem[i].get_flag()
 
         if highlighted and selected:
             fg = self.__hisel_fg_color
@@ -264,22 +267,6 @@ class PoemTileView(gtk.DrawingArea,
         return gtk.FALSE
 
 
-    def __motion_notify_handler(self, ev):
-        if ev.is_hint:
-            x, y, state = ev.window.get_pointer()
-        else:
-            x, y = ev.x, ev.y
-            state = ev.state
-
-        self.__pointer_x = x
-        self.__pointer_y = y
-
-        i = self.__find_tile_at(x, y)
-        self.__point_at(i)
-        
-        return gtk.TRUE
-
-
     def __enter_notify_handler(self, ev):
         return gtk.TRUE
 
@@ -292,14 +279,54 @@ class PoemTileView(gtk.DrawingArea,
         return gtk.TRUE
 
 
+    def __motion_notify_handler(self, ev):
+        if ev.is_hint:
+            x, y, state = ev.window.get_pointer()
+        else:
+            x, y = ev.x, ev.y
+            state = ev.state
+
+        self.__pointer_x = x
+        self.__pointer_y = y
+
+        i = self.__find_tile_at(x, y)
+        self.__point_at(i)
+
+        if i is not None and state & gtk.gdk.BUTTON1_MASK:
+            flag = not (state & gtk.gdk.SHIFT_MASK)
+            poem = self.get_poem()
+            poem.set_flag(i, flag)
+        
+        return gtk.TRUE
+
+
     def __button_press_handler(self, ev):
         if self.__pointing_at is not None:
-            print "clicked on %d" % self.__pointing_at
+            poem = self.get_poem()
+            flag = not (ev.state & gtk.gdk.SHIFT_MASK)
+            poem.set_flag(self.__pointing_at, flag)
+
         return gtk.TRUE
 
 
     def poem_changed(self, poem):
         self.__tile_info = None
+        if not self.flags() & gtk.REALIZED:
+            return
         self.__render()
         self.queue_resize()
 
+
+    def poem_changed_flag(self, poem, i):
+        if self.__tile_info is None:
+            return
+        if not self.flags() & gtk.REALIZED:
+            return
+        u = self.__tile_info_index.get(i)
+        if not u:
+            return
+        self.__render_one_tile(i, queue_redraw=True)
+
+        
+
+        

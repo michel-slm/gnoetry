@@ -76,6 +76,11 @@ class PoeticUnit:
 
         self.__token = None
 
+        # Initialize flagging
+
+        self.__flag = False
+        
+
     ###
     ### Accessors
     ###
@@ -176,6 +181,17 @@ class PoeticUnit:
     def unbind(self):
         assert self.__token is not None
         self.__token = None
+
+
+    ###
+    ### Flagging
+    ###
+
+    def get_flag(self):
+        return self.__flag
+
+    def set_flag(self, x):
+        self.__flag = x
 
 
     ###
