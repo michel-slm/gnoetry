@@ -2,6 +2,7 @@
 
 #include "tokenmodel.h"
 #include "pyutil.h"
+#include "fate.h"
 
 static gboolean
 token_seq_atom_eq (SeqAtom a, SeqAtom b)
@@ -155,7 +156,7 @@ token_model_pick (TokenModel  *model,
 
     /* Case #1: No filtering.  This is easy. */
     if (filter == NULL) {
-        i = random() % N;
+        i = fate_random (N);
         return (Token *) g_ptr_array_index (model->all_tokens, i);
     }
 
@@ -167,7 +168,7 @@ token_model_pick (TokenModel  *model,
     /* Case #2: Permute the whole array, then walk across it and return
        the first item than matches. */
     for (i = 0; i < N-1; ++i) {
-        j = i + (random() % (N-i));
+        j = i + fate_random (N-i);
         if (i != j) {
             gpointer tmp = model->all_tokens->pdata[i];
             model->all_tokens->pdata[i] = model->all_tokens->pdata[j];
@@ -189,21 +190,63 @@ token_model_pick (TokenModel  *model,
 
 struct SolveInfo {
     TokenFilter *filter;
+    GHashTable  *filter_cache;
     TokenFn      callback;
     gpointer     user_data;
     int          soln_count;
 };
+
+#define FILTER_SAYS_YES (GINT_TO_POINTER (1))
+#define FILTER_SAYS_NO  (GINT_TO_POINTER (2))
 
 static gboolean
 solve_cb (SeqAtom atom, gpointer user_data)
 {
     struct SolveInfo *info = user_data;
     Token *token = atom;
-    
-    if (info->filter == NULL || token_filter_test (info->filter, token)) {
+    gpointer cached;
+    gboolean is_solution, put_in_cache;
+
+    if (info->filter == NULL) {
+
+        is_solution = TRUE;
+        put_in_cache = FALSE;
+
+    } else {
+        
+        cached = g_hash_table_lookup (info->filter_cache, token);
+
+        if (cached == NULL) {
+
+            is_solution = token_filter_test (info->filter, token);
+            put_in_cache = TRUE;
+
+        } else if (cached == FILTER_SAYS_YES) {
+
+            is_solution = TRUE;
+            put_in_cache = FALSE;
+
+        } else if (cached == FILTER_SAYS_NO) {
+
+            /* is_solution = FALSE; put_in_cache = FALSE; */
+            return TRUE;
+
+        } else {
+            
+            is_solution = put_in_cache = FALSE; /* to avoid warnings */
+            g_assert_not_reached();
+
+        }
+    }
+
+    if (is_solution) {
         info->callback (token, info->user_data);
         ++info->soln_count;
     }
+    
+    if (put_in_cache)
+        g_hash_table_insert (info->filter_cache, token,
+                             is_solution ? FILTER_SAYS_YES : FILTER_SAYS_NO);
 
     return TRUE;
 }
@@ -243,13 +286,16 @@ token_model_solve (TokenModel  *model,
         struct SolveInfo info;
         SeqModel *seq_model;
 
-        info.filter     = filter;
-        info.callback   = callback;
-        info.user_data  = user_data;
-        info.soln_count = 0;
+        info.filter       = filter;
+        info.filter_cache = g_hash_table_new (NULL, NULL);
+        info.callback     = callback;
+        info.user_data    = user_data;
+        info.soln_count   = 0;
 
         seq_model = model->seq_model_array[tuple_len-2];
         N = seq_model_solve (seq_model, (SeqAtom *) tuple, solve_cb, &info);
+
+        g_hash_table_destroy (info.filter_cache);
 
     }
 
@@ -347,9 +393,9 @@ static gboolean
 py_solve_cb (Token *token, gpointer user_data)
 {
     PyObject *py_list = user_data;
-    PyObject *py_token = token_to_py (token);
-    PyList_Append (py_list, py_token);
-    Py_DECREF (py_token);
+    PyObject *py_tok = token_to_py (token);
+    PyList_Append (py_list, py_tok);
+    Py_DECREF (py_tok);
     return TRUE;
 }
 
@@ -404,8 +450,7 @@ py_token_model_solve (PyObject *self, PyObject *args, PyObject *kwdict)
 
     soln = PyList_New (0);
     
-    token_model_solve (model, len, tuple, &filter,
-                       py_solve_cb, soln);
+    token_model_solve (model, len, tuple, &filter, py_solve_cb, soln);
     g_free (tuple);
 
     token_filter_clear (&filter);
@@ -418,8 +463,9 @@ static PyMethodDef py_token_model_methods[] = {
     { "clear",        py_token_model_clear,     METH_NOARGS  },
     { "add_text",     py_token_model_add_text,  METH_VARARGS },
     { "get_texts",    py_token_model_get_texts, METH_NOARGS },
-    { "pick",         py_token_model_pick,      METH_VARARGS | METH_KEYWORDS },
-    { "solve",        py_token_model_solve,     METH_VARARGS | METH_KEYWORDS },
+
+    { "pick",  (PyCFunction)py_token_model_pick,  METH_VARARGS|METH_KEYWORDS },
+    { "solve", (PyCFunction)py_token_model_solve, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

@@ -12,7 +12,7 @@ py_default_dealloc (PyObject *self)
 }
 
 void
-py_default_free (PyObject *self)
+py_default_free (void *self)
 {
 	PyObject_Del (self);
 }

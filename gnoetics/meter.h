@@ -3,8 +3,9 @@
 #ifndef __METER_H__
 #define __METER_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
+
 #include "phoneme.h"
 
 typedef char Meter;

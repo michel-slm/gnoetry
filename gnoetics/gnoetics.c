@@ -2,6 +2,7 @@
 
 #include <Python.h>
 
+#include "fate.h"
 #include "phoneme.h"
 #include "dictionary.h"
 #include "syllable.h"
@@ -174,6 +175,8 @@ initxxx_gnoetics (void)
 
   m = Py_InitModule ("xxx_gnoetics", gnoetics_methods);
   d = PyModule_GetDict (m);
+
+  fate_seed_from_time ();
 
   dictionary_init ();
   py_meter_register (d);

@@ -5,7 +5,9 @@
    Lingua::EN::Syllable.
 */
 
+#include <Python.h>
 #include <glib.h>
+
 #include "syllable.h"
 
 #include <string.h>

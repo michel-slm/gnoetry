@@ -7,7 +7,7 @@
 
 /* default object magic */
 void      py_default_dealloc (PyObject *);
-void      py_default_free    (PyObject *);
+void      py_default_free    (void     *);
 PyObject *py_default_alloc   (PyTypeObject *, int);
 
 void pyutil_register_type (PyObject *dict,

@@ -3,8 +3,8 @@
 #ifndef __TOKENFILTER_H__
 #define __TOKENFILTER_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
 
 #include "rhyme.h"
 #include "token.h"

@@ -3,8 +3,8 @@
 #ifndef __SEQMODEL_H__
 #define __SEQMODEL_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
 
 #include "text.h"
 

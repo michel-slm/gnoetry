@@ -3,8 +3,9 @@
 #ifndef __TEXT_H__
 #define __TEXT_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
+
 #include "refcount.h"
 #include "pybind.h"
 

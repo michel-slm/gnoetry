@@ -3,8 +3,9 @@
 #ifndef __TOKENMODEL_H__
 #define __TOKENMODEL_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
+
 #include "refcount.h"
 #include "pybind.h"
 

@@ -3,8 +3,8 @@
 #ifndef __PHONEME_H__
 #define __PHONEME_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
 
 typedef enum {
     PHONEME_AA = 1,   // AA   odd     AA D

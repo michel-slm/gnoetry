@@ -19,6 +19,7 @@ pc.close()
 
 module_gnoetics = Extension("xxx_gnoetics",
                             sources=["pyutil.c",
+                                     "fate.c",
                                      "phoneme.c",
                                      "meter.c",
                                      "dictionary.c",

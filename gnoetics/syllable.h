@@ -4,6 +4,8 @@
 #define __SYLLABLE_H__
 
 #include <Python.h>
+#include <glib.h>
+
 #include "phoneme.h"
 
 int syllable_count_approximate (const char *str);

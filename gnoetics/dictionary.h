@@ -3,8 +3,9 @@
 #ifndef __DICTIONARY_H__
 #define __DICTIONARY_H__
 
-#include <glib.h>
 #include <Python.h>
+#include <glib.h>
+
 #include "phoneme.h"
 #include "meter.h"
 
