@@ -4,6 +4,8 @@ import gnoetics, tilemodel
 class TileView(gtk.DrawingArea,
                tilemodel.TileModelListener):
 
+    default_font = None
+
     def __init__(self, model):
         gtk.DrawingArea.__init__(self)
         tilemodel.TileModelListener.__init__(self, model)
@@ -64,6 +66,8 @@ class TileView(gtk.DrawingArea,
         layout = self.__layout_cache.get(text)
         if layout is None:
             layout = pango.Layout(self.get_pango_context())
+            if default_font is not None:
+                layout.set_font_description(pango.FontDescription (default_font));
             layout.set_markup(text)
             self.__layout_cache[text] = layout
         return layout

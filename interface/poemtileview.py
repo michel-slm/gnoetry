@@ -6,6 +6,8 @@ import gnoetics, tilemodel
 class PoemTileView(gtk.DrawingArea,
                    gnoetics.PoemListener):
 
+    default_font = None
+
     def __init__(self, poem=None):
         gtk.DrawingArea.__init__(self)
         gnoetics.PoemListener.__init__(self, poem)
@@ -128,6 +130,8 @@ class PoemTileView(gtk.DrawingArea,
 
                 if txt:
                     layout = pango.Layout(self.get_pango_context())
+                    if PoemTileView.default_font is not None:
+                        layout.set_font_description(PoemTileView.default_font)
                     layout.set_markup(txt)
                     w, h = layout.get_pixel_size()
                     w += self.__word_x_left_pad + self.__word_x_right_pad

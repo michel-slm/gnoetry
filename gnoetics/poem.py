@@ -1,6 +1,6 @@
 # This is -*- Python -*-
 
-import string, time
+import sys, string, time, random
 import gobject
 
 import gnoetics
@@ -18,7 +18,7 @@ class Poem(gobject.GObject):
         assert self.__units[-1].is_end_of_stanza()
         
 
-    def __init__(self, form_name=None, units=None, magic=None, xml=None):
+    def __init__(self, form_name=None, units=None, magic=None, syllables=None, xml=None):
         gobject.GObject.__init__(self)
 
         self.__form_name = form_name
@@ -35,6 +35,9 @@ class Poem(gobject.GObject):
         elif magic:
             assert units is None
             self.__units = _unit_magic(magic)
+        elif syllables:
+            assert units is None
+            self.__units = _syllabic_magic(syllables)
         else:
             assert units
             self.__units = list(units)
@@ -536,6 +539,35 @@ def _unit_magic(scheme):
 
     return units
 
+def _syllabic_magic(syllable_list):
+    units = []
+    for i, x in enumerate(syllable_list):
+
+        if x == 0:
+            continue
+        
+        is_first = (i == 0)
+        is_last = (i == len(syllable_list)-1)
+
+        args = {}
+
+        args["syllables"] = x
+
+        args["is_beginning_of_line"] = True
+        args["is_end_of_line"] = True
+        if is_first:
+            args["is_head"] = True
+        if is_last:
+            args["is_tail"] = True
+        if is_first or syllable_list[i-1] == 0:
+            args["is_beginning_of_stanza"] = True
+        if is_last or syllable_list[i+1] == 0:
+            args["is_end_of_stanza"] = True
+
+        units.append(PoeticUnit(**args))
+
+    return units
+
 gobject.type_register(Poem)
 
 gobject.signal_new("changed",
@@ -579,5 +611,25 @@ class BlankVerse(Poem):
                       "Blank Verse (%d/%d)" % (stanzas, lines_per_stanza),
                       magic=magic)
 
+class RandomSyllabic(Poem):
+    def generate_stanza(self, lines, min_syllables, max_syllables):
+        stanza = []
+        for i in range(lines):
+            stanza.append(random.randint(min_syllables, max_syllables))
+        return stanza
+                          
+    def __init__(self, stanzas, lines_per_stanza, min_syllables, max_syllables, identical_stanzas_flag):
+        syllables = []
+        stanza_syllables = None
+        for i in range(stanzas):
+            if i != 0:
+                syllables.append(0)
+            if stanza_syllables is None or not identical_stanzas_flag:
+                stanza_syllables = self.generate_stanza(lines_per_stanza, min_syllables, max_syllables)
+            syllables.extend(stanza_syllables)
+        Poem.__init__(self, "Random Syllabic", syllables=syllables)
+                                    
+        
+        
 
 

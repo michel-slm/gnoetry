@@ -8,12 +8,16 @@ import gnoetics
 class PoemTextView(gtk.TextView,
                    gnoetics.PoemListener):
 
+    default_font = None
+
     def __init__(self, poem=None):
         gtk.TextView.__init__(self)
         gnoetics.PoemListener.__init__(self, poem)
 
         self.set_editable(0)
         self.set_cursor_visible(0)
+        if PoemTextView.default_font is not None:
+            self.modify_font(PoemTextView.default_font)
 
         self.__buffer = gtk.TextBuffer()
         self.poem_changed(self.get_poem())

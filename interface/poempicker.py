@@ -68,7 +68,7 @@ class PoemChoice_Sonnet(PoemChoice):
 
     def build_poem(self):
         return gnoetics.Sonnet()
-    
+
 
 class PoemChoice_BlankVerse(PoemChoice):
 
@@ -100,7 +100,59 @@ class PoemChoice_BlankVerse(PoemChoice):
         num_stanzas = int(self.__stanza_adj.get_value())
         num_lines = int(self.__lines_adj.get_value())
         return gnoetics.BlankVerse(num_stanzas, num_lines)
-        
+
+
+class PoemChoice_RandomSyllabic(PoemChoice):
+
+    def __init__(self):
+        PoemChoice.__init__(self, "Syllabic")
+
+    def get_widget(self):
+        self.__stanza_adj = gtk.Adjustment(3, 1, 10, 1)
+        stanza_b = gtk.SpinButton(self.__stanza_adj)
+
+        self.__lines_adj = gtk.Adjustment(4, 2, 15, 1)
+        lines_b = gtk.SpinButton(self.__lines_adj)
+
+        self.__min_adj = gtk.Adjustment(5, 1, 10, 1)
+        min_b = gtk.SpinButton(self.__min_adj)
+
+        self.__max_adj = gtk.Adjustment(10, 1, 20, 1)
+        max_b = gtk.SpinButton(self.__max_adj)
+
+        self.__same_b = gtk.CheckButton("Identical stanzas")
+
+        box1 = gtk.HBox()
+        box1.pack_start(stanza_b, False, False, 3)
+        box1.pack_start(gtk.Label("stanzas, each with"), False, False, 3)
+
+        box2 = gtk.HBox()
+        box2.pack_start(lines_b, False, False, 3)
+        box2.pack_start(gtk.Label("lines, each with between"), False, False, 3)
+
+        box3 = gtk.HBox()
+        box3.pack_start(min_b, False, False, 3)
+        box3.pack_start(gtk.Label("and"))
+        box3.pack_start(max_b, False, False, 3)
+        box3.pack_start(gtk.Label("syllables."))
+
+        box = gtk.VBox()
+        box.pack_start(box1, 0, 0, 3)
+        box.pack_start(box2, 0, 0, 3)
+        box.pack_start(box3, 0, 0, 3)
+        box.pack_start(self.__same_b, 0, 0, 3)
+
+        return box
+
+    def build_poem(self):
+        num_stanzas = int(self.__stanza_adj.get_value())
+        num_lines = int(self.__lines_adj.get_value())
+        min_syllables = int(self.__min_adj.get_value())
+        max_syllables = int(self.__max_adj.get_value())
+        return gnoetics.RandomSyllabic(num_stanzas, num_lines,
+                                       min_syllables, max_syllables,
+                                       self.__same_b.get_active())
+
 
 class PoemPicker(gobject.GObject):
 
@@ -175,7 +227,7 @@ class PoemPicker(gobject.GObject):
                                 gtk.EXPAND | gtk.FILL, 0,
                                 1, 3)
             sep.show_all()
-
+            
         self.__table.attach(rb,
                             0, 1, 2*n-2, 2*n-1,
                             0, 0,
@@ -202,6 +254,7 @@ class PoemPicker(gobject.GObject):
         self.add(PoemChoice_Renga())
         #self.add(PoemChoice_Sonnet())
         self.add(PoemChoice_BlankVerse())
+        self.add(PoemChoice_RandomSyllabic())
 
 
     def show_all(self):
