@@ -3,6 +3,8 @@
 
 import string, sys, xml.sax, xml.sax.handler, re
 
+xml.sax.handler.feature_validation = False
+
 dash_re = re.compile(" *--+")
 ellipsis_re = re.compile(" *(\. *){3,}")
 
@@ -16,17 +18,25 @@ def is_terminal(word):
         return not is_abbrev(word)
     return word[-1] in ("?", "!")
 
-def strip_tailing_punctuation(word):
-    word = word.strip()
-    while word and word[-1] in (".", ",", ";", ":", "-"):
-        word = word[:-1].strip()
+def strip_single_quotes(word):
+    while word and word[0] == "'":
+        word = word[1:].strip()
+    while word and word[-1] == "'" and word[-2:] != "s'":
+        word = word[:-2].strip()
     return word
 
+def strip_trailing_punctuation(word):
+    word = word.strip()
+    while word and word[-1] in (".", ",", ";", ":", "-", "!", "?"):
+        word = word[:-1].strip()
+    return strip_single_quotes(word)
+
 def split_punctuation(word):
+    word = strip_single_quotes(word)
     if word[-1] in (",", ";", ":", "-"):
-        return strip_tailing_punctuation(word[:-1]), word[-1]
+        return strip_trailing_punctuation(word[:-1]), word[-1]
     elif word[-3:] == "...":
-        return strip_tailing_punctuation(word[:-3]), word[-3:]
+        return strip_trailing_punctuation(word[:-3]), word[-3:]
     else:
         return word, None
 
@@ -40,9 +50,17 @@ class TextScanner:
         if not chunk:
             return
 
-        chunk = chunk.replace('"', "") # remove quotes
-        chunk = chunk.replace(")", ", ") # map parens to commas
-        chunk = chunk.replace("(", ", ") # map parens to commas
+        # remove quotes
+        chunk = chunk.replace('"', "")
+
+        # remove square brackets
+        chunk = chunk.replace("[", "")
+        chunk = chunk.replace("]", "")
+
+        # map parens to commas
+        chunk = chunk.replace(")", ", ")
+        chunk = chunk.replace("(", ", ")
+
         tokens = chunk.split()
 
         for token in tokens:
@@ -100,8 +118,8 @@ class TextScanner_XML(TextScanner,
 
     def characters(self, content):
         if self.__para > 0 and self.__bookbody > 0 and self.__block == 0:
-            line = content.encode("utf-8").strip()
-            if line:
+            line = content.encode("utf-8")
+            if line and line != "\n":
                 self.__pending.append(line)
 
     def __process_pending(self):
@@ -117,17 +135,27 @@ class TextScanner_XML(TextScanner,
                 next = ""
                 if self.__pending:
                     next = self.__pending.pop(0)
+                if not pend:
+                    pend = [" "]
                 pend[-1] = pend[-1] + "'" + next
             else:
                 pend.append(line)
 
         line = string.join(pend, " ")
 
-        # strip out quotes
+        # strip out quotes and other misc. punctuation
         line = line.replace('"', "")
         line = line.replace('`', "")
+        line = line.replace('*', "")
+        line = line.replace('_', "")
 
-        # remove single quotes, but only on word boundaries
+        # Better handling for adjacent punctuation and single-quotes
+        line = line.replace(",'", ",' ")
+        line = line.replace(".'", ".' ")
+        line = line.replace("?'", "?' ")
+        line = line.replace("!'", "!' ")
+
+        # remove/ single quotes, but only on word boundaries
         i = 0
         while i != -1:
             i = line.find("'", i)

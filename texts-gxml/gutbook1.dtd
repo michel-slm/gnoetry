@@ -1,0 +1,40 @@
+<!--
+GUTBOOK DTD V 1.0
+==================
+
+GENERAL NOTES
++++++++++++++
+This is gutbook dtd version 1.0
+file name is gutpoems1.dtd
+This dtd is a first pass at a dtd for marking up 
+books for project gutenberg.
+It was originally developed for marking up the Darwins books.
+
+REVISION HISTORY
+++++++++++++++++
+Original Author
+Frank Boumphrey  1/19/2000
+
+COPYRIGHT NOTICE
+++++++++++++++++
+This DTD is the copyright of the HTML writers guild.
+Permission is given in perpetuity for any one to use 
+this DTD provided that these notes and this  copyright 
+notice is included.
+
+
+-->
+
+<!--Begin gutbook DTD-->
+<!ELEMENT gutbook (gutblurb,markupblurb,book*,endmarkupblurb?,endgutblurb?)>
+
+<!ELEMENT gutblurb (#PCDATA|para|simplesect|title)*>
+<!ELEMENT markupblurb (#PCDATA|para|simplesect|title)*>
+<!ELEMENT endmarkupblurb (#PCDATA|para|simplesect|title)*>
+<!ELEMENT endgutblurb (#PCDATA|para|simplesect|title)*>
+
+<!--Include bookfrag.dtd-->
+
+<!ENTITY % bookfrag SYSTEM "bookfrag.dtd">
+%bookfrag;
+<!--end of file-->
