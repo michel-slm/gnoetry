@@ -102,21 +102,31 @@ class PoemChoice_BlankVerse(PoemChoice):
         return gnoetics.BlankVerse(num_stanzas, num_lines)
         
 
-class PoemPicker(gtk.Dialog):
+class PoemPicker(gobject.GObject):
 
     def __init__(self):
         gobject.GObject.__init__(self)
-        self.set_title("Choose a Base Form")
+
+        self.__d = gtk.Dialog("Choose a Base Form")
         self.__first = None
         self.__choices = []
 
         self.__table = gtk.Table(0, 2)
-        self.vbox.add(self.__table)
+        self.__d.vbox.add(self.__table)
 
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
+        self.__d.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.__d.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
 
-        self.connect("response", PoemPicker.__response_handler)
+        def response_handler_cb(dialog, id):
+            choice = None
+            if id == gtk.RESPONSE_CLOSE:
+                for pc, rb, w in self.__choices:
+                    if rb.get_active():
+                        choice = pc.build_poem()
+                        break
+            self.emit("finished", choice)
+            self.destroy()
+        self.__d.connect("response", response_handler_cb)
 
         self.__assemble()
 
@@ -194,17 +204,11 @@ class PoemPicker(gtk.Dialog):
         self.add(PoemChoice_BlankVerse())
 
 
-    def __response_handler(self, id):
-        choice = None
-        if id == gtk.RESPONSE_CLOSE:
-            for pc, rb, w in self.__choices:
-                if rb.get_active():
-                    choice = pc.build_poem()
-                    break
+    def show_all(self):
+        self.__d.show_all()
 
-        self.emit("finished", choice)
-
-        self.destroy()
+    def destroy(self):
+        self.__d.destroy()
 
 
 gobject.type_register(PoemPicker)

@@ -2,7 +2,7 @@
 import gobject, gtk, gnoetics
 import sys, os, threading
 
-class TextPicker(gtk.Dialog):
+class TextPicker(gobject.GObject):
 
     COLUMN_FLAG = 0
     COLUMN_TITLE = 1
@@ -12,10 +12,21 @@ class TextPicker(gtk.Dialog):
     def __init__(self, lib):
         gobject.GObject.__init__(self)
 
-        self.set_title("Select Your Source Texts")
+        self.__d = gtk.Dialog("Select Your Source Texts")
 
-        self.__button_ok = self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
-        self.connect("response", TextPicker.__response_handler)
+        self.__button_ok = self.__d.add_button(gtk.STOCK_OK,
+                                               gtk.RESPONSE_CLOSE)
+
+        def response_handler_cb(dialog, id):
+            texts = None
+            if id == gtk.RESPONSE_CLOSE:
+                texts = []
+                for text, flag in self.__text_dict.items():
+                    if flag:
+                        texts.append(text)
+            self.emit("finished", texts)
+            self.destroy()
+        self.__d.connect("response", response_handler_cb)
 
         self.__store = gtk.ListStore(gobject.TYPE_BOOLEAN,
                                      gobject.TYPE_STRING,
@@ -76,12 +87,12 @@ class TextPicker(gtk.Dialog):
 
         swin.set_size_request(-1, 500)
 
-        self.vbox.pack_start(swin, expand=1, fill=1)
+        self.__d.vbox.pack_start(swin, expand=1, fill=1)
 
         self.__update_count()
         self.__count_label.show()
 
-        self.vbox.pack_start(self.__count_label, expand=0, fill=0)
+        self.__d.vbox.pack_start(self.__count_label, expand=0, fill=0)
 
 
     def __flag_text(self, txt, flag):
@@ -109,16 +120,12 @@ class TextPicker(gtk.Dialog):
         self.__button_ok.set_sensitive(self.__count > 0)
 
 
-    def __response_handler(self, id):
-        texts = None
-        if id == gtk.RESPONSE_CLOSE:
-            texts = []
-            for text, flag in self.__text_dict.items():
-                if flag:
-                    texts.append(text)
-        self.emit("finished", texts)
-        self.destroy()
+    def show_all(self):
+        self.__d.show_all()
 
+        
+    def destroy(self):
+        self.__d.destroy()
             
 
 gobject.type_register(TextPicker)

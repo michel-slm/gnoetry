@@ -2,26 +2,30 @@
 import gobject, gtk, gnoetics
 import sys, os, threading, random
 
-class WeightPicker(gtk.Dialog):
+class WeightPicker(gobject.GObject):
 
     def __init__(self, weights):
         gobject.GObject.__init__(self)
 
-        self.set_title("Weight Your Source Texts")
-
+        self.__d = gtk.Dialog("Weight Your Source Texts")
         self.__weights = weights
 
-        b = self.add_button("Shuffle", gtk.RESPONSE_NONE)
+        b = self.__d.add_button("Shuffle", gtk.RESPONSE_NONE)
         b.connect("clicked", lambda b: self.__shuffle_weights())
         
-        b = self.add_button("Randomize", gtk.RESPONSE_NONE)
+        b = self.__d.add_button("Randomize", gtk.RESPONSE_NONE)
         b.connect("clicked", lambda b: self.__randomize_weights())
 
-        b = self.add_button("Reset", gtk.RESPONSE_NONE)
+        b = self.__d.add_button("Reset", gtk.RESPONSE_NONE)
         b.connect("clicked", lambda b: self.__reset_weights())
 
-        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
-        self.connect("response", WeightPicker.__response_handler)
+        self.__d.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
+
+        def response_handler_cb(dialog, id):
+            if id != gtk.RESPONSE_NONE:
+                self.emit("finished")
+                self.destroy()
+        self.__d.connect("response", response_handler_cb)
 
 
         ###
@@ -79,7 +83,7 @@ class WeightPicker(gtk.Dialog):
 
         swin.set_size_request(-1, 200)
 
-        self.vbox.pack_start(swin, expand=1, fill=1)
+        self.__d.vbox.pack_start(swin, expand=1, fill=1)
 
     def __update_labels(self):
         total = 0.0
@@ -116,11 +120,11 @@ class WeightPicker(gtk.Dialog):
         for txt in self.__weights.keys():
             self.set_weight(txt, 1.0)
 
+    def destroy(self):
+        self.__d.destroy()
 
-    def __response_handler(self, id):
-        if id != gtk.RESPONSE_NONE:
-            self.emit("finished")
-            self.destroy()
+    def show_all(self):
+        self.__d.show_all()
 
 
 
