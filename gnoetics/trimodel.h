@@ -10,6 +10,7 @@
 #include "pybind.h"
 
 #include "token.h"
+#include "tokenfilter.h"
 #include "text.h"
 
 typedef struct _TrimodelElement TrimodelElement;
@@ -21,7 +22,9 @@ struct _TrimodelElement {
     Token *soln;
 };
 
-int trimodel_element_cmp_pair (const TrimodelElement *, Token *t1, Token *t2);
+int trimodel_element_cmp_pair (const TrimodelElement *,
+                               const Token *t1,
+                               const Token *t2);
 int trimodel_element_cmp      (gconstpointer, gconstpointer);
 
 typedef struct _Trimodel Trimodel;
@@ -45,6 +48,16 @@ Trimodel *trimodel_new      (void);
 
 void      trimodel_add_text (Trimodel *tri,
                              Text     *txt);
+
+void      trimodel_prepare (Trimodel *tri);
+
+gint      trimodel_query (Trimodel    *tri,
+                          Token       *token_a,
+                          Token       *token_b,
+                          Token       *token_c,
+                          TokenFilter *filter,
+                          TokenFn      match_fn,
+                          gpointer     user_data);
 
 
 

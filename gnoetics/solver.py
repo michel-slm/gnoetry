@@ -11,15 +11,33 @@ class GenericSolver:
         self.__action_list = []
 
 
-    # Returns the index of the next unit to solve, along w/ the
-    # left/right binding type.
-    def next_pos(self, poem):
+    # Return the left/right score of an unbound unit.  High-score units get
+    # bound first.
+    def unit_scores(self, poem, u, i):
         assert False
 
 
+    # Returns the index of the next unit to solve, along w/ the
+    # left/right binding type.
+    def next_pos(self, poem):
+        L = []
+        for i, u in enumerate(poem):
+            if u.is_not_bound():
+                left_score, right_score = self.unit_scores(poem, u, i)
+                print i, left_score, right_score
+                # Since this is a stable sort, ordering the appends
+                # this way favors right-binding.
+                L.append((i, False, right_score))
+                L.append((i, True, left_score))
+        if not L:
+            return None, None
+        L.sort(lambda x, y: cmp(y[-1], x[-1]))
+        return L[0][:2]
+            
+
     # Given an index and left/right, return an Action item,
     # or None if no solutions are found.
-    def find_action(self, poem, i, is_left=True):
+    def find_action(self, poem, u, i, is_left=True):
         assert False
 
 
@@ -27,9 +45,11 @@ class GenericSolver:
         if poem.is_fully_bound():
             return False
         i, is_left = self.next_pos(poem)
+        print "next:", i, ((is_left and "left") or "right")
         assert 0 <= i < len(poem)
-        assert poem[i].is_not_bound()
-        act = self.find_action(poem, i, is_left=is_left)
+        u = poem[i]
+        assert u.is_not_bound()
+        act = self.find_action(poem, u, i, is_left=is_left)
         if act and act.has_solution():
             act.apply()
             self.__action_list.append(act)
@@ -51,7 +71,9 @@ class GenericSolver:
 
     def solve(self, poem):
         while not poem.is_fully_bound() and self.step(poem) != 0:
-            pass
+            poem.dump()
+        print "*****"
+        poem.dump()
 
 
 ############################################################################
@@ -59,69 +81,80 @@ class GenericSolver:
 
 # FIXME: needs to be changed to reflect changes to GenericSolver,
 # PoeticUnit, Poem, etc.
+
 class SimpleSolver(GenericSolver):
 
     def __init__(self, model):
+        GenericSolver.__init__(self)
         assert model.get_N() >= 3
         self.__model = model
 
-    def solve_at(self, poem, i, right=0):
-        u = poem[i]
+
+    def unit_scores(self, poem, u, i):
+        left_score = 0
+        right_score = 0
+
+        if u.is_right_logic_constrained():
+            right_score += 100
+        if u.is_rhymed():
+            right_score += 100
+        if i == len(poem)-1 or (i < len(poem)-1 and poem[i+1].is_bound()):
+            right_score += 100
+                        
+        if u.is_left_logic_constrained():
+            left_score += 100
+        if i == 0 or (i > 0 and poem[i-1].is_bound()):
+            left_score += 100
+        if u.is_rhymed():
+            left_score += 50
+
+        return left_score, right_score
+
+
+    def find_action(self, poem, u, i, is_left=True):
         assert u.is_not_bound()
 
-        print "i=%d, right=%d" % (i, right)
+        n = u.get_syllables()
         
         t_break = gnoetics.token_lookup_break()
         t_wild  = gnoetics.token_lookup_wildcard()
 
-        query1 = []
+        u_prev = poem.get(i-1) # or None if out-of-bounds
+        u_next = poem.get(i+1) # ditto
+
+        t_prev = None
+        t_next = None
+ 
+        if u.is_head() or (u_prev and u_prev.is_tail()):
+            t_prev = t_break
+        elif u_prev and u_prev.is_bound():
+            t_prev = u_prev.get_binding()
+
+        if u.is_tail() or (u_next and u_next.is_head()):
+            t_next = t_break
+        elif u_next and u_next.is_bound():
+            t_next = u_next.get_binding()
+
+            
+        query1 = [t_prev, t_wild, t_next]
         filter1 = {}
+        filter1["min_syllables"] = n
+        filter1["max_syllables"] = n
 
         query2 = []
         filter2 = {}
 
-        t_prev = None
-        if i == 0:
-            t_prev = t_break
-        elif poem[i-1].is_bound():
-            t_prev = poem[i-1].get_binding()
+        if n > 1:
+            filter2["min_syllables"] = 0
+            filter2["max_syllables"] = n-1
+            if is_left:
+                query2 = [t_prev, t_wild]
+            else: # is right
+                query2 = [t_wild, t_next]
 
-        t_next = None
-        if i == len(poem)-1:
-            t_next = t_break
-        elif poem[i+1].is_bound():
-            t_next = poem[i+1].get_binding()
 
-        print "prev:", t_prev
-        print "next:", t_next
-
-        if t_prev is None and t_next is None:
-            query1 = [t_wild]
-            filter1["min_syllables"] = 0
-            filter1["max_syllables"] = u.get_syllables()
-        elif right:
-            query1 = [t_wild, t_next]
-            filter1["min_syllables"] = 0
-            filter1["max_syllables"] = u.get_syllables()
-            if t_next and t_next.get_syllables() == 0:
-                filter1["min_syllables"] = 1
-            if t_prev:
-                filter1["max_syllables"] -= 1
-                query2 = [t_prev, t_wild, t_next]
-                filter2["min_syllables"] = u.get_syllables()
-                filter2["max_syllables"] = u.get_syllables()
-        else: # left
-            query1 = [t_prev, t_wild]
-            filter1["min_syllables"] = 0
-            filter1["max_syllables"] = u.get_syllables()
-            if t_prev and t_prev.get_syllables() == 0:
-                filter1["min_syllables"] = 1
-            if t_next:
-                filter1["max_syllables"] -= 1
-                query2 = [t_prev, t_wild, t_next]
-                filter2["min_syllables"] = u.get_syllables()
-                filter2["max_syllables"] = u.get_syllables()
-
+        ## Process the queries
+        
         query1 = filter(lambda x: x is not None, query1)
         query2 = filter(lambda x: x is not None, query2)
 
@@ -142,7 +175,7 @@ class SimpleSolver(GenericSolver):
                 if not uniq.has_key(x.get_word()):
                     soln.append(x)
                     uniq[x.get_word()] = 1
-            act = gnoetics.Action(poem, i, soln, right=right)
+            act = gnoetics.Action(poem, i, soln, is_left=is_left)
 
         return act
 
