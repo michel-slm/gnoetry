@@ -89,10 +89,10 @@ trimodel_dealloc (Trimodel *tri)
     if (tri->all_tokens != NULL)
         g_ptr_array_free (tri->all_tokens, TRUE);
 
-    if (tri->always_head != NULL)
-        g_hash_table_destroy (tri->always_head);
-    if (tri->always_tail != NULL)
-        g_hash_table_destroy (tri->always_tail);
+    if (tri->is_leading != NULL)
+        g_hash_table_destroy (tri->is_leading);
+    if (tri->is_terminal != NULL)
+        g_hash_table_destroy (tri->is_terminal);
     
     g_list_foreach (tri->text_list, (GFunc) text_unref, NULL);
     g_list_free (tri->text_list);
@@ -253,7 +253,7 @@ trimodel_build_all_tokens_array (Trimodel *tri)
 }
 
 static void
-trimodel_build_always_head_tail_hashes (Trimodel *tri)
+trimodel_build_leading_terminal (Trimodel *tri)
 {
     GHashTable *not_head, *not_tail;
     TrimodelElement *elt;
@@ -261,14 +261,14 @@ trimodel_build_always_head_tail_hashes (Trimodel *tri)
 
     g_return_if_fail (tri != NULL);
 
-    if (tri->always_head != NULL)
-        g_hash_table_destroy (tri->always_head);
+    if (tri->is_leading != NULL)
+        g_hash_table_destroy (tri->is_leading);
 
-    if (tri->always_tail != NULL)
-        g_hash_table_destroy (tri->always_tail);
+    if (tri->is_terminal != NULL)
+        g_hash_table_destroy (tri->is_terminal);
 
-    tri->always_head = g_hash_table_new (NULL, NULL);
-    tri->always_tail = g_hash_table_new (NULL, NULL);
+    tri->is_leading = g_hash_table_new (NULL, NULL);
+    tri->is_terminal = g_hash_table_new (NULL, NULL);
 
     not_head = g_hash_table_new (NULL, NULL);
     not_tail = g_hash_table_new (NULL, NULL);
@@ -298,10 +298,10 @@ trimodel_build_always_head_tail_hashes (Trimodel *tri)
             continue;
         
         if (g_hash_table_lookup (not_head, t) == NULL) 
-            g_hash_table_insert (tri->always_head, t, t);
+            g_hash_table_insert (tri->is_leading, t, t);
 
         if (g_hash_table_lookup (not_tail, t) == NULL)
-            g_hash_table_insert (tri->always_tail, t, t);
+            g_hash_table_insert (tri->is_terminal, t, t);
 
     }
 
@@ -323,9 +323,9 @@ trimodel_prepare (Trimodel *tri)
 
     trimodel_build_all_tokens_array (tri);
 
-    trimodel_build_always_head_tail_hashes (tri);
+    trimodel_build_leading_terminal (tri);
 
-    /*    tri->is_prepped = TRUE;*/
+    tri->is_prepped = TRUE;
 }
 
 static gboolean
@@ -527,6 +527,15 @@ trimodel_query (Trimodel    *tri,
             /* retain previous value of ok */
         } else {
             ok = token_filter_test (filter, elt->soln);
+            /* check non-local properties */
+            if (ok) {
+                if ((!filter->allow_leading
+                     && g_hash_table_lookup (tri->is_leading, elt->soln))
+                    ||
+                    (!filter->allow_terminal
+                     && g_hash_table_lookup (tri->is_terminal, elt->soln)))
+                    ok = FALSE;
+            }
             prev_soln = elt->soln;
         }
 

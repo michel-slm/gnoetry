@@ -15,13 +15,10 @@ time2 = time.time()
 print "load time:", time2-time1
 
 
-while 1:
-    time1 = time.time()
-    tri.prepare()
-    time2 = time.time()
-    print "prep time:", time2-time1
-
-sys.exit(0)
+time1 = time.time()
+tri.prepare()
+time2 = time.time()
+print "prep time:", time2-time1
 
 query_times = []
 
@@ -34,27 +31,37 @@ def babble():
     t3 = gnoetics.token_lookup_wildcard()
     tokfilt = { }
 
+    syl = 0
+
+    token_list = []
+
     while 1:
         time1 = time.time()
+        if syl % 2 == 0:
+            tokfilt["meter_left"] = "u-" * 20
+        else:
+            tokfilt["meter_left"] = "-u" * 20
         results = tri.query((t1, t2, t3, tokfilt))
         time2 = time.time()
         query_times.append(time2-time1)
         if not results:
-            print "!!!!!!"
-            break
+            return 0
         t = results[0]
         if t.is_break():
             break
-        print t.get_word(),
+        token_list.append(t)
+        syl += t.get_syllables()
 
         t1 = t2
         t2 = t
 
-    print
+    print string.join(map(lambda x: x.get_word(), token_list), " ")
+
+    return 1
 
 
 for i in range(100):
-    babble()
+    while not babble(): pass
     print
 
 query_times.sort()

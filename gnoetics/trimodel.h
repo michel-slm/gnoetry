@@ -38,8 +38,8 @@ struct _Trimodel {
     GArray *array_AC_B;
     GArray *array_BC_A;
 
-    GHashTable *always_head;
-    GHashTable *always_tail;
+    GHashTable *is_leading;
+    GHashTable *is_terminal;
 
     gboolean is_prepped;
 

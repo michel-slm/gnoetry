@@ -7,6 +7,8 @@ token_filter_init (TokenFilter *filter)
 {
     g_return_if_fail (filter != NULL);
 
+    filter->impossible = FALSE;
+
     filter->in_dictionary = FILTER_NEUTRAL;
     filter->is_punctuation = FILTER_NEUTRAL;
 
@@ -22,7 +24,8 @@ token_filter_init (TokenFilter *filter)
     filter->rhymes_with = NULL;
     filter->min_rhyme_type = RHYME_FALSE;
 
-    filter->impossible = FALSE;
+    filter->allow_leading = TRUE;
+    filter->allow_terminal = TRUE;
 }
 
 static gboolean
@@ -151,6 +154,10 @@ token_filter_init_from_py_dict (TokenFilter *filter,
 
     py_dict_get_double (py_dict, "max_metric_error",
                         &filter->max_metric_error);
+
+    py_dict_get_int (py_dict, "allow_leading", &filter->allow_leading);
+
+    py_dict_get_int (py_dict, "allow_terminal", &filter->allow_terminal);
 
     if (PyMapping_HasKeyString (py_dict, "rhymes_with")) {
         PyObject *py_val = PyMapping_GetItemString (py_dict, "rhymes_with");

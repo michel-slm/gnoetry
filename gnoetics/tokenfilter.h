@@ -19,6 +19,11 @@ typedef enum {
 
 typedef struct _TokenFilter TokenFilter;
 struct _TokenFilter {
+
+    gboolean impossible;
+
+    /* Local criteria */
+
     Filter in_dictionary;
     Filter is_punctuation;
 
@@ -33,8 +38,11 @@ struct _TokenFilter {
 
     Token *rhymes_with;
     RhymeType min_rhyme_type;
-    
-    gboolean impossible;
+
+    /* Non-local or model-sensitive criteria */
+
+    gboolean allow_leading;
+    gboolean allow_terminal;
 };
 
 void token_filter_init              (TokenFilter *filter);
