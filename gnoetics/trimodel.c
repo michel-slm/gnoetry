@@ -483,33 +483,75 @@ static PyObject *
 py_trimodel_query (PyObject *self, PyObject *args)
 {
     Trimodel *tri = trimodel_from_py (self);
-    PyObject *py_t1, *py_t2, *py_t3;
     Token *t1, *t2, *t3;
-    PyObject *py_filter;
     TokenFilter filter;
     
-    GPtrArray *results_array;
+    GPtrArray *results_array = NULL;
     GHashTable *uniq = NULL;
     PyObject *results = NULL;
+    gboolean error_flag = FALSE;
     int i, j, N;
 
-    if (! PyArg_ParseTuple (args, "OOOO",
-                            &py_t1, &py_t2, &py_t3, &py_filter))
-        return NULL;
-
-    t1 = token_from_py (py_t1);
-    t2 = token_from_py (py_t2);
-    t3 = token_from_py (py_t3);
-
-    token_filter_init_from_py_dict (&filter, py_filter);
+    N = PySequence_Size (args);
+    if (N == 0) /* i.e. an empty query */
+        goto finished;
 
     results_array = g_ptr_array_sized_new (500);
 
-    if (! trimodel_query (tri,
-                          t1, t2, t3, &filter,
-                          query_token_cb, results_array)) {
-        goto finished;
+    for (i = 0; i < N; ++i) {
+        PyObject *query = PySequence_GetItem (args, i);
+
+        PyObject *py_t1 = NULL, *py_t2 = NULL, *py_t3 = NULL;
+        PyObject *py_filter = NULL;
+
+        if (! (PySequence_Check (query) && PySequence_Size (query) == 4)) {
+            PyErr_Format (PyExc_ValueError,
+                          "Badly-formed query at arg %d",
+                          i+1);
+            error_flag = TRUE;
+            goto cleanup_this_query;
+        }
+
+        py_t1 = PySequence_GetItem (query, 0);
+        py_t2 = PySequence_GetItem (query, 1);
+        py_t3 = PySequence_GetItem (query, 2);
+
+        py_filter = PySequence_GetItem (query, 3);
+
+        if (! (py_token_check (py_t1)
+               && py_token_check (py_t2)
+               && py_token_check (py_t3)
+               && PyDict_Check (py_filter))) {
+            PyErr_Format (PyExc_ValueError,
+                          "Badly-formed query at arg %d",
+                          i+1);
+            error_flag = TRUE;
+            goto cleanup_this_query;
+        }
+
+        t1 = token_from_py (py_t1);
+        t2 = token_from_py (py_t2);
+        t3 = token_from_py (py_t3);
+
+        token_filter_init_from_py_dict (&filter, py_filter);
+
+        trimodel_query (tri,
+                        t1, t2, t3, &filter,
+                        query_token_cb, results_array);
+
+    cleanup_this_query:
+        if (py_t1)     { Py_DECREF (py_t1); }
+        if (py_t2)     { Py_DECREF (py_t2); }
+        if (py_t3)     { Py_DECREF (py_t3); }
+        if (py_filter) { Py_DECREF (py_filter); }
+        Py_DECREF (query);
+
+        if (error_flag)
+            goto finished;
     }
+
+    if (results_array->len == 0)
+        goto finished;
 
     /* Shuffle results */
     N = results_array->len;
@@ -544,7 +586,7 @@ py_trimodel_query (PyObject *self, PyObject *args)
     if (uniq != NULL)
         g_hash_table_destroy (uniq);
 
-    if (results == NULL)
+    if (results == NULL && !error_flag)
         results = PyList_New (0);
 
     return results;
