@@ -1,0 +1,82 @@
+<html>
+<body>
+
+<h1>Text T28</h1>
+
+<h2>Source</h2>
+<p>BNC file KE2
+
+<h2>Date</h2>
+<p>20 to 27 Feb 1992
+
+<h2>Place</h2>
+<p>Newton Abbot, Devon
+
+<h2>Locale/activities</h2>
+<p>
+<ul>
+<li>divs 039612-6  at home, 
+preparing food/having breakfast/reading newspaper
+<li>div 039701  at home, eating lunch and doing crossword
+</ul>
+<h2>Identified Speakers</h2>
+<ul>
+<li>Howard112, m, 70, retired, SE, C2
+<li>Josephine113, f, 70, retired, IR, C2
+</ul>
+
+<h2>Relationships</h2>
+<p>The speakers are man and wife.
+
+
+<h2>Dialect Classification</h2>
+<p>According to the BNC file header, Howard's dialect is East Anglian, and
+Josephine's is Irish.  (It is an oddity of the CHRISTINE text selection
+that although two extracts were recorded in Newton Abbot, not a
+particularly cosmopolitan Devon town, all the speakers in both those
+extracts evidently stemmed from far-distant parts of the British Isles.)
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Howard112 as C2 and Josephine113 as DE, but since the latter
+is the former's wife CHRISTINE adjusts her class to match his.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>08563:  <i>Tin Valley</i>, <i>Tingrace</i> emended to 
+<i>Teign Valley</i>, <i>Teigngrace</i> (Devon
+placenames derived from the river Teign, pronounced [tIn])
+
+<p>08565:  The BNC file marks the beginning of the 
+<tt>{onTelephone}</tt> vocalization
+shift, but not its end.  However, from the wording it is
+clear that it ends at the end of s-unit 08572, and CHRISTINE
+marks it accordingly.
+
+<p>08597:  <i>bye bye</i> emended to <i>bye-bye</i>
+
+<p>08621, 08624:  The BNC file supplements the vocalization shifts showing that 
+Howard is reading aloud with an event entity &quot;newspaper&quot;.
+The latter is not an &quot;event&quot; in the normal sense, and it seems
+unnecessary for the CHRISTINE annotations to include the information
+that the reading is from a newspaper.
+
+<p>08620:  <i>Offgas</i> emended to <i>Ofgas</i> (normal abbreviation 
+for the quango supervising
+the privatized gas industry)
+
+<p>08639, 08640:  <i>washing machine</i> emended to <i>washing-machine</i>
+
+<p>08649:  <i>sending stuff of</i> emended to <i>sending stuff off</i> 
+(the sense requires it,
+and the phonetic difference would be minimal preceding the word
+<i>for</i>)
+
+<p>08725:  <i>nitty gritty</i> emended to <i>nitty-gritty</i>
+
+
+</body>
+</html>
+

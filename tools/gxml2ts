@@ -1,0 +1,161 @@
+#!/usr/bin/python2
+# This is -*- Python -*-
+
+import string, sys, xml.sax, xml.sax.handler, re
+
+dash_re = re.compile(" *--+")
+ellipsis_re = re.compile(" *(\. *){3,}")
+
+abbrev_list = ("dr.", "mr.", "ms.", "mrs.", "m.")
+def is_abbrev(word):
+    return word.lower() in abbrev_list
+
+def is_terminal(word):
+    if word[-1] == "." and (len(word) == 1 or word[-2] != "."):
+        return not is_abbrev(word)
+    return word[-1] in ("?", "!")
+
+def split_punctuation(word):
+    if word[-1] in (",", ";", ":", "-"):
+        return word[:-1], word[-1]
+    elif word[-3:] == "...":
+        return word[:-3], word[-3:]
+    else:
+        return word, None
+
+class TextScanner:
+
+    def __init__(self):
+        pass
+
+    def process_chunk(self, chunk):
+        chunk = chunk.strip().lower()
+        if not chunk:
+            return
+
+        chunk = chunk.replace('"', "") # remove quotes
+        chunk = chunk.replace(")", ", ") # map parens to commas
+        chunk = chunk.replace("(", ", ") # map parens to commas
+        tokens = chunk.split()
+
+        for token in tokens:
+            token = token.strip()
+            if token:
+                if is_terminal(token):
+                    if len(token) > 1:
+                        print token[:-1]
+                    print "*punct*", token[-1]
+                    print "*break*"
+                else:
+                    word, punc = split_punctuation(token)
+                    if word:
+                        print word
+                    if punc:
+                        print "*punct*", punc
+        
+    def process(self):
+        assert 0
+
+
+class TextScanner_XML(TextScanner,
+                      xml.sax.handler.ContentHandler,
+                      xml.sax.handler.DTDHandler,
+                      xml.sax.handler.EntityResolver,
+                      xml.sax.handler.ErrorHandler):
+
+    def __init__(self, filename):
+        TextScanner.__init__(self)
+
+        self.__para = 0
+        self.__bookbody = 0
+        self.__block = 0
+        self.__pending = []
+        
+        self.__filename = filename
+
+    def startElement(self, name, attrs):
+        if name == "para":
+            self.__para += 1
+        elif name == "bookbody":
+            self.__bookbody += 1
+        elif name == "reference":
+            self.__block += 1
+        
+    def endElement(self, name):
+        if name == "para":
+            self.__para -= 1
+            if  self.__para == 0:
+                self.__process_pending()
+        elif name == "bookbody":
+            self.__bookbody -= 1
+        elif name == "reference":
+            self.__block -= 1
+
+    def characters(self, content):
+        if self.__para > 0 and self.__bookbody > 0 and self.__block == 0:
+            line = content.encode("utf-8").strip()
+            if line:
+                self.__pending.append(line)
+
+    def __process_pending(self):
+        if not self.__pending:
+            return
+
+        # If a ' is on a line by itself, it almost certainly came
+        # from expanding an &apos;
+        pend = []
+        while self.__pending:
+            line = self.__pending.pop(0)
+            if line == "'":
+                next = ""
+                if self.__pending:
+                    next = self.__pending.pop(0)
+                pend[-1] = pend[-1] + "'" + next
+            else:
+                pend.append(line)
+
+        line = string.join(pend, " ")
+
+        # strip out quotes
+        line = line.replace('"', "")
+        line = line.replace('`', "")
+
+        # remove single quotes, but only on word boundaries
+        i = 0
+        while i != -1:
+            i = line.find("'", i)
+            if i != -1:
+                if (i == 0 or line[i-1] == " ") or \
+                   (i == len(line)-1 or line[i+1] == " "):
+                    line = line[:i] + line[i+1:]
+                else:
+                    i += 1
+
+        # map -- to commas, in a semi-intelligent way
+        if line.find("--") != -1:
+            line = dash_re.sub(", ", line)
+
+        # do something smart with ellipses
+        if line.find(". .") != -1:
+            line = ellipsis_re.sub("... ", line)
+
+        # should probably use a regexp for this
+        #line = line.replace("---", " *mdash* ")
+        #line = line.replace("--", " *mdash* ")
+
+        # fix hyphenated lines.  Also should be a regexp
+        #line = line.replace("- ", "") 
+        self.process_chunk(line)
+
+
+    def process(self):
+        parser = xml.sax.make_parser()
+        parser.setContentHandler(self)
+        parser.parse(self.__filename)
+
+        
+        
+
+scanner = TextScanner_XML(sys.argv[1])
+scanner.process()
+print "*break*" # add a terminal break

@@ -1,0 +1,3231 @@
+<?xml version="1.0"?>
+<!DOCTYPE gutplay SYSTEM "gutplay1.dtd">
+
+<?xml-stylesheet type="text/css" href="gutplay1.css"?>
+
+<gutplay>
+
+<gutblurb>
+
+<para>*The Project Gutenberg Etext of Lady Windermere's Fan, by Wilde*
+#5 in our series by Oscar Wilde</para>
+
+<para>Copyright laws are changing all over the world, be sure to check
+the copyright laws for your country before posting these files!!</para>
+
+<para>Please take a look at the important information in this header.
+We encourage you to keep this file on your own disk, keeping an
+electronic path open for the next readers.  Do not remove this.</para>
+
+<para>**Welcome To The World of Free Plain Vanilla Electronic Texts**</para>
+
+<para>**Etexts Readable By Both Humans and By Computers, Since 1971**</para>
+
+<para>*These Etexts Prepared By Hundreds of Volunteers and Donations*</para>
+
+<para>Information on contacting Project Gutenberg to get Etexts, and
+further information is included below.  We need your donations.</para>
+
+<para>Lady Windermere's Fan</para>
+
+<para>by Oscar Wilde</para>
+
+<para>January, 1997  [Etext #790]</para>
+
+<para>*The Project Gutenberg Etext of Lady Windermere's Fan, by Wilde*
+******This file should be named lwfan10.txt or lwfan10.zip******</para>
+
+<para>Corrected EDITIONS of our etexts get a new NUMBER, lwfan11.txt.
+VERSIONS based on separate sources get new LETTER, lwfan10a.txt.</para>
+
+<para>Scanned and proofed by David Price </para>
+
+<para>We are now trying to release all our books one month in advance
+of the official release dates, for time for better editing.</para>
+
+<para>Please note:  neither this list nor its contents are final till
+midnight of the last day of the month of any such announcement.
+The official release date of all Project Gutenberg Etexts is at
+Midnight, Central Time, of the last day of the stated month.  A
+preliminary version may often be posted for suggestion, comment
+and editing by those who wish to do so.  To be sure you have an
+up to date first edition [xxxxx10x.xxx] please check file sizes
+in the first week of the next month.  Since our ftp program has
+a bug in it that scrambles the date [tried to fix and failed] a
+look at the file size will have to do, but we will try to see a
+new copy has at least one byte more or less.</para>
+
+<para>Information about Project Gutenberg (one page)</para>
+
+<para>We produce about two million dollars for each hour we work.  The
+fifty hours is one conservative estimate for how long it we take
+to get any etext selected, entered, proofread, edited, copyright
+searched and analyzed, the copyright letters written, etc.  This
+projected audience is one hundred million readers.  If our value
+per text is nominally estimated at one dollar then we produce $2
+million dollars per hour this year as we release thirty-two text
+files per month:  or 400 more Etexts in 1996 for a total of 800.
+If these reach just 10% of the computerized population, then the
+total should reach 80 billion Etexts.</para>
+
+<para>The Goal of Project Gutenberg is to Give Away One Trillion Etext
+Files by the December 31, 2001.  [10,000 x 100,000,000=Trillion]
+This is ten thousand titles each to one hundred million readers,
+which is only 10% of the present number of computer users.  2001
+should have at least twice as many computer users as that, so it
+will require us reaching less than 5% of the users in 2001.</para>
+
+<para>We need your donations more than ever!</para>
+
+<para>All donations should be made to "Project Gutenberg/BU":  and are
+tax deductible to the extent allowable by law. (BU = Benedictine
+University).  (Subscriptions to our paper newsletter go to BU.)</para>
+
+<para>For these and other matters, please mail to:</para>
+
+<para>Project Gutenberg
+P. O. Box  2782
+Champaign, IL 61825</para>
+
+<para>When all other email fails try our Executive Director:
+Michael S. Hart &lt;hart@pobox.com></para>
+
+<para>We would prefer to send you this information by email
+(Internet, Bitnet, Compuserve, ATTMAIL or MCImail).</para>
+
+<para>******
+If you have an FTP program (or emulator), please
+FTP directly to the Project Gutenberg archives:
+[Mac users, do NOT point and click. . .type]</para>
+
+<para>ftp uiarchive.cso.uiuc.edu
+login:  anonymous
+password:  your@login
+cd etext/etext90 through /etext96
+or cd etext/articles [get suggest gut for more information]
+dir [to see files]
+get or mget [to get files. . .set bin for zip files]
+GET INDEX?00.GUT
+for a list of books
+and
+GET NEW GUT for general information
+and
+MGET GUT* for newsletters.</para>
+
+<para>**Information prepared by the Project Gutenberg legal advisor**
+(Three Pages)</para>
+
+<para>***START**THE SMALL PRINT!**FOR PUBLIC DOMAIN ETEXTS**START***
+Why is this "Small Print!" statement here?  You know: lawyers.
+They tell us you might sue us if there is something wrong with
+your copy of this etext, even if you got it for free from
+someone other than us, and even if what's wrong is not our
+fault.  So, among other things, this "Small Print!" statement
+disclaims most of our liability to you.  It also tells you how
+you can distribute copies of this etext if you want to.</para>
+
+<para>*BEFORE!* YOU USE OR READ THIS ETEXT
+By using or reading any part of this PROJECT GUTENBERG-tm
+etext, you indicate that you understand, agree to and accept
+this "Small Print!" statement.  If you do not, you can receive
+a refund of the money (if any) you paid for this etext by
+sending a request within 30 days of receiving it to the person
+you got it from.  If you received this etext on a physical
+medium (such as a disk), you must return it with your request.</para>
+
+<para>ABOUT PROJECT GUTENBERG-TM ETEXTS
+This PROJECT GUTENBERG-tm etext, like most PROJECT GUTENBERG-
+tm etexts, is a "public domain" work distributed by Professor
+Michael S. Hart through the Project Gutenberg Association at
+Benedictine University (the "Project").  Among other
+things, this means that no one owns a United States copyright
+on or for this work, so the Project (and you!) can copy and
+distribute it in the United States without permission and
+without paying copyright royalties.  Special rules, set forth
+below, apply if you wish to copy and distribute this etext
+under the Project's "PROJECT GUTENBERG" trademark.</para>
+
+<para>To create these etexts, the Project expends considerable
+efforts to identify, transcribe and proofread public domain
+works.  Despite these efforts, the Project's etexts and any
+medium they may be on may contain "Defects".  Among other
+things, Defects may take the form of incomplete, inaccurate or
+corrupt data, transcription errors, a copyright or other
+intellectual property infringement, a defective or damaged
+disk or other etext medium, a computer virus, or computer
+codes that damage or cannot be read by your equipment.</para>
+
+<para>LIMITED WARRANTY; DISCLAIMER OF DAMAGES
+But for the "Right of Replacement or Refund" described below,
+[1] the Project (and any other party you may receive this
+etext from as a PROJECT GUTENBERG-tm etext) disclaims all
+liability to you for damages, costs and expenses, including
+legal fees, and [2] YOU HAVE NO REMEDIES FOR NEGLIGENCE OR
+UNDER STRICT LIABILITY, OR FOR BREACH OF WARRANTY OR CONTRACT,
+INCLUDING BUT NOT LIMITED TO INDIRECT, CONSEQUENTIAL, PUNITIVE
+OR INCIDENTAL DAMAGES, EVEN IF YOU GIVE NOTICE OF THE
+POSSIBILITY OF SUCH DAMAGES.</para>
+
+<para>If you discover a Defect in this etext within 90 days of
+receiving it, you can receive a refund of the money (if any)
+you paid for it by sending an explanatory note within that
+time to the person you received it from.  If you received it
+on a physical medium, you must return it with your note, and
+such person may choose to alternatively give you a replacement
+copy.  If you received it electronically, such person may
+choose to alternatively give you a second opportunity to
+receive it electronically.</para>
+
+<para>THIS ETEXT IS OTHERWISE PROVIDED TO YOU "AS-IS".  NO OTHER
+WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, ARE MADE TO YOU AS
+TO THE ETEXT OR ANY MEDIUM IT MAY BE ON, INCLUDING BUT NOT
+LIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
+PARTICULAR PURPOSE.</para>
+
+<para>Some states do not allow disclaimers of implied warranties or
+the exclusion or limitation of consequential damages, so the
+above disclaimers and exclusions may not apply to you, and you
+may have other legal rights.</para>
+
+<para>INDEMNITY
+You will indemnify and hold the Project, its directors,
+officers, members and agents harmless from all liability, cost
+and expense, including legal fees, that arise directly or
+indirectly from any of the following that you do or cause:
+[1] distribution of this etext, [2] alteration, modification,
+or addition to the etext, or [3] any Defect.</para>
+
+<para>DISTRIBUTION UNDER "PROJECT GUTENBERG-tm"
+You may distribute copies of this etext electronically, or by
+disk, book or any other medium if you either delete this
+"Small Print!" and all other references to Project Gutenberg,
+or:</para>
+
+<para>[1]  Only give exact copies of it.  Among other things, this
+     requires that you do not remove, alter or modify the
+     etext or this "small print!" statement.  You may however,
+     if you wish, distribute this etext in machine readable
+     binary, compressed, mark-up, or proprietary form,
+     including any form resulting from conversion by word pro-
+     cessing or hypertext software, but only so long as
+     *EITHER*:</para>
+
+<para>     [*]  The etext, when displayed, is clearly readable, and
+          does *not* contain characters other than those
+          intended by the author of the work, although tilde
+          (~), asterisk (*) and underline (_) characters may
+          be used to convey punctuation intended by the
+          author, and additional characters may be used to
+          indicate hypertext links; OR</para>
+
+<para>     [*]  The etext may be readily converted by the reader at
+          no expense into plain ASCII, EBCDIC or equivalent
+          form by the program that displays the etext (as is
+          the case, for instance, with most word processors);
+          OR</para>
+
+<para>     [*]  You provide, or agree to also provide on request at
+          no additional cost, fee or expense, a copy of the
+          etext in its original plain ASCII form (or in EBCDIC
+          or other equivalent proprietary form).</para>
+
+<para>[2]  Honor the etext refund and replacement provisions of this
+     "Small Print!" statement.</para>
+
+<para>[3]  Pay a trademark license fee to the Project of 20% of the
+     net profits you derive calculated using the method you
+     already use to calculate your applicable taxes.  If you
+     don't derive profits, no royalty is due.  Royalties are
+     payable to "Project Gutenberg Association / Benedictine
+     University" within the 60 days following each
+     date you prepare (or were legally required to prepare)
+     your annual (or equivalent periodic) tax return.</para>
+
+<para>WHAT IF YOU *WANT* TO SEND MONEY EVEN IF YOU DON'T HAVE TO?
+The Project gratefully accepts contributions in money, time,
+scanning machines, OCR software, public domain etexts, royalty
+free copyright licenses, and every other sort of contribution
+you can think of.  Money should be paid to "Project Gutenberg
+Association / Benedictine University".</para>
+
+<para>*END*THE SMALL PRINT! FOR PUBLIC DOMAIN ETEXTS*Ver.04.29.93*END*</para>
+
+<para>Lady Windermere's Fan by Oscar Wilde
+Scanned and proofed by David Price 
+ccx074@coventry.ac.uk</para>
+
+</gutblurb>
+
+<markupblurb>
+Markup by Donna Smillie for the HTML Writers Guild
+Email dms@zetnet.co.uk
+5 February 2000
+</markupblurb>
+
+<play>
+
+<acknowledge>Project Gutenberg and the HTML Writers Guild. XML markup by Donna Smillie. February 2000. Etext scanned and proofed by David Price.</acknowledge>
+
+<frontmatter>
+
+<titlepage>
+
+<title>Lady Windermere's Fan</title>
+
+</titlepage>
+
+<personae>
+
+<title>THE PERSONS OF THE PLAY</title>
+
+<pgroup>
+<persona>Lord Windermere</persona>
+<persona>Lord Darlington</persona>
+<persona>Lord Augustus Lorton</persona>
+<persona>Mr. Dumby</persona>
+<persona>Mr. Cecil Graham</persona>
+<persona>Mr. Hopper</persona>
+<persona>Parker, Butler</persona>
+</pgroup>
+
+<pgroup>
+<persona>Lady Windermere</persona>
+<persona>The Duchess of Berwick</persona>
+<persona>Lady Agatha Carlisle</persona>
+<persona>Lady Plymdale</persona>
+<persona>Lady Stutfield</persona>
+<persona>Lady Jedburgh</persona>
+<persona>Mrs. Cowper-Cowper</persona>
+<persona>Mrs. Erlynne</persona>
+<persona>Rosalie, Maid</persona>
+</pgroup>
+
+</personae>
+
+<toc>
+
+<title>THE SCENES OF THE PLAY</title>
+
+<list>
+<item>ACT I.    Morning-room in Lord Windermere's house.</item>
+<item>ACT II.   Drawing-room in Lord Windermere's house.</item>
+<item>ACT III.  Lord Darlington's rooms.</item>
+<item>ACT IV.   Morning-room in Lord Windermere's house.</item>
+</list>
+
+</toc>
+
+<introduction>
+
+<para>TIME:     1892</para>
+<para>PLACE:    London</para>
+
+<para>The action of the play takes place within twenty-four hours, 
+beginning on a Tuesday afternoon at five o'clock, and ending the 
+next day at 1.30 p.m.</para>
+
+</introduction>
+
+<htitlepage>
+
+<title>Lady Windermere's Fan</title>
+
+</htitlepage>
+
+</frontmatter>
+
+<playbody>
+
+<act>
+
+<title>FIRST ACT</title>
+
+<scndesc>SCENE
+Morning-room of Lord Windermere's house in Carlton House Terrace.  
+Doors C. and R.  Bureau with books and papers R.  Sofa with small 
+tea-table L.  Window opening on to terrace L.  Table R.
+[C = Center, L = Left, R = Right]</scndesc>
+
+<stagedir>[LADY WINDERMERE is at table R., arranging roses in a blue bowl.]</stagedir>
+
+<stagedir>[Enter PARKER.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Is your ladyship at home this afternoon?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes - who has called?</speech>
+
+<speech><speaker>PARKER.</speaker>  Lord Darlington, my lady.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Hesitates for a moment.]</stagedir>  Show him up - and I'm 
+at home to any one who calls.</speech>
+
+<speech><speaker>PARKER.</speaker>  Yes, my lady.</speech>
+
+<stagedir>[Exit C.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  It's best for me to see him before to-night.  I'm 
+glad he's come.</speech>
+
+<stagedir>[Enter PARKER C.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Lord Darlington,</speech>
+
+<stagedir>[Enter LORD DARLINGTON C.]</stagedir>
+
+<stagedir>[Exit PARKER.]</stagedir>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  How do you do, Lady Windermere?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  How do you do, Lord Darlington?  No, I can't 
+shake hands with you.  My hands are all wet with these roses.  
+Aren't they lovely?  They came up from Selby this morning.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  They are quite perfect.  <stagedir>[Sees a fan lying on the 
+table.]</stagedir>  And what a wonderful fan!  May I look at it?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Do.  Pretty, isn't it!  It's got my name on it, 
+and everything.  I have only just seen it myself.  It's my 
+husband's birthday present to me.  You know to-day is my birthday?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  No?  Is it really?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes, I'm of age to-day.  Quite an important day 
+in my life, isn't it?  That is why I am giving this party tonight.  
+Do sit down.  <stagedir>[Still arranging flowers.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Sitting down.]</stagedir>  I wish I had known it was your 
+birthday, Lady Windermere.  I would have covered the whole street 
+in front of your house with flowers for you to walk on.  They are 
+made for you.  <stagedir>[A short pause.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Lord Darlington, you annoyed me last night at the 
+Foreign Office.  I am afraid you are going to annoy me again.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I, Lady Windermere?</speech>
+
+<stagedir>[Enter PARKER and FOOTMAN C., with tray and tea things.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Put it there, Parker.  That will do.  <stagedir>[Wipes her 
+hands with her pocket-handkerchief, goes to tea-table, and sits 
+down.]</stagedir>  Won't you come over, Lord Darlington?</speech>
+
+<stagedir>[Exit PARKER C.]</stagedir>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Takes chair and goes across L.C.]</stagedir>  I am quite 
+miserable, Lady Windermere.  You must tell me what I did.  <stagedir>[Sits 
+down at table L.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Well, you kept paying me elaborate compliments 
+the whole evening.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Smiling.]</stagedir>  Ah, nowadays we are all of us so hard 
+up, that the only pleasant things to pay ARE compliments.  They're 
+the only things we CAN pay.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Shaking her head.]</stagedir>  No, I am talking very 
+seriously.  You mustn't laugh, I am quite serious.  I don't like 
+compliments, and I don't see why a man should think he is pleasing 
+a woman enormously when he says to her a whole heap of things that 
+he doesn't mean.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Ah, but I did mean them.  <stagedir>[Takes tea which she 
+offers him.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Gravely.]</stagedir>  I hope not.  I should be sorry to 
+have to quarrel with you, Lord Darlington.  I like you very much, 
+you know that.  But I shouldn't like you at all if I thought you 
+were what most other men are.  Believe me, you are better than most 
+other men, and I sometimes think you pretend to be worse.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  We all have our little vanities, Lady Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why do you make that your special one?  <stagedir>[Still 
+seated at table L.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Still seated L.C.]</stagedir>  Oh, nowadays so many 
+conceited people go about Society pretending to be good, that I 
+think it shows rather a sweet and modest disposition to pretend to 
+be bad.  Besides, there is this to be said.  If you pretend to be 
+good, the world takes you very seriously.  If you pretend to be 
+bad, it doesn't.  Such is the astounding stupidity of optimism.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Don't you WANT the world to take you seriously 
+then, Lord Darlington?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  No, not the world.  Who are the people the world 
+takes seriously?  All the dull people one can think of, from the 
+Bishops down to the bores.  I should like YOU to take me very 
+seriously, Lady Windermere, YOU more than any one else in life.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why - why me?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[After a slight hesitation.]</stagedir>  Because I think we 
+might be great friends.  Let us be great friends.  You may want a 
+friend some day.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why do you say that?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Oh! - we all want friends at times.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I think we're very good friends already, Lord 
+Darlington.  We can always remain so as long as you don't -</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Don't what?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Don't spoil it by saying extravagant silly things 
+to me.  You think I am a Puritan, I suppose?  Well, I have 
+something of the Puritan in me.  I was brought up like that.  I am 
+glad of it.  My mother died when I was a mere child.  I lived 
+always with Lady Julia, my father's elder sister, you know.  She 
+was stern to me, but she taught me what the world is forgetting, 
+the difference that there is between what is right and what is 
+wrong.  SHE allowed of no compromise.  I allow of none.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  My dear Lady Windermere!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Leaning back on the sofa.]</stagedir>  You look on me as 
+being behind the age. - Well, I am!  I should be sorry to be on the 
+same level as an age like this.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You think the age very bad?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes.  Nowadays people seem to look on life as a 
+speculation.  It is not a speculation.  It is a sacrament.  Its 
+ideal is Love.  Its purification is sacrifice.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Smiling.]</stagedir>  Oh, anything is better than being 
+sacrificed!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Leaning forward.]</stagedir>  Don't say that.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I do say it.  I feel it - I know it.</speech>
+
+<stagedir>[Enter PARKER C.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  The men want to know if they are to put the carpets on the 
+terrace for to-night, my lady?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You don't think it will rain, Lord Darlington, do 
+you?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I won't hear of its raining on your birthday!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Tell them to do it at once, Parker.</speech>
+
+<stagedir>[Exit PARKER C.]</stagedir>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Still seated.]</stagedir>  Do you think then - of course I 
+am only putting an imaginary instance - do you think that in the 
+case of a young married couple, say about two years married, if the 
+husband suddenly becomes the intimate friend of a woman of - well, 
+more than doubtful character - is always calling upon her, lunching 
+with her, and probably paying her bills - do you think that the 
+wife should not console herself?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Frowning]</stagedir>  Console herself?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Yes, I think she should - I think she has the 
+right.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Because the husband is vile - should the wife be 
+vile also?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Vileness is a terrible word, Lady Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  It is a terrible thing, Lord Darlington.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Do you know I am afraid that good people do a 
+great deal of harm in this world.  Certainly the greatest harm they 
+do is that they make badness of such extraordinary importance.  It 
+is absurd to divide people into good and bad.  People are either 
+charming or tedious.  I take the side of the charming, and you, 
+Lady Windermere, can't help belonging to them.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Now, Lord Darlington.  <stagedir>[Rising and crossing R., 
+front of him.]</stagedir>  Don't stir, I am merely going to finish my flowers.  
+<stagedir>[Goes to table R.C.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Rising and moving chair.]</stagedir>  And I must say I 
+think you are very hard on modern life, Lady Windermere.  Of course 
+there is much against it, I admit.  Most women, for instance, 
+nowadays, are rather mercenary.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Don't talk about such people.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Well then, setting aside mercenary people, who, 
+of course, are dreadful, do you think seriously that women who have 
+committed what the world calls a fault should never be forgiven?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Standing at table.]</stagedir>  I think they should never 
+be forgiven.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  And men?  Do you think that there should be the 
+same laws for men as there are for women?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Certainly!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I think life too complex a thing to be settled by 
+these hard and fast rules.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  If we had 'these hard and fast rules,' we should 
+find life much more simple.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You allow of no exceptions?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  None!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Ah, what a fascinating Puritan you are, Lady 
+Windermere!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  The adjective was unnecessary, Lord Darlington.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I couldn't help it.  I can resist everything 
+except temptation.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You have the modern affectation of weakness.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Looking at her.]</stagedir>  It's only an affectation, Lady 
+Windermere.</speech>
+
+<stagedir>[Enter PARKER C.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  The Duchess of Berwick and Lady Agatha Carlisle.</speech>
+
+<stagedir>[Enter the DUCHESS OF BERWICK and LADY AGATHA CARLISLE C.]</stagedir>
+
+<stagedir>[Exit PARKER C.]</stagedir>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Coming down C., and shaking hands.]</stagedir>  Dear 
+Margaret, I am so pleased to see you.  You remember Agatha, don't 
+you?  <stagedir>[Crossing L.C.]</stagedir>  How do you do, Lord Darlington?  I won't let 
+you know my daughter, you are far too wicked.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Don't say that, Duchess.  As a wicked man I am a 
+complete failure.  Why, there are lots of people who say I have 
+never really done anything wrong in the whole course of my life.  
+Of course they only say it behind my back.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Isn't he dreadful?  Agatha, this is Lord 
+Darlington.  Mind you don't believe a word he says.  <stagedir>[LORD 
+DARLINGTON crosses R.C.]</stagedir>  No, no tea, thank you, dear.  <stagedir>[Crosses 
+and sits on sofa.]</stagedir>  We have just had tea at Lady Markby's.  Such 
+bad tea, too.  It was quite undrinkable.  I wasn't at all 
+surprised.  Her own son-in-law supplies it.  Agatha is looking 
+forward so much to your ball to-night, dear Margaret.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Seated L.C.]</stagedir>  Oh, you mustn't think it is going 
+to be a ball, Duchess.  It is only a dance in honour of my 
+birthday.  A small and early.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Standing L.C.]</stagedir>  Very small, very early, and very 
+select, Duchess.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[On sofa L.]</stagedir>  Of course it's going to be 
+select.  But we know THAT, dear Margaret, about YOUR house.  It is 
+really one of the few houses in London where I can take Agatha, and 
+where I feel perfectly secure about dear Berwick.  I don't know 
+what society is coming to.  The most dreadful people seem to go 
+everywhere.  They certainly come to my parties - the men get quite 
+furious if one doesn't ask them.  Really, some one should make a 
+stand against it.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I will, Duchess.  I will have no one in my house 
+about whom there is any scandal.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[R.C.]</stagedir>  Oh, don't say that, Lady Windermere.  I 
+should never be admitted!  <stagedir>[Sitting.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Oh, men don't matter.  With women it is 
+different.  We're good.  Some of us are, at least.  But we are 
+positively getting elbowed into the corner.  Our husbands would 
+really forget our existence if we didn't nag at them from time to 
+time, just to remind them that we have a perfect legal right to do 
+so.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  It's a curious thing, Duchess, about the game of 
+marriage - a game, by the way, that is going out of fashion - the 
+wives hold all the honours, and invariably lose the odd trick.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>   The odd trick?  Is that the husband, Lord 
+Darlington?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  It would be rather a good name for the modern 
+husband.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Dear Lord Darlington, how thoroughly depraved 
+you are!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Lord Darlington is trivial.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Ah, don't say that, Lady Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why do you TALK so trivially about life, then?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Because I think that life is far too important a 
+thing ever to talk seriously about it.  <stagedir>[Moves up C.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  What does he mean?  Do, as a concession to my 
+poor wits, Lord Darlington, just explain to me what you really 
+mean.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Coming down back of table.]</stagedir>  I think I had 
+better not, Duchess.  Nowadays to be intelligible is to be found 
+out.  Good-bye!  <stagedir>[Shakes hands with DUCHESS.]</stagedir>  And now - <stagedir>[goes up 
+stage]</stagedir> Lady Windermere, good-bye.  I may come to-night, mayn't I?  
+Do let me come.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Standing up stage with LORD DARLINGTON.]</stagedir>  Yes, 
+certainly.  But you are not to say foolish, insincere things to 
+people.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Smiling.]</stagedir>  Ah! you are beginning to reform me.  
+It is a dangerous thing to reform any one, Lady Windermere.  <stagedir>[Bows, 
+and exit C.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Who has risen, goes C.]</stagedir>  What a charming, 
+wicked creature!  I like him so much.  I'm quite delighted he's 
+gone!  How sweet you're looking!  Where DO you get your gowns?  And 
+now I must tell you how sorry I am for you, dear Margaret.  
+<stagedir>[Crosses to sofa and sits with LADY WINDERMERE.]</stagedir>  Agatha, darling!</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.  <stagedir>[Rises.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Will you go and look over the photograph album 
+that I see there?</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.  <stagedir>[Goes to table up L.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Dear girl!  She is so fond of photographs of 
+Switzerland.  Such a pure taste, I think.  But I really am so sorry 
+for you, Margaret</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Smiling.]</stagedir>  Why, Duchess?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Oh, on account of that horrid woman.  She 
+dresses so well, too, which makes it much worse, sets such a 
+dreadful example.  Augustus - you know my disreputable brother - 
+such a trial to us all - well, Augustus is completely infatuated 
+about her.  It is quite scandalous, for she is absolutely 
+inadmissible into society.  Many a woman has a past, but I am told 
+that she has at least a dozen, and that they all fit.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Whom are you talking about, Duchess?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  About Mrs. Erlynne.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Mrs. Erlynne?  I never heard of her, Duchess.  
+And what HAS she to do with me?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  My poor child!  Agatha, darling!</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Will you go out on the terrace and look at the 
+sunset?</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.  <stagedir>[Exit through window, L.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Sweet girl!  So devoted to sunsets!  Shows 
+such refinement of feeling, does it not?  After all, there is 
+nothing like Nature, is there?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  But what is it, Duchess?  Why do you talk to me 
+about this person?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Don't you really know?  I assure you we're all 
+so distressed about it.  Only last night at dear Lady Jansen's 
+every one was saying how extraordinary it was that, of all men in 
+London, Windermere should behave in such a way.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  My husband - what has HE got to do with any woman 
+of that kind?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Ah, what indeed, dear?  That is the point.  He 
+goes to see her continually, and stops for hours at a time, and 
+while he is there she is not at home to any one.  Not that many 
+ladies call on her, dear, but she has a great many disreputable men 
+friends - my own brother particularly, as I told you - and that is 
+what makes it so dreadful about Windermere.  We looked upon HIM as 
+being such a model husband, but I am afraid there is no doubt about 
+it.  My dear nieces - you know the Saville girls, don't you? - such 
+nice domestic creatures - plain, dreadfully plain, but so good - 
+well, they're always at the window doing fancy work, and making 
+ugly things for the poor, which I think so useful of them in these 
+dreadful socialistic days, and this terrible woman has taken a 
+house in Curzon Street, right opposite them - such a respectable 
+street, too!  I don't know what we're coming to!  And they tell me 
+that Windermere goes there four and five times a week - they SEE 
+him.  They can't help it - and although they never talk scandal, 
+they - well, of course - they remark on it to every one.  And the 
+worst of it all is that I have been told that this woman has got a 
+great deal of money out of somebody, for it seems that she came to 
+London six months ago without anything at all to speak of, and now 
+she has this charming house in Mayfair, drives her ponies in the 
+Park every afternoon and all - well, all - since she has known poor 
+dear Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Oh, I can't believe it!</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  But it's quite true, my dear.  The whole of 
+London knows it.  That is why I felt it was better to come and talk 
+to you, and advise you to take Windermere away at once to Homburg 
+or to Aix, where he'll have something to amuse him, and where you 
+can watch him all day long.  I assure you, my dear, that on several 
+occasions after I was first married, I had to pretend to be very 
+ill, and was obliged to drink the most unpleasant mineral waters, 
+merely to get Berwick out of town.  He was so extremely 
+susceptible.  Though I am bound to say he never gave away any large 
+sums of money to anybody.  He is far too high-principled for that!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Interrupting.]</stagedir>  Duchess, Duchess, it's 
+impossible!  <stagedir>[Rising and crossing stage to C.]</stagedir>  We are only married 
+two years.  Our child is but six months old.  <stagedir>[Sits in chair R. of 
+L. table.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Ah, the dear pretty baby!  How is the little 
+darling?  Is it a boy or a girl?  I hope a girl - Ah, no, I 
+remember it's a boy!  I'm so sorry.  Boys are so wicked.  My boy is 
+excessively immoral.  You wouldn't believe at what hours he comes 
+home.  And he's only left Oxford a few months - I really don't know 
+what they teach them there.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Are ALL men bad?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Oh, all of them, my dear, all of them, without 
+any exception.  And they never grow any better.  Men become old, 
+but they never become good.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Windermere and I married for love.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Yes, we begin like that.  It was only 
+Berwick's brutal and incessant threats of suicide that made me 
+accept him at all, and before the year was out, he was running 
+after all kinds of petticoats, every colour, every shape, every 
+material.  In fact, before the honeymoon was over, I caught him 
+winking at my maid, a most pretty, respectable girl.  I dismissed 
+her at once without a character. - No, I remember I passed her on 
+to my sister; poor dear Sir George is so short-sighted, I thought 
+it wouldn't matter.  But it did, though - it was most unfortunate.  
+<stagedir>[Rises.]</stagedir>  And now, my dear child, I must go, as we are dining out.  
+And mind you don't take this little aberration of Windermere's too 
+much to heart.  Just take him abroad, and he'll come back to you 
+all right.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Come back to me?  <stagedir>[C.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>   <stagedir>[L.C.]</stagedir>  Yes, dear, these wicked women get our 
+husbands away from us, but they always come back, slightly damaged, 
+of course.  And don't make scenes, men hate them!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  It is very kind of you, Duchess, to come and tell 
+me all this.  But I can't believe that my husband is untrue to me.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Pretty child!  I was like that once.  Now I 
+know that all men are monsters.  <stagedir>[LADY WINDERMERE rings bell.]</stagedir>  The 
+only thing to do is to feed the wretches well.  A good cook does 
+wonders, and that I know you have.  My dear Margaret, you are not 
+going to cry?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You needn't be afraid, Duchess, I never cry.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  That's quite right, dear.  Crying is the 
+refuge of plain women but the ruin of pretty ones.  Agatha, 
+darling!</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  <stagedir>[Entering L.]</stagedir>  Yes, mamma.  <stagedir>[Stands back of table 
+L.C.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Come and bid good-bye to Lady Windermere, and 
+thank her for your charming visit.  <stagedir>[Coming down again.]</stagedir>  And by 
+the way, I must thank you for sending a card to Mr. Hopper - he's 
+that rich young Australian people are taking such notice of just at 
+present.  His father made a great fortune by selling some kind of 
+food in circular tins - most palatable, I believe - I fancy it is 
+the thing the servants always refuse to eat.  But the son is quite 
+interesting.  I think he's attracted by dear Agatha's clever talk.  
+Of course, we should be very sorry to lose her, but I think that a 
+mother who doesn't part with a daughter every season has no real 
+affection.  We're coming to-night, dear.  <stagedir>[PARKER opens C. doors.]</stagedir>  
+And remember my advice, take the poor fellow out of town at once, 
+it is the only thing to do.  Good-bye, once more; come, Agatha.</speech>
+
+<stagedir>[Exeunt DUCHESS and LADY AGATHA C.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  How horrible!  I understand now what Lord 
+Darlington meant by the imaginary instance of the couple not two 
+years married.  Oh! it can't be true - she spoke of enormous sums 
+of money paid to this woman.  I know where Arthur keeps his bank 
+book - in one of the drawers of that desk.  I might find out by 
+that.  I WILL find out.  <stagedir>[Opens drawer.]</stagedir>  No, it is some hideous 
+mistake.  <stagedir>[Rises and goes C.]</stagedir>  Some silly scandal!  He loves ME!  
+He loves ME!  But why should I not look?  I am his wife, I have a 
+right to look!  <stagedir>[Returns to bureau, takes out book and examines it 
+page by page, smiles and gives a sigh of relief.]</stagedir>  I knew it! there 
+is not a word of truth in this stupid story.  <stagedir>[Puts book back in 
+dranver.  As the does so, starts and takes out another book.]</stagedir>  A 
+second book - private - locked!  <stagedir>[Tries to open it, but fails.  
+Sees paper knife on bureau, and with it cuts cover from book.  
+Begins to start at the first page.]</stagedir>  'Mrs. Erlynne - £600 - Mrs. 
+Erlynne - £700 - Mrs. Erlynne - £400.'  Oh! it is true!  It is 
+true!  How horrible!  <stagedir>[Throws book on floor.]</stagedir>  <stagedir>[Enter LORD 
+WINDERMERE C.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Well, dear, has the fan been sent home yet?  
+<stagedir>[Going R.C.  Sees book.]</stagedir>  Margaret, you have cut open my bank book.  
+You have no right to do such a thing!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You think it wrong that you are found out, don't 
+you?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I think it wrong that a wife should spy on her 
+husband.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I did not spy on you.  I never knew of this 
+woman's existence till half an hour ago.  Some one who pitied me 
+was kind enough to tell me what every one in London knows already - 
+your daily visits to Curzon Street, your mad infatuation, the 
+monstrous sums of money you squander on this infamous woman!  
+<stagedir>[Crossing L.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret! don't talk like that of Mrs. Erlynne, 
+you don't know how unjust it is!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Turning to him.]</stagedir>  You are very jealous of Mrs. 
+Erlynne's honour.  I wish you had been as jealous of mine.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Your honour is untouched, Margaret.  You don't 
+think for a moment that - <stagedir>[Puts book back into desk.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I think that you spend your money strangely.  
+That is all.  Oh, don't imagine I mind about the money.  As far as 
+I am concerned, you may squander everything we have.  But what I DO 
+mind is that you who have loved me, you who have taught me to love 
+you, should pass from the love that is given to the love that is 
+bought.  Oh, it's horrible!  <stagedir>[Sits on sofa.]</stagedir>  And it is I who feel 
+degraded! YOU don't feel anything.  I feel stained, utterly 
+stained.  You can't realise how hideous the last six months seems 
+to me now - every kiss you have given me is tainted in my memory.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Crossing to her.]</stagedir>  Don't say that, Margaret.  I 
+never loved any one in the whole world but you.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Rises.]</stagedir>  Who is this woman, then?  Why do you 
+take a house for her?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I did not take a house for her.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You gave her the money to do it, which is the 
+same thing.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, as far as I have known Mrs. Erlynne -</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Is there a Mr. Erlynne - or is he a myth?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Her husband died many years ago.  She is alone in 
+the world.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  No relations?  <stagedir>[A pause.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  None.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Rather curious, isn't it?  <stagedir>[L.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[L.C.]</stagedir>  Margaret, I was saying to you - and I beg 
+you to listen to me - that as far as I have known Mrs. Erlynne, she 
+has conducted herself well.  If years ago -</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Oh!  <stagedir>[Crossing R.C.]</stagedir>  I don't want details about 
+her life!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[C.]</stagedir>  I am not going to give you any details 
+about her life.  I tell you simply this - Mrs. Erlynne was once 
+honoured, loved, respected.  She was well born, she had position - 
+she lost everything - threw it away, if you like.  That makes it 
+all the more bitter.  Misfortunes one can endure - they come from 
+outside, they are accidents.  But to suffer for one's own faults - 
+ah! - there is the sting of life.  It was twenty years ago, too.  
+She was little more than a girl then.  She had been a wife for even 
+less time than you have.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I am not interested in her - and - you should not 
+mention this woman and me in the same breath.  It is an error of 
+taste.  <stagedir>[Sitting R. at desk.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, you could save this woman.  She wants 
+to get back into society, and she wants you to help her.  <stagedir>[Crossing 
+to her.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Me!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Yes, you.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  How impertinent of her!  <stagedir>[A pause.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, I came to ask you a great favour, and I 
+still ask it of you, though you have discovered what I had intended 
+you should never have known that I have given Mrs. Erlynne a large 
+sum of money.  I want you to send her an invitation for our party 
+to-night.  <stagedir>[Standing L. of her.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You are mad!  <stagedir>[Rises.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I entreat you.  People may chatter about her, do 
+chatter about her, of course, but they don't know anything definite 
+against her.  She has been to several houses - not to houses where 
+you would go, I admit, but still to houses where women who are in 
+what is called Society nowadays do go.  That does not content her.  
+She wants you to receive her once.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  As a triumph for her, I suppose?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  No; but because she knows that you are a good 
+woman - and that if she comes here once she will have a chance of a 
+happier, a surer life than she has had.  She will make no further 
+effort to know you.  Won't you help a woman who is trying to get 
+back?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  No!  If a woman really repents, she never wishes 
+to return to the society that has made or seen her ruin.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I beg of you.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Crossing to door R.]</stagedir>  I am going to dress for 
+dinner, and don't mention the subject again this evening.  Arthur 
+<stagedir>[going to him C.]</stagedir>, you fancy because I have no father or mother 
+that I am alone in the world, and that you can treat me as you 
+choose.  You are wrong, I have friends, many friends.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[L.C.]</stagedir>  Margaret, you are talking foolishly, 
+recklessly.  I won't argue with you, but I insist upon your asking 
+Mrs. Erlynne to-night.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[R.C.]</stagedir>  I shall do nothing of the kind.  
+<stagedir>[Crossing L. C.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You refuse?  <stagedir>[C.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Absolutely!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Ah, Margaret, do this for my sake; it is her last 
+chance.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  What has that to do with me?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  How hard good women are!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  How weak bad men are!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, none of us men may be good enough for 
+the women we marry - that is quite true - but you don't imagine I 
+would ever - oh, the suggestion is monstrous!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why should YOU be different from other men?  I am 
+told that there is hardly a husband in London who does not waste 
+his life over SOME shameful passion.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I am not one of them.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I am not sure of that!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You are sure in your heart.  But don't make chasm 
+after chasm between us.  God knows the last few minutes have thrust 
+us wide enough apart.  Sit down and write the card.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Nothing in the whole world would induce me.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Crossing to bureau.]</stagedir>  Then I will!  <stagedir>[Rings 
+electric bell, sits and writes card.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You are going to invite this woman?  <stagedir>[Crossing to 
+him.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Yes.  <stagedir>[Pause.  Enter PARKER.]</stagedir>  Parker!</speech>
+
+<speech><speaker>PARKER.</speaker>  Yes, my lord.  <stagedir>[Comes down L.C.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Have this note sent to Mrs. Erlynne at No. 84A 
+Curzon Street.  <stagedir>[Crossing to L.C. and giving note to PARKER.]</stagedir>  
+There is no answer!</speech>
+
+<stagedir>[Exit PARKER C.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Arthur, if that woman comes here, I shall insult 
+her.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, don't say that.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I mean it.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Child, if you did such a thing, there's not a 
+woman in London who wouldn't pity you.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  There is not a GOOD woman in London who would not 
+applaud me.  We have been too lax.  We must make an example.  I 
+propose to begin to-night.  <stagedir>[Picking up fan.]</stagedir>  Yes, you gave me 
+this fan to-day; it was your birthday present.  If that woman 
+crosses my threshold, I shall strike her across the face with it.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, you couldn't do such a thing.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You don't know me!  <stagedir>[Moves R.]</stagedir>
+
+<stagedir>[Enter PARKER.]</stagedir>
+
+Parker!</speech>
+
+<speech><speaker>PARKER.</speaker>  Yes, my lady.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I shall dine in my own room.  I don't want 
+dinner, in fact.  See that everything is ready by half-past ten.  
+And, Parker, be sure you pronounce the names of the guests very 
+distinctly to-night.  Sometimes you speak so fast that I miss them.  
+I am particularly anxious to hear the names quite clearly, so as to 
+make no mistake.  You understand, Parker?</speech>
+
+<speech><speaker>PARKER.</speaker>  Yes, my lady.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  That will do!
+
+<stagedir>[Exit PARKER C.]</stagedir>
+
+<stagedir>[Speaking to LORD WINDERMERE]</stagedir>  Arthur, if that woman comes here - I 
+warn you -</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Margaret, you'll ruin us!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Us!  From this moment my life is sespeechte from 
+yours.  But if you wish to avoid a public scandal, write at once to 
+this woman, and tell her that I forbid her to come here!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I will not - I cannot - she must come!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Then I shall do exactly as I have said.  <stagedir>[Goes 
+R.]</stagedir>  You leave me no choice.  <stagedir>[Exit R.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Calling after her.]</stagedir>  Margaret!  Margaret!  <stagedir>[A 
+pause.]</stagedir>  My God!  What shall I do?  I dare not tell her who this 
+woman really is.  The shame would kill her.  <stagedir>[Sinks down into a 
+chair and buries his face in his hands.]</stagedir></speech>
+
+<stagedir>ACT DROP</stagedir>
+
+</act>
+
+<act>
+
+<title>SECOND ACT</title>
+
+<scndesc>SCENE
+Drawing-room in Lord Windermere's house.  Door R.U. opening into 
+ball-room, where band is playing.  Door L. through which guests are 
+entering.  Door L.U. opens on to illuminated terrace.  Palms, 
+flowers, and brilliant lights.  Room crowded with guests.  Lady 
+Windermere is receiving them.</scndesc>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Up C.]</stagedir>  So strange Lord Windermere isn't 
+here.  Mr. Hopper is very late, too.  You have kept those five 
+dances for him, Agatha?  <stagedir>[Comes down.]</stagedir></speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Sitting on sofa.]</stagedir>  Just let me see your card.  
+I'm so glad Lady Windermere has revived cards. - They're a mother's 
+only safeguard.  You dear simple little thing!  <stagedir>[Scratches out two 
+names.]</stagedir>  No nice girl should ever waltz with such particularly 
+younger sons!  It looks so fast!  The last two dances you might 
+pass on the terrace with Mr. Hopper.</speech>
+
+<stagedir>[Enter MR. DUMBY and LADY PLYMDALE from the ball-room.]</stagedir>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Fanning herself.]</stagedir>  The air is so pleasant 
+there.</speech>
+
+<speech><speaker>PARKER.</speaker>  Mrs. Cowper-Cowper.  Lady Stutfield.  Sir James Royston.  
+Mr. Guy Berkeley.</speech>
+
+<stagedir>[These people enter as announced.]</stagedir>
+
+<speech><speaker>DUMBY.</speaker>  Good evening, Lady Stutfield.  I suppose this will be the 
+last ball of the season?</speech>
+
+<speech><speaker>LADY STUTFIELD.</speaker>  I suppose so, Mr. Dumby.  It's been a delightful 
+season, hasn't it?</speech>
+
+<speech><speaker>DUMBY.</speaker>  Quite delightful!  Good evening, Duchess.  I suppose this 
+will be the last ball of the season?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  I suppose so, Mr. Dumby.  It has been a very 
+dull season, hasn't it?</speech>
+
+<speech><speaker>DUMBY.</speaker>  Dreadfully dull!  Dreadfully dull!</speech>
+
+<speech><speaker>MR. COWPER-COWPER.</speaker>  Good evening, Mr. Dumby.  I suppose this will 
+be the last ball of the season?</speech>
+
+<speech><speaker>DUMBY.</speaker>  Oh, I think not.  There'll probably be two more.  <stagedir>[Wanders 
+back to LADY PLYMDALE.]</stagedir></speech>
+
+<speech><speaker>PARKER.</speaker>  Mr. Rufford.  Lady Jedburgh and Miss Graham.  Mr. Hopper.</speech>
+
+<stagedir>[These people enter as announced.]</stagedir>
+
+<speech><speaker>HOPPER.</speaker>  How do you do, Lady Windermere?  How do you do, Duchess?  
+<stagedir>[Bows to LADY AGATHA.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Dear Mr. Hopper, how nice of you to come so 
+early.  We all know how you are run after in London.</speech>
+
+<speech><speaker>HOPPER.</speaker>  Capital place, London!  They are not nearly so exclusive 
+in London as they are in Sydney.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Ah! we know your value, Mr. Hopper.  We wish 
+there were more like you.  It would make life so much easier.  Do 
+you know, Mr. Hopper, dear Agatha and I are so much interested in 
+Australia.  It must be so pretty with all the dear little kangaroos 
+flying about.  Agatha has found it on the map.  What a curious 
+shape it is!  Just like a large packing case.  However, it is a 
+very young country, isn't it?</speech>
+
+<speech><speaker>HOPPER.</speaker>  Wasn't it made at the same time as the others, Duchess?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  How clever you are, Mr. Hopper.  You have a 
+cleverness quite of your own.  Now I mustn't keep you.</speech>
+
+<speech><speaker>HOPPER.</speaker>  But I should like to dance with Lady Agatha, Duchess.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Well, I hope she has a dance left.  Have you a 
+dance left, Agatha?</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  The next one?</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>HOPPER.</speaker>  May I have the pleasure?  <stagedir>[LADY AGATHA bows.]</stagedir></speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Mind you take great care of my little 
+chatterbox, Mr. Hopper.</speech>
+
+<stagedir>[LADY AGATHA and MR. HOPPER pass into ball-room.]</stagedir>
+
+<stagedir>[Enter LORD WINDERMERE.]</stagedir>
+
+<speech>LORD WINDERMERE.  Margaret, I want to speak to you.</speech>
+
+<speech>LADY WINDERMERE.  In a moment.  <stagedir>[The music drops.]</stagedir></speech>
+
+<speech><speaker>PARKER.</speaker>  Lord Augustus Lorton.</speech>
+
+<stagedir>[Enter LORD AUGUSTUS.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Good evening, Lady Windermere.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Sir James, will you take me into the ball-
+room?  Augustus has been dining with us to-night.  I really have 
+had quite enough of dear Augustus for the moment.</speech>
+
+<stagedir>[SIR JAMES ROYSTON gives the DUCHESS his aim and escorts her into 
+the ball-room.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Mr. and Mrs. Arthur Bowden.  Lord and Lady Paisley.  Lord 
+Darlington.</speech>
+
+<stagedir>[These people enter as announced.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Coming up to LORD WINDERMERE.]</stagedir>  Want to speak to 
+you particularly, dear boy.  I'm worn to a shadow.  Know I don't 
+look it.  None of us men do look what we really are.  Demmed good 
+thing, too.  What I want to know is this.  Who is she?  Where does 
+she come from?  Why hasn't she got any demmed relations?  Demmed 
+nuisance, relations!  But they make one so demmed respectable.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You are talking of Mrs. Erlynne, I suppose?  I 
+only met her six months ago.  Till then, I never knew of her 
+existence.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  You have seen a good deal of her since then.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Coldly.]</stagedir>  Yes, I have seen a good deal of her 
+since then.  I have just seen her.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Egad! the women are very down on her.  I have been 
+dining with Arabella this evening!  By Jove! you should have heard 
+what she said about Mrs. Erlynne.  She didn't leave a rag on her.  
+. . <stagedir>[Aside.]</stagedir>  Berwick and I told her that didn't matter much, as 
+the lady in question must have an extremely fine figure.  You 
+should have seen Arabella's expression! . . . But, look here, dear 
+boy.  I don't know what to do about Mrs. Erlynne.  Egad!  I might 
+be married to her; she treats me with such demmed indifference.  
+She's deuced clever, too!  She explains everything.  Egad! she 
+explains you.  She has got any amount of explanations for you - and 
+all of them different.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  No explanations are necessary about my friendship 
+with Mrs. Erlynne.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Hem!  Well, look here, dear old fellow.  Do you 
+think she will ever get into this demmed thing called Society?  
+Would you introduce her to your wife?  No use beating about the 
+confounded bush.  Would you do that?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Mrs. Erlynne is coming here to-night.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Your wife has sent her a card?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Mrs. Erlynne has received a card.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Then she's all right, dear boy.  But why didn't you 
+tell me that before?  It would have saved me a heap of worry and 
+demmed misunderstandings!</speech>
+
+<stagedir>[LADY AGATHA and MR. HOPPER cross and exit on terrace L.U.E.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Mr. Cecil Graham!</speech>
+
+<stagedir>[Enter MR. CECIL GRAHAM.]</stagedir>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[Bows to LADY WINDERMERE, passes over and shakes 
+hands with LORD WINDERMERE.]</stagedir>  Good evening, Arthur.  Why don't you 
+ask me how I am?  I like people to ask me how I am.  It shows a 
+wide-spread interest in my health.  Now, to-night I am not at all 
+well.  Been dining with my people.  Wonder why it is one's people 
+are always so tedious?  My father would talk morality after dinner.  
+I told him he was old enough to know better.  But my experience is 
+that as soon as people are old enough to know better, they don't 
+know anything at all.  Hallo, Tuppy!  Hear you're going to be 
+married again; thought you were tired of that game.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  You're excessively trivial, my dear boy, 
+excessively trivial!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  By the way, Tuppy, which is it?  Have you been twice 
+married and once divorced, or twice divorced and once married?  I 
+say you've been twice divorced and once married.  It seems so much 
+more probable.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  I have a very bad memory.  I really don't remember 
+which.  <stagedir>[Moves away R.]</stagedir></speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  Lord Windermere, I've something most particular to 
+ask you.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I am afraid - if you will excuse me - I must join 
+my wife.</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  Oh, you mustn't dream of such a thing.  It's most 
+dangerous nowadays for a husband to pay any attention to his wife 
+in public.  It always makes people think that he beats her when 
+they're alone.  The world has grown so suspicious of anything that 
+looks like a happy married life.  But I'll tell you what it is at 
+supper.  <stagedir>[Moves towards door of ball-room.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[C.]</stagedir>  Margaret!  I MUST speak to you.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Will you hold my fan for me, Lord Darlington?  
+Thanks.  <stagedir>[Comes down to him.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Crossing to her.]</stagedir>  Margaret, what you said 
+before dinner was, of course, impossible?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  That woman is not coming here to-night!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[R.C.]</stagedir>  Mrs. Erlynne is coming here, and if you 
+in any way annoy or wound her, you will bring shame and sorrow on 
+us both.  Remember that!  Ah, Margaret! only trust me!  A wife 
+should trust her husband!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[C.]</stagedir>  London is full of women who trust their 
+husbands.  One can always recognise them.  They look so thoroughly 
+unhappy.  I am not going to be one of them.  <stagedir>[Moves up.]</stagedir>  Lord 
+Darlington, will you give me back my fan, please?  Thanks. . . . A 
+useful thing a fan, isn't it? . . . I want a friend to-night, Lord 
+Darlington:  I didn't know I would want one so soon.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Lady Windermere!  I knew the time would come some 
+day; but why to-night?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I WILL tell her.  I must.  It would be terrible 
+if there were any scene.  Margaret . . .</speech>
+
+<speech><speaker>PARKER.</speaker>  Mrs. Erlynne!</speech>
+
+<stagedir>[LORD WINDERMERE starts.  MRS. ERLYNNE enters, very beautifully 
+dressed and very dignified.  LADY WINDERMERE clutches at her fan, 
+then lets it drop on the door.  She bows coldly to MRS. ERLYNNE, 
+who bows to her sweetly in turn, and sails into the room.]</stagedir>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You have dropped your fan, Lady Windermere.  
+<stagedir>[Picks it up and hands it to her.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[C.]</stagedir>  How do you do, again, Lord Windermere?  How 
+charming your sweet wife looks!  Quite a picture!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[In a low voice.]</stagedir>  It was terribly rash of you to 
+come!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Smiling.]</stagedir>  The wisest thing I ever did in my life.  
+And, by the way, you must pay me a good deal of attention this 
+evening.  I am afraid of the women.  You must introduce me to some 
+of them.  The men I can always manage.  How do you do, Lord 
+Augustus?  You have quite neglected me lately.  I have not seen you 
+since yesterday.  I am afraid you're faithless.  Every one told me 
+so.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[R.]</stagedir>  Now really, Mrs. Erlynne, allow me to 
+explain.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[R.C.]</stagedir>  No, dear Lord Augustus, you can't explain 
+anything.  It is your chief charm.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Ah! if you find charms in me, Mrs. Erlynne -</speech>
+
+<stagedir>[They converse together.  LORD WINDERMERE moves uneasily about the 
+room watching MRS. ERLYNNE.]</stagedir>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[To LADY WINDERMERE.]</stagedir>  How pale you are!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Cowards are always pale!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You look faint.  Come out on the terrace.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes.  <stagedir>[To PARKER.]</stagedir>  Parker, send my cloak out.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Crossing to her.]</stagedir>  Lady Windermere, how beautifully 
+your terrace is illuminated.  Reminds me of Prince Doria's at Rome.
+
+<stagedir>[LADY WINDERMERE bows coldly, and goes off with LORD DARLINGTON.]</stagedir>
+
+Oh, how do you do, Mr. Graham?  Isn't that your aunt, Lady 
+Jedburgh?  I should so much like to know her.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[After a moment's hesitation and embarrassment.]</stagedir>  
+Oh, certainly, if you wish it.  Aunt Caroline, allow me to 
+introduce Mrs. Erlynne.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  So pleased to meet you, Lady Jedburgh.  <stagedir>[Sits beside 
+her on the sofa.]</stagedir>  Your nephew and I are great friends.  I am so 
+much interested in his political career.  I think he's sure to be a 
+wonderful success.  He thinks like a Tory, and talks like a 
+Radical, and that's so important nowadays.  He's such a brilliant 
+talker, too.  But we all know from whom he inherits that.  Lord 
+Allandale was saying to me only yesterday, in the Park, that Mr. 
+Graham talks almost as well as his aunt.</speech>
+
+<speech>LADY JEDBURGH.  <stagedir>[R.]</stagedir>  Most kind of you to say these charming things 
+to me!  <stagedir>[MRS.  ERLYNNE smiles, and continues conversation.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  <stagedir>[To CECIL GRAHAM.]</stagedir>  Did you introduce Mrs. Erlynne to Lady 
+Jedburgh?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Had to, my dear fellow.  Couldn't help it!  That 
+woman can make one do anything she wants.  How, I don't know.</speech>
+
+<speech><speaker>DUMBY.</speaker>  Hope to goodness she won't speak to me!  <stagedir>[Saunters towards 
+LADY PLYMDALE.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[C.  To LADY JEDBURGH.]</stagedir>  On Thursday?  With great 
+pleasure.  <stagedir>[Rises, and speaks to LORD WINDERMERE, laughing.]</stagedir>  What 
+a bore it is to have to be civil to these old dowagers!  But they 
+always insist on it!</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  <stagedir>[To MR. DUMBY.]</stagedir>  Who is that well-dressed woman 
+talking to Windermere?</speech>
+
+<speech><speaker>DUMBY.</speaker>  Haven't got the slightest idea!  Looks like an EDITION DE 
+LUXE of a wicked French novel, meant specially for the English 
+market.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  So that is poor Dumby with Lady Plymdale?  I hear 
+she is frightfully jealous of him.  He doesn't seem anxious to 
+speak to me to-night.  I suppose he is afraid of her.  Those straw-
+coloured women have dreadful tempers.  Do you know, I think I'll 
+dance with you first, Windermere.  <stagedir>[LORD WINDERMERE bits his lip 
+and frowns.]</stagedir>  It will make Lord Augustus so jealous!  Lord 
+Augustus!  <stagedir>[LORD AUGUSTUS comes down.]</stagedir>  Lord Windermere insists on 
+my dancing with him first, and, as it's his own house, I can't well 
+refuse.  You know I would much sooner dance with you.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[With a low bow.]</stagedir>  I wish I could think so, Mrs. 
+Erlynne.</speech>
+
+<speech>MRS ERLYNNE.  You know it far too well.  I can fancy a person 
+dancing through life with you and finding it charming.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Placing his hand on his white waistcoat.]</stagedir>  Oh, 
+thank you, thank you.  You are the most adorable of all ladies!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  What a nice speech!  So simple and so sincere!  Just 
+the sort of speech I like.  Well, you shall hold my bouquet.  <stagedir>[Goes 
+towards ball-room on LORD WINDERMERE'S arm.]</stagedir>  Ah, Mr. Dumby, how 
+are you?  I am so sorry I have been out the last three times you 
+have called.  Come and lunch on Friday.</speech>
+
+<speech><speaker>DUMBY.</speaker>  <stagedir>[With perfect nonchalance.]</stagedir>  Delighted!</speech>
+
+<stagedir>[LADY PLYMDALE glares with indignation at MR. DUMBY.  LORD AUGUSTUS 
+follows MRS. ERLYNNE and LORD WINDERMERE into the ball-room holding 
+bouquet]</stagedir>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  <stagedir>[To MR. DUMBY.]</stagedir>  What an absolute brute you are!  I 
+never can believe a word you say!  Why did you tell me you didn't 
+know her?  What do you mean by calling on her three times running?  
+You are not to go to lunch there; of course you understand that?</speech>
+
+<speech><speaker>DUMBY.</speaker>  My dear Laura, I wouldn't dream of going!</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  You haven't told me her name yet!  Who is she?</speech>
+
+<speech><speaker>DUMBY.</speaker>  <stagedir>[Coughs slightly and smooths his hair.]</stagedir>  She's a Mrs. 
+Erlynne.</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  That woman!</speech>
+
+<speech><speaker>DUMBY.</speaker>  Yes; that is what every one calls her.</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  How very interesting!  How intensely interesting!  
+I really must have a good stare at her.  <stagedir>[Goes to door of ball-room 
+and looks in.]</stagedir>  I have heard the most shocking things about her.  
+They say she is ruining poor Windermere.  And Lady Windermere, who 
+goes in for being so proper, invites her!  How extremely amusing!  
+It takes a thoroughly good woman to do a thoroughly stupid thing.  
+You are to lunch there on Friday!</speech>
+
+<speech><speaker>DUMBY.</speaker>  Why?</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  Because I want you to take my husband with you.  He 
+has been so attentive lately, that he has become a perfect 
+nuisance.  Now, this woman is just the thing for him.  He'll dance 
+attendance upon her as long as she lets him, and won't bother me.  
+I assure you, women of that kind are most useful.  They form the 
+basis of other people's marriages.</speech>
+
+<speech><speaker>DUMBY.</speaker>  What a mystery you are!</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  <stagedir>[Looking at him.]</stagedir>  I wish YOU were!</speech>
+
+<speech><speaker>DUMBY.</speaker>  I am - to myself.  I am the only person in the world I 
+should like to know thoroughly; but I don't see any chance of it 
+just at present.</speech>
+
+<stagedir>[They pass into the ball-room, and LADY WINDERMERE and LORD 
+DARLINGTON enter from the terrace.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes.  Her coming here is monstrous, unbearable.  
+I know now what you meant to-day at tea-time.  Why didn't you tell 
+me right out?  You should have!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I couldn't!  A man can't tell these things about 
+another man!  But if I had known he was going to make you ask her 
+here to-night, I think I would have told you.  That insult, at any 
+rate, you would have been spared.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I did not ask her.  He insisted on her coming - 
+against my entreaties - against my commands.  Oh! the house is 
+tainted for me!  I feel that every woman here sneers at me as she 
+dances by with my husband.  What have I done to deserve this?  I 
+gave him all my life.  He took it - used it - spoiled it!  I am 
+degraded in my own eyes; and I lack courage - I am a coward!  <stagedir>[Sits 
+down on sofa.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  If I know you at all, I know that you can't live 
+with a man who treats you like this!  What sort of life would you 
+have with him?  You would feel that he was lying to you every 
+moment of the day.  You would feel that the look in his eyes was 
+false, his voice false, his touch false, his passion false.  He 
+would come to you when he was weary of others; you would have to 
+comfort him.  He would come to you when he was devoted to others; 
+you would have to charm him.  You would have to be to him the mask 
+of his real life, the cloak to hide his secret.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You are right - you are terribly right.  But 
+where am I to turn?  You said you would be my friend, Lord 
+Darlington. - Tell me, what am I to do?  Be my friend now.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Between men and women there is no friendship 
+possible.  There is passion, enmity, worship, love, but no 
+friendship.  I love you -</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  No, no!  <stagedir>[Rises.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Yes, I love you!  You are more to me than 
+anything in the whole world.  What does your husband give you?  
+Nothing.  Whatever is in him he gives to this wretched woman, whom 
+he has thrust into your society, into your home, to shame you 
+before every one.  I offer you my life -</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Lord Darlington!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  My life - my whole life.  Take it, and do with it 
+what you will. . . . I love you - love you as I have never loved 
+any living thing.  From the moment I met you I loved you, loved you 
+blindly, adoringly, madly!  You did not know it then - you know it 
+now!  Leave this house to-night.  I won't tell you that the world 
+matters nothing, or the world's voice, or the voice of society.  
+They matter a great deal.  They matter far too much.  But there are 
+moments when one has to choose between living one's own life, 
+fully, entirely, completely - or dragging out some false, shallow, 
+degrading existence that the world in its hypocrisy demands.  You 
+have that moment now.  Choose!  Oh, my love, choose.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Moving slowly away from him, and looking at him 
+with startled eyes.]</stagedir>  I have not the courage.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Following her.]</stagedir>  Yes; you have the courage.  
+There may be six months of pain, of disgrace even, but when you no 
+longer bear his name, when you bear mine, all will be well.  
+Margaret, my love, my wife that shall be some day - yes, my wife!  
+You know it!  What are you now?  This woman has the place that 
+belongs by right to you.  Oh! go - go out of this house, with head 
+erect, with a smile upon your lips, with courage in your eyes.  All 
+London will know why you did it; and who will blame you?  No one.  
+If they do, what matter?  Wrong?  What is wrong?  It's wrong for a 
+man to abandon his wife for a shameless woman.  It is wrong for a 
+wife to remain with a man who so dishonours her.  You said once you 
+would make no compromise with things.  Make none now.  Be brave!  
+Be yourself!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I am afraid of being myself.  Let me think!  Let 
+me wait!  My husband may return to me.  <stagedir>[Sits down on sofa.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  And you would take him back!  You are not what I 
+thought you were.  You are just the same as every other woman.  You 
+would stand anything rather than face the censure of a world, whose 
+praise you would despise.  In a week you will be driving with this 
+woman in the Park.  She will be your constant guest - your dearest 
+friend.  You would endure anything rather than break with one blow 
+this monstrous tie.  You are right.  You have no courage; none!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Ah, give me time to think.  I cannot answer you 
+now.  <stagedir>[Passes her hand nervously over her brow.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  It must be now or not at all.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Rising from the sofa.]</stagedir>  Then, not at all!  <stagedir>[A 
+pause.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You break my heart!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Mine is already broken.  <stagedir>[A pause.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  To-morrow I leave England.  This is the last time 
+I shall ever look on you.  You will never see me again.  For one 
+moment our lives met - our souls touched.  They must never meet or 
+touch again.  Good-bye, Margaret.  <stagedir>[Exit.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  How alone I am in life!  How terribly alone!</speech>
+
+<stagedir>[The music stops.  Enter the DUCHESS OF BERWICK and LORD PAISLEY 
+laughing and talking.  Other guests come on from ball-room.]</stagedir>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Dear Margaret, I've just been having such a 
+delightful chat with Mrs. Erlynne.  I am so sorry for what I said 
+to you this afternoon about her.  Of course, she must be all right 
+if YOU invite her.  A most attractive woman, and has such sensible 
+views on life.  Told me she entirely disapproved of people marrying 
+more than once, so I feel quite safe about poor Augustus.  Can't 
+imagine why people speak against her.  It's those horrid nieces of 
+mine - the Saville girls - they're always talking scandal.  Still, 
+I should go to Homburg, dear, I really should.  She is just a 
+little too attractive.  But where is Agatha?  Oh, there she is:   
+<stagedir>[LADY AGATHA and MR. HOPPER enter from terrace L.U.E.]</stagedir>  Mr. Hopper, 
+I am very, very angry with you.  You have taken Agatha out on the 
+terrace, and she is so delicate.</speech>
+
+<speech><speaker>HOPPER.</speaker>  Awfully sorry, Duchess.  We went out for a moment and then 
+got chatting together.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[C.]</stagedir>  Ah, about dear Australia, I suppose?</speech>
+
+<speech><speaker>HOPPER.</speaker>  Yes!</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Agatha, darling!  <stagedir>[Beckons her over.]</stagedir></speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma!</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Aside.]</stagedir>  Did Mr. Hopper definitely -</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  And what answer did you give him, dear child?</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Affectionately.]</stagedir>  My dear one!  You always 
+say the right thing.  Mr. Hopper!  James!  Agatha has told me 
+everything.  How cleverly you have both kept your secret.</speech>
+
+<speech><speaker>HOPPER.</speaker>  You don't mind my taking Agatha off to Australia, then, 
+Duchess?</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Indignantly.]</stagedir>  To Australia?  Oh, don't 
+mention that dreadful vulgar place.</speech>
+
+<speech><speaker>HOPPER.</speaker>  But she said she'd like to come with me.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  <stagedir>[Severely.]</stagedir>  Did you say that, Agatha?</speech>
+
+<speech><speaker>LADY AGATHA.</speaker>  Yes, mamma.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  Agatha, you say the most silly things 
+possible.  I think on the whole that Grosvenor Square would be a 
+more healthy place to reside in.  There are lots of vulgar people 
+live in Grosvenor Square, but at any rate there are no horrid 
+kangaroos crawling about.  But we'll talk about that to-morrow.  
+James, you can take Agatha down.  You'll come to lunch, of course, 
+James.  At half-past one, instead of two.  The Duke will wish to 
+say a few words to you, I am sure.</speech>
+
+<speech><speaker>HOPPER.</speaker>  I should like to have a chat with the Duke, Duchess.  He 
+has not said a single word to me yet.</speech>
+
+<speech><speaker>DUCHESS OF BERWICK.</speaker>  I think you'll find he will have a great deal 
+to say to you to-morrow.  <stagedir>[Exit LADY AGATHA with MR. HOPPER.]</stagedir>  And 
+now good-night, Margaret.  I'm afraid it's the old, old story, 
+dear.  Love - well, not love at first sight, but love at the end of 
+the season, which is so much more satisfactory.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Good-night, Duchess.</speech>
+
+<stagedir>[Exit the DUCHESS OF BERWICK on LORD PAISLEY'S arm.]</stagedir>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  My dear Margaret, what a handsome woman your 
+husband has been dancing with!  I should be quite jealous if I were 
+you!  Is she a great friend of yours?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  No!</speech>
+
+<speech><speaker>LADY PLYMDALE.</speaker>  Really?  Good-night, dear.  <stagedir>[Looks at MR. DUMBY and 
+exit.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  Awful manners young Hopper has!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Ah!  Hopper is one of Nature's gentlemen, the worst 
+type of gentleman I know.</speech>
+
+<speech><speaker>DUMBY.</speaker>  Sensible woman, Lady Windermere.  Lots of wives would have 
+objected to Mrs. Erlynne coming.  But Lady Windermere has that 
+uncommon thing called common sense.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  And Windermere knows that nothing looks so like 
+innocence as an indiscretion.</speech>
+
+<speech><speaker>DUMBY.</speaker>  Yes; dear Windermere is becoming almost modern.  Never 
+thought he would.  <stagedir>[Bows to LADY WINDERMERE and exit.]</stagedir></speech>
+
+<speech><speaker>LADY JEDBURGH.</speaker>  Good night, Lady Windermere.  What a fascinating 
+woman Mrs. Erlynne is!  She is coming to lunch on Thursday, won't 
+you come too?  I expect the Bishop and dear Lady Merton.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I am afraid I am engaged, Lady Jedburgh.</speech>
+
+<speech><speaker>LADY JEDBURGH.</speaker>  So sorry.  Come, dear.  <stagedir>[Exeunt LADY JEDBURGH and 
+MISS GRAHAM.]</stagedir></speech>
+
+<stagedir>[Enter MRS. ERLYNNE and LORD WINDERMERE.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Charming ball it has been!  Quite reminds me of old 
+days.  <stagedir>[Sits on sofa.]</stagedir>  And I see that there are just as many fools 
+in society as there used to be.  So pleased to find that nothing 
+has altered!  Except Margaret.  She's grown quite pretty.  The last 
+time I saw her - twenty years ago, she was a fright in flannel.  
+Positive fright, I assure you.  The dear Duchess! and that sweet 
+Lady Agatha!  Just the type of girl I like!  Well, really, 
+Windermere, if I am to be the Duchess's sister-in-law</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Sitting L. of her.]</stagedir>  But are you - ?</speech>
+
+<stagedir>[Exit MR. CECIL GRAHAM with rest of guests.  LADY WINDERMERE 
+watches, with a look of scorn and pain, MRS. ERLYNNE and her 
+husband.  They are unconscious of her presence.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh, yes!  He's to call to-morrow at twelve o'clock!  
+He wanted to propose to-night.  In fact he did.  He kept on 
+proposing.  Poor Augustus, you know how he repeats himself.  Such a 
+bad habit!  But I told him I wouldn't give him an answer till to-
+morrow.  Of course I am going to take him.  And I dare say I'll 
+make him an admirable wife, as wives go.  And there is a great deal 
+of good in Lord Augustus.  Fortunately it is all on the surface.  
+Just where good qualities should be.  Of course you must help me in 
+this matter.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I am not called on to encourage Lord Augustus, I 
+suppose?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh, no!  I do the encouraging.  But you will make me 
+a handsome settlement, Windermere, won't you?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Frowning.]</stagedir>  Is that what you want to talk to me 
+about to-night?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[With a gesture of impatience.]</stagedir>  I will not talk 
+of it here.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Laughing.]</stagedir>  Then we will talk of it on the terrace.  
+Even business should have a picturesque background.  Should it not, 
+Windermere?  With a proper background women can do anything.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Won't to-morrow do as well?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  No; you see, to-morrow I am going to accept him.  
+And I think it would be a good thing if I was able to tell him that 
+I had - well, what shall I say? - £2000 a year left to me by a 
+third cousin - or a second husband - or some distant relative of 
+that kind.  It would be an additional attraction, wouldn't it?  You 
+have a delightful opportunity now of paying me a compliment, 
+Windermere.  But you are not very clever at paying compliments.  I 
+am afraid Margaret doesn't encourage you in that excellent habit.  
+It's a great mistake on her part.  When men give up saying what is 
+charming, they give up thinking what is charming.  But seriously, 
+what do you say to £2000?  £2500, I think.  In modern life margin 
+is everything.  Windermere, don't you think the world an intensely 
+amusing place?  I do!</speech>
+
+<stagedir>[Exit on terrace with LORD WINDERMERE.  Music strikes up in ball-
+room.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  To stay in this house any longer is impossible.  
+To-night a man who loves me offered me his whole life.  I refused 
+it.  It was foolish of me.  I will offer him mine now.  I will give 
+him mine.  I will go to him!  <stagedir>[Puts on cloak and goes to the door, 
+then turns back.  Sits down at table and writes a letter, puts it 
+into an envelope, and leaves it on table.]</stagedir>  Arthur has never 
+understood me.  When he reads this, he will.  He may do as he 
+chooses now with his life.  I have done with mine as I think best, 
+as I think right.  It is he who has broken the bond of marriage - 
+not I.  I only break its bondage.</speech>
+
+<stagedir>[Exit.]</stagedir>
+
+<stagedir>[PARKER enters L. and crosses towards the ball-room R.  Enter MRS. 
+ERLYNNE.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Is Lady Windermere in the ball-room?</speech>
+
+<speech><speaker>PARKER.</speaker>  Her ladyship has just gone out.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Gone out?  She's not on the terrace?</speech>
+
+<speech><speaker>PARKER.</speaker>  No, madam.  Her ladyship has just gone out of the house.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Starts, and looks at the servant with a puzzled 
+expression in her face.]</stagedir>  Out of the house?</speech>
+
+<speech><speaker>PARKER.</speaker>  Yes, madam - her ladyship told me she had left a letter 
+for his lordship on the table.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  A letter for Lord Windermere?</speech>
+
+<speech><speaker>PARKER.</speaker>  Yes, madam.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Thank you.
+
+<stagedir>[Exit PARKER.  The music in the ball-room stops.]</stagedir>  Gone out of her 
+house!  A letter addressed to her husband!  <stagedir>[Goes over to bureau 
+and looks at letter.  Takes it up and lays it down again with a 
+shudder of fear.]</stagedir>  No, no!  It would be impossible!  Life doesn't 
+repeat its tragedies like that!  Oh, why does this horrible fancy 
+come across me?  Why do I remember now the one moment of my life I 
+most wish to forget?  Does life repeat its tragedies?  <stagedir>[Tears 
+letter open and reads it, then sinks down into a chair with a 
+gesture of anguish.]</stagedir>  Oh, how terrible!  The same words that twenty 
+years ago I wrote to her father! and how bitterly I have been 
+punished for it!  No; my punishment, my real punishment is to-
+night, is now!  <stagedir>[Still seated R.]</stagedir></speech>
+
+<stagedir>[Enter LORD WINDERMERE L.U.E.]</stagedir>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Have you said good-night to my wife?  <stagedir>[Comes C.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Crushing letter in her hand.]</stagedir>  Yes.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Where is she?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  She is very tired.  She has gone to bed.  She said 
+she had a headache.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I must go to her.  You'll excuse me?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Rising hurriedly.]</stagedir>  Oh, no!  It's nothing serious.  
+She's only very tired, that is all.  Besides, there are people 
+still in the supper-room.  She wants you to make her apologies to 
+them.  She said she didn't wish to be disturbed.  <stagedir>[Drops letter.]</stagedir>  
+She asked me to tell you!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Picks up letter.]</stagedir>  You have dropped something.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh yes, thank you, that is mine.  <stagedir>[Puts out her hand 
+to take it.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Still looking at letter.]</stagedir>  But it's my wife's 
+handwriting, isn't it?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Takes the letter quickly.]</stagedir>  Yes, it's - an address.  
+Will you ask them to call my carriage, please?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Certainly.</speech>
+
+<stagedir>[Goes L. and Exit.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Thanks!  What can I do?  What can I do?  I feel a 
+passion awakening within me that I never felt before.  What can it 
+mean?  The daughter must not be like the mother - that would be 
+terrible.  How can I save her?  How can I save my child?  A moment 
+may ruin a life.  Who knows that better than I?  Windermere must be 
+got out of the house; that is absolutely necessary.  <stagedir>[Goes L.]</stagedir>  But 
+how shall I do it?  It must be done somehow.  Ah!</speech>
+
+<stagedir>[Enter LORD AUGUSTUS R.U.E. carrying bouquet.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Dear lady, I am in such suspense!  May I not have 
+an answer to my request?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Lord Augustus, listen to me.  You are to take Lord 
+Windermere down to your club at once, and keep him there as long as 
+possible.  You understand?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  But you said you wished me to keep early hours!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Nervously.]</stagedir>  Do what I tell you.  Do what I tell 
+you.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  And my reward?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Your reward?  Your reward?  Oh! ask me that to-
+morrow.  But don't let Windermere out of your sight to-night.  If 
+you do I will never forgive you.  I will never speak to you again.  
+I'll have nothing to do with you.  Remember you are to keep 
+Windermere at your club, and don't let him come back to-night.</speech>
+
+<stagedir>[Exit L.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Well, really, I might be her husband already.  
+Positively I might.  <stagedir>[Follows her in a bewildered manner.]</stagedir></speech>
+
+<stagedir>ACT DROP.</stagedir>
+
+</act>
+
+<act>
+
+<title>THIRD ACT</title>
+
+<scndesc>SCENE
+Lord Darlington's Rooms.  A large sofa is in front of fireplace R.  
+At the back of the stage a curtain is drawn across the window.  
+Doors L. and R.  Table R. with writing materials.  Table C. with 
+syphons, glasses, and Tantalus frame.  Table L. with cigar and 
+cigarette box.  Lamps lit.</scndesc>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Standing by the fireplace.]</stagedir>  Why doesn't he 
+come?  This waiting is horrible.  He should be here.  Why is he not 
+here, to wake by passionate words some fire within me?  I am cold - 
+cold as a loveless thing.  Arthur must have read my letter by this 
+time.  If he cared for me, he would have come after me, would have 
+taken me back by force.  But he doesn't care.  He's entrammelled by 
+this woman - fascinated by her - dominated by her.  If a woman 
+wants to hold a man, she has merely to appeal to what is worst in 
+him.  We make gods of men and they leave us.  Others make brutes of 
+them and they fawn and are faithful.  How hideous life is! . . . 
+Oh! it was mad of me to come here, horribly mad.  And yet, which is 
+the worst, I wonder, to be at the mercy of a man who loves one, or 
+the wife of a man who in one's own house dishonours one?  What 
+woman knows?  What woman in the whole world?  But will he love me 
+always, this man to whom I am giving my life?  What do I bring him?  
+Lips that have lost the note of joy, eyes that are blinded by 
+tears, chill hands and icy heart.  I bring him nothing.  I must go 
+back - no; I can't go back, my letter has put me in their power - 
+Arthur would not take me back!  That fatal letter!  No!  Lord 
+Darlington leaves England to-morrow.  I will go with him - I have 
+no choice.  <stagedir>[Sits down for a few moments.  Then starts up and puts 
+on her cloak.]</stagedir>  No, no!  I will go back, let Arthur do with me what 
+he pleases.  I can't wait here.  It has been madness my coming.  I 
+must go at once.  As for Lord Darlington - Oh! here he is!  What 
+shall I do?  What can I say to him?  Will he let me go away at all?  
+I have heard that men are brutal, horrible . . . Oh!  <stagedir>[Hides her 
+face in her hands.]</stagedir></speech>
+
+<stagedir>[Enter MRS. ERLYNNE L.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Lady Windermere!  <stagedir>[LADY WINDERMERE starts and looks 
+up.  Then recoils in contempt.]</stagedir>  Thank Heaven I am in time.  You 
+must go back to your husband's house immediately.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Must?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Authoritatively.]</stagedir>  Yes, you must!  There is not a 
+second to be lost.  Lord Darlington may return at any moment.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Don't come near me!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh!  You are on the brink of ruin, you are on the 
+brink of a hideous precipice.  You must leave this place at once, 
+my carriage is waiting at the corner of the street.  You must come 
+with me and drive straight home.
+
+<stagedir>[LADY WINDERMERE throws off her cloak and flings it on the sofa.]</stagedir>
+
+What are you doing?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Mrs. Erlynne - if you had not come here, I would 
+have gone back.  But now that I see you, I feel that nothing in the 
+whole world would induce me to live under the same roof as Lord 
+Windermere.  You fill me with horror.  There is something about you 
+that stirs the wildest - rage within me.  And I know why you are 
+here.  My husband sent you to lure me back that I might serve as a 
+blind to whatever relations exist between you and him.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh!  You don't think that - you can't.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Go back to my husband, Mrs. Erlynne.  He belongs 
+to you and not to me.  I suppose he is afraid of a scandal.  Men 
+are such cowards.  They outrage every law of the world, and are 
+afraid of the world's tongue.  But he had better prepare himself.  
+He shall have a scandal.  He shall have the worst scandal there has 
+been in London for years.  He shall see his name in every vile 
+paper, mine on every hideous placard.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  No - no -</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes! he shall.  Had he come himself, I admit I 
+would have gone back to the life of degradation you and he had 
+prepared for me - I was going back - but to stay himself at home, 
+and to send you as his messenger - oh! it was infamous - infamous.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[C.]</stagedir>  Lady Windermere, you wrong me horribly - you 
+wrong your husband horribly.  He doesn't know you are here - he 
+thinks you are safe in your own house.  He thinks you are asleep in 
+your own room.  He never read the mad letter you wrote to him!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[R.]</stagedir>  Never read it!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  No - he knows nothing about it.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  How simple you think me!  <stagedir>[Going to her.]</stagedir>  You 
+are lying to me!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Restraining herself.]</stagedir>  I am not.  I am telling you 
+the truth.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  If my husband didn't read my letter, how is it 
+that you are here?  Who told you I had left the house you were 
+shameless enough to enter?  Who told you where I had gone to?  My 
+husband told you, and sent you to decoy me back.  <stagedir>[Crosses L.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[R.C.]</stagedir>  Your husband has never seen the letter.  I - 
+saw it, I opened it.  I - read it.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Turning to her.]</stagedir>  You opened a letter of mine to 
+my husband?  You wouldn't dare!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Dare!  Oh! to save you from the abyss into which you 
+are falling, there is nothing in the world I would not dare, 
+nothing in the whole world.  Here is the letter.  Your husband has 
+never read it.  He never shall read it.  <stagedir>[Going to fireplace.]</stagedir>  It 
+should never have been written.  <stagedir>[Tears it and throws it into the 
+fire.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[With infinite contempt in her voice and look.]</stagedir>  
+How do I know that that was my letter after all?  You seem to think 
+the commonest device can take me in!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh! why do you disbelieve everything I tell you?  
+What object do you think I have in coming here, except to save you 
+from utter ruin, to save you from the consequence of a hideous 
+mistake?  That letter that is burnt now WAS your letter.  I swear 
+it to you!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Slowly.]</stagedir>  You took good care to burn it before I 
+had examined it.  I cannot trust you.  You, whose whole life is a 
+lie, could you speak the truth about anything?  <stagedir>[Sits down.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Hurriedly.]</stagedir>  Think as you like about me - say what 
+you choose against me, but go back, go back to the husband you 
+love.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Sullenly.]</stagedir>  I do NOT love him!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  You do, and you know that he loves you.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  He does not understand what love is.  He 
+understands it as little as you do - but I see what you want.  It 
+would be a great advantage for you to get me back.  Dear Heaven! 
+what a life I would have then!  Living at the mercy of a woman who 
+has neither mercy nor pity in her, a woman whom it is an infamy to 
+meet, a degradation to know, a vile woman, a woman who comes 
+between husband and wife!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[With a gesture of despair.]</stagedir>  Lady Windermere, Lady 
+Windermere, don't say such terrible things.  You don't know how 
+terrible they are, how terrible and how unjust.  Listen, you must 
+listen!  Only go back to your husband, and I promise you never to 
+communicate with him again on any pretext - never to see him - 
+never to have anything to do with his life or yours.  The money 
+that he gave me, he gave me not through love, but through hatred, 
+not in worship, but in contempt.  The hold I have over him -</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Rising.]</stagedir>  Ah! you admit you have a hold!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes, and I will tell you what it is.  It is his love 
+for you, Lady Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You expect me to believe that?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  You must believe it!  It is true.  It is his love 
+for you that has made him submit to - oh! call it what you like, 
+tyranny, threats, anything you choose.  But it is his love for you.  
+His desire to spare you - shame, yes, shame and disgrace.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  What do you mean?  You are insolent!  What have I 
+to do with you?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Humbly.]</stagedir>  Nothing.  I know it - but I tell you that 
+your husband loves you - that you may never meet with such love 
+again in your whole life - that such love you will never meet - and 
+that if you throw it away, the day may come when you will starve 
+for love and it will not be given to you, beg for love and it will 
+be denied you - Oh! Arthur loves you!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Arthur?  And you tell me there is nothing between 
+you?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Lady Windermere, before Heaven your husband is 
+guiltless of all offence towards you!  And I - I tell you that had 
+it ever occurred to me that such a monstrous suspicion would have 
+entered your mind, I would have died rather than have crossed your 
+life or his - oh! died, gladly died!  <stagedir>[Moves away to sofa R.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You talk as if you had a heart.  Women like you 
+have no hearts.  Heart is not in you.  You are bought and sold.  
+<stagedir>[Sits L.C.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Starts, with a gesture of pain.  Then restrains 
+herself, and comes over to where LADY WINDERMERE is sitting.  As 
+she speaks, she stretches out her hands towards her, but does not 
+dare to touch her.]</stagedir>  Believe what you choose about me.  I am not 
+worth a moment's sorrow.  But don't spoil your beautiful young life 
+on my account!  You don't know what may be in store for you, unless 
+you leave this house at once.  You don't know what it is to fall 
+into the pit, to be despised, mocked, abandoned, sneered at - to be 
+an outcast! to find the door shut against one, to have to creep in 
+by hideous byways, afraid every moment lest the mask should be 
+stripped from one's face, and all the while to hear the laughter, 
+the horrible laughter of the world, a thing more tragic than all 
+the tears the world has ever shed.  You don't know what it is.  One 
+pays for one's sin, and then one pays again, and all one's life one 
+pays.  You must never know that. - As for me, if suffering be an 
+expiation, then at this moment I have expiated all my faults, 
+whatever they have been; for to-night you have made a heart in one 
+who had it not, made it and broken it. - But let that pass.  I may 
+have wrecked my own life, but I will not let you wreck yours.  You 
+- why, you are a mere girl, you would be lost.  You haven't got the 
+kind of brains that enables a woman to get back.  You have neither 
+the wit nor the courage.  You couldn't stand dishonour!  No!  Go 
+back, Lady Windermere, to the husband who loves you, whom you love.  
+You have a child, Lady Windermere.  Go back to that child who even 
+now, in pain or in joy, may be calling to you.  <stagedir>[LADY WINDERMERE 
+rises.]</stagedir>  God gave you that child.  He will require from you that 
+you make his life fine, that you watch over him.  What answer will 
+you make to God if his life is ruined through you?  Back to your 
+house, Lady Windermere - your husband loves you!  He has never 
+swerved for a moment from the love he bears you.  But even if he 
+had a thousand loves, you must stay with your child.  If he was 
+harsh to you, you must stay with your child.  If he ill-treated 
+you, you must stay with your child.  If he abandoned you, your 
+place is with your child.
+
+<stagedir>[LADY WINDERMERE bursts into tears and buries her face in her 
+hands.]</stagedir>
+
+<stagedir>[Rushing to her.]</stagedir>  Lady Windermere!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Holding out her hands to her, helplessly, as a 
+child might do.]</stagedir>  Take me home.  Take me home.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Is about to embrace her.  Then restrains herself.  
+There is a look of wonderful joy in her face.]</stagedir>  Come!  Where is 
+your cloak?  <stagedir>[Getting it from sofa.]</stagedir>  Here.  Put it on.  Come at 
+once!</speech>
+
+<stagedir>[They go to the door.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Stop!  Don't you hear voices?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  No, no!  There was no one!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes, there is!  Listen!  Oh! that is my husband's 
+voice!  He is coming in!  Save me!  Oh, it's some plot!  You have 
+sent for him.</speech>
+
+<stagedir>[Voices outside.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Silence!  I'm here to save you, if I can.  But I 
+fear it is too late!  There! <stagedir>[Points to the curtain across the 
+window.]</stagedir>  The first chance you have, slip out, if you ever get a 
+chance!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  But you?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh! never mind me.  I'll face them.</speech>
+
+<stagedir>[LADY WINDERMERE hides herself behind the curtain.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Outside.]</stagedir>  Nonsense, dear Windermere, you must not 
+leave me!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Lord Augustus!  Then it is I who am lost!  
+<stagedir>[Hesitates for a moment, then looks round and sees door R., and 
+exits through it.]</stagedir></speech>
+
+<stagedir>[Enter LORD DARLINGTON, MR. DUMBY, LORD WINDERMERE, LORD AUGUSTUS 
+LORTON, and MR. CECIL GRAHAM.]</stagedir>
+
+<speech><speaker>DUMBY.</speaker>  What a nuisance their turning us out of the club at this 
+hour!  It's only two o'clock.  <stagedir>[Sinks into a chair.]</stagedir>  The lively 
+part of the evening is only just beginning.  <stagedir>[Yawns and closes his 
+eyes.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  It is very good of you, Lord Darlington, allowing 
+Augustus to force our company on you, but I'm afraid I can't stay 
+long.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Really!  I am so sorry!  You'll take a cigar, 
+won't you?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Thanks!  <stagedir>[Sits down.]</stagedir></speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[To LORD WINDERMERE.]</stagedir>  My dear boy, you must not 
+dream of going.  I have a great deal to talk to you about, of 
+demmed importance, too.  <stagedir>[Sits down with him at L. table.]</stagedir></speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Oh!  We all know what that is!  Tuppy can't talk 
+about anything but Mrs. Erlynne.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Well, that is no business of yours, is it, Cecil?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  None!  That is why it interests me.  My own business 
+always bores me to death.  I prefer other people's.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Have something to drink, you fellows.  Cecil, 
+you'll have a whisky and soda?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Thanks.  <stagedir>[Goes to table with LORD DARLINGTON.]</stagedir>  Mrs. 
+Erlynne looked very handsome to-night, didn't she?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  I am not one of her admirers.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  I usen't to be, but I am now.  Why! she actually 
+made me introduce her to poor dear Aunt Caroline.  I believe she is 
+going to lunch there.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[In Purple.]</stagedir>  No?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  She is, really.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Excuse me, you fellows.  I'm going away to-
+morrow.  And I have to write a few letters.  <stagedir>[Goes to writing table 
+and sits down.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  Clever woman, Mrs. Erlynne.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Hallo, Dumby!  I thought you were asleep.</speech>
+
+<speech><speaker>DUMBY.</speaker>  I am, I usually am!</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  A very clever woman.  Knows perfectly well what a 
+demmed fool I am - knows it as well as I do myself.
+
+<stagedir>[CECIL GRAHAM comes towards him laughing.]</stagedir>
+
+Ah, you may laugh, my boy, but it is a great thing to come across a 
+woman who thoroughly understands one.</speech>
+
+<speech><speaker>DUMBY.</speaker>  It is an awfully dangerous thing.  They always end by 
+marrying one.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  But I thought, Tuppy, you were never going to see 
+her again!  Yes! you told me so yesterday evening at the club.  You 
+said you'd heard -
+
+<stagedir>[Whispering to him.]</stagedir></speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Oh, she's explained that.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  And the Wiesbaden affair?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  She's explained that too.</speech>
+
+<speech><speaker>DUMBY.</speaker>  And her income, Tuppy?  Has she explained that?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[In a very serious voice.]</stagedir>  She's going to explain 
+that to-morrow.</speech>
+
+<stagedir>[CECIL GRAHAM goes back to C. table.]</stagedir>
+
+<speech><speaker>DUMBY.</speaker>  Awfully commercial, women nowadays.  Our grandmothers threw 
+their caps over the mills, of course, but, by Jove, their 
+granddaughters only throw their caps over mills that can raise the 
+wind for them.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  You want to make her out a wicked woman.  She is 
+not!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Oh!  Wicked women bother one.  Good women bore one.  
+That is the only difference between them.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Puffing a cigar.]</stagedir>  Mrs. Erlynne has a future 
+before her.</speech>
+
+<speech><speaker>DUMBY.</speaker>  Mrs. Erlynne has a past before her.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  I prefer women with a past.  They're always so 
+demmed amusing to talk to.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Well, you'll have lots of topics of conversation 
+with HER, Tuppy.  <stagedir>[Rising and going to him.]</stagedir></speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  You're getting annoying, dear-boy; you're getting 
+demmed annoying.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[Puts his hands on his shoulders.]</stagedir>  Now, Tuppy, 
+you've lost your figure and you've lost your character.  Don't lose 
+your temper; you have only got one.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  My dear boy, if I wasn't the most good-natured man 
+in London -</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  We'd treat you with more respect, wouldn't we, 
+Tuppy?  <stagedir>[Strolls away.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  The youth of the present day are quite monstrous.  They 
+have absolutely no respect for dyed hair.  <stagedir>[LORD AUGUSTUS looks 
+round angrily.]</stagedir></speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Mrs. Erlynne has a very great respect for dear 
+Tuppy.</speech>
+
+<speech><speaker>DUMBY.</speaker>  Then Mrs. Erlynne sets an admirable example to the rest of 
+her sex.  It is perfectly brutal the way most women nowadays behave 
+to men who are not their husbands.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Dumby, you are ridiculous, and Cecil, you let 
+your tongue run away with you.  You must leave Mrs. Erlynne alone.  
+You don't really know anything about her, and you're always talking 
+scandal against her.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[Coming towards him L.C.]</stagedir>  My dear Arthur, I never 
+talk scandal.  I only talk gossip.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  What is the difference between scandal and 
+gossip?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Oh! gossip is charming!  History is merely gossip.  
+But scandal is gossip made tedious by morality.  Now, I never 
+moralise.  A man who moralises is usually a hypocrite, and a woman 
+who moralises is invariably plain.  There is nothing in the whole 
+world so unbecoming to a woman as a Nonconformist conscience.  And 
+most women know it, I'm glad to say.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Just my sentiments, dear boy, just my sentiments.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Sorry to hear it, Tuppy; whenever people agree with 
+me, I always feel I must be wrong.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  My dear boy, when I was your age -</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  But you never were, Tuppy, and you never will be.  
+<stagedir>[Goes up C.]</stagedir>  I say, Darlington, let us have some cards.  You'll 
+play, Arthur, won't you?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  No, thanks, Cecil.</speech>
+
+<speech><speaker>DUMBY.</speaker>  <stagedir>[With a sigh.]</stagedir>  Good heavens! how marriage ruins a man!  
+It's as demoralising as cigarettes, and far more expensive.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  You'll play, of course, Tuppy?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Pouring himself out a brandy and soda at table.]</stagedir>  
+Can't, dear boy.  Promised Mrs. Erlynne never to play or drink 
+again.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Now, my dear Tuppy, don't be led astray into the 
+paths of virtue.  Reformed, you would be perfectly tedious.  That 
+is the worst of women.  They always want one to be good.  And if we 
+are good, when they meet us, they don't love us at all.  They like 
+to find us quite irretrievably bad, and to leave us quite 
+unattractively good.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Rising from R. table, where he has been writing 
+letters.]</stagedir>  They always do find us bad!</speech>
+
+<speech><speaker>DUMBY.</speaker>  I don't think we are bad.  I think we are all good, except 
+Tuppy.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  No, we are all in the gutter, but some of us are 
+looking at the stars.  <stagedir>[Sits down at C. table.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  We are all in the gutter, but some of us are looking at the 
+stars?  Upon my word, you are very romantic to-night, Darlington.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Too romantic!  You must be in love.  Who is the 
+girl?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  The woman I love is not free, or thinks she 
+isn't.  <stagedir>[Glances instinctively at LORD WINDERMERE while he speaks.]</stagedir></speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  A married woman, then!  Well, there's nothing in the 
+world like the devotion of a married woman.  It's a thing no 
+married man knows anything about.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Oh! she doesn't love me.  She is a good woman.  
+She is the only good woman I have ever met in my life.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  The only good woman you have ever met in your life?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Yes!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[Lighting a cigarette.]</stagedir>  Well, you are a lucky 
+fellow!  Why, I have met hundreds of good women.  I never seem to 
+meet any but good women.  The world is perfectly packed with good 
+women.  To know them is a middle-class education.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  This woman has purity and innocence.  She has 
+everything we men have lost.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  My dear fellow, what on earth should we men do going 
+about with purity and innocence?  A carefully thought-out 
+buttonhole is much more effective.</speech>
+
+<speech><speaker>DUMBY.</speaker>  She doesn't really love you then?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  No, she does not!</speech>
+
+<speech><speaker>DUMBY.</speaker>  I congratulate you, my dear fellow.  In this world there 
+are only two tragedies.  One is not getting what one wants, and the 
+other is getting it.  The last is much the worst; the last is a 
+real tragedy!  But I am interested to hear she does not love you.  
+How long could you love a woman who didn't love you, Cecil?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  A woman who didn't love me?  Oh, all my life!</speech>
+
+<speech><speaker>DUMBY.</speaker>  So could I.  But it's so difficult to meet one.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  How can you be so conceited, DUMBY?</speech>
+
+<speech><speaker>DUMBY.</speaker>  I didn't say it as a matter of conceit.  I said it as a 
+matter of regret.  I have been wildly, madly adored.  I am sorry I 
+have.  It has been an immense nuisance.  I should like to be 
+allowed a little time to myself now and then.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Looking round.]</stagedir>  Time to educate yourself, I 
+suppose.</speech>
+
+<speech><speaker>DUMBY.</speaker>  No, time to forget all I have learned.  That is much more 
+important, dear Tuppy.  <stagedir>[LORD AUGUSTUS moves uneasily in his 
+chair.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  What cynics you fellows are!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  What is a cynic?  <stagedir>[Sitting on the back of the sofa.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  A man who knows the price of everything and the 
+value of nothing.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  And a sentimentalist, my dear Darlington, is a man 
+who sees an absurd value in everything, and doesn't know the market 
+price of any single thing.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You always amuse me, Cecil.  You talk as if you 
+were a man of experience.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  I am.  <stagedir>[Moves up to front off fireplace.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You are far too young!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  That is a great error.  Experience is a question of 
+instinct about life.  I have got it.  Tuppy hasn't.  Experience is 
+the name Tuppy gives to his mistakes.  That is all.  <stagedir>[LORD AUGUSTUS 
+looks round indignantly.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  Experience is the name every one gives to their mistakes.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[Standing with his back to the fireplace.]</stagedir>  One 
+shouldn't commit any.  <stagedir>[Sees LADY WINDERMERE'S fan on sofa.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  Life would be very dull without them.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Of course you are quite faithful to this woman you 
+are in love with, Darlington, to this good woman?</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Cecil, if on really loves a woman, all other 
+women in the world become absolutely meaningless to one.  Love 
+changes one - I am changed.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Dear me!  How very interesting!  Tuppy, I want to 
+talk to you.  <stagedir>[LORD AUGUSTUS takes no notice.]</stagedir></speech>
+
+<speech><speaker>DUMBY.</speaker>  It's no use talking to Tuppy.  You might just as well talk 
+to a brick wall.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  But I like talking to a brick wall - it's the only 
+thing in the world that never contradicts me!  Tuppy!</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Well, what is it?  What is it?  <stagedir>[Rising and going 
+over to CECIL GRAHAM.]</stagedir></speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Come over here.  I want you particularly.  <stagedir>[Aside.]</stagedir>  
+Darlington has been moralising and talking about the purity of 
+love, and that sort of thing, and he has got some woman in his 
+rooms all the time.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  No, really! really!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  <stagedir>[In a low voice.]</stagedir>  Yes, here is her fan.  <stagedir>[Points to 
+the fan.]</stagedir></speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Chuckling.]</stagedir>  By Jove!  By Jove!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Up by door.]</stagedir>  I am really off now, Lord 
+Darlington.  I am sorry you are leaving England so soon.  Pray call 
+on us when you come back!  My wife and I will be charmed to see 
+you!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Up sage with LORD WINDERMERE.]</stagedir>  I am afraid I 
+shall be away for many years.  Good-night!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Arthur!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  What?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  I want to speak to you for a moment.  No, do come!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Putting on his coat.]</stagedir>  I can't - I'm off!</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  It is something very particular.  It will interest 
+you enormously.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Smiling.]</stagedir>  It is some of your nonsense, Cecil.</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  It isn't!  It isn't really.</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Going to him.]</stagedir>  My dear fellow, you mustn't go 
+yet.  I have a lot to talk to you about.  And Cecil has something 
+to show you.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Walking over.]</stagedir>  Well, what is it?</speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  Darlington has got a woman here in his rooms.  Here 
+is her fan.  Amusing, isn't it?  <stagedir>[A pause.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Good God!  <stagedir>[Seizes the fan - DUMBY rises.]</stagedir></speech>
+
+<speech><speaker>CECIL GRAHAM.</speaker>  What is the matter?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Lord Darlington!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Turning round.]</stagedir>  Yes!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  What is my wife's fan doing here in your rooms?  
+Hands off, Cecil.  Don't touch me.</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  Your wife's fan?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Yes, here it is!</speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Walking towards him.]</stagedir>  I don't know!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You must know.  I demand an explanation.  Don't 
+hold me, you fool.  <stagedir>[To CECIL GRAHAM.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  <stagedir>[Aside.]</stagedir>  She is here after all!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Speak, sir!  Why is my wife's fan here?  Answer 
+me!  By God!  I'll search your rooms, and if my wife's here, I'll -  
+<stagedir>[Moves.]</stagedir></speech>
+
+<speech><speaker>LORD DARLINGTON.</speaker>  You shall not search my rooms.  You have no right 
+to do so.  I forbid you!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You scoundrel!  I'll not leave your room till I 
+have searched every corner of it!  What moves behind that curtain?  
+<stagedir>[Rushes towards the curtain C.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Enters behind R.]</stagedir>  Lord Windermere!</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Mrs. Erlynne!</speech>
+
+<stagedir>[Every one starts and turns round.  LADY WINDERMERE slips out from 
+behind the curtain and glides from the room L.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  I am afraid I took your wife's fan in mistake for my 
+own, when I was leaving your house to-night.  I am so sorry.  
+<stagedir>[Takes fan from him.  LORD WINDERMERE looks at her in contempt.  
+LORD DARLINGTON in mingled astonishment and anger.  LORD AUGUSTUS 
+turns away.  The other men smile at each other.]</stagedir></speech>
+
+<stagedir>ACT DROP.</stagedir>
+
+</act>
+
+<act>
+
+<speech>FOURTH ACT</speech>
+
+<scndesc>SCENE - Same as in Act I.</scndesc>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Lying on sofa.]</stagedir>  How can I tell him?  I can't 
+tell him.  It would kill me.  I wonder what happened after I 
+escaped from that horrible room.  Perhaps she told them the true 
+reason of her being there, and the real meaning of that - fatal fan 
+of mine.  Oh, if he knows - how can I look him in the face again?  
+He would never forgive me.  <stagedir>[Touches bell.]</stagedir>  How securely one 
+thinks one lives - out of reach of temptation, sin, folly.  And 
+then suddenly - Oh!  Life is terrible.  It rules us, we do not rule 
+it.</speech>
+
+<speech><stagedir>[Enter ROSALIE R.]</stagedir></speech>
+
+<speech><speaker>ROSALIE.</speaker>  Did your ladyship ring for me?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes.  Have you found out at what time Lord 
+Windermere came in last night?</speech>
+
+<speech><speaker>ROSALIE.</speaker>  His lordship did not come in till five o'clock.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Five o'clock?  He knocked at my door this 
+morning, didn't he?</speech>
+
+<speech><speaker>ROSALIE.</speaker>  Yes, my lady - at half-past nine.  I told him your 
+ladyship was not awake yet.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Did he say anything?</speech>
+
+<speech><speaker>ROSALIE.</speaker>  Something about your ladyship's fan.  I didn't quite 
+catch what his lordship said.  Has the fan been lost, my lady?  I 
+can't find it, and Parker says it was not left in any of the rooms.  
+He has looked in all of them and on the terrace as well.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  It doesn't matter.  Tell Parker not to trouble.  
+That will do.</speech>
+
+<stagedir>[Exit ROSALIE.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Rising.]</stagedir>  She is sure to tell him.  I can fancy 
+a person doing a wonderful act of self-sacrifice, doing it 
+spontaneously, recklessly, nobly - and afterwards finding out that 
+it costs too much.  Why should she hesitate between her ruin and 
+mine? . . . How strange!  I would have publicly disgraced her in my 
+own house.  She accepts public disgrace in the house of another to 
+save me. . . . There is a bitter irony in things, a bitter irony in 
+the way we talk of good and bad women. . . . Oh, what a lesson! and 
+what a pity that in life we only get our lessons when they are of 
+no use to us!  For even if she doesn't tell, I must.  Oh! the shame 
+of it, the shame of it.  To tell it is to live through it all 
+again.  Actions are the first tragedy in life, words are the 
+second.  Words are perhaps the worst.  Words are merciless. . . Oh!  
+<stagedir>[Starts as LORD WINDERMERE enters.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Kisses her.]</stagedir>  Margaret - how pale you look!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I slept very badly.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Sitting on sofa with her.]</stagedir>  I am so sorry.  I 
+came in dreadfully late, and didn't like to wake you.  You are 
+crying, dear.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes, I am crying, for I have something to tell 
+you, Arthur.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  My dear child, you are not well.  You've been 
+doing too much.  Let us go away to the country.  You'll be all 
+right at Selby.  The season is almost over.  There is no use 
+staying on.  Poor darling!  We'll go away to-day, if you like.  
+<stagedir>[Rises.]</stagedir>  We can easily catch the 3.40.  I'll send a wire to 
+Fannen.  <stagedir>[Crosses and sits down at table to write a telegram.]</stagedir></speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes; let us go away to-day.  No; I can't go to-
+day, Arthur.  There is some one I must see before I leave town - 
+some one who has been kind to me.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Rising and leaning over sofa.]</stagedir>  Kind to you?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Far more than that.  <stagedir>[Rises and goes to him.]</stagedir>  I 
+will tell you, Arthur, but only love me, love me as you used to 
+love me.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Used to?  You are not thinking of that wretched 
+woman who came here last night?  <stagedir>[Coming round and sitting R. of 
+her.]</stagedir>  You don't still imagine - no, you couldn't.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I don't.  I know now I was wrong and foolish.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  It was very good of you to receive her last night 
+- but you are never to see her again.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why do you say that?  <stagedir>[A pause.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Holding her hand.]</stagedir>  Margaret, I thought Mrs. 
+Erlynne was a woman more sinned against than sinning, as the phrase 
+goes.  I thought she wanted to be good, to get back into a place 
+that she had lost by a moment's folly, to lead again a decent life.  
+I believed what she told me - I was mistaken in her.  She is bad - 
+as bad as a woman can be.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Arthur, Arthur, don't talk so bitterly about any 
+woman.  I don't think now that people can be divided into the good 
+and the bad as though they were two sespeechte races or creations.  
+What are called good women may have terrible things in them, mad 
+moods of recklessness, assertion, jealousy, sin.  Bad women, as 
+they are termed, may have in them sorrow, repentance, pity, 
+sacrifice.  And I don't think Mrs. Erlynne a bad woman - I know 
+she's not.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  My dear child, the woman's impossible.  No matter 
+what harm she tries to do us, you must never see her again.  She is 
+inadmissible anywhere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  But I want to see her.  I want her to come here.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Never!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  She came here once as YOUR guest.  She must come 
+now as MINE.  That is but fair.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  She should never have come here.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Rising.]</stagedir>  It is too late, Arthur, to say that 
+now.  <stagedir>[Moves away.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Rising.]</stagedir>  Margaret, if you knew where Mrs. 
+Erlynne went last night, after she left this house, you would not 
+sit in the same room with her.  It was absolutely shameless, the 
+whole thing.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Arthur, I can't bear it any longer.  I must tell 
+you.  Last night -</speech>
+
+<stagedir>[Enter PARKER with a tray on which lie LADY WINDERMERE'S fan and a 
+card.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Mrs. Erlynne has called to return your ladyship's fan 
+which she took away by mistake last night.  Mrs. Erlynne has 
+written a message on the card.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Oh, ask Mrs. Erlynne to be kind enough to come 
+up.  <stagedir>[Reads card.]</stagedir>  Say I shall be very glad to see her.  <stagedir>[Exit 
+PARKER.]</stagedir>  She wants to see me, Arthur.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Takes card and looks at it.]</stagedir>  Margaret, I BEG 
+you not to.  Let me see her first, at any rate.  She's a very 
+dangerous woman.  She is the most dangerous woman I know.  You 
+don't realise what you're doing.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  It is right that I should see her.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  My child, you may be on the brink of a great 
+sorrow.  Don't go to meet it.  It is absolutely necessary that I 
+should see her before you do.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Why should it be necessary?</speech>
+
+<stagedir>[Enter PARKER.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Mrs. Erlynne.</speech>
+
+<stagedir>[Enter MRS. ERLYNNE.]</stagedir>
+
+<stagedir>[Exit PARKER.]</stagedir>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  How do you do, Lady Windermere?  <stagedir>[To LORD 
+WINDERMERE.]</stagedir>  How do you do?  Do you know, Lady Windermere, I am so 
+sorry about your fan.  I can't imagine how I made such a silly 
+mistake.  Most stupid of me.  And as I was driving in your 
+direction, I thought I would take the opportunity of returning your 
+property in person with many apologies for my carelessness, and of 
+bidding you good-bye.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Good-bye?  <stagedir>[Moves towards sofa with MRS. ERLYNNE 
+and sits down beside her.]</stagedir>  Are you going away, then, Mrs. Erlynne?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes; I am going to live abroad again.  The English 
+climate doesn't suit me.  My - heart is affected here, and that I 
+don't like.  I prefer living in the south.  London is too full of 
+fogs and - and serious people, Lord Windermere.  Whether the fogs 
+produce the serious people or whether the serious people produce 
+the fogs, I don't know, but the whole thing rather gets on my 
+nerves, and so I'm leaving this afternoon by the Club Train.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  This afternoon?  But I wanted so much to come and 
+see you.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  How kind of you!  But I am afraid I have to go.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Shall I never see you again, Mrs. Erlynne?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  I am afraid not.  Our lives lie too far apart.  But 
+there is a little thing I would like you to do for me.  I want a 
+photograph of you, Lady Windermere - would you give me one?  You 
+don't know how gratified I should be.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Oh, with pleasure.  There is one on that table.  
+I'll show it to you. <stagedir>[Goes across to the table.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Coming up to MRS. ERLYNNE and speaking in a low 
+voice.]</stagedir>  It is monstrous your intruding yourself here after your 
+conduct last night.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[With an amused smile.]</stagedir>  My dear Windermere, manners 
+before morals!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Returning.]</stagedir>  I'm afraid it is very flattering - 
+I am not so pretty as that.  <stagedir>[Showing photograph.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  You are much prettier.  But haven't you got one of 
+yourself with your little boy?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I have.  Would you prefer one of those?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I'll go and get it for you, if you'll excuse me 
+for a moment.  I have one upstairs.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  So sorry, Lady Windermere, to give you so much 
+trouble.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Moves to door R.]</stagedir>  No trouble at all, Mrs. 
+Erlynne.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Thanks so much.
+
+<stagedir>[Exit LADY WINDERMERE R.]</stagedir>  You seem rather out of temper this 
+morning, Windermere.  Why should you be?  Margaret and I get on 
+charmingly together.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I can't bear to see you with her.  Besides, you 
+have not told me the truth, Mrs. Erlynne.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  I have not told HER the truth, you mean.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Standing C.]</stagedir>  I sometimes wish you had.  I 
+should have been spared then the misery, the anxiety, the annoyance 
+of the last six months.  But rather than my wife should know - that 
+the mother whom she was taught to consider as dead, the mother whom 
+she has mourned as dead, is living - a divorced woman, going about 
+under an assumed name, a bad woman preying upon life, as I know you 
+now to be - rather than that, I was ready to supply you with money 
+to pay bill after bill, extravagance after extravagance, to risk 
+what occurred yesterday, the first quarrel I have ever had with my 
+wife.  You don't understand what that means to me.  How could you?  
+But I tell you that the only bitter words that ever came from those 
+sweet lips of hers were on your account, and I hate to see you next 
+her.  You sully the innocence that is in her. <stagedir>[Moves L.C.]</stagedir>  And 
+then I used to think that with all your faults you were frank and 
+honest.  You are not.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Why do you say that?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You made me get you an invitation to my wife's 
+ball.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  For my daughter's ball - yes.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You came, and within an hour of your leaving the 
+house you are found in a man's rooms - you are disgraced before 
+every one.  <stagedir>[Goes up stage C.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Turning round on her.]</stagedir>  Therefore I have a right 
+to look upon you as what you are - a worthless, vicious woman.  I 
+have the right to tell you never to enter this house, never to 
+attempt to come near my wife -</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Coldly.]</stagedir>  My daughter, you mean.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You have no right to claim her as your daughter.  
+You left her, abandoned her when she was but a child in the cradle, 
+abandoned her for your lover, who abandoned you in turn.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Rising.]</stagedir>  Do you count that to his credit, Lord 
+Windermere - or to mine?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  To his, now that I know you.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Take care - you had better be careful.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Oh, I am not going to mince words for you.  I 
+know you thoroughly.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Looks steadily at him.]</stagedir>  I question that.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I DO know you.  For twenty years of your life you 
+lived without your child, without a thought of your child.  One day 
+you read in the papers that she had married a rich man.  You saw 
+your hideous chance.  You knew that to spare her the ignominy of 
+learning that a woman like you was her mother, I would endure 
+anything.  You began your blackmailing,</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Shrugging her shoulders.]</stagedir>  Don't use ugly words, 
+Windermere.  They are vulgar.  I saw my chance, it is true, and 
+took it.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Yes, you took it - and spoiled it all last night 
+by being found out.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[With a strange smile.]</stagedir>  You are quite right, I 
+spoiled it all last night.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  And as for your blunder in taking my wife's fan 
+from here and then leaving it about in Darlington's rooms, it is 
+unpardonable.  I can't bear the sight of it now.  I shall never let 
+my wife use it again.  The thing is soiled for me.  You should have 
+kept it and not brought it back.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  I think I shall keep it.  <stagedir>[Goes up.]</stagedir>  It's extremely 
+pretty.  <stagedir>[Takes up fan.]</stagedir>  I shall ask Margaret to give it to me.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I hope my wife will give it you.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Oh, I'm sure she will have no objection.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I wish that at the same time she would give you a 
+miniature she kisses every night before she prays - It's the 
+miniature of a young innocent-looking girl with beautiful DARK 
+hair.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Ah, yes, I remember.  How long ago that seems!  
+<stagedir>[Goes to sofa and sits down.]</stagedir>  It was done before I was married.  
+Dark hair and an innocent expression were the fashion then, 
+Windermere!  <stagedir>[A pause.]</stagedir></speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  What do you mean by coming here this morning?  
+What is your object?  <stagedir>[Crossing L.C. and sitting.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[With a note of irony in her voice.]</stagedir>  To bid good-
+bye to my dear daughter, of course.  <stagedir>[LORD WINDERMERE bites his 
+under lip in anger.  MRS. ERLYNNE looks at him, and her voice and 
+manner become serious.  In her accents at she talks there is a note 
+of deep tragedy.  For a moment she reveals herself.]</stagedir>  Oh, don't 
+imagine I am going to have a pathetic scene with her, weep on her 
+neck and tell her who I am, and all that kind of thing.  I have no 
+ambition to play the part of a mother.  Only once in my life like I 
+known a mother's feelings.  That was last night.  They were 
+terrible - they made me suffer - they made me suffer too much.  For 
+twenty years, as you say, I have lived childless, - I want to live 
+childless still.  <stagedir>[Hiding her feelings with a trivial laugh.]</stagedir>  
+Besides, my dear Windermere, how on earth could I pose as a mother 
+with a grown-up daughter?  Margaret is twenty-one, and I have never 
+admitted that I am more than twenty-nine, or thirty at the most.  
+Twenty-nine when there are pink shades, thirty when there are not.  
+So you see what difficulties it would involve.  No, as far as I am 
+concerned, let your wife cherish the memory of this dead, stainless 
+mother.  Why should I interfere with her illusions?  I find it hard 
+enough to keep my own.  I lost one illusion last night.  I thought 
+I had no heart.  I find I have, and a heart doesn't suit me, 
+Windermere.  Somehow it doesn't go with modern dress.  It makes one 
+look old.  <stagedir>[Takes up hand-mirror from table and looks into it.]</stagedir>  
+And it spoils one's career at critical moments.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  You fill me with horror - with absolute horror.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Rising.]</stagedir>  I suppose, Windermere, you would like me 
+to retire into a convent, or become a hospital nurse, or something 
+of that kind, as people do in silly modern novels.  That is stupid 
+of you, Arthur; in real life we don't do such things - not as long 
+as we have any good looks left, at any rate.  No - what consoles 
+one nowadays is not repentance, but pleasure.  Repentance is quite 
+out of date.  And besides, if a woman really repents, she has to go 
+to a bad dressmaker, otherwise no one believes in her.  And nothing 
+in the world would induce me to do that.  No; I am going to pass 
+entirely out of your two lives.  My coming into them has been a 
+mistake - I discovered that last night.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  A fatal mistake.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Smiling.]</stagedir>  Almost fatal.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I am sorry now I did not tell my wife the whole 
+thing at once.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  I regret my bad actions.  You regret your good ones 
+- that is the difference between us.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I don't trust you.  I WILL tell my wife.  It's 
+better for her to know, and from me.  It will cause her infinite 
+pain - it will humiliate her terribly, but it's right that she 
+should know.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  You propose to tell her?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I am going to tell her.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Going up to him.]</stagedir>  If you do, I will make my name 
+so infamous that it will mar every moment of her life.  It will 
+ruin her, and make her wretched.  If you dare to tell her, there is 
+no depth of degradation I will not sink to, no pit of shame I will 
+not enter.  You shall not tell her - I forbid you.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Why?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[After a pause.]</stagedir>  If I said to you that I cared for 
+her, perhaps loved her even - you would sneer at me, wouldn't you?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  I should feel it was not true.  A mother's love 
+means devotion, unselfishness, sacrifice.  What could you know of 
+such things?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  You are right.  What could I know of such things?  
+Don't let us talk any more about it - as for telling my daughter 
+who I am, that I do not allow.  It is my secret, it is not yours.  
+If I make up my mind to tell her, and I think I will, I shall tell 
+her before I leave the house - if not, I shall never tell her.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Angrily.]</stagedir>  Then let me beg of you to leave our 
+house at once.  I will make your excuses to Margaret.</speech>
+
+<stagedir>[Enter LADY WINDERMERE R.  She goes over to MRS. ERLYNNE with the 
+photograph in her hand.  LORD WINDERMERE moves to back of sofa, and 
+anxiously watches MRS. ERLYNNE as the scene progresses.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I am so sorry, Mrs. Erlynne, to have kept you 
+waiting.  I couldn't find the photograph anywhere.  At last I 
+discovered it in my husband's dressing-room - he had stolen it.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Takes the photograph from her and looks at it.]</stagedir>  I 
+am not surprised - it is charming.  <stagedir>[Goes over to sofa with LADY 
+WINDERMERE, and sits down beside her.  Looks again at the 
+photograph.]</stagedir>  And so that is your little boy!  What is he called?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Gerard, after my dear father.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Laying the photograph down.]</stagedir>  Really?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes.  If it had been a girl, I would have called 
+it after my mother.  My mother had the same name as myself, 
+Margaret.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  My name is Margaret too.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Indeed!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes.  <stagedir>[Pause.]</stagedir>  You are devoted to your mother's 
+memory, Lady Windermere, your husband tells me.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  We all have ideals in life.  At least we all 
+should have.  Mine is my mother.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Ideals are dangerous things.  Realities are better.  
+They wound, but they're better.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Shaking her head.]</stagedir>  If I lost my ideals, I 
+should lose everything.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Everything?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes.  <stagedir>[Pause.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Did your father often speak to you of your mother?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  No, it gave him too much pain.  He told me how my 
+mother had died a few months after I was born.  His eyes filled 
+with tears as he spoke.  Then he begged me never to mention her 
+name to him again.  It made him suffer even to hear it.  My father 
+- my father really died of a broken heart.  His was the most ruined 
+life know,</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Rising.]</stagedir>  I am afraid I must go now, Lady 
+Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Rising.]</stagedir>  Oh no, don't.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  I think I had better.  My carriage must have come 
+back by this time.  I sent it to Lady Jedburgh's with a note.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Arthur, would you mind seeing if Mrs. Erlynne's 
+carriage has come back?</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Pray don't trouble, Lord Windermere.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Yes, Arthur, do go, please.</speech>
+
+<stagedir>[LORD WINDERMERE hesitated for a moment and looks at MRS. ERLYNNE.  
+She remains quite impassive.  He leaves the room.]</stagedir>
+
+<speech><stagedir>[To MRS. ERLYNNE.]</stagedir>  Oh!  What am I to say to you?  You saved me 
+last night?  <stagedir>[Goes towards her.]</stagedir></speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Hush - don't speak of it.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I must speak of it.  I can't let you think that I 
+am going to accept this sacrifice.  I am not.  It is too great.  I 
+am going to tell my husband everything.  It is my duty.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  It is not your duty - at least you have duties to 
+others besides him.  You say you owe me something?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  I owe you everything.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Then pay your debt by silence.  That is the only way 
+in which it can be paid.  Don't spoil the one good thing I have 
+done in my life by telling it to any one.  Promise me that what 
+passed last night will remain a secret between us.  You must not 
+bring misery into your husband's life.  Why spoil his love?  You 
+must not spoil it.  Love is easily killed.  Oh! how easily love is 
+killed.  Pledge me your word, Lady Windermere, that you will never 
+tell him.  I insist upon it.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[With bowed head.]</stagedir>  It is your will, not mine.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Yes, it is my will.  And never forget your child - I 
+like to think of you as a mother.  I like you to think of yourself 
+as one.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Looking up.]</stagedir>  I always will now.  Only once in 
+my life I have forgotten my own mother - that was last night.  Oh, 
+if I had remembered her I should not have been so foolish, so 
+wicked.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[With a slight shudder.]</stagedir>  Hush, last night is quite 
+over.</speech>
+
+<stagedir>[Enter LORD WINDERMERE.]</stagedir>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Your carriage has not come back yet, Mrs. 
+Erlynne.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  It makes no matter.  I'll take a hansom.  There is 
+nothing in the world so respectable as a good Shrewsbury and 
+Talbot.  And now, dear Lady Windermere, I am afraid it is really 
+good-bye.  <stagedir>[Moves up C.]</stagedir>  Oh, I remember.  You'll think me absurd, 
+but do you know I've taken a great fancy to this fan that I was 
+silly enough to run away with last night from your ball.  Now, I 
+wonder would you give it to me?  Lord Windermere says you may.  I 
+know it is his present.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Oh, certainly, if it will give you any pleasure.  
+But it has my name on it.  It has 'Margaret' on it.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  But we have the same Christian name.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Oh, I forgot.  Of course, do have it.  What a 
+wonderful chance our names being the same!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  Quite wonderful.  Thanks - it will always remind me 
+of you.  <stagedir>[Shakes hands with her.]</stagedir></speech>
+
+<stagedir>[Enter PARKER.]</stagedir>
+
+<speech><speaker>PARKER.</speaker>  Lord Augustus Lorton.  Mrs. Erlynne's carriage has come.</speech>
+
+<stagedir>[Enter LORD AUGUSTUS.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Good morning, dear boy.  Good morning, Lady 
+Windermere.  <stagedir>[Sees MRS. ERLYNNE.]</stagedir>  Mrs. Erlynne!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  How do you do, Lord Augustus?  Are you quite well 
+this morning?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Coldly.]</stagedir>  Quite well, thank you, Mrs. Erlynne.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  You don't look at all well, Lord Augustus.  You stop 
+up too late - it is so bad for you.  You really should take more 
+care of yourself.  Good-bye, Lord Windermere. <stagedir>[Goes towards door 
+with a bow to LORD AUGUSTUS.  Suddenly smiles and looks back at 
+him.]</stagedir>  Lord Augustus!  Won't you see me to my carriage?  You might 
+carry the fan.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Allow me!</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  No; I want Lord Augustus.  I have a special message 
+for the dear Duchess.  Won't you carry the fan, Lord Augustus?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  If you really desire it, Mrs. Erlynne.</speech>
+
+<speech><speaker>MRS. ERLYNNE.</speaker>  <stagedir>[Laughing.]</stagedir>  Of course I do.  You'll carry it so 
+gracefully.  You would carry off anything gracefully, dear Lord 
+Augustus.</speech>
+
+<stagedir>[When she reaches the door she looks back for a moment at LADY 
+WINDERMERE.  Their eyes meet.  Then she turns, and exit C. followed 
+by LORD AUGUSTUS.]</stagedir>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  You will never speak against Mrs. Erlynne again, 
+Arthur, will you?</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Gravely.]</stagedir>  She is better than one thought her.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  She is better than I am.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Smiling as he strokes her hair.]</stagedir>  Child, you and 
+she belong to different worlds.  Into your world evil has never 
+entered.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  Don't say that, Arthur.  There is the same world 
+for all of us, and good and evil, sin and innocence, go through it 
+hand in hand.  To shut one's eyes to half of life that one may live 
+securely is as though one blinded oneself that one might walk with 
+more safety in a land of pit and precipice.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  <stagedir>[Moves down with her.]</stagedir>  Darling, why do you say 
+that?</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Sits on sofa.]</stagedir>  Because I, who had shut my eyes 
+to life, came to the brink.  And one who had sespeechted us -</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  We were never sespeechted.</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  We never must be again.  O Arthur, don't love me 
+less, and I will trust you more.  I will trust you absolutely.  Let 
+us go to Selby.  In the Rose Garden at Selby the roses are white 
+and red.</speech>
+
+<stagedir>[Enter LORD AUGUSTUS C.]</stagedir>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  Arthur, she has explained everything!
+
+<stagedir>[LADY WINDERMERE looks horribly frightened at this.  LORD 
+WINDERMERE starts.  LORD AUGUSTUS takes WINDERMERE by the arm and 
+brings him to front of stage.  He talks rapidly and in a low voice.  
+LADY WINDERMERE stands watching them in terror.]</stagedir>  My dear fellow, 
+she has explained every demmed thing.  We all wronged her 
+immensely.  It was entirely for my sake she went to Darlington's 
+rooms.  Called first at the Club - fact is, wanted to put me out of 
+suspense - and being told I had gone on - followed - naturally 
+frightened when she heard a lot of us coming in - retired to 
+another room - I assure you, most gratifying to me, the whole 
+thing.  We all behaved brutally to her.  She is just the woman for 
+me.  Suits me down to the ground.  All the conditions she makes are 
+that we live entirely out of England.  A very good thing too.  
+Demmed clubs, demmed climate, demmed cooks, demmed everything.  
+Sick of it all!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Frightened.]</stagedir>  Has Mrs. Erlynne - ?</speech>
+
+<speech><speaker>LORD AUGUSTUS.</speaker>  <stagedir>[Advancing towards her with a low bow.]</stagedir>  Yes, Lady 
+Windermere -  Mrs. Erlynne has done me the honour of accepting my 
+hand.</speech>
+
+<speech><speaker>LORD WINDERMERE.</speaker>  Well, you are certainly marrying a very clever 
+woman!</speech>
+
+<speech><speaker>LADY WINDERMERE.</speaker>  <stagedir>[Taking her husband's hand.]</stagedir>  Ah, you're marrying 
+a very good woman!</speech>
+
+<stagedir>CURTAIN</stagedir>
+
+</act>
+
+</playbody>
+
+</play>
+
+<endgutblurb>
+<para>End of The Project Gutenberg Etext of Lady Windermere's Fan, by Wilde</para>
+</endgutblurb>
+
+</gutplay>

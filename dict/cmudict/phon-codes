@@ -1,0 +1,92 @@
+39 phonemes
+
+Vowels (14)
+ 1 AA
+ 2 AE
+ 3 AO
+ 4 AW
+ 5 AY
+ 6 EH
+ 7 ER
+ 8 EY
+ 9 IH
+10 IY
+11 OW
+12 OY
+13 UH
+14 UW
+
+Consonants (25)
+16 B
+17 CH
+18 D
+19 DH
+20 F
+21 G
+22 HH
+23 JH
+24 K
+25 L
+26 M
+27 N
+ 28 NG
+29 P
+30 R
+31 S
+32 SH
+33 T
+34 TH
+35 V
+36 W
+37 X
+38 Y
+39 Z
+40 ZH
+
+Accents (4)
+ 0 (none)
+ 1 '0'
+ 2 '1'
+ 3 '2'
+
+
+Represented in one byte:
+
+AAPPPPPP
+AA = 2 bits for the accent
+PPPPPP = 6 bits for the phoneme code
+
+0x00 is not a valid phoneme byte.  It can be used as a terminator.
+0xff is not a valid phoneme byte.  It can be used as a generic "bad phoneme"
+  indicator.
+
+If p is a phoneme+accent represented by this kind of byte
+
+p is a vowel iff !(p & 0x30)
+p is a consonant iff (p & 0x30)
+the phoneme code is given by (p & 0x3f)
+the accent code is given by (p >> 6)
+
+------------------------------------------------------------------------
+
+SLANT RHYME:
+all vowels phonemes are identified
+i.e. p and q are equal (modulo vowels) if
+(!(p & 0x30) && !(q & 0x30)) || ((p & 0x3f) == (q & 0x3f))
+
+JH and ZH
+((p 
+
+#define PHONEME_EQ(p, q) (((p) & 0x3f) == ((q) & 0x3f))
+#define PHONEME_EQ_MOD_VOWELS(p, q) ((!((p) & 0x30) && !((q) & 0x30)) || PHONEME_EQ(p, q))
+
+#define SLANT_EQ(p, q) (((p) & 0x3f) < ((q) & 0x3f) ? _SLANT_EQ((p) & 0x3f, (q) & 0x3f) : _SLANT_EQ((q) & 0x3f, (p) & 0x3f))
+
+/* Assume p < q */
+#define _CODE_PAIR(p, q, c1, c2) ((p) == MIN((C1), (C2)) && (q) == MAX((C1), (C2)))
+
+/* Can safely assume that the accent bits have been stripped off and p<=q */
+#define _SLANT_EQ(p, q) (PHONEME_EQ_MOD_VOWELS(p, q) || \
+                         _CODE_PAIR(p, q, CODE_JH, CODE_ZH))
+                         /* do we need to identify any other consonant
+                            phonemes? */

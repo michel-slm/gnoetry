@@ -1,0 +1,79 @@
+<html>
+<body>
+
+<h1>Text T32</h1>
+
+<h2>Source</h2>
+<p>BNC file KP8
+
+<h2>Date</h2>
+<p>30 Jan to 8 Feb 1992
+
+<h2>Place</h2>
+<p>Mid Calder, Midlothian
+
+<h2>Locale/activities</h2>
+<p>at home, telephone conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Heather119, f, 33, nurse, SC, AB
+<li>Oliver120, m, 5, n/a, SC, AB
+<li>Gina121, f, 60, retired, SC, XX
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Heather119 is daughter-in-law of Gina121.
+Oliver120 is son of Heather119.
+
+
+<h2>Dialect Classification</h2>
+<p>BNC assigns the Scottish dialect code to the female speakers.  No code is
+given for Oliver120, but since he is the son of a Scottish speaker and
+living in Scotland it would be remarkable if his speech were not Scottish.
+CHRISTINE assigns the SC code in all cases.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Heather119 and Oliver120 as DE and leaves Gina121
+unclassified.  But Heather119 is SOC code 340, II, hence AB, and therefore
+Oliver120 should also be given this classification.  (In confirmation,
+Heather's husband, not represented in the CHRISTINE extract, is also AB by
+occupation.)
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>02337:  <i>T V</i> emended to <i>TV</i>
+
+<p>02340:  <i>Alistaire</i> emended to <i>Alistair</i> 
+(a more usual Anglicization of this
+Gaelic Christian name)
+
+<p>02374:  <i>Russell &lt;name&gt;'s new wife</i>:  
+the anonymization process seems to have
+introduced a space between the 
+<tt>&lt;name&gt;</tt> entity and the following
+apostrophe, CHRISTINE represents the latter as <i>+'s</i> since it
+would obviously be written continuously with the actual name
+preceding it.
+
+<p>02435:  <i>half term</i> emended to <i>half-term</i>
+
+<p>02467:  <i>lunchtime</i> emended to <i>lunch-time</i>
+
+<p>02470:  <i>short- staffed</i> emended to <i>short-staffed</i>
+
+<p>02515:  <i>blown-out</i> emended to <i>blown out</i>
+
+<p>02520, 02530:  <i>doctors</i> emended to <i>doctor's</i>
+
+<p>02548:  <i>it was also {unclear}</i> may well in reality have been
+<i>it was all so ... </i>; without knowing what the unclear wording
+was, an emendation is not justified.
+
+</body>
+</html>
+

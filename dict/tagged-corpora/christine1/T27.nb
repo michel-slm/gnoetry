@@ -1,0 +1,96 @@
+<html>
+<body>
+
+<h1>Text T27</h1>
+
+<h2>Source</h2>
+<p>BNC file KE1
+
+<h2>Date</h2>
+<p>10 to 16 Apr 1992
+
+<h2>Place</h2>
+<p>Lisburn, co. Antrim
+
+<h2>Locale/activities</h2>
+<p>
+<ul>
+<li>divs 047201-4:  leaving school/walking to bus stop/waiting for bus
+<li>divs 047205-7:  chatting/shopping/walking around
+</ul>
+<h2>Identified Speakers</h2>
+<ul>
+<li>Thomas107, m, 17, student, IR, AB
+<li>Anon108, no information in BNC header, but dialect classified IR
+<li>Anon109, no information in BNC header, but dialect classified IR
+<li>Nev110, no information in BNC header, but internal evidence shows 
+that he is male, and dialect classified IR
+<li>Mark111, m, 30, shopkeeper, IR, AB
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Thomas107 and Mark111 are friends.
+
+
+<h2>Dialect Classification</h2>
+<p>Thomas107 and Mark111 are given the Irish BNC dialect code.  No information
+is shown for the others, but they show non-English dialect forms
+(e.g. <i>that wee fly</i>, Anon108 at s-unit 03656, <i>oh aye</i>, Anon109 at
+s-unit 03671), and it seems a safe bet to take them also as Irish.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Thomas107 as AB, leaves Mark111 unclassified, and gives no
+information of any kind about the other speakers.  Mark111 is SOC code 179,
+II, hence AB.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>03694:  <i>water skiing</i> emended to <i>water-skiing</i>
+
+<p>03722:  <i>I T V</i> emended to <i>ITV</i> (Independent Television)
+
+<p>03789, 03792  <i>McCloud</i>:  in Britain this would be an unusual spelling
+of the Scottish surname commonly spelled MacLeod, Macleod; but
+the BNC transcriber's spelling does occur in the USA, and the
+reference here seems to be to a television programme, so that
+spelling has been left to stand.
+
+<p>03808:  <i>the big diddly diddly diddly bit</i>:  
+each <i>diddly</i> is a separate
+word in BNC, and this seems orthographically reasonable; 
+the three US tags have not been united under a tagmatag. 
+
+<p>03821:  <i>back issues</i> emended to <i>back issue's</i> 
+(it is not clear what the speaker is
+talking about, and <i>issue</i> may be a mishearing, but it seems
+likely that the -s goes with the following <i>loosening</i> as
+a present progressive)
+
+<p>03861, 03865:  <i>A C theory</i> emended to <i>AC theory</i>.  
+(<i>AC</i> could be 
+<i>alternating current</i>, though I am not sure that this is 
+taught as a separate &quot;theory&quot; in secondary-school physics.)
+
+<p>03873:  two cases of <i>them</i> used for <i>those</i> 
+(but wordtagged as standard
+<i>them</i>) -- the first of these
+cases could be <i>them</i> in its standard usage, but is seen as
+opening an interrupted Np.
+
+<p>03873:  <i>them topics worth</i> emended to <i>them topics' worth</i> 
+(appears to be a
+construction parallel to <i>five pounds' worth</i>)
+
+<p>03873:  <i>you may be do</i> emended to <i>you maybe do</i> 
+(the speaker might have
+produced a nonstandard verb sequence, perhaps a reduced form
+of <i>you may be doing</i>, but on the other hand the emendation yields
+a piece of straightforward grammar)
+
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<html>
+<body>
+
+<h1>Text T05</h1>
+
+<h2>Source</h2>
+<p>BNC file KBJ
+
+<h2>Date</h2>
+<p>10 to 17 Jan 1992
+
+<h2>Place</h2>
+<p>Nottingham
+
+<h2>Locale/activities</h2>
+<p>
+<ul>
+<li>div 052012:  in car, picking up daughter from school
+<li>div 052013:  at home, daughter and a friend playing/conversation
+<li>divs 052014-6:  in car, driving to airport
+</ul>
+<h2>Identified Speakers</h2>
+<ul>
+<li>Penny023, f, 44, courier, MD, AB
+<li>Sophie024, f, 11, schoolgirl, MD, AB
+<li>Pat025, m, 47, area organizer for union, MD, AB
+<li>Celine026, f, 11, schoolgirl, MD, XX
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Pat025 and Penny023 are man and wife.
+Sophie024 is their daughter.
+Celine026 is a friend of Sophie024.
+
+
+<h2>Dialect Classification</h2>
+<p>All speakers are given the BNC dialect code applicable to Nottingham.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Penny023 as C1, Sophie024 and Pat025 as DE, and leaves
+Celine026 unclassified.  But Pat025's occupation is SOC code 190, II, so
+CHRISTINE classifies him and his wife and daughter AB.
+
+
+<h2>Emendations and Comments</h2>
+
+<p>01032: <i>Cellywelly</i> represents a pet-name created by abbreviating
+the <i>nom de corpus</i> Celine and adding a rhyming extension.  The
+corresponding form in BNC, based on the child's real name, was transcribed
+as two separate words, perhaps because the transcriber misunderstood it.
+
+<p>01037ff:  This turn has been reassigned from Sophie024 (in BNC) to Penny023 to
+make sense of the social situation.
+
+<p>01086, 01090:  <i>thingie</i> emended to <i>thingy</i>
+
+<p>01143:  <i>Waller Birds</i> emended to <i>Whirlybirds</i> 
+(television programme about an
+Australian helicopter rescue team).  BNC marked <i>Waller Birds</i>
+<i>sic</i>; that marker has been removed, since
+we believe <i>Whirlybirds</i> is the correct reading.
+
+<p>01159, 01169, 01204:  <i>int</i> emended to <i>in't</i>
+
+<p>01167:  <i>don't see in</i> emended to <i>don't seed in</i>, 
+to make sense of the utterance
+(this is assumed to be mishearing by the transcriber)
+
+<p>01174:  <i>dee da, dee da's</i> emended to <i>dee-da-dee-da's</i>.  
+This is an imitation of
+notes from a fire engine siren; there is no standard orthography
+for such a thing, and since it is treated by the speaker as a
+noun with a plural ending, for CHRISTINE purposes it is most
+conveniently placed on a single line.
+
+<p>01205:	<i>Ooh er</i> emended to <i>Oo-er</i> (this seems to be 
+an example of a recognized
+two-syllable exclamation)
+
+<p>01214:	<i>Zouch</i> is evidently a reference to the market town of 
+Ashby-de-la-Zouch, Leics. 
+(or possibly to the nearby village of Zouch).
+The form <i>Zouch</i> is derived from
+the name of Alain de Parrhoet la Zouch, who became lord of the
+manor in 1160, hence by SUSANNE rules the wordtag is NP1s.
+
+<p>01260:	<i>Dennis</i> emended to <i>Denis</i> (the default spelling of the name)
+
+</body>
+</html>
+

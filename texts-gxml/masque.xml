@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<!DOCTYPE gutbook SYSTEM "gutbook1.dtd">
+
+<?xml-stylesheet type="text/css" href="darwin.css"?>
+
+<gutbook>
+<gutblurb>
+<para>
+The Project Gutenberg Etext of The Masque of the Red Death by Edgar Allan Poe
+</para>
+
+<para>
+#4 in our series by Edgar Allan Poe
+#1 is The Fall of the House of Usher, June, 1997, Etext #932.
+Filenames that are usher*.*
+</para>
+
+<para>
+This is our second experimental effort at cataloguing multiple
+items in a single file.  In the first instance we use the same
+index number for each item, and just used multiple entries for
+that file in the index.  In this, the second instance, we have
+used separate index numbers for the collection and for all the
+entries in that collection.  Let us know which you prefer.  We
+have traditionally used the smallest number of index entries--
+as somewhat of a protest against others who have copied Etexts
+and wanted it to appear as if they had more Etext than Project
+Gutenberg or various other etext collections.  We want to make
+our Etexts as easy as possible to find and work with, but, not
+to "pad" our work.  However, we prefer to post short works for
+you in collections, to eliminate you having to download all 11
+kilobytes of our header and "legal fine print" to get files of
+sizes less than the headers. Please email me on this.  Thanks!
+Michael S. Hart, hart@pobox.com
+</para>
+
+<para>
+Copyright laws are changing all over the world, be sure to check
+the copyright laws for your country before posting these files!!
+</para>
+
+<para>
+Please take a look at the important information in this header.
+We encourage you to keep this file on your own disk, keeping an
+electronic path open for the next readers.  Do not remove this.
+</para>
+
+<para>
+**Welcome To The World of Free Plain Vanilla Electronic Texts**
+**Etexts Readable By Both Humans and By Computers, Since 1971**
+*These Etexts Prepared By Hundreds of Volunteers and Donations*
+</para>
+
+<para>
+Information on contacting Project Gutenberg to get Etexts, and
+further information is included below.  We need your donations.
+</para>
+
+<para>
+The Masque of the Red Death
+</para>
+
+<para>
+by Edgar Allan Poe
+</para>
+
+<para>
+October, 1997  [Etexts #1064]
+</para>
+
+<para>
+The Project Gutenberg Etext of The Masque of the Red Death by Edgar Allan Poe
+******This file should be named 1epoe10.txt or 1epoe10.zip*****
+</para>
+
+<para>
+Corrected EDITIONS of our etexts get a new NUMBER, 1epoe11.txt.
+VERSIONS based on separate sources get new LETTER, 1epoe10a.txt.
+</para>
+
+<para>
+Scanned and proofread by Levent Kurnaz
+</para>
+
+<para>
+Project Gutenberg Etexts are usually created from multiple editions,
+all of which are in the Public Domain in the United States, unless a
+copyright notice is included.  Therefore, we do NOT keep these books
+in compliance with any particular paper edition, usually otherwise.
+</para>
+
+<para>
+We are now trying to release all our books one month in advance
+of the official release dates, for time for better editing.
+</para>
+
+<para>
+Please note:  neither this list nor its contents are final till
+midnight of the last day of the month of any such announcement.
+The official release date of all Project Gutenberg Etexts is at
+Midnight, Central Time, of the last day of the stated month.  A
+preliminary version may often be posted for suggestion, comment
+and editing by those who wish to do so.  To be sure you have an
+up to date first edition [xxxxx10x.xxx] please check file sizes
+in the first week of the next month.  Since our ftp program has
+a bug in it that scrambles the date [tried to fix and failed] a
+look at the file size will have to do, but we will try to see a
+new copy has at least one byte more or less.
+</para>
+
+<para>
+Information about Project Gutenberg (one page)
+</para>
+
+<para>
+We produce about two million dollars for each hour we work.  The
+fifty hours is one conservative estimate for how long it we take
+to get any etext selected, entered, proofread, edited, copyright
+searched and analyzed, the copyright letters written, etc.  This
+projected audience is one hundred million readers.  If our value
+per text is nominally estimated at one dollar then we produce $2
+million dollars per hour this year as we release thirty-two text
+files per month, or 384 more Etexts in 1997 for a total of 1000+
+If these reach just 10% of the computerized population, then the
+total should reach over 100 billion Etexts given away.
+</para>
+
+<para>
+The Goal of Project Gutenberg is to Give Away One Trillion Etext
+Files by the December 31, 2001.  [10,000 x 100,000,000=Trillion]
+This is ten thousand titles each to one hundred million readers,
+which is only 10% of the present number of computer users.  2001
+should have at least twice as many computer users as that, so it
+will require us reaching less than 5% of the users in 2001.
+</para>
+
+<para>
+We need your donations more than ever!
+</para>
+
+<para>
+All donations should be made to "Project Gutenberg/CMU": and are
+tax deductible to the extent allowable by law.  (CMU = Carnegie-
+Mellon University).
+</para>
+
+<para>
+For these and other matters, please mail to:
+</para>
+
+<para>
+Project Gutenberg
+P. O. Box  2782
+Champaign, IL 61825
+</para>
+
+<para>
+When all other email fails try our Executive Director:
+Michael S. Hart hart@pobox.com
+</para>
+
+<para>
+We would prefer to send you this information by email
+(Internet, Bitnet, Compuserve, ATTMAIL or MCImail).
+</para>
+
+<para>
+******
+If you have an FTP program (or emulator), please
+FTP directly to the Project Gutenberg archives:
+[Mac users, do NOT point and click. . .type]
+</para>
+
+<para>
+ftp uiarchive.cso.uiuc.edu
+login:  anonymous
+password:  your@login
+cd etext/etext90 through /etext96
+or cd etext/articles [get suggest gut for more information]
+dir [to see files]
+get or mget [to get files. . .set bin for zip files]
+GET INDEX?00.GUT
+for a list of books
+and
+GET NEW GUT for general information
+and
+MGET GUT* for newsletters.
+</para>
+
+<para>
+**Information prepared by the Project Gutenberg legal advisor**
+(Three Pages)
+</para>
+
+<para>
+***START**THE SMALL PRINT!**FOR PUBLIC DOMAIN ETEXTS**START***
+Why is this "Small Print!" statement here?  You know: lawyers.
+They tell us you might sue us if there is something wrong with
+your copy of this etext, even if you got it for free from
+someone other than us, and even if what's wrong is not our
+fault.  So, among other things, this "Small Print!" statement
+disclaims most of our liability to you.  It also tells you how
+you can distribute copies of this etext if you want to.
+</para>
+
+<para>
+*BEFORE!* YOU USE OR READ THIS ETEXT
+By using or reading any part of this PROJECT GUTENBERG-tm
+etext, you indicate that you understand, agree to and accept
+this "Small Print!" statement.  If you do not, you can receive
+a refund of the money (if any) you paid for this etext by
+sending a request within 30 days of receiving it to the person
+you got it from.  If you received this etext on a physical
+medium (such as a disk), you must return it with your request.
+</para>
+
+<para>
+ABOUT PROJECT GUTENBERG-TM ETEXTS
+This PROJECT GUTENBERG-tm etext, like most PROJECT GUTENBERG-
+tm etexts, is a "public domain" work distributed by Professor
+Michael S. Hart through the Project Gutenberg Association at
+Carnegie-Mellon University (the "Project").  Among other
+things, this means that no one owns a United States copyright
+on or for this work, so the Project (and you!) can copy and
+distribute it in the United States without permission and
+without paying copyright royalties.  Special rules, set forth
+below, apply if you wish to copy and distribute this etext
+under the Project's "PROJECT GUTENBERG" trademark.
+</para>
+
+<para>
+To create these etexts, the Project expends considerable
+efforts to identify, transcribe and proofread public domain
+works.  Despite these efforts, the Project's etexts and any
+medium they may be on may contain "Defects".  Among other
+things, Defects may take the form of incomplete, inaccurate or
+corrupt data, transcription errors, a copyright or other
+intellectual property infringement, a defective or damaged
+disk or other etext medium, a computer virus, or computer
+codes that damage or cannot be read by your equipment.
+</para>
+
+<para>
+LIMITED WARRANTY; DISCLAIMER OF DAMAGES
+But for the "Right of Replacement or Refund" described below,
+[1] the Project (and any other party you may receive this
+etext from as a PROJECT GUTENBERG-tm etext) disclaims all
+liability to you for damages, costs and expenses, including
+legal fees, and [2] YOU HAVE NO REMEDIES FOR NEGLIGENCE OR
+UNDER STRICT LIABILITY, OR FOR BREACH OF WARRANTY OR CONTRACT,
+INCLUDING BUT NOT LIMITED TO INDIRECT, CONSEQUENTIAL, PUNITIVE
+OR INCIDENTAL DAMAGES, EVEN IF YOU GIVE NOTICE OF THE
+POSSIBILITY OF SUCH DAMAGES.
+</para>
+
+<para>
+If you discover a Defect in this etext within 90 days of
+receiving it, you can receive a refund of the money (if any)
+you paid for it by sending an explanatory note within that
+time to the person you received it from.  If you received it
+on a physical medium, you must return it with your note, and
+such person may choose to alternatively give you a replacement
+copy.  If you received it electronically, such person may
+choose to alternatively give you a second opportunity to
+receive it electronically.
+</para>
+
+<para>
+THIS ETEXT IS OTHERWISE PROVIDED TO YOU "AS-IS".  NO OTHER
+WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, ARE MADE TO YOU AS
+TO THE ETEXT OR ANY MEDIUM IT MAY BE ON, INCLUDING BUT NOT
+LIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
+PARTICULAR PURPOSE.
+</para>
+
+<para>
+Some states do not allow disclaimers of implied warranties or
+the exclusion or limitation of consequential damages, so the
+above disclaimers and exclusions may not apply to you, and you
+may have other legal rights.
+</para>
+
+<para>
+INDEMNITY
+You will indemnify and hold the Project, its directors,
+officers, members and agents harmless from all liability, cost
+and expense, including legal fees, that arise directly or
+indirectly from any of the following that you do or cause:
+[1] distribution of this etext, [2] alteration, modification,
+or addition to the etext, or [3] any Defect.
+</para>
+
+<para>
+DISTRIBUTION UNDER "PROJECT GUTENBERG-tm"
+You may distribute copies of this etext electronically, or by
+disk, book or any other medium if you either delete this
+"Small Print!" and all other references to Project Gutenberg,
+or:
+</para>
+
+<para>
+[1]  Only give exact copies of it.  Among other things, this
+     requires that you do not remove, alter or modify the
+     etext or this "small print!" statement.  You may however,
+     if you wish, distribute this etext in machine readable
+     binary, compressed, mark-up, or proprietary form,
+     including any form resulting from conversion by word pro-
+     cessing or hypertext software, but only so long as
+     *EITHER*:
+</para>
+
+<para>
+     [*]  The etext, when displayed, is clearly readable, and
+          does *not* contain characters other than those
+          intended by the author of the work, although tilde
+          (~), asterisk (*) and underline (_) characters may
+          be used to convey punctuation intended by the
+          author, and additional characters may be used to
+          indicate hypertext links; OR
+</para>
+
+<para>
+     [*]  The etext may be readily converted by the reader at
+          no expense into plain ASCII, EBCDIC or equivalent
+          form by the program that displays the etext (as is
+          the case, for instance, with most word processors);
+          OR
+</para>
+
+<para>
+     [*]  You provide, or agree to also provide on request at
+          no additional cost, fee or expense, a copy of the
+          etext in its original plain ASCII form (or in EBCDIC
+          or other equivalent proprietary form).
+</para>
+
+<para>
+[2]  Honor the etext refund and replacement provisions of this
+     "Small Print!" statement.
+</para>
+
+<para>
+[3]  Pay a trademark license fee to the Project of 20% of the
+     net profits you derive calculated using the method you
+     already use to calculate your applicable taxes.  If you
+     don't derive profits, no royalty is due.  Royalties are
+     payable to "Project Gutenberg Association/Carnegie-Mellon
+     University" within the 60 days following each
+     date you prepare (or were legally required to prepare)
+     your annual (or equivalent periodic) tax return.
+</para>
+
+<para>
+WHAT IF YOU *WANT* TO SEND MONEY EVEN IF YOU DON'T HAVE TO?
+The Project gratefully accepts contributions in money, time,
+scanning machines, OCR software, public domain etexts, royalty
+free copyright licenses, and every other sort of contribution
+you can think of.  Money should be paid to "Project Gutenberg
+Association / Carnegie-Mellon University".
+</para>
+
+<para>
+*END*THE SMALL PRINT! FOR PUBLIC DOMAIN ETEXTS*Ver.04.29.93*END*
+</para>
+</gutblurb>
+
+<markupblurb>
+Scanned and proofread by Levent Kurnaz
+Marked up by John Hanna Feb 2000
+Validated against gutbook1.dtd using MSXML Feb 2000
+Checked with IBM C parser Frank Boumphrey
+</markupblurb>
+
+<book>
+<acknowledge>A project of the HTML Writers Guild and Project Gutenberg. Markup by an anonymous Project Gutenberg Volunteer, Markup by John Hanna Feb 2000</acknowledge>
+<frontmatter>
+<titlepage>
+<title>The Masque of the Red Death</title>
+<para>by</para>
+<author>Edgar Allan Poe</author>
+<para>
+October, 1997  [Etext #1064]*
+</para>
+</titlepage>
+</frontmatter>
+<bookbody>
+<part>
+<chapter>
+
+<para>
+The "Red Death" had long devastated the country.  No
+pestilence had ever been so fatal, or so hideous.  Blood was its
+Avatar and its seal--the redness and the horror of blood.  There were
+sharp pains, and sudden dizziness, and then profuse bleeding at the
+pores, with dissolution.  The scarlet stains upon the body and
+especially upon the face of the victim, were the pest ban which
+shut him out from the aid and from the sympathy of his fellow-men.
+And the whole seizure, progress and termination of the disease,
+were the incidents of half an hour.
+</para>
+
+<para>
+But the Prince Prospero was happy and dauntless and sagacious.
+When his dominions were half depopulated, he summoned to his
+presence a thousand hale and light-hearted friends from among the
+knights and dames of his court, and with these retired to the deep
+seclusion of one of his castellated abbeys.  This was an extensive
+and magnificent structure, the creation of the prince's own
+eccentric yet august taste.  A strong and lofty wall girdled it in.
+This wall had gates of iron.  The courtiers, having entered,
+brought furnaces and massy hammers and welded the bolts.  They
+resolved to leave means neither of ingress nor egress to the sudden
+impulses of despair or of frenzy from within.  The abbey was amply
+provisioned.  With such precautions the courtiers might bid
+defiance to contagion.  The external world could take care of
+itself.  In the meantime it was folly to grieve, or to think.  The
+prince had provided all the appliances of pleasure.  There were
+buffoons, there were improvisatori, there were ballet-dancers,
+there were musicians, there was Beauty, there was wine.  All these
+and security were within.  Without was the "Red Death".
+</para>
+
+<para>
+It was towards the close of the fifth or sixth month of his
+seclusion, and while the pestilence raged most furiously
+abroad, that the Prince Prospero entertained his thousand friends
+at a masked ball of the most unusual magnificence.
+</para>
+
+<para>
+It was a voluptuous scene, that masquerade.  But first let me
+tell of the rooms in which it was held.  These were seven--an
+imperial suite.  In many palaces, however, such suites form a long
+and straight vista, while the folding doors slide back nearly to
+the walls on either hand, so that the view of the whole extent is
+scarcely impeded.  Here the case was very different, as might have
+been expected from the duke's love of the  bizarre.  The
+apartments were so irregularly disposed that the vision embraced
+but little more than one at a time.  There was a sharp turn at
+every twenty or thirty yards, and at each turn a novel effect.  To
+the right and left, in the middle of each wall, a tall and narrow
+Gothic window looked out upon a closed corridor which pursued the
+windings of the suite.  These windows were of stained glass whose
+colour varied in accordance with the prevailing hue of the
+decorations of the chamber into which it opened.  That at the
+eastern extremity was hung, for example in blue--and vividly blue
+were its windows.  The second chamber was purple in its ornaments
+and tapestries, and here the panes were purple.  The third was
+green throughout, and so were the casements.  The fourth was
+furnished and lighted with orange--the fifth with white--the sixth
+with violet.  The seventh apartment was closely shrouded in black
+velvet tapestries that hung all over the ceiling and down the
+walls, falling in heavy folds upon a carpet of the same material
+and hue.  But in this chamber only, the colour of the windows
+failed to correspond with the decorations.  The panes here were
+scarlet--a deep blood colour.  Now in no one of the seven
+apartments was there any lamp or candelabrum, amid the profusion of
+golden ornaments that lay scattered to and fro or depended from the
+roof.  There was no light of any kind emanating from lamp or candle
+within the suite of chambers.  But in the corridors that followed
+the suite, there stood, opposite to each window, a heavy tripod,
+bearing a brazier of fire, that projected its rays through the
+tinted glass and so glaringly illumined the room.  And thus were
+produced a multitude of gaudy and fantastic appearances.  But in
+the western or black chamber the effect of the fire-light that
+streamed upon the dark hangings through the blood-tinted panes,
+was ghastly in the extreme, and produced so wild a look upon the
+countenances of those who entered, that there were few of the
+company bold enough to set foot within its precincts at all.
+</para>
+
+<para>
+It was in this apartment, also, that there stood against the
+western wall, a gigantic clock of ebony.  Its pendulum swung to and
+fro with a dull, heavy, monotonous clang; and when the minute-hand
+made the circuit of the face, and the hour was to be stricken,
+there came from the brazen lungs of the clock a sound which was
+clear and loud and deep and exceedingly musical, but of so peculiar
+a note and emphasis that, at each lapse of an hour, the musicians
+of the orchestra were constrained to pause, momentarily, in their
+performance, to harken to the sound; and thus the waltzers perforce
+ceased their evolutions; and there was a brief disconcert of the
+whole gay company; and, while the chimes of the clock yet rang, it
+was observed that the giddiest grew pale, and the more aged and
+sedate passed their hands over their brows as if in confused
+revery or meditation.  But when the echoes had fully ceased, a
+light laughter at once pervaded the assembly; the musicians looked
+at each other and smiled as if at their own nervousness and folly,
+and made whispering vows, each to the other, that the next chiming
+of the clock should produce in them no similar emotion; and then,
+after the lapse of sixty minutes, (which embrace three thousand and
+six hundred seconds of the Time that flies,) there came yet another
+chiming of the clock, and then were the same disconcert and
+tremulousness and meditation as before.
+</para>
+
+<para>
+But, in spite of these things, it was a gay and magnificent
+revel.  The tastes of the duke were peculiar.  He had a fine eye
+for colours and effects.  He disregarded the  decora of mere
+fashion.  His plans were bold and fiery, and his conceptions glowed
+with barbaric lustre.  There are some who would have thought him
+mad.  His followers felt that he was not.  It was necessary to hear
+and see and touch him to be  sure that he was not.
+</para>
+
+<para>
+He had directed, in great part, the movable embellishments of
+the seven chambers, upon occasion of this great  fete; and it
+was his own guiding taste which had given character to the
+masqueraders.  Be sure they were grotesque.  There were much glare
+and glitter and piquancy and phantasm--much of what has been since
+ seen in  "Hernani".  There were arabesque figures with
+unsuited limbs and appointments.  There were delirious fancies such
+as the madman fashions.  There were much of the beautiful, much of
+the wanton, much of the  bizarre, something of the terrible, and
+not a little of that which might have excited disgust.  To and fro
+in the seven chambers there stalked, in fact, a multitude of
+dreams.  And these--the dreams--writhed in and about taking hue
+from the rooms, and causing the wild music of the orchestra to seem
+as the echo of their steps.  And, anon, there strikes the ebony
+clock which stands in the hall of the velvet.  And then, for a
+moment, all is still, and all is silent save the voice of the
+clock.  The dreams are stiff-frozen as they stand.  But the echoes
+of the chime die away--they have endured but an instant--and a
+light, half-subdued laughter floats after them as they depart.  And
+now again the music swells, and the dreams live, and writhe to and
+fro more merrily than ever, taking hue from the many tinted windows
+through which stream the rays from the tripods.  But to the chamber
+which lies most westwardly of the seven, there are now none of the
+maskers who venture; for the night is waning away; and there flows
+a ruddier light through the blood-coloured panes; and the blackness
+of the sable drapery appals; and to him whose foot falls upon the
+sable carpet, there comes from the near clock of ebony a muffled
+peal more solemnly emphatic than any which reaches  their ears
+who indulged in the more remote gaieties of the other apartments.
+</para>
+
+<para>
+But these other apartments were densely crowded, and in them
+beat feverishly the heart of life.  And the revel went whirlingly
+on, until at length there commenced the sounding of midnight upon
+the clock.  And then the music ceased, as I have told; and the
+evolutions of the waltzers were quieted; and there was an uneasy
+cessation of all things as before.  But now there were twelve
+strokes to be sounded by the bell of the clock; and thus it
+happened, perhaps, that more of thought crept, with more of time,
+into the meditations of the thoughtful among those who revelled.
+And thus too, it happened, perhaps, that before the last echoes of
+the last chime had utterly sunk into silence, there were many
+individuals in the crowd who had found leisure to become aware of
+the presence of a masked figure which had arrested the
+attention of no single individual before.  And the rumour of this
+new presence having spread itself whisperingly around, there arose
+at length from the whole company a buzz, or murmur, expressive of
+disapprobation and surprise--then, finally, of terror, of horror,
+and of disgust.
+</para>
+
+<para>
+In an assembly of phantasms such as I have painted, it may
+well be supposed that no ordinary appearance could have excited
+such sensation.  In truth the masquerade licence of the night was
+nearly unlimited; but the figure in question had out-Heroded Herod,
+and gone beyond the bounds of even the prince's indefinite decorum.
+There are chords in the hearts of the most reckless which cannot be
+touched without emotion.  Even with the utterly lost, to whom life
+and death are equally jests, there are matters of which no jest can
+be made.  The whole company, indeed, seemed now deeply to feel that
+in the costume and bearing of the stranger neither wit nor
+propriety existed.  The figure was tall and gaunt, and shrouded
+from head to foot in the habiliments of the grave.  The mask which
+concealed the visage was made so nearly to resemble the countenance
+of a stiffened corpse that the closest scrutiny must have had
+difficulty in detecting the cheat.  And yet all this might have
+been endured, if not approved, by the mad revellers around.  But
+the mummer had gone so far as to assume the type of the Red Death.
+His vesture was dabbled in  blood--and his broad brow, with all
+the features of the face, was besprinkled with the scarlet horror.
+</para>
+
+<para>
+When the eyes of the Prince Prospero fell upon this spectral
+image (which, with a slow and solemn movement, as if more fully to
+sustain its  role, stalked to and fro among the waltzers) he was
+seen to be convulsed, in the first moment with a strong shudder
+either of terror or distaste; but, in the next, his brow reddened
+with rage.
+</para>
+
+<para>
+"Who dares,"--he demanded hoarsely of the courtiers who stood
+near him--"who dares insult us with this blasphemous mockery?
+Seize him and unmask him--that we may know whom we have to hang, at
+sunrise, from the battlements!"
+</para>
+
+<para>
+It was in the eastern or blue chamber in which stood the
+Prince Prospero as he uttered these words.  They rang throughout
+the seven rooms loudly and clearly, for the prince was a bold and
+robust man, and the music had become hushed at the waving of his
+hand.
+</para>
+
+<para>
+It was in the blue room where stood the prince, with a group
+of  pale courtiers by his side.  At first, as he spoke,
+there was a slight rushing movement of this group in the direction
+of the intruder, who at the moment was also near at hand, and now,
+with deliberate and stately step, made closer approach to the
+speaker.  But from a certain nameless awe with which the mad
+assumptions of the mummer had inspired the whole party, there were
+found none who put forth hand to seize him; so that, unimpeded, he
+passed within a yard of the prince's person; and, while the vast
+assembly, as if with one impulse, shrank from the centres of the
+rooms to the walls, he made his way uninterruptedly, but with the
+same solemn and measured step which had distinguished him from the
+first, through the blue chamber to the purple--through the purple
+to the green--through the green to the orange--through this again
+to the white--and even thence to the violet, ere a decided movement
+had been made to arrest him.  It was then, however, that the Prince
+Prospero, maddening with rage and the shame of his own momentary
+cowardice, rushed hurriedly through the six chambers, while none
+followed him on account of a deadly terror that had seized upon
+all.  He bore aloft a drawn dagger, and had approached, in rapid
+impetuosity, to within three or four feet of the retreating figure,
+when the latter, having attained the extremity of the velvet
+apartment, turned suddenly and confronted his pursuer.  There was
+a sharp cry--and the dagger dropped gleaming upon the sable carpet,
+upon which, instantly afterwards, fell prostrate in death the
+Prince Prospero.  Then, summoning the wild courage of despair, a
+throng of the revellers at once threw themselves into the black
+apartment, and, seizing the mummer, whose tall figure stood erect
+and motionless within the shadow of the ebony clock, gasped in
+unutterable horror at finding the grave cerements and corpse-like
+mask, which they handled with so violent a rudeness, untenanted by
+any tangible form.
+</para>
+
+<para>
+And now was acknowledged the presence of the Red Death.  He
+had come like a thief in the night.  And one by one dropped the
+revellers in the blood-bedewed halls of their revel, and died each
+in the despairing posture of his fall.  And the life of the ebony
+clock went out with that of the last of the gay.  And the flames of
+the tripods expired.  And Darkness and Decay and the Red Death held
+illimitable dominion over all.
+</para>
+
+<para>
+End of The Project Gutenberg Etext of
+The Masque of the Red Death
+by Edgar Allan Poe
+</para>
+</chapter>
+</part>
+</bookbody>
+</book>
+</gutbook>
+
+
+
+

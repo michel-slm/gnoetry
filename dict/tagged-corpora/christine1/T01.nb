@@ -1,0 +1,55 @@
+<html>
+<body>
+
+<h1>Text T01</h1>
+
+<h2>Source</h2>
+<p>BNC file KB2
+
+<h2>Date</h2>
+<p>31 Jan to 7 Feb 1992
+
+<h2>Place</h2>
+<p>Doncaster (speakers' home is Dunscroft, 6 miles away)
+
+<h2>Locale/activities</h2>
+<p>market, shopping and talking to friends/conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Harold001, m, 68, retired, NO, DE
+<li>Joan002, f, 45, saleswoman, NO, DE
+<li>Jean003, f, 63, retired, NO, DE
+</ul>
+
+<h2>Relationships</h2>
+<p>Harold001 and Jean003 are man and wife.  
+Joan002 is their friend.
+
+
+<h2>Dialect Classification</h2>
+<p>All speakers given the BNC dialect code for their home area.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Harold001 as DE and leaves others unclassified.  Joan's
+occupation is SOC code 730, IV.  CHRISTINE assigns DE to Jean003 as
+Harold001's wife.
+
+
+<h2>Emendations and Comments</h2>
+<p>02654:  <i>would of</i> emended to <i>would've</i>
+<p>02655, 02664:  <i>could of</i> emended to <i>could've</i>
+<p>02686:  The name <i>Insthrope</i> has not been found, 
+and nor has any obviously
+similar name, in detailed gazetteers; the BNC transcription
+has been left to stand in CHRISTINE.
+<p>02716:  <i>doctors</i> emended to <i>doctor's</i>
+<p>02739, 02749:  <i>must of</i> emended to <i>must've</i>
+<p>02755, 02761, 02765, 02810, 02843:  <i>int</i> emended to <i>in't</i> 
+(variant of <i>ain't</i>)
+<p>02826:  <i>a coming</i> emended to <i>a-coming</i>
+
+</body>
+</html>
+

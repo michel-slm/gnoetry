@@ -1,0 +1,142 @@
+<html>
+<body>
+
+<h1>Text T23</h1>
+
+<h2>Source</h2>
+<p>BNC file KDL
+
+<h2>Date</h2>
+<p>30 Nov to 5 Dec 1991
+
+<h2>Place</h2>
+<p>Woking, Surrey
+
+<h2>Locale/activities</h2>
+<p>shops, shopping/conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Pauline089, f, 16, student, SE, AB
+<li>Angela090, f, 65, retired (spelled <i>retied</i> in BNC), SW, DE
+<li>Gillian091, f, 44, doctor, SW, AB
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Gillian091 is daughter of Angela090.
+Pauline089 is daughter of Gillian091.
+
+
+<h2>Dialect Classification</h2>
+<p>BNC assigns Pauline089 the London dialect code, and assigns the code 
+&quot;Upper
+Southwest&quot; (i.e. the Gloucester/Hereford area) to the other two speakers.
+This is a reasonable scenario if, say, Angela090 had moved from the West
+Country to the London area at a point when Gillian091 was still young
+enough to be living in the same household, but then Gillian had brought her
+own child up in the South East.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Pauline089 as AB, and both the older women as DE.  That is
+absurd; the occupation &quot;doctor&quot;, SOC code 220, is class I, 
+hence AB in
+CHRISTINE terms.  This glaring error leaves one suspicious about the
+classification of Angela090, but there are no positive grounds for judging
+it mistaken so it has been allowed to stand in CHRISTINE. 
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>00574:  It is tempting in context to amend <i>strips</i> to <i>stripes</i>, but
+the speaker may have used the wrong word
+
+<p>00588:  <i>he want's</i> emended to <i>he wants</i>
+
+<p>00592:  <i>would of</i> emended to <i>would've</i>
+
+<p>00614:  <i>were getting</i> emended to <i>we're getting</i>:  
+these sound different, so the
+emendation implies a definite error on the transcriber's part;
+but it makes far better sense in context, and apostrophes are
+very commonly misused (by commission or omission) by clerical
+workers with an imperfect command of orthographic standards, such
+as many of the BNC transcribers.
+
+<p>00623, 00624:  <i>go onto Mark's</i> emended to <i>go on to Marks</i> 
+(referring to the
+chain store Marks and Spencer)
+
+<p>00624:  <i>come to Mark's</i> emended to <i>come to Marks</i> 
+(see preceding note)
+
+<p>00648, 00650, 00651:  <i>battle cross</i> emended to <i>Butter Cross</i>.
+The phrase <i>battle cross</i> as it stands is incomprehensible; but
+Chichester contains an ancient edifice called the Market Cross, close
+to the Buttermarket -- I conjecture that the speaker confused these
+two names.
+
+<p>00661:  <i>on musical composer's</i> emended to <i>on musical composers</i>
+
+<p>00684:  <i>little plan ones</i> emended to <i>little plain ones</i> 
+(bold but seems justified
+in the context)
+
+<p>00698:  <i>a big bigger</i> emended to <i>a bit bigger</i> 
+(an easy confusion to make in
+transcribing; compare the following s-unit 00699)
+
+<p>00729:  <i>any way</i> emended to <i>anyway</i>
+
+<p>00736:  <i>bye bye</i> emended to <i>bye-bye</i>
+
+<p>00746:  <i>There</i> emended to <i>They're</i> (homonyms, 
+for one pronunciation of <i>there</i>, and
+needed for the sense)
+
+<p>00755:  <i>every where</i> emended to <i>everywhere</i>
+
+<p>00759:  <i>Were out</i> emended to <i>We're out</i> (obvious 
+emendation in context)
+
+<p>00759:  <i>there twelve</i> emended to <i>they're twelve</i> (cf. 00746)
+
+<p>00773:  <i>the peeler's</i> emended to <i>the peelers</i>
+
+<p>00774:  The form <i>grater/peeler</i> (sort of kitchen implement) was treated 
+as a single word in BNC and CHRISTINE has followed this.
+
+<p>00792:  <i>in it</i> emended to <i>innit</i> (taken in context 
+to be the colloquial reduction
+of <i>isn't it</i>)
+
+<p>00803:  <i>Any one know where Richards gone</i> emended to <i>Anyone 
+know where Richard's gone</i>
+
+<p>00808:  <i>photo's</i> emended to <i>photos</i> (twice), <i>should of</i> 
+emended to <i>should've</i> (twice)
+
+<p>00812:  <i>should of</i> emended to <i>should've</i> (twice), 
+<i>few hours service</i> 
+emended to <i>few hours' service</i>
+
+<p>00813:  <i>be</i> emended to <i>he</i> (some emendation seems 
+quite necessary to make sense;
+this is the smallest plausible change that was found)
+
+<p>00813:  <i>it's slipping</i> emended to <i>its slipping</i>
+
+<p>00820:  <i>there summer holidays</i> emended to <i>their summer holidays</i>
+
+<p>00825:  <i>any thing</i> emended to <i>anything</i>
+
+<p>00825:  <i>to talk a lot to</i> emended to <i>to talk a lot too</i> 
+-- represents a small
+phonetic difference which makes much better sense, and this
+level of spelling mistake seems normal for this transcriber.
+
+</body>
+</html>
+

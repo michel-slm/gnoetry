@@ -1,0 +1,1473 @@
+<?xml version="1.0"?>
+<!DOCTYPE gutpoems SYSTEM "gutpoems1.dtd">
+
+<?xml-stylesheet type="text/css" href="rime10.css"?>
+
+<gutpoems>
+
+<gutblurb>
+
+<para>
+The Project Gutenberg Etext of The Rime of the Ancient Mariner
+*****This file should be named rime10.txt or rime10.zip******
+</para>
+
+<para>
+Please take a look at the important information in this header.
+We encourage you to keep this file on your own disk, keeping an
+electronic path open for the next readers.  Do not remove this.
+</para>
+
+<para>
+**Welcome To The World of Free Plain Vanilla Electronic Texts**
+</para>
+
+<para>
+**Etexts Readable By Both Humans and By Computers, Since 1971**
+</para>
+
+<para>
+*These Etexts Prepared By Hundreds of Volunteers and Donations*
+</para>
+
+<para>
+Information on contacting Project Gutenberg to get Etexts, and
+further information is included below.  We need your donations.
+</para>
+
+<para>
+The Rime of the Ancient Mariner
+by Samuel Taylor Coleridge
+</para>
+
+<para>
+July, 1994  [Etext #151]
+</para>
+
+<para>
+This etext was typed by Judy Boss in Omaha, Nebraska.
+</para>
+
+<para>
+**The Rime of the Ancient Mariner by Samuel Taylor Coleridge**
+*****This file should be named rime10.txt or rime10.zip******
+</para>
+
+<para>
+Corrected EDITIONS of our etexts get a new NUMBER, rime11.txt.
+VERSIONS based on separate sources get new LETTER, rime10a.txt.
+</para>
+
+<para>
+If our Etexts manage to make it to an average about 100 million
+people, on about 250 million computers currently in existence: 
+then we will have given about 15.1 billion Etexts away when the
+Etext you are now reading is spread across the nets.
+</para>
+
+<para>
+We are now trying to release all our books one month in advance
+of the official release dates, for time for better editing.
+</para>
+
+<para>
+The official release date of all Project Gutenberg Etexts is at
+Midnight, Central Time, of the last day of the stated month.  A
+preliminary version may often be posted for suggestion, comment
+and editing by those who wish to do so.  To be sure you have an
+up to date first edition [xxxxx10x.xxx] please check file sizes
+in the first week of the next month.  Since our ftp program has
+a bug in it that scrambles the date [tried to fix and failed] a
+look at the file size will have to do, but we will try to see a
+new copy has at least one byte more or less.
+</para>
+
+<para>
+Information about Project Gutenberg (one page)
+</para>
+
+<para>
+We produce about two million dollars for each hour we work.  The
+fifty hours is one conservative estimate for how long it we take
+to get any etext selected, entered, proofread, edited, copyright
+searched and analyzed, the copyright letters written, etc.  This
+projected audience is one hundred million readers.  If our value
+per text is nominally estimated at one dollar, then we produce 2
+million dollars per hour this year we, will have to do four text
+files per month:  thus upping our productivity from one million.
+The Goal of Project Gutenberg is to Give Away One Trillion Etext
+Files by the December 31, 2001.  [10,000 x 100,000,000=Trillion]
+This is ten thousand titles each to one hundred million readers,
+which is 10% of the expected number of computer users by the end
+of the year 2001.
+</para>
+
+<para>
+We need your donations more than ever!
+</para>
+
+<para>
+All donations should be made to "Project Gutenberg/IBC", and are
+tax deductible to the extent allowable by law ("IBC" is Illinois
+Benedictine College).  (Subscriptions to our paper newsletter go
+to IBC, too)
+</para>
+
+<para>
+For these and other matters, please mail to:
+</para>
+
+<para>
+Project Gutenberg
+P. O. Box  2782
+Champaign, IL 61825
+</para>
+
+<para>
+When all other email fails try our Michael S. Hart, Executive
+Director:
+hart@vmd.cso.uiuc.edu (internet)   hart@uiucvmd   (bitnet)
+</para>
+
+<para>
+We would prefer to send you this information by email
+(Internet, Bitnet, Compuserve, ATTMAIL or MCImail).
+</para>
+
+<para>
+******
+If you have an FTP program (or emulator), please
+FTP directly to the Project Gutenberg archives:
+[Mac users, do NOT point and click. . .type]
+</para>
+
+<para>
+ftp mrcnext.cso.uiuc.edu
+login:  anonymous
+password:  your@login
+cd etext/etext91
+or cd etext92
+or cd etext93 [for new books]  [now also in cd etext/etext93]
+or cd etext/articles [get suggest gut for more information]
+dir [to see files]
+get or mget [to get files. . .set bin for zip files]
+get INDEX100.GUT
+get INDEX200.GUT
+for a list of books
+and
+get NEW.GUT for general information
+and
+mget GUT* for newsletters.
+</para>
+
+<para>
+**Information prepared by the Project Gutenberg legal advisor**
+(Three Pages)
+</para>
+
+<para>
+***START**THE SMALL PRINT!**FOR PUBLIC DOMAIN ETEXTS**START***
+Why is this "Small Print!" statement here?  You know: lawyers.
+They tell us you might sue us if there is something wrong with
+your copy of this etext, even if you got it for free from
+someone other than us, and even if what's wrong is not our
+fault.  So, among other things, this "Small Print!" statement
+disclaims most of our liability to you.  It also tells you how
+you can distribute copies of this etext if you want to.
+</para>
+
+<para>
+*BEFORE!* YOU USE OR READ THIS ETEXT
+By using or reading any part of this PROJECT GUTENBERG-tm
+etext, you indicate that you understand, agree to and accept
+this "Small Print!" statement.  If you do not, you can receive
+a refund of the money (if any) you paid for this etext by
+sending a request within 30 days of receiving it to the person
+you got it from.  If you received this etext on a physical
+medium (such as a disk), you must return it with your request.
+</para>
+
+<para>
+ABOUT PROJECT GUTENBERG-TM ETEXTS
+This PROJECT GUTENBERG-tm etext, like most PROJECT GUTENBERG-
+tm etexts, is a "public domain" work distributed by Professor
+Michael S. Hart through the Project Gutenberg Association at
+Illinois Benedictine College (the "Project").  Among other
+things, this means that no one owns a United States copyright
+on or for this work, so the Project (and you!) can copy and
+distribute it in the United States without permission and
+without paying copyright royalties.  Special rules, set forth
+below, apply if you wish to copy and distribute this etext
+under the Project's "PROJECT GUTENBERG" trademark.
+</para>
+
+<para>
+To create these etexts, the Project expends considerable
+efforts to identify, transcribe and proofread public domain
+works.  Despite these efforts, the Project's etexts and any
+medium they may be on may contain "Defects".  Among other
+things, Defects may take the form of incomplete, inaccurate or
+corrupt data, transcription errors, a copyright or other
+intellectual property infringement, a defective or damaged
+disk or other etext medium, a computer virus, or computer
+codes that damage or cannot be read by your equipment.
+</para>
+
+<para>
+LIMITED WARRANTY; DISCLAIMER OF DAMAGES
+But for the "Right of Replacement or Refund" described below,
+[1] the Project (and any other party you may receive this
+etext from as a PROJECT GUTENBERG-tm etext) disclaims all
+liability to you for damages, costs and expenses, including
+legal fees, and [2] YOU HAVE NO REMEDIES FOR NEGLIGENCE OR
+UNDER STRICT LIABILITY, OR FOR BREACH OF WARRANTY OR CONTRACT,
+INCLUDING BUT NOT LIMITED TO INDIRECT, CONSEQUENTIAL, PUNITIVE
+OR INCIDENTAL DAMAGES, EVEN IF YOU GIVE NOTICE OF THE
+POSSIBILITY OF SUCH DAMAGES.
+</para>
+
+<para>
+If you discover a Defect in this etext within 90 days of
+receiving it, you can receive a refund of the money (if any)
+you paid for it by sending an explanatory note within that
+time to the person you received it from.  If you received it
+on a physical medium, you must return it with your note, and
+such person may choose to alternatively give you a replacement
+copy.  If you received it electronically, such person may
+choose to alternatively give you a second opportunity to
+receive it electronically.
+</para>
+
+<para>
+THIS ETEXT IS OTHERWISE PROVIDED TO YOU "AS-IS".  NO OTHER
+WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, ARE MADE TO YOU AS
+TO THE ETEXT OR ANY MEDIUM IT MAY BE ON, INCLUDING BUT NOT
+LIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
+PARTICULAR PURPOSE.
+</para>
+
+<para>
+Some states do not allow disclaimers of implied warranties or
+the exclusion or limitation of consequential damages, so the
+above disclaimers and exclusions may not apply to you, and you
+may have other legal rights.
+</para>
+
+<para>
+INDEMNITY
+You will indemnify and hold the Project, its directors,
+officers, members and agents harmless from all liability, cost
+and expense, including legal fees, that arise directly or
+indirectly from any of the following that you do or cause:
+[1] distribution of this etext, [2] alteration, modification,
+or addition to the etext, or [3] any Defect.
+</para>
+
+<para>
+DISTRIBUTION UNDER "PROJECT GUTENBERG-tm"
+You may distribute copies of this etext electronically, or by
+disk, book or any other medium if you either delete this
+"Small Print!" and all other references to Project Gutenberg,
+or:
+</para>
+
+<para>
+[1]  Only give exact copies of it.  Among other things, this
+     requires that you do not remove, alter or modify the
+     etext or this "small print!" statement.  You may however,
+     if you wish, distribute this etext in machine readable
+     binary, compressed, mark-up, or proprietary form,
+     including any form resulting from conversion by word pro-
+     cessing or hypertext software, but only so long as
+     *EITHER*:
+</para>
+
+<para>
+     [*]  The etext, when displayed, is clearly readable, and
+          does *not* contain characters other than those
+          intended by the author of the work, although tilde
+          (~), asterisk (*) and underline (_) characters may
+          be used to convey punctuation intended by the
+          author, and additional characters may be used to
+          indicate hypertext links; OR
+</para>
+
+<para>
+     [*]  The etext may be readily converted by the reader at
+          no expense into plain ASCII, EBCDIC or equivalent
+          form by the program that displays the etext (as is
+          the case, for instance, with most word processors);
+          OR
+</para>
+
+<para>
+     [*]  You provide, or agree to also provide on request at
+          no additional cost, fee or expense, a copy of the
+          etext in its original plain ASCII form (or in EBCDIC
+          or other equivalent proprietary form).
+</para>
+
+<para>
+[2]  Honor the etext refund and replacement provisions of this
+     "Small Print!" statement.
+</para>
+
+<para>
+[3]  Pay a trademark license fee to the Project of 20% of the
+     net profits you derive calculated using the method you
+     already use to calculate your applicable taxes.  If you
+     don't derive profits, no royalty is due.  Royalties are
+     payable to "Project Gutenberg Association / Illinois
+     Benedictine College" within the 60 days following each
+     date you prepare (or were legally required to prepare)
+     your annual (or equivalent periodic) tax return.
+</para>
+
+<para>
+WHAT IF YOU *WANT* TO SEND MONEY EVEN IF YOU DON'T HAVE TO?
+The Project gratefully accepts contributions in money, time,
+scanning machines, OCR software, public domain etexts, royalty
+free copyright licenses, and every other sort of contribution
+you can think of.  Money should be paid to "Project Gutenberg
+Association / Illinois Benedictine College".
+</para>
+
+<para>
+This "Small Print!" by Charles B. Kramer, Attorney
+Internet (72600.2026@compuserve.com); TEL: (212-254-5093)
+*END*THE SMALL PRINT! FOR PUBLIC DOMAIN ETEXTS*Ver.04.29.93*END*
+</para>
+
+</gutblurb>
+
+<markupblurb>
+Markup by Donna Smillie for the HTML Writers Guild
+Email dms@zetnet.co.uk
+4 February 2000
+
+"note type='para'" used for the word "BY"
+preceding the author's name.
+"note type='author'" used for author's name.
+"subtitle" used for the seven PART titles.
+"note type='voice'" used to denote the 
+"FIRST VOICE", "SECOND VOICE" indications
+in Part Six.
+</markupblurb>
+
+<poemsfrag>
+
+<acknowledge>Project Gutenberg and the HTML Writers Guild. XML markup by Donna Smillie. February 2000. This etext was typed by Judy Boss in Omaha, Nebraska. July 1994.</acknowledge>
+
+<poem>
+
+<title>THE RIME OF THE ANCIENT MARINER IN SEVEN PARTS</title>
+<prose>BY</prose>
+<author>SAMUEL TAYLOR COLERIDGE</author>
+
+<subtitle>
+PART THE FIRST.
+</subtitle>
+
+<verse>
+<line>It is an ancient Mariner,</line>
+<line>And he stoppeth one of three.</line>
+<line>"By thy long grey beard and glittering eye,</line>
+<line>Now wherefore stopp'st thou me?</line>
+</verse>
+
+<verse>
+<line>"The Bridegroom's doors are opened wide,</line>
+<line>And I am next of kin;</line>
+<line>The guests are met, the feast is set:</line>
+<line>May'st hear the merry din."</line>
+</verse>
+
+<verse>
+<line>He holds him with his skinny hand,</line>
+<line>"There was a ship," quoth he.</line>
+<line>"Hold off! unhand me, grey-beard loon!"</line>
+<line>Eftsoons his hand dropt he.</line>
+</verse>
+
+<verse>
+<line>He holds him with his glittering eye--</line>
+<line>The Wedding-Guest stood still,</line>
+<line>And listens like a three years child:</line>
+<line>The Mariner hath his will.</line>
+</verse>
+
+<verse>
+<line>The Wedding-Guest sat on a stone:</line>
+<line>He cannot chuse but hear;</line>
+<line>And thus spake on that ancient man,</line>
+<line>The bright-eyed Mariner.</line>
+</verse>
+
+<verse>
+<line>The ship was cheered, the harbour cleared,</line>
+<line>Merrily did we drop</line>
+<line>Below the kirk, below the hill,</line>
+<line>Below the light-house top.</line>
+</verse>
+
+<verse>
+<line>The Sun came up upon the left,</line>
+<line>Out of the sea came he!</line>
+<line>And he shone bright, and on the right</line>
+<line>Went down into the sea.</line>
+</verse>
+
+<verse>
+<line>Higher and higher every day,</line>
+<line>Till over the mast at noon--</line>
+<line>The Wedding-Guest here beat his breast,</line>
+<line>For he heard the loud bassoon.</line>
+</verse>
+
+<verse>
+<line>The bride hath paced into the hall,</line>
+<line>Red as a rose is she;</line>
+<line>Nodding their heads before her goes</line>
+<line>The merry minstrelsy.</line>
+</verse>
+
+<verse>
+<line>The Wedding-Guest he beat his breast,</line>
+<line>Yet he cannot chuse but hear;</line>
+<line>And thus spake on that ancient man,</line>
+<line>The bright-eyed Mariner.</line>
+</verse>
+
+<verse>
+<line>And now the STORM-BLAST came, and he</line>
+<line>Was tyrannous and strong:</line>
+<line>He struck with his o'ertaking wings,</line>
+<line>And chased south along.</line>
+</verse>
+
+<verse>
+<line>With sloping masts and dipping prow,</line>
+<line>As who pursued with yell and blow</line>
+<line>Still treads the shadow of his foe</line>
+<line>And forward bends his head,</line>
+<line>The ship drove fast, loud roared the blast,</line>
+<line>And southward aye we fled.</line>
+</verse>
+
+<verse>
+<line>And now there came both mist and snow,</line>
+<line>And it grew wondrous cold:</line>
+<line>And ice, mast-high, came floating by,</line>
+<line>As green as emerald.</line>
+</verse>
+
+<verse>
+<line>And through the drifts the snowy clifts</line>
+<line>Did send a dismal sheen:</line>
+<line>Nor shapes of men nor beasts we ken--</line>
+<line>The ice was all between.</line>
+</verse>
+
+<verse>
+<line>The ice was here, the ice was there,</line>
+<line>The ice was all around:</line>
+<line>It cracked and growled, and roared and howled,</line>
+<line>Like noises in a swound!</line>
+</verse>
+
+<verse>
+<line>At length did cross an Albatross:</line>
+<line>Thorough the fog it came;</line>
+<line>As if it had been a Christian soul,</line>
+<line>We hailed it in God's name.</line>
+</verse>
+
+<verse>
+<line>It ate the food it ne'er had eat,</line>
+<line>And round and round it flew.</line>
+<line>The ice did split with a thunder-fit;</line>
+<line>The helmsman steered us through!</line>
+</verse>
+
+<verse>
+<line>And a good south wind sprung up behind;</line>
+<line>The Albatross did follow,</line>
+<line>And every day, for food or play,</line>
+<line>Came to the mariners' hollo!</line>
+</verse>
+
+<verse>
+<line>In mist or cloud, on mast or shroud,</line>
+<line>It perched for vespers nine;</line>
+<line>Whiles all the night, through fog-smoke white,</line>
+<line>Glimmered the white Moon-shine.</line>
+</verse>
+
+<verse>
+<line>"God save thee, ancient Mariner!</line>
+<line>From the fiends, that plague thee thus!--</line>
+<line>Why look'st thou so?"--With my cross-bow</line>
+<line>I shot the ALBATROSS.</line>
+</verse>
+
+<subtitle>
+PART THE SECOND.
+</subtitle>
+
+<verse>
+<line>The Sun now rose upon the right:</line>
+<line>Out of the sea came he,</line>
+<line>Still hid in mist, and on the left</line>
+<line>Went down into the sea.</line>
+</verse>
+
+<verse>
+<line>And the good south wind still blew behind</line>
+<line>But no sweet bird did follow,</line>
+<line>Nor any day for food or play</line>
+<line>Came to the mariners' hollo!</line>
+</verse>
+
+<verse>
+<line>And I had done an hellish thing,</line>
+<line>And it would work 'em woe:</line>
+<line>For all averred, I had killed the bird</line>
+<line>That made the breeze to blow.</line>
+<line>Ah wretch! said they, the bird to slay</line>
+<line>That made the breeze to blow!</line>
+</verse>
+
+<verse>
+<line>Nor dim nor red, like God's own head,</line>
+<line>The glorious Sun uprist:</line>
+<line>Then all averred, I had killed the bird</line>
+<line>That brought the fog and mist.</line>
+<line>'Twas right, said they, such birds to slay,</line>
+<line>That bring the fog and mist.</line>
+</verse>
+
+<verse>
+<line>The fair breeze blew, the white foam flew,</line>
+<line>The furrow followed free:</line>
+<line>We were the first that ever burst</line>
+<line>Into that silent sea.</line>
+</verse>
+
+<verse>
+<line>Down dropt the breeze, the sails dropt down,</line>
+<line>'Twas sad as sad could be;</line>
+<line>And we did speak only to break</line>
+<line>The silence of the sea!</line>
+</verse>
+
+<verse>
+<line>All in a hot and copper sky,</line>
+<line>The bloody Sun, at noon,</line>
+<line>Right up above the mast did stand,</line>
+<line>No bigger than the Moon.</line>
+</verse>
+
+<verse>
+<line>Day after day, day after day,</line>
+<line>We stuck, nor breath nor motion;</line>
+<line>As idle as a painted ship</line>
+<line>Upon a painted ocean.</line>
+</verse>
+
+<verse>
+<line>Water, water, every where,</line>
+<line>And all the boards did shrink;</line>
+<line>Water, water, every where,</line>
+<line>Nor any drop to drink.</line>
+</verse>
+
+<verse>
+<line>The very deep did rot: O Christ!</line>
+<line>That ever this should be!</line>
+<line>Yea, slimy things did crawl with legs</line>
+<line>Upon the slimy sea.</line>
+</verse>
+
+<verse>
+<line>About, about, in reel and rout</line>
+<line>The death-fires danced at night;</line>
+<line>The water, like a witch's oils,</line>
+<line>Burnt green, and blue and white.</line>
+</verse>
+
+<verse>
+<line>And some in dreams assured were</line>
+<line>Of the spirit that plagued us so:</line>
+<line>Nine fathom deep he had followed us</line>
+<line>From the land of mist and snow.</line>
+</verse>
+
+<verse>
+<line>And every tongue, through utter drought,</line>
+<line>Was withered at the root;</line>
+<line>We could not speak, no more than if</line>
+<line>We had been choked with soot.</line>
+</verse>
+
+<verse>
+<line>Ah! well a-day! what evil looks</line>
+<line>Had I from old and young!</line>
+<line>Instead of the cross, the Albatross</line>
+<line>About my neck was hung.</line>
+</verse>
+
+<subtitle>
+PART THE THIRD.
+</subtitle>
+
+<verse>
+<line>There passed a weary time.  Each throat</line>
+<line>Was parched, and glazed each eye.</line>
+<line>A weary time! a weary time!</line>
+<line>How glazed each weary eye,</line>
+<line>When looking westward, I beheld</line>
+<line>A something in the sky.</line>
+</verse>
+
+<verse>
+<line>At first it seemed a little speck,</line>
+<line>And then it seemed a mist:</line>
+<line>It moved and moved, and took at last</line>
+<line>A certain shape, I wist.</line>
+</verse>
+
+<verse>
+<line>A speck, a mist, a shape, I wist!</line>
+<line>And still it neared and neared:</line>
+<line>As if it dodged a water-sprite,</line>
+<line>It plunged and tacked and veered.</line>
+</verse>
+
+<verse>
+<line>With throats unslaked, with black lips baked,</line>
+<line>We could not laugh nor wail;</line>
+<line>Through utter drought all dumb we stood!</line>
+<line>I bit my arm, I sucked the blood,</line>
+<line>And cried, A sail! a sail!</line>
+</verse>
+
+<verse>
+<line>With throats unslaked, with black lips baked,</line>
+<line>Agape they heard me call:</line>
+<line>Gramercy! they for joy did grin,</line>
+<line>And all at once their breath drew in,</line>
+<line>As they were drinking all.</line>
+</verse>
+
+<verse>
+<line>See! see! (I cried) she tacks no more!</line>
+<line>Hither to work us weal;</line>
+<line>Without a breeze, without a tide,</line>
+<line>She steadies with upright keel!</line>
+</verse>
+
+<verse>
+<line>The western wave was all a-flame</line>
+<line>The day was well nigh done!</line>
+<line>Almost upon the western wave</line>
+<line>Rested the broad bright Sun;</line>
+<line>When that strange shape drove suddenly</line>
+<line>Betwixt us and the Sun.</line>
+</verse>
+
+<verse>
+<line>And straight the Sun was flecked with bars,</line>
+<line>(Heaven's Mother send us grace!)</line>
+<line>As if through a dungeon-grate he peered,</line>
+<line>With broad and burning face.</line>
+</verse>
+
+<verse>
+<line>Alas! (thought I, and my heart beat loud)</line>
+<line>How fast she nears and nears!</line>
+<line>Are those her sails that glance in the Sun,</line>
+<line>Like restless gossameres!</line>
+</verse>
+
+<verse>
+<line>Are those her ribs through which the Sun</line>
+<line>Did peer, as through a grate?</line>
+<line>And is that Woman all her crew?</line>
+<line>Is that a DEATH? and are there two?</line>
+<line>Is DEATH that woman's mate?</line>
+</verse>
+
+<verse>
+<line>Her lips were red, her looks were free,</line>
+<line>Her locks were yellow as gold:</line>
+<line>Her skin was as white as leprosy,</line>
+<line>The Night-Mare LIFE-IN-DEATH was she,</line>
+<line>Who thicks man's blood with cold.</line>
+</verse>
+
+<verse>
+<line>The naked hulk alongside came,</line>
+<line>And the twain were casting dice;</line>
+<line>"The game is done!  I've won!  I've won!"</line>
+<line>Quoth she, and whistles thrice.</line>
+</verse>
+
+<verse>
+<line>The Sun's rim dips; the stars rush out:</line>
+<line>At one stride comes the dark;</line>
+<line>With far-heard whisper, o'er the sea.</line>
+<line>Off shot the spectre-bark.</line>
+</verse>
+
+<verse>
+<line>We listened and looked sideways up!</line>
+<line>Fear at my heart, as at a cup,</line>
+<line>My life-blood seemed to sip!</line>
+</verse>
+
+<verse>
+<line>The stars were dim, and thick the night,</line>
+<line>The steersman's face by his lamp gleamed white;</line>
+<line>From the sails the dew did drip--</line>
+<line>Till clombe above the eastern bar</line>
+<line>The horned Moon, with one bright star</line>
+<line>Within the nether tip.</line>
+</verse>
+
+<verse>
+<line>One after one, by the star-dogged Moon</line>
+<line>Too quick for groan or sigh,</line>
+<line>Each turned his face with a ghastly pang,</line>
+<line>And cursed me with his eye.</line>
+</verse>
+
+<verse>
+<line>Four times fifty living men,</line>
+<line>(And I heard nor sigh nor groan)</line>
+<line>With heavy thump, a lifeless lump,</line>
+<line>They dropped down one by one.</line>
+</verse>
+
+<verse>
+<line>The souls did from their bodies fly,--</line>
+<line>They fled to bliss or woe!</line>
+<line>And every soul, it passed me by,</line>
+<line>Like the whizz of my CROSS-BOW!</line>
+</verse>
+
+<subtitle>
+PART THE FOURTH.
+</subtitle>
+
+<verse>
+<line>"I fear thee, ancient Mariner!</line>
+<line>I fear thy skinny hand!</line>
+<line>And thou art long, and lank, and brown,</line>
+<line>As is the ribbed sea-sand.</line>
+</verse>
+
+<verse>
+<line>"I fear thee and thy glittering eye,</line>
+<line>And thy skinny hand, so brown."--</line>
+<line>Fear not, fear not, thou Wedding-Guest!</line>
+<line>This body dropt not down.</line>
+</verse>
+
+<verse>
+<line>Alone, alone, all, all alone,</line>
+<line>Alone on a wide wide sea!</line>
+<line>And never a saint took pity on</line>
+<line>My soul in agony.</line>
+</verse>
+
+<verse>
+<line>The many men, so beautiful!</line>
+<line>And they all dead did lie:</line>
+<line>And a thousand thousand slimy things</line>
+<line>Lived on; and so did I</line>
+</verse>
+
+<verse>
+<line>I looked upon the rotting sea,</line>
+<line>And drew my eyes away;</line>
+<line>I looked upon the rotting deck,</line>
+<line>And there the dead men lay.</line>
+</verse>
+
+<verse>
+<line>I looked to Heaven, and tried to pray:</line>
+<line>But or ever a prayer had gusht,</line>
+<line>A wicked whisper came, and made</line>
+<line>my heart as dry as dust.</line>
+</verse>
+
+<verse>
+<line>I closed my lids, and kept them close,</line>
+<line>And the balls like pulses beat;</line>
+<line>For the sky and the sea, and the sea and the sky</line>
+<line>Lay like a load on my weary eye,</line>
+<line>And the dead were at my feet.</line>
+</verse>
+
+<verse>
+<line>The cold sweat melted from their limbs,</line>
+<line>Nor rot nor reek did they:</line>
+<line>The look with which they looked on me</line>
+<line>Had never passed away.</line>
+</verse>
+
+<verse>
+<line>An orphan's curse would drag to Hell</line>
+<line>A spirit from on high;</line>
+<line>But oh! more horrible than that</line>
+<line>Is a curse in a dead man's eye!</line>
+<line>Seven days, seven nights, I saw that curse,</line>
+<line>And yet I could not die.</line>
+</verse>
+
+<verse>
+<line>The moving Moon went up the sky,</line>
+<line>And no where did abide:</line>
+<line>Softly she was going up,</line>
+<line>And a star or two beside.</line>
+</verse>
+
+<verse>
+<line>Her beams bemocked the sultry main,</line>
+<line>Like April hoar-frost spread;</line>
+<line>But where the ship's huge shadow lay,</line>
+<line>The charmed water burnt alway</line>
+<line>A still and awful red.</line>
+</verse>
+
+<verse>
+<line>Beyond the shadow of the ship,</line>
+<line>I watched the water-snakes:</line>
+<line>They moved in tracks of shining white,</line>
+<line>And when they reared, the elfish light</line>
+<line>Fell off in hoary flakes.</line>
+</verse>
+
+<verse>
+<line>Within the shadow of the ship</line>
+<line>I watched their rich attire:</line>
+<line>Blue, glossy green, and velvet black,</line>
+<line>They coiled and swam; and every track</line>
+<line>Was a flash of golden fire.</line>
+</verse>
+
+<verse>
+<line>O happy living things! no tongue</line>
+<line>Their beauty might declare:</line>
+<line>A spring of love gushed from my heart,</line>
+<line>And I blessed them unaware:</line>
+<line>Sure my kind saint took pity on me,</line>
+<line>And I blessed them unaware.</line>
+</verse>
+
+<verse>
+<line>The self same moment I could pray;</line>
+<line>And from my neck so free</line>
+<line>The Albatross fell off, and sank</line>
+<line>Like lead into the sea.</line>
+</verse>
+
+<subtitle>
+PART THE FIFTH.
+</subtitle>
+
+<verse>
+<line>Oh sleep! it is a gentle thing,</line>
+<line>Beloved from pole to pole!</line>
+<line>To Mary Queen the praise be given!</line>
+<line>She sent the gentle sleep from Heaven,</line>
+<line>That slid into my soul.</line>
+</verse>
+
+<verse>
+<line>The silly buckets on the deck,</line>
+<line>That had so long remained,</line>
+<line>I dreamt that they were filled with dew;</line>
+<line>And when I awoke, it rained.</line>
+</verse>
+
+<verse>
+<line>My lips were wet, my throat was cold,</line>
+<line>My garments all were dank;</line>
+<line>Sure I had drunken in my dreams,</line>
+<line>And still my body drank.</line>
+</verse>
+
+<verse>
+<line>I moved, and could not feel my limbs:</line>
+<line>I was so light--almost</line>
+<line>I thought that I had died in sleep,</line>
+<line>And was a blessed ghost.</line>
+</verse>
+
+<verse>
+<line>And soon I heard a roaring wind:</line>
+<line>It did not come anear;</line>
+<line>But with its sound it shook the sails,</line>
+<line>That were so thin and sere.</line>
+</verse>
+
+<verse>
+<line>The upper air burst into life!</line>
+<line>And a hundred fire-flags sheen,</line>
+<line>To and fro they were hurried about!</line>
+<line>And to and fro, and in and out,</line>
+<line>The wan stars danced between.</line>
+</verse>
+
+<verse>
+<line>And the coming wind did roar more loud,</line>
+<line>And the sails did sigh like sedge;</line>
+<line>And the rain poured down from one black cloud;</line>
+<line>The Moon was at its edge.</line>
+</verse>
+
+<verse>
+<line>The thick black cloud was cleft, and still</line>
+<line>The Moon was at its side:</line>
+<line>Like waters shot from some high crag,</line>
+<line>The lightning fell with never a jag,</line>
+<line>A river steep and wide.</line>
+</verse>
+
+<verse>
+<line>The loud wind never reached the ship,</line>
+<line>Yet now the ship moved on!</line>
+<line>Beneath the lightning and the Moon</line>
+<line>The dead men gave a groan.</line>
+</verse>
+
+<verse>
+<line>They groaned, they stirred, they all uprose,</line>
+<line>Nor spake, nor moved their eyes;</line>
+<line>It had been strange, even in a dream,</line>
+<line>To have seen those dead men rise.</line>
+</verse>
+
+<verse>
+<line>The helmsman steered, the ship moved on;</line>
+<line>Yet never a breeze up blew;</line>
+<line>The mariners all 'gan work the ropes,</line>
+<line>Were they were wont to do:</line>
+<line>They raised their limbs like lifeless tools--</line>
+<line>We were a ghastly crew.</line>
+</verse>
+
+<verse>
+<line>The body of my brother's son,</line>
+<line>Stood by me, knee to knee:</line>
+<line>The body and I pulled at one rope,</line>
+<line>But he said nought to me.</line>
+</verse>
+
+<verse>
+<line>"I fear thee, ancient Mariner!"</line>
+<line>Be calm, thou Wedding-Guest!</line>
+<line>'Twas not those souls that fled in pain,</line>
+<line>Which to their corses came again,</line>
+<line>But a troop of spirits blest:</line>
+</verse>
+
+<verse>
+<line>For when it dawned--they dropped their arms,</line>
+<line>And clustered round the mast;</line>
+<line>Sweet sounds rose slowly through their mouths,</line>
+<line>And from their bodies passed.</line>
+</verse>
+
+<verse>
+<line>Around, around, flew each sweet sound,</line>
+<line>Then darted to the Sun;</line>
+<line>Slowly the sounds came back again,</line>
+<line>Now mixed, now one by one.</line>
+</verse>
+
+<verse>
+<line>Sometimes a-dropping from the sky</line>
+<line>I heard the sky-lark sing;</line>
+<line>Sometimes all little birds that are,</line>
+<line>How they seemed to fill the sea and air</line>
+<line>With their sweet jargoning!</line>
+</verse>
+
+<verse>
+<line>And now 'twas like all instruments,</line>
+<line>Now like a lonely flute;</line>
+<line>And now it is an angel's song,</line>
+<line>That makes the Heavens be mute.</line>
+</verse>
+
+<verse>
+<line>It ceased; yet still the sails made on</line>
+<line>A pleasant noise till noon,</line>
+<line>A noise like of a hidden brook</line>
+<line>In the leafy month of June,</line>
+<line>That to the sleeping woods all night</line>
+<line>Singeth a quiet tune.</line>
+</verse>
+
+<verse>
+<line>Till noon we quietly sailed on,</line>
+<line>Yet never a breeze did breathe:</line>
+<line>Slowly and smoothly went the ship,</line>
+<line>Moved onward from beneath.</line>
+</verse>
+
+<verse>
+<line>Under the keel nine fathom deep,</line>
+<line>From the land of mist and snow,</line>
+<line>The spirit slid: and it was he</line>
+<line>That made the ship to go.</line>
+<line>The sails at noon left off their tune,</line>
+<line>And the ship stood still also.</line>
+</verse>
+
+<verse>
+<line>The Sun, right up above the mast,</line>
+<line>Had fixed her to the ocean:</line>
+<line>But in a minute she 'gan stir,</line>
+<line>With a short uneasy motion--</line>
+<line>Backwards and forwards half her length</line>
+<line>With a short uneasy motion.</line>
+</verse>
+
+<verse>
+<line>Then like a pawing horse let go,</line>
+<line>She made a sudden bound:</line>
+<line>It flung the blood into my head,</line>
+<line>And I fell down in a swound.</line>
+</verse>
+
+<verse>
+<line>How long in that same fit I lay,</line>
+<line>I have not to declare;</line>
+<line>But ere my living life returned,</line>
+<line>I heard and in my soul discerned</line>
+<line>Two VOICES in the air.</line>
+</verse>
+
+<verse>
+<line>"Is it he?" quoth one, "Is this the man?</line>
+<line>By him who died on cross,</line>
+<line>With his cruel bow he laid full low,</line>
+<line>The harmless Albatross.</line>
+</verse>
+
+<verse>
+<line>"The spirit who bideth by himself</line>
+<line>In the land of mist and snow,</line>
+<line>He loved the bird that loved the man</line>
+<line>Who shot him with his bow."</line>
+</verse>
+
+<verse>
+<line>The other was a softer voice,</line>
+<line>As soft as honey-dew:</line>
+<line>Quoth he, "The man hath penance done,</line>
+<line>And penance more will do."</line>
+</verse>
+
+<subtitle>
+PART THE SIXTH.
+</subtitle>
+
+<note type="voice">
+FIRST VOICE.
+</note>
+
+<verse>
+<line>But tell me, tell me! speak again,</line>
+<line>Thy soft response renewing--</line>
+<line>What makes that ship drive on so fast?</line>
+<line>What is the OCEAN doing?</line>
+</verse>
+
+<note type="voice">
+SECOND VOICE.
+</note>
+
+<verse>
+<line>Still as a slave before his lord,</line>
+<line>The OCEAN hath no blast;</line>
+<line>His great bright eye most silently</line>
+<line>Up to the Moon is cast--</line>
+</verse>
+
+<verse>
+<line>If he may know which way to go;</line>
+<line>For she guides him smooth or grim</line>
+<line>See, brother, see! how graciously</line>
+<line>She looketh down on him.</line>
+</verse>
+
+
+<note type="voice">
+FIRST VOICE.
+</note>
+
+<verse>
+<line>But why drives on that ship so fast,</line>
+<line>Without or wave or wind?</line>
+</verse>
+
+<note type="voice">
+SECOND VOICE.
+</note>
+
+<verse>
+<line>The air is cut away before,</line>
+<line>And closes from behind.</line>
+</verse>
+
+<verse>
+<line>Fly, brother, fly! more high, more high</line>
+<line>Or we shall be belated:</line>
+<line>For slow and slow that ship will go,</line>
+<line>When the Mariner's trance is abated.</line>
+</verse>
+
+<verse>
+<line>I woke, and we were sailing on</line>
+<line>As in a gentle weather:</line>
+<line>'Twas night, calm night, the Moon was high;</line>
+<line>The dead men stood together.</line>
+</verse>
+
+<verse>
+<line>All stood together on the deck,</line>
+<line>For a charnel-dungeon fitter:</line>
+<line>All fixed on me their stony eyes,</line>
+<line>That in the Moon did glitter.</line>
+</verse>
+
+<verse>
+<line>The pang, the curse, with which they died,</line>
+<line>Had never passed away:</line>
+<line>I could not draw my eyes from theirs,</line>
+<line>Nor turn them up to pray.</line>
+</verse>
+
+<verse>
+<line>And now this spell was snapt: once more</line>
+<line>I viewed the ocean green.</line>
+<line>And looked far forth, yet little saw</line>
+<line>Of what had else been seen--</line>
+</verse>
+
+<verse>
+<line>Like one that on a lonesome road</line>
+<line>Doth walk in fear and dread,</line>
+<line>And having once turned round walks on,</line>
+<line>And turns no more his head;</line>
+<line>Because he knows, a frightful fiend</line>
+<line>Doth close behind him tread.</line>
+</verse>
+
+<verse>
+<line>But soon there breathed a wind on me,</line>
+<line>Nor sound nor motion made:</line>
+<line>Its path was not upon the sea,</line>
+<line>In ripple or in shade.</line>
+</verse>
+
+<verse>
+<line>It raised my hair, it fanned my cheek</line>
+<line>Like a meadow-gale of spring--</line>
+<line>It mingled strangely with my fears,</line>
+<line>Yet it felt like a welcoming.</line>
+</verse>
+
+<verse>
+<line>Swiftly, swiftly flew the ship,</line>
+<line>Yet she sailed softly too:</line>
+<line>Sweetly, sweetly blew the breeze--</line>
+<line>On me alone it blew.</line>
+</verse>
+
+<verse>
+<line>Oh! dream of joy! is this indeed</line>
+<line>The light-house top I see?</line>
+<line>Is this the hill? is this the kirk?</line>
+<line>Is this mine own countree!</line>
+</verse>
+
+<verse>
+<line>We drifted o'er the harbour-bar,</line>
+<line>And I with sobs did pray--</line>
+<line>O let me be awake, my God!</line>
+<line>Or let me sleep alway.</line>
+</verse>
+
+<verse>
+<line>The harbour-bay was clear as glass,</line>
+<line>So smoothly it was strewn!</line>
+<line>And on the bay the moonlight lay,</line>
+<line>And the shadow of the moon.</line>
+</verse>
+
+<verse>
+<line>The rock shone bright, the kirk no less,</line>
+<line>That stands above the rock:</line>
+<line>The moonlight steeped in silentness</line>
+<line>The steady weathercock.</line>
+</verse>
+
+<verse>
+<line>And the bay was white with silent light,</line>
+<line>Till rising from the same,</line>
+<line>Full many shapes, that shadows were,</line>
+<line>In crimson colours came.</line>
+</verse>
+
+<verse>
+<line>A little distance from the prow</line>
+<line>Those crimson shadows were:</line>
+<line>I turned my eyes upon the deck--</line>
+<line>Oh, Christ! what saw I there!</line>
+</verse>
+
+<verse>
+<line>Each corse lay flat, lifeless and flat,</line>
+<line>And, by the holy rood!</line>
+<line>A man all light, a seraph-man,</line>
+<line>On every corse there stood.</line>
+</verse>
+
+<verse>
+<line>This seraph band, each waved his hand:</line>
+<line>It was a heavenly sight!</line>
+<line>They stood as signals to the land,</line>
+<line>Each one a lovely light:</line>
+</verse>
+
+<verse>
+<line>This seraph-band, each waved his hand,</line>
+<line>No voice did they impart--</line>
+<line>No voice; but oh! the silence sank</line>
+<line>Like music on my heart.</line>
+</verse>
+
+<verse>
+<line>But soon I heard the dash of oars;</line>
+<line>I heard the Pilot's cheer;</line>
+<line>My head was turned perforce away,</line>
+<line>And I saw a boat appear.</line>
+</verse>
+
+<verse>
+<line>The Pilot, and the Pilot's boy,</line>
+<line>I heard them coming fast:</line>
+<line>Dear Lord in Heaven! it was a joy</line>
+<line>The dead men could not blast.</line>
+</verse>
+
+<verse>
+<line>I saw a third--I heard his voice:</line>
+<line>It is the Hermit good!</line>
+<line>He singeth loud his godly hymns</line>
+<line>That he makes in the wood.</line>
+<line>He'll shrieve my soul, he'll wash away</line>
+<line>The Albatross's blood.</line>
+</verse>
+
+<subtitle>
+PART THE SEVENTH.
+</subtitle>
+
+<verse>
+<line>This Hermit good lives in that wood</line>
+<line>Which slopes down to the sea.</line>
+<line>How loudly his sweet voice he rears!</line>
+<line>He loves to talk with marineres</line>
+<line>That come from a far countree.</line>
+</verse>
+
+<verse>
+<line>He kneels at morn and noon and eve--</line>
+<line>He hath a cushion plump:</line>
+<line>It is the moss that wholly hides</line>
+<line>The rotted old oak-stump.</line>
+</verse>
+
+<verse>
+<line>The skiff-boat neared: I heard them talk,</line>
+<line>"Why this is strange, I trow!</line>
+<line>Where are those lights so many and fair,</line>
+<line>That signal made but now?"</line>
+</verse>
+
+<verse>
+<line>"Strange, by my faith!" the Hermit said--</line>
+<line>"And they answered not our cheer!</line>
+<line>The planks looked warped! and see those sails,</line>
+<line>How thin they are and sere!</line>
+<line>I never saw aught like to them,</line>
+<line>Unless perchance it were</line>
+</verse>
+
+<verse>
+<line>"Brown skeletons of leaves that lag</line>
+<line>My forest-brook along;</line>
+<line>When the ivy-tod is heavy with snow,</line>
+<line>And the owlet whoops to the wolf below,</line>
+<line>That eats the she-wolf's young."</line>
+</verse>
+
+<verse>
+<line>"Dear Lord! it hath a fiendish look--</line>
+<line>(The Pilot made reply)</line>
+<line>I am a-feared"--"Push on, push on!"</line>
+<line>Said the Hermit cheerily.</line>
+</verse>
+
+<verse>
+<line>The boat came closer to the ship,</line>
+<line>But I nor spake nor stirred;</line>
+<line>The boat came close beneath the ship,</line>
+<line>And straight a sound was heard.</line>
+</verse>
+
+<verse>
+<line>Under the water it rumbled on,</line>
+<line>Still louder and more dread:</line>
+<line>It reached the ship, it split the bay;</line>
+<line>The ship went down like lead.</line>
+</verse>
+
+<verse>
+<line>Stunned by that loud and dreadful sound,</line>
+<line>Which sky and ocean smote,</line>
+<line>Like one that hath been seven days drowned</line>
+<line>My body lay afloat;</line>
+<line>But swift as dreams, myself I found</line>
+<line>Within the Pilot's boat.</line>
+</verse>
+
+<verse>
+<line>Upon the whirl, where sank the ship,</line>
+<line>The boat spun round and round;</line>
+<line>And all was still, save that the hill</line>
+<line>Was telling of the sound.</line>
+</verse>
+
+<verse>
+<line>I moved my lips--the Pilot shrieked</line>
+<line>And fell down in a fit;</line>
+<line>The holy Hermit raised his eyes,</line>
+<line>And prayed where he did sit.</line>
+</verse>
+
+<verse>
+<line>I took the oars: the Pilot's boy,</line>
+<line>Who now doth crazy go,</line>
+<line>Laughed loud and long, and all the while</line>
+<line>His eyes went to and fro.</line>
+<line>"Ha! ha!" quoth he, "full plain I see,</line>
+<line>The Devil knows how to row."</line>
+</verse>
+
+<verse>
+<line>And now, all in my own countree,</line>
+<line>I stood on the firm land!</line>
+<line>The Hermit stepped forth from the boat,</line>
+<line>And scarcely he could stand.</line>
+</verse>
+
+<verse>
+<line>"O shrieve me, shrieve me, holy man!"</line>
+<line>The Hermit crossed his brow.</line>
+<line>"Say quick," quoth he, "I bid thee say--</line>
+<line>What manner of man art thou?"</line>
+</verse>
+
+<verse>
+<line>Forthwith this frame of mine was wrenched</line>
+<line>With a woeful agony,</line>
+<line>Which forced me to begin my tale;</line>
+<line>And then it left me free.</line>
+</verse>
+
+<verse>
+<line>Since then, at an uncertain hour,</line>
+<line>That agony returns;</line>
+<line>And till my ghastly tale is told,</line>
+<line>This heart within me burns.</line>
+</verse>
+
+<verse>
+<line>I pass, like night, from land to land;</line>
+<line>I have strange power of speech;</line>
+<line>That moment that his face I see,</line>
+<line>I know the man that must hear me:</line>
+<line>To him my tale I teach.</line>
+</verse>
+
+<verse>
+<line>What loud uproar bursts from that door!</line>
+<line>The wedding-guests are there:</line>
+<line>But in the garden-bower the bride</line>
+<line>And bride-maids singing are:</line>
+<line>And hark the little vesper bell,</line>
+<line>Which biddeth me to prayer!</line>
+</verse>
+
+<verse>
+<line>O Wedding-Guest! this soul hath been</line>
+<line>Alone on a wide wide sea:</line>
+<line>So lonely 'twas, that God himself</line>
+<line>Scarce seemed there to be.</line>
+</verse>
+
+<verse>
+<line>O sweeter than the marriage-feast,</line>
+<line>'Tis sweeter far to me,</line>
+<line>To walk together to the kirk</line>
+<line>With a goodly company!--</line>
+</verse>
+
+<verse>
+<line>To walk together to the kirk,</line>
+<line>And all together pray,</line>
+<line>While each to his great Father bends,</line>
+<line>Old men, and babes, and loving friends,</line>
+<line>And youths and maidens gay!</line>
+</verse>
+
+<verse>
+<line>Farewell, farewell! but this I tell</line>
+<line>To thee, thou Wedding-Guest!</line>
+<line>He prayeth well, who loveth well</line>
+<line>Both man and bird and beast.</line>
+</verse>
+
+<verse>
+<line>He prayeth best, who loveth best</line>
+<line>All things both great and small;</line>
+<line>For the dear God who loveth us</line>
+<line>He made and loveth all.</line>
+</verse>
+
+<verse>
+<line>The Mariner, whose eye is bright,</line>
+<line>Whose beard with age is hoar,</line>
+<line>Is gone: and now the Wedding-Guest</line>
+<line>Turned from the bridegroom's door.</line>
+</verse>
+
+<verse>
+<line>He went like one that hath been stunned,</line>
+<line>And is of sense forlorn:</line>
+<line>A sadder and a wiser man,</line>
+<line>He rose the morrow morn.</line>
+</verse>
+
+</poem>
+
+</poemsfrag>
+
+</gutpoems>

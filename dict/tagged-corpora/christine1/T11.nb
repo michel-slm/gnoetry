@@ -1,0 +1,89 @@
+<html>
+<body>
+
+<h1>Text T11</h1>
+
+<h2>Source</h2>
+<p>BNC file KCA
+
+<h2>Date</h2>
+<p>10 to 13 Jan 1992
+
+<h2>Place</h2>
+<p>Llanbradach, Glamorganshire
+
+<h2>Locale/activities</h2>
+<p>home, conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Donald049, m, 32, unemployed, WA, DE
+<li>Jackie050, f, 29, housewife, WA, DE
+<li>Tracey051, f, 29, housewife, WA, DE
+<li>Neil052, m, 6, schoolboy, WA, DE
+<li>Shona053, f, 3, n/a, WA, DE
+</ul>
+
+<h2>Relationships</h2>
+<p>Donald049 and Jackie050 are man and wife.
+Neil052 and Shona053 are their children.
+Tracey051 is a cousin of Donald049.
+
+
+<h2>Dialect Classification</h2>
+<p>All speakers are given the Welsh BNC dialect code.  Llanbradach is in fact
+on the border between Glamorganshire and Monmouthshire, the latter county
+historically having belonged politically to England though it was recently
+transferred to Wales; but linguistically West Monmouthshire is probably
+closer to Wales than to S.W. England, and Llanbradach communicates with
+Glamorganshire rather than eastwards.  (For what it is worth, several
+of the speakers have distinctively Scottish -- rather than Welsh --
+Christian names, a fact which is reflected in their <i>noms de corpus</i>.)
+
+
+<h2>Social Classification</h2>
+<p>All speakers are classified DE in BNC, and there is no evidence
+contradicting that.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>02543:  BNC attributes this s-unit to Jackie050, which would mean that she is
+interrupting herself.  The minimal change that seems to make good
+sense of the dialogue is to change the attribution of 02541/2/5
+to Donald049.
+
+<p>02565:  <i>Just</i> emended to <i>just</i>
+
+<p>02751:  In the construction <i>with anything in</i>, which from the
+perspective of standard British English is not perceived as a reduction
+of <i>with anything in it</i>, the word <i>in</i> is analysed as an
+adverb and an R phrase, rather than as a preposition with a missing
+complement.  (I understand that this construction does not occur in
+American English.)
+
+<p>02578:  A series of turns which seem to be responding to one another are all
+attributed in BNC to Donald049.  The minimal change that makes sense
+seems to be to change the attribution of 02580 to Tracey051.
+
+<p>02616:  <i>Mrs</i> emended to <i>missis</i> 
+(<i>COD</i> preferred spelling for nonstandard use
+of this form other than as prefix to a proper name)
+
+<p>02653:  The BNC text here makes so little sense that it is likely to be
+mistranscribed, however no emendation suggests itself so it has
+been left to stand.
+
+<p>02655:  <i>an helicopter</i> looks odd from the perspective of standard English,
+but since most regional dialects lose [h], probably <i>an</i> stands
+before a vowel in the spoken text.
+
+<p>02710:  <i>teachers name</i> emended to <i>teacher's name</i>
+
+<p>02809:  <i>You</i> emended to <i>you</i>
+
+
+</body>
+</html>
+

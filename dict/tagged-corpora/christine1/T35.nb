@@ -1,0 +1,105 @@
+<html>
+<body>
+
+<h1>Text T35</h1>
+
+<h2>Source</h2>
+<p>BNC file KPL
+
+<h2>Date</h2>
+<p>Unknown, not later than Nov 1994 (recorded as 
+&quot;1992&quot; in the Speakers
+file as a best guess).
+
+<h2>Place</h2>
+<p>For the division used for the CHRISTINE extract, no place is
+stated, but for other divisions in this BNC file the place is stated as
+Greater London.
+
+<h2>Locale/activities</h2>
+<p>conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Ivan130, m, 13, student, XX, AB
+<li>Nigel131, m, XX, pupil, XX, XX
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Two friends.
+
+
+<h2>Dialect Classification</h2>
+<p>No dialect information is given for these speakers in BNC.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Ivan130 as AB and does not classify Nigel131.  
+There are no
+grounds for altering this.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>00019:  <i>Glowworm</i> emended to <i>Glow-worm</i> (twice)
+
+<p>00027, 00029, 00033:  <i>sleeping bag</i> 
+emended to <i>sleeping-bag</i>
+
+<p>00046, 00053:  <i>P E</i> emended to <i>PE</i> (Physical Education)
+
+<p>00048:  <i>realised</i> emended to <i>realized</i>
+
+<p>00055:  <i>gov.</i> emended to <i>guv</i> 
+(conventional spelling of vocative abbreviation
+of <i>governor</i>)
+
+<p>00103:  <i>Guns 'n Roses</i> emended to <i>Guns n' Roses</i>.  
+(This seems to be the usual
+spelling of this pop group name, with the word <i>and</i> represented
+by n-apostrophe, preceded and commonly followed by a space.)
+
+<p>00105, 00110, 00111:  <i>criticise</i>, <i>criticising</i> 
+emended to <i>criticize</i>, <i>criticizing</i>
+
+<p>00171:  In the BNC file, the opening vocalization shift 
+before the last word
+is never followed by a closing shift.  CHRISTINE supplies
+this at the end of the s-unit, where it must apply.
+
+<p>00210:  In the BNC file the s-unit begins with two adjacent 
+opening vocalization
+shifts, for singing and for shouting, separated by a comma,
+and ends with a single
+unlabelled closing shift.  This does not seem to make sense,
+so CHRISTINE assumes that what was intended was an independent
+<tt>{singing}</tt> element 
+followed by a <tt>{shouting}</tt> shift lasting over
+the intermediate <tt>{unclear}</tt> element.
+
+<p>00228:  <i>is isn't</i> emended to <i>it isn't</i> 
+(easier to see as a transcription slip than
+as what was actually said)
+
+<p>00230:  <i>lunch time</i> emended to <i>lunch-time</i>
+
+<p>00248:  <i>Lindzi</i> emended to <i>Lindsey</i> 
+(a more normal spelling of the girl's
+Christian name pronounced this way)
+
+<p>00249:  <i>Kari</i>:  <i>sic</i> in BNC.  
+Again one suspects that the girl referred
+to may actually have been <i>Carrie</i>, but <i>Kari</i> could be a
+correctly-spelled name of Continental origin, and might even
+be pronounced with a vowel distinguishing it from <i>Carrie</i>.
+
+<p>00249:  <i>Kari's in.</i>:  in the BNC file, 
+the full stop has been left
+as part of the word <i>in.</i> rather than treated as a separate
+punctuation mark; CHRISTINE separates it.
+
+</body>
+</html>
+

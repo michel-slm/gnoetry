@@ -1,0 +1,125 @@
+<html>
+<body>
+
+<h1>Text T06</h1>
+
+<h2>Source</h2>
+<p>BNC file KBN
+
+<h2>Date</h2>
+<p>12 to 15 March 1992
+
+<h2>Place</h2>
+<p>Johnston, Pembrokeshire
+
+<h2>Locale/activities</h2>
+<p>home, chatting to friend/conversation/listening to music
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Eve027, f, 15, student, WA, C2
+<li>Rebecca028, f, 16, student, WA, DE
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Two friends.
+
+
+<h2>Dialect Classification</h2>
+<p>Both speakers given Welsh dialect code in BNC.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Eve027 as C2, Rebecca028 as DE.  BNC shows Eve027 as
+daughter of a carpenter, SOC code 570, IIIM, confirming her classification;
+we have no grounds for querying the coding of Rebecca028.
+
+
+<h2>Emendations and Comments</h2>
+
+
+<p>00361:  <i>cos er my</i> emended to <i>cos of my</i>:  
+even if the speaker included a [v] in
+<i>of</i>, as a voiced fricative this is intrinsically non-salient
+and is almost homorganic with the following [m], so this
+emendation which is grammatically more plausible seems fairly safe.
+
+<p>00373:  <i>spanish</i> emended to <i>Spanish</i>
+
+<p>00402-3:  The source-units 00402 and 00403 have been exchanged between
+Eve027 and Rebecca028 (relative to the assignments in BNC), as the minimal
+change needed to make sense of the conversational exchange.
+
+<p>00434:  <i>ta ra</i> emended to <i>ta-ra</i>
+
+<p>00450:  Here and below, the speaker is singing snatches from the Slade
+lyric <i>Radio wall of sound</i>, which the transcriber has 
+evidently not recognized.  At this point, the original lyric
+runs <i>I'm in trouble, I'm in deep, I don't know why I can't sleep</i>.
+CHRISTINE has replaced <i>know ooh er I can't see</i> with <i>know why
+I can't sleep</i>.  The opening transcribed words <i>say me in trouble</i>
+are mystifying and have been left to stand.  It is possible
+that the speaker had forgotten the words (though the ones
+in BNC are so grammatically odd that this seems implausible;
+it was not easy to decide how to parse them).  Another possibility
+was that the speaker began by announcing the singer's name:
+<i>Slade, I'm in trouble ... </i>, and that <i>Slade I'm</i> was misunderstood
+as <i>say me</i> -- but this emendation would be too adventurous
+to adopt.
+
+<p>00452:  <i>what a sound</i> emended to <i>wall of sound</i>, as in the lyric
+
+<p>00455:  <i>radio what a sound mm mm mm of power</i>:  
+<i>what</i> emended to <i>wall</i>, as
+in the lyric.  The <i>mm mm mm</i> should be <i>24 hours</i>, but it seems
+likely that the singer was humming notes where she had forgotten
+the words.
+
+<p>00482:  <i>hi</i> emended to <i>high</i> 
+(in view of what follows, this is likely to be the
+appropriate spelling of the syllable)
+
+<p>00483:  <i>radio all</i> emended to <i>radio wall [of sound]</i> -- 
+a [w] would be virtually
+indistinguishable after the final diphthong of <i>radio</i>.
+
+<p>00488:  <i>radio what a sound</i> emended to <i>radio wall of sound</i>
+
+<p>00501, 00506, 00509:  Here the speaker is singing the Queen lyric 
+<i>Bohemian
+Rhapsody</i>;  the BNC transcription <i>ma ma just killed man</i> is
+changed in CHRISTINE in three places to the original
+<i>Mama, just killed a man</i>.
+<p>00536:  <i>he man</i> emended to <i>he-man</i> 
+
+<p>00542:  <i>Jean Claude Van Don</i> emended to <i>Jean-Claude Van Damme</i> 
+(martial arts exponent)
+
+<p>00548:  <i>honky tonk</i> emended to <i>honky-tonk</i>
+
+<p>00586:  <i>this is suppose to be</i> emended to <i>this is supposed to be</i>
+(no pronunciation difference before the [t] of <i>to</i>)  
+
+<p>00609, 00610: <i>gis</i> emended to <i>gi +'s</i>  (i.e. <i>give us</i>)
+
+<p>00626:  <i>must of been</i> emended to <i>must've been</i>
+
+<p>00629:  <i>er up</i> emended to <i>eh up</i>.  This is a bold emendation; 
+the speakers are Welsh,
+whereas <i>eh up</i> as an introductory discourse item is associated with
+Yorkshire.  But the BNC transcription is extremely difficult
+to make sense of.
+
+<p>00631:  <i>black board</i> emended to <i>blackboard</i>
+
+<p>00637:  <i>the incredible hulk</i> emended to <i>the Incredible Hulk</i> 
+(cartoon character)
+
+<p>00646:  <i>heaven</i> emended to <i>Heaven</i>
+
+<p>00681:  <i>terminator</i> emended to <i>Terminator</i>
+
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import pygtk
+pygtk.require("2.0")
+import gtk
+
+import sys
+
+sys.path.append("..") # add path for gnoetics library
+import gnoetics
+
+import textpicker, appwindow
+
+win = appwindow.AppWindow()
+win.show_all()
+
+gtk.main()

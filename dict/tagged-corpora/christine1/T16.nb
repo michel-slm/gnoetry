@@ -1,0 +1,81 @@
+<html>
+<body>
+
+<h1>Text T16</h1>
+
+<h2>Source</h2>
+<p>BNC file KCX
+
+<h2>Date</h2>
+<p>30 Jan to 7 Feb 1992
+
+<h2>Place</h2>
+<p>Dunscroft, near Doncaster
+
+<h2>Locale/activities</h2>
+<p>at home, making tea/conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Maureen069, f, 37, crossing warden, NO, C2
+<li>Nick070, m, 39, electrician, NO, C2
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Speakers are man and wife.
+
+
+<h2>Dialect Classification</h2>
+<p>In BNC, both speakers are given the London dialect code, which is obviously
+implausible (many features of the speakers' utterances contradict it).
+Steve Crowdy of the BNC team explained to me in an e-message
+dated 15 June 1997 that there had been a clerical confusion between codes
+for London and for &quot;Central Northern England&quot;, which
+covers the Doncaster area, 
+and that these two speakers should have been given the latter code.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Maureen069 as C2 and leaves Nick070 unclassified.  His
+occupation is SOC code 521, IIIM, hence C2, and this confirms the BNC code
+for his wife (who would by occupation be DE).
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>06968:  <i>Ah went in</i> emended to <i>I went in</i>.  
+Speaker is classified as Central Northern
+England; <i>ah</i> represents the regular Northern vowel corresponding
+to the RP <i>I</i> diphthong, and is given a special transcription only
+because it is specially noticeable in the word <i>I</i> at the beginning
+of an utterance -- CHRISTINE would not normally use nonstandard
+spellings for phonologically-predictable dialect variation.
+
+<p>06989:  <i>with bloody out</i>:  see the discussion of this form in
+the &quot;Swearwords&quot; section of the Documentation file.
+
+<p>07011:  <i>big'un</i> emended to <i>big 'un</i>  
+(Note that, unlike <i>Ah</i> for <i>I</i> above,
+<i>'un</i> and <i>one</i> are two distinct forms even in 
+standard informal 
+English.)
+
+<p>07035, 07062:  <i>a laughing</i> emended to <i>a-laughing</i>
+
+<p>07083:  <i>int</i> emended to <i>in't</i>
+
+<p>07096:  <i>hell fire</i> emended to <i>hell-fire</i>
+
+<p>07172:  <i>Snot snot</i> emended to <i>'s not 's not</i> 
+(this seems to be what he is saying -- i.e. <i>it's not, it's not</i>)
+
+<p>07244:  <i>Were where it?</i> emended to <i>Where were it?</i> 
+(this is assumed to be
+transcriber error rather than an idiosyncratic spoken construction)
+
+
+</body>
+</html>
+

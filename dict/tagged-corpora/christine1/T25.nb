@@ -1,0 +1,102 @@
+<html>
+<body>
+
+<h1>Text T25</h1>
+
+<h2>Source</h2>
+<p>BNC file KDT
+<p>There is a complication in the structure of this BNC file.  The list of
+divisions in the file header identifies the body of the file as consisting
+of three divisions numbered 075801, 075802, and 075901.  However, in
+reality the file contains no division 075901.  After 075802 it contains a
+series of divisions numbered 133401 and higher numbers.  The CHRISTINE
+extract comprises div 075802 and several of the following divisions.  It
+may be that the divisions with numbers beginning 133... are subdivisions of
+what was at one stage in the corpus compilation a single div 075901, but
+the finished corpus includes no explanation of the discrepancy.
+
+<h2>Date</h2>
+<p>2 to 3 Apr 1992
+
+<h2>Place</h2>
+<p>div 075802 was recorded at Driffield, and 075901 (? = 133401ff.?)
+at Burton Fleming, both Yorks. E.R.
+
+<h2>Locale/activities</h2>
+<p>
+<ul>
+<li>div 075802  in car, watching it rain and drinking tea
+<li>div 075901 (? = 133401ff.?)  indoors, drinking tea/conversation
+</ul>
+<h2>Identified Speakers</h2>
+<ul>
+<li>Simon096, m, 34, self-employed general contractor, NO, DE
+<li>Martin097, m, 33, gardener, NO, DE
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Two colleagues.
+
+
+<h2>Dialect Classification</h2>
+<p>Both speakers are given the BNC dialect code applicable to Driffield.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Simon096 as C2 and Martin097 as DE.  However, they are
+respectively SOC codes 594 and 896, both IV, so both DE.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>00114:  <i>gos</i> emended to <i>goes</i>
+
+<p>00172:  in context, one wonders whether <i>are you speaking</i> should be 
+amended to <i>are you speeding</i>, but in absence of sufficient evidence
+no change has been made
+
+<p>00174, 00179, 00180:  The BNC transcription has <i>Foxhalls</i> in the first
+two and <i>Foxhall</i> in the third s-unit.  This is taken to be
+a reference to Foxholes, a village about 8 miles S.W. of Filey
+-- not far from the recording site, and the error is phonetically
+plausible for a S.E. English transcriber listening to a
+Yorkshire speaker.  The lack of -s in the transcription <i>Foxhall</i>
+might suggest that the speaker produced a truncated word
+<i>Foxhole-</i>, but this seems over-ingenious; CHRISTINE includes
+the full name <i>Foxholes</i> in each case.
+
+<p>00174:  <i>a Foxhalls</i> emended to <i>at Foxholes</i> 
+(seems a reasonable guess to make
+sense of the passage)
+
+<p>00186:  <i>of his mother</i> emended to <i>off his mother</i> 
+(cf. preceding wording)
+
+<p>00207:  <i>Magistrate's Court</i> emended to <i>magistrates' court</i>
+
+<p>00263:  <i>pick- up</i> emended to <i>pick-up</i>
+
+<p>00297:  <i>brand new</i> emended to <i>brand-new</i>
+
+<p>00305:  <i>isn't It</i> emended to <i>isn't it</i>
+
+<p>00331:  <i>an all</i> emended to <i>an' all</i>
+
+<p>00345:  <i>Rome</i> in <i>Rome and Juliet</i> 
+may be a transcription error for 
+<i>Romeo</i>, but alternatively the speaker may have mispronounced
+the name so the BNC form stands in CHRISTINE.
+
+<p>00355:  <i>Five Pounds</i> emended to <i>Five pounds</i>
+
+<p>00359:  The original BNC file reads <i>I'm so convinced about</i>, 
+but the 
+context absolutely requires <i>not</i>; it seems easier to believe
+that the transcriber omitted it accidentally than that it was
+not uttered, so it has been inserted in CHRISTINE.
+
+</body>
+</html>
+

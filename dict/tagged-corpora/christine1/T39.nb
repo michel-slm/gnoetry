@@ -1,0 +1,118 @@
+<html>
+<body>
+
+<h1>Text T39</h1>
+
+<h2>Source</h2>
+<p>BNC file KSS
+
+<h2>Date</h2>
+<p>2 to 8 Apr 1992
+
+<h2>Place</h2>
+<p>South Shields
+
+<h2>Locale/activities</h2>
+<p>home, conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Joyce142, f, 53, housewife, MD, DE
+<li>Maurice143, m, 45, unemployed, NO, DE
+<li>Sally144, f, 72, Salvation Army, NO, XX
+<li>Oscar145, m, 75, Salvation Army, NO, XX
+</ul>
+
+<h2>Relationships</h2>
+<p>Oscar145 and Sally144 appear to be man and wife; this is not stated
+explicitly in the BNC file header, but Joyce142 is identified as
+daughter-in-law of both.
+Maurice143 and Joyce142 are man and wife.
+From the above it seems to follow that Maurice143 
+is likely to be a son of
+the older couple, but again this is not stated.
+
+
+<h2>Dialect Classification</h2>
+<p>The BNC dialect codes assign Joyce142 
+the &quot;Northwest Midlands&quot; code,
+i.e. the Derby/Stoke/Chester/Manchester area.  
+To Maurice143 and Sally144
+they assign a code translated simply as &quot;Lancashire&quot;, 
+which is not itself
+one of the Trudgill area codes; different parts of 
+Lancashire fall into
+four of Trudgill's sixteen English dialect areas, 
+on both sides of the
+cruder CHRISTINE NO/MD boundary.  
+Since the BNC Manual gives no special
+code corresponding to Trudgill's &quot;Central Lancashire&quot; 
+area, I have taken
+&quot;Lancashire&quot; to refer to this and have accordingly 
+classified these two
+speakers as NO (but, alternatively, the BNC information may mean that the
+non-expert respondent identified these speakers vaguely as having
+&quot;Lancashire accents&quot;, in which case there would be 
+no basis for assigning a
+CHRISTINE dialect classification).  
+Oscar145 is given the BNC code for
+&quot;northern England&quot;.  
+None of the speakers is given the specific BNC code
+applicable to the South Shields area.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Joyce142 and Maurice143 as DE, 
+and leaves the older speakers
+unclassified.  There are no grounds for altering these codes.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>04853:  After <i>whatever it is</i>, BNC has a full stop 
+attached to <i>is</i>, not
+split off as a separate &quot;word&quot;.  As a result, 
+it has allotted a
+single s-unit number to what by its own standards would normally
+be two s-units.
+
+<p>04878ff.:  <i>vol au vent(s)</i> emended to <i>vol-au-vent(s)</i>
+
+<p>04912:  <i>ready made</i> emended to <i>ready-made</i>
+
+<p>04921-2:  The phonetic transcription [gleIs]
+replaces a BNC transcription <i>glace</i> accompanied by an event entity
+identifying this word as having been pronounced 
+as &quot;glaice&quot;.  In
+04922 the transcription <i>glace</i> is given no such annotation,
+so CHRISTINE assumes it was pronounced in the standard way and
+gives it the standard spelling <i>glac&eacute;</i>.
+
+<p>04925:  <i>wood'un</i> emended to <i>wood 'un</i>
+
+<p>04947:  BNC has <i>farce.</i> as one word, with the full stop 
+not split off as
+a separate unit.  In consequence, the BNC s-unit numbering treats
+as a single s-unit what by its own standards would normally be two.
+
+<p>04955:  In <i>But by when I</i>, 
+the word <i>by</i> is taken to be the Northern English
+exclamation representing surprise/annoyance, and is wordtagged UX
+(the speaker, Sally144, is registered as Lancashire dialect).
+
+<p>04979:  <i>up to top of &lt;address&gt;'s</i>:  in the BNC file, 
+the anonymization
+process has introduced a spurious space before the apostrophe.
+
+<p>04989:  BNC has <i>wents</i>, marked &quot;sic&quot;, 
+where the expected word would be
+<i>went</i> (<i>so she wents into town</i>).  The speaker, Maurice143, is
+registered as Lancashire dialect, so the form <i>wents</i> is
+taken to represent <i>went</i> with the final affrication characteristic
+of Liverpool speech, rather than being morphologically nonstandard;
+it is shown as <i>went</i> in CHRISTINE.
+
+</body>
+</html>
+

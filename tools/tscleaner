@@ -1,0 +1,67 @@
+#!/usr/bin/python
+
+import sys, string
+
+def is_punct(word):
+    return word[:7] == "*punct*"
+
+def massage_sentence(sentence):
+
+    new_sentence = []
+
+    # merge adjacent duplicate punctuation
+    prev = None
+    for word in sentence:
+        if is_punct(word) and word == prev:
+            word = None
+        if word:
+            new_sentence.append(word)
+        prev = word
+
+    return new_sentence
+        
+
+def valid_sentence(sentence):
+    txt = string.join(sentence, "/")
+
+    # Drop sentences that are freakishly short.
+    if len(sentence) < 5:
+        #sys.stderr.write("sentence too short: %s\n" % txt)
+        return 0
+
+    # Drop sentences w/ weird one-character words
+    for word in sentence:
+        if len(word) == 1 and word not in "aio0123456789&":
+            #sys.stderr.write("bad one-char word  '%s' in %s\n" % (word, txt))
+            return 0
+
+    # Drop sentences w/ adjacent punctuation items
+    prev = sentence[0]
+    for word in sentence[1:]:
+        if word[:7] == "*punct*" and prev[:7] == "*punct*":
+            #sys.stderr.write("adjacent punct: %s %s %s\n" % (prev, word, txt))
+            return 0
+        prev = word
+
+    return 1
+
+total = 0
+valid = 0
+sentence = []
+for token in sys.stdin.xreadlines():
+    token = token.strip()
+    sentence.append(token)
+    if token == "*break*":
+        sentence = massage_sentence(sentence)
+        total += 1
+        if valid_sentence(sentence):
+            valid += 1
+            for x in sentence:
+                print x
+        sentence = []
+
+invalid = total-valid
+
+sys.stderr.write("Found %d sentences.\n" % total)
+sys.stderr.write("Dropped %d as invalid (%.1f%%).\n" % (invalid, 100.0*invalid/total))
+    

@@ -1,0 +1,106 @@
+<html>
+<body>
+
+<h1>Text T08</h1>
+
+<h2>Source</h2>
+<p>BNC file KBX
+
+<h2>Date</h2>
+<p>10 to 17 Jan 1992
+
+<h2>Place</h2>
+<p>various places in Staffordshire
+
+<h2>Locale/activities</h2>
+<p>
+<ul>
+<li>div 058602  (Newcastle under Lyme) listening to a talk/sermon
+<li>div 058603  (Trentham) talking to friends/conversation
+<li>div 058701  (Clayton) talking to friend/conversation
+<li>div 058702  (Clayton) discussing Bible/conversation
+</ul>
+<h2>Identified Speakers</h2>
+<ul>
+<li>Martin034, m, 56, taxi driver, MD, C2
+<li>Helen035, f, 60, housewife, FO, XX
+<li>Hannah036, f, 60, housewife, FO, XX
+<li>Alan037, m, 50, occupation unspecified, MD, XX
+</ul>
+
+<h2>Relationships</h2>
+<p>Four friends.
+
+
+<h2>Dialect Classification</h2>
+<p>Martin034 and Alan037 are assigned the BNC dialect code appropriate to the
+Stoke on Trent area.  Helen035 and Hannah036 are given the &quot;European
+accent&quot; code, and no mother tongue is shown for them.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Martin034 as C2 (agreeing with SOC:  code 874, IIIM), and
+leaves others unclassified.
+
+
+<h2>Emendations and Comments</h2>
+
+<p>00774: <i>the widows might</i> emended to <i>the widow's mite</i> 
+(transcriber's misunderstanding)
+
+<p>00778:  <i>in er big town</i> emended to <i>in a big town</i> 
+(since there would normally be
+no difference in pronunciation, and the latter makes good sense)
+
+<p>00778:  <i>the cross is er all the criminals</i>:  
+it is tempting in the context
+to emend this to <i>the crosses on the criminals</i> or <i>the cross is
+on the criminals</i>, but neither change seems fully cogent so the
+BNC wording has been let to stand
+
+<p>00804:  <i>in Dartfield</i> emended to <i>Ian Dartfield</i> 
+(to make sense in context; NB that
+</i>Dartfield</i> has not been found as a place-name in gazetteers consulted)
+
+<p>00812:  <i>self started</i> emended to <i>self-started</i>
+
+<p>00875:  This turn would make much more sense if one took the first word,
+<i>of</i>, to be a transcriber mishearing of <i>have</i>.  But this
+emendation seemed too bold to adopt.
+
+<p>00879:  BNC has <i>it's all dated in isn't it</i>; 
+this makes little sense, and
+in context it seems likely that the speaker has turned <i>data</i> into
+a verb and used its past participle -- the difference in pronunciation
+would be small for any speaker and nonexistent for some dialects.
+
+<p>00919ff.  contain several Biblical quotations marked (by 
+vocal shift entities) as read aloud.
+The transcriptions of the wording are often clearly
+mistaken (and these passages can be used to demonstrate the
+quality of the transcriptions more generally); they have been
+corrected here by reference to the original texts.  Unfortunately,
+whichever translation the speaker was reading from was not 
+identical either to the King James or the Revised Standard Version.
+
+<p>00919:  <i>where as</i> emended to <i>whereas</i>
+
+<p>00919:  <i>the luck we thing the lashing of the teeth</i> 
+emended to <i>the like weeping
+the gnashing of the teeth</i> (here the speaker appears to be
+paraphrasing Matthew 8:12 rather than directly reading, 
+and the transcriber's <i>luck</i> is conjectured to be <i>like</i>
+in its colloquial &quot;hedging&quot; use)
+
+<p>00933:  <i>decline</i> emended to <i>recline</i> (Matthew 8:11)
+
+<p>00938:  <i>must of done</i> emended to <i>must've done</i>
+
+<p>00960:  <i>and we've taught</i> emended to <i>and you've taught</i> 
+(assuming that a
+transcription error is more likely than that the speaker misread
+Luke 13:26)
+
+</body>
+</html>
+

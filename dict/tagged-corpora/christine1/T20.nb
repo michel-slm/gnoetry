@@ -1,0 +1,105 @@
+<html>
+<body>
+
+<h1>Text T20</h1>
+
+<h2>Source</h2>
+<p>BNC file KDA
+
+<h2>Date</h2>
+<p>29 Nov to ? Dec 1991
+
+<h2>Place</h2>
+<p>Camberley, Surrey
+
+<h2>Locale/activities</h2>
+<p>at work, conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Hugh079, m, 25, aircraft engineer, SE, C2
+<li>Kurt080, m, 24, aircraft engineer, WA, C2
+<li>Adrian081, m, 21, aircraft engineer, SE, C2
+
+</ul>
+
+<h2>Relationships</h2>
+<p>BNC states that Hugh079 and Kurt080, and other speakers not represented in
+the CHRISTINE extract, are colleagues.  It is obvious that Adrian081 is
+also one of their colleagues, though his code is omitted from the BNC
+statement.
+
+
+<h2>Dialect Classification</h2>
+<p>Hugh079 and Adrian081 are assigned the BNC 
+&quot;Home Counties&quot; dialect code
+applicable to Surrey.  Kurt080 is assigned the 
+&quot;Wales&quot; code, and this diversity is plausible in the context 
+of a professional workplace.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Hugh079 as C2 and leaves the others unclassified.  Their
+occupation is SOC code 516, IIIM, so all should be C2.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>02791:  <i>you're you're own</i> emended to <i>your your own</i>
+
+<p>02807:  BNC has <i>singer- songwriter</i> as separate words, 
+but with the first
+ending in a hyphen.  The term is a fixed phrase rather than
+a productive combination, so CHRISTINE treats it as a single
+hyphenated word.
+
+<p>02871, 02873:  <i>hallo</i> emended to <i>hello</i>
+
+<p>02893:  <i>go an see</i> emended to <i>go and see</i> 
+(between two continuants at the same
+place of articulation, presence or absence of [d] is barely
+phonetically distinguishable, so even the spelling <i>an'</i> for
+what the phrase obviously means would seem excessively pedantic)
+
+<p>02900, 02909, 02936, 02937, 02952, 02957:  
+<i>C D</i> emended to <i>CD</i>, <i>C D's</i> emended to <i>CDs</i> 
+(compact disc[s])
+
+<p>02952:  <i>thousand pounds worth</i> emended to <i>thousand pounds' worth</i>
+
+<p>02963, 02964: <i>A M</i> emended to <i>AM</i>.  
+(Seems to be used as a Citro&euml;n model
+name.  At this period Citro&euml;n marketed an <i>AX</i> and an
+<i>XM</i>; I cannot trace an <i>AM</i>, but the speaker may have been
+confused between the two model names just cited.)
+
+<p>02964:  <i>Citroen</i> emended to <i>Citro&euml;n</i>, twice 
+(standard orthography for the
+French car manufacturer)
+
+<p>02970:  <i>A T Cobra</i> emended to <i>AC Cobra</i> 
+(AC is believed to be the name of the
+original manufacturing company)
+
+<p>02972, 02984:  <i>jag</i> emended to <i>Jag</i> (short for <i>Jaguar</i>)
+
+<p>02995:  <i>three eight</i> emended to <i>V eight</i> 
+(with fricatives the audible difference
+would be small; V-8 and V-12 are two kinds of high-performance
+engine structure)
+
+<p>02995:  <i>Chevvy</i> emended to <i>Chevy</i> 
+(believed to be the more usual abbreviation
+for <i>Chevrolet</i>)
+
+<p>03019:  <i>your</i> emended to <i>you're</i>
+
+<p>03024:  <i>M O T</i> emended to <i>MoT</i> 
+(Ministry of Transport [scil. <i>test certificate</i>])
+
+<p>03037, 03038:  <i>Rekcon</i> emended to <i>Reckon</i>
+
+</body>
+</html>
+

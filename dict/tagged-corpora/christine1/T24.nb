@@ -1,0 +1,69 @@
+<html>
+<body>
+
+<h1>Text T24</h1>
+
+<h2>Source</h2>
+<p>BNC file KDN
+
+<h2>Date</h2>
+<p>15 to 17 Apr 1992
+
+<h2>Place</h2>
+<p>Belfast
+
+<h2>Locale/activities</h2>
+<p>at home, watching TV and reading/conversation (div
+045807, just &quot;conversation&quot;)
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Melvin092, m, 53, unemployed, IR, DE
+<li>Jane093, f, 45, housewife, IR, DE
+<li>Kaley094, f, 3, n/a, IR, DE
+<li>Melvin095, m, 20, painter, IR, C2
+</ul>
+
+<h2>Relationships</h2>
+<p>Melvin092 and Jane093 are man and wife.
+Melvin095 is their son.
+Kaley094 is described in BNC as a neighbour of Melvin092.  (These two and a
+third person not represented in the CHRISTINE extract, a window cleaner,
+are all defined as neighbours; possibly Kaley094 is the daughter of the
+window cleaner?)
+
+
+<h2>Dialect Classification</h2>
+<p>The BNC coding states that all speakers in this file have Irish Gaelic as
+their mother tongue.  Since they live in Belfast and all, including a
+three-year-old, are shown as speaking fluent English in the transcriptions,
+I find this unbelievable and take it for a political rather than linguistic
+statement.  CHRISTINE classifies them all as English-speakers with dialect
+code IR.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies all speakers DE except Melvin095 who is unclassified.  The
+latter is SOC code 507, IIIM, so C2.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>03210:  <i>ariel</i> emended to <i>aerial</i>
+
+<p>03204:  <i>Mickie</i> emended to <i>Mickey</i> (Mickey Duff, boxing promoter)
+
+<p>03243:  <i>second hand</i> emended to <i>second-hand</i>
+
+<p>03244:  <i>A C twenty</i> emended to <i>AC twenty</i> 
+(appears to be a type of recording tape)
+
+<p>03363:  <i>Johhny</i> emended to <i>Johnny</i>
+
+<p>03370:  <i>Arthur Ash</i> emended to <i>Arthur Ashe</i> 
+(American tennis player)
+
+</body>
+</html>
+

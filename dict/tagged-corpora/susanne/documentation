@@ -1,0 +1,2227 @@
+
+<HTML>
+<HEAD>
+   <TITLE>SUSANNE_R5 Documentation</TITLE>
+</HEAD>
+<BODY>
+
+<H1>
+The SUSANNE Corpus: Documentation</H1>
+<h3>Release 5, 2000.08.11</h3>
+<p>
+Geoffrey Sampson
+<BR>School of Cognitive &amp; Computing Sciences
+<BR>University of Sussex
+<br>Falmer, Brighton BN1 9QH, England
+<br>
+<BR>geoffs@cogs.susx.ac.uk
+<br>
+<br>
+
+<table border cellpadding=10>
+<tr><td>
+
+
+<h3 align=center>Change of Address</h3>
+
+<p>
+In the past, the SUSANNE Corpus and other language-engineering resources
+produced by my research team have been scattered at different internet
+locations not all under my control, and they have more than once been shifted
+to new addresses without notification to me.  I apologize to users for
+the frustrations this has sometimes caused.  To avoid such problems in
+future, I have acquired my own internet domain, which I intend to 
+maintain indefinitely.  My Web home page, which is about to move to:
+<blockquote><p>
+	<tt>http://www.grsampson.net/</tt>
+</p></blockquote>
+will from now on always include a pointer to a list of the current locations of
+the SUSANNE Corpus and other research resources produced under my
+direction; as soon as practical, those resources will themselves be
+shifted into the <tt>grsampson.net</tt> domain, where (D.V.) they will not be 
+moved again.
+</p>
+</td></tr>
+</table>
+
+<h2>Contents</h2>
+
+<p>
+<menu>
+<li>Version Information
+<li>1. Introduction 
+<li>2. Structure of the Corpus 
+<li>3. The Lexicon File 
+<li>4. The Text Files 
+<menu>
+<li>4.1 Field Structure 
+<li>4.2 Reference Field 
+<li> 4.3 Status Field 
+<li> 4.4 Wordtag Field 
+<li> 4.5 Word Field 
+<li> 4.6 Lemma Field 
+<li> 4.7 Parse Field 
+<li> 4.8 Ranks of Constituent 
+<li> 4.9 Functiontags and Indices 
+<li> 4.10 The Formtags 
+<li> 4.11 Non-alphanumeric Formtag Suffixes 
+<li> 4.12 The Functiontags 
+</menu>
+<li> 5. Innovations in Release 5 
+<menu>
+<li> 5.1 Correction of Analytic Errors 
+<li> 5.2 Additional File 
+<li> 5.3 Reference Field Format 
+<li> 5.4 Subdivision of Texts 
+<li> 5.5 Revisions to the Annotation Scheme 
+</menu>
+<li> 6. Errors in the Source Texts 
+<li> 7. Sources 
+<li>Notes
+<li>References
+<li>URL List
+</menu>
+</p>
+
+
+
+<h2>Version Information</h2>
+
+<p>
+<strong>Release 5</strong> is the first new release of the SUSANNE Corpus for almost
+six years, and incorporates larger changes than did previous 
+releases.  Rather than detail these here, they are discussed
+in a separate section of this document, &quot;Innovations in Release 5&quot;,
+&#167;5 below.
+<p>
+<strong>Release 4</strong> of 1994.11.07 
+corrected a handful of errors discovered in checking
+the proofs of <i>English for the Computer</i> and otherwise.
+<p>
+<strong>Release 3</strong> of 1994.04.04 corrected errors which came to light 
+during the process of finalizing the MS of the book <i>English for the Computer</i>.
+One proofreading technique applied in the creation of Release 3 
+was to read through the entire Corpus text printed in a format
+which used indentation to display the parse-field bracketing structure,
+in order to catch structural errors such as inappropriate placement of
+postmodifier constituents within parse trees.
+Also, this documentation file was provided with
+a detailed listing of misprints and similar errors
+in the Corpus texts, showing which of them stem from the original
+publications (and are therefore preserved in the SUSANNE Corpus),
+and which were introduced in the work of creating the Brown Corpus
+(and have accordingly been eliminated from SUSANNE).
+<p>
+<strong>Release 2</strong>, dated 1993.06.02, corrected a number of errors found in Release 1;
+I am grateful to all those users who helped to find them.  It also
+contained one minor change in annotation conventions:  in the parse field,
+from Release 2 onwards all node labels are written within square brackets
+(Release 1 included a redundant distinction between square brackets for
+ordinary nodes and angle brackets 
+for &quot;ghost&quot; (or &quot;trace&quot;) nodes, which are
+distinguished in several other ways).  This documentation file now includes
+a listing of the text sources on which the Corpus is based, and
+incorporates some minor changes in wording.
+<p>
+<strong>Release 1</strong> of the SUSANNE Corpus was completed on 1992.09.06.
+
+
+<h2>1. Introduction</h2>
+
+<p>
+The SUSANNE Corpus was created, with the sponsorship of the Economic
+and Social Research Council (UK), as part of the process of developing
+a comprehensive language-engineering-oriented 
+taxonomy and annotation scheme for the (logical
+and surface) grammar of English.&#185;  The SUSANNE scheme attempts to provide 
+a method of representing all aspects of English grammar which are sufficiently
+definite to be susceptible of formal annotation, with the categories and
+boundaries between categories specified in sufficient detail that, ideally,
+two analysts independently annotating the same text and referring to the
+same scheme must produce the same structural analysis.  The SUSANNE scheme
+may be likened to a &quot;Linnaean taxonomy&quot; of the grammatical domain:  its
+aim (comparable to that of Linnaeus's eighteenth-century taxonomy for the
+domain of botany) is not to identify categories which are theoretically
+optimal or which necessarily reflect the psychological organization of speakers'
+linguistic competence, but simply to offer a scheme of categories and ways
+of applying them that make it practical for 
+language-engineering researchers to register
+everything that occurs in real-life usage systematically and unambiguously,
+and for researchers at different sites to exchange empirical grammatical data 
+without misunderstandings over local uses of analytic terminology.  On 
+reasons why such a scheme is needed 
+at the present juncture in language-engineering research,
+see e.g. Sampson (1992, 2001 ch. 6).
+<p>
+Note that a sharp distinction is drawn here 
+between the terms <strong>scheme</strong> and
+<strong>system</strong>.  A &quot;parsing scheme&quot;, or &quot;analytic scheme&quot;, refers to a range of
+notations and guidelines for using them which prescribe to a human analyst
+what the appropriate grammatical annotation for a language example should
+be.  A parsing &quot;system&quot; on the other hand refers to a software system which
+automatically produces analyses (according to some parsing scheme) of input
+language examples.  A parsing scheme defines the target which a parsing system
+hits (or misses).  The SUSANNE Corpus represents part of the definition of
+a parsing scheme.  It has been produced largely manually, not as the output
+of an automatic parsing system.
+<p>
+The SUSANNE analytic scheme is defined in detail in a book by myself,
+<i>English for the Computer</i>, published 
+under the Clarendon imprint of Oxford University Press in
+1995 (Sampson 1995 - abbreviated below as <i>EFC</i>).  
+The SUSANNE scheme aims to specify annotation norms for
+the modern English language; it does not cover other languages, although it
+is hoped that the general principles of the SUSANNE scheme may prove
+helpful in developing comparable taxonomies for these.
+<p>
+Although I collaborated during the later stages of developing
+the SUSANNE Corpus with the US/EU-sponsored 
+Text Encoding Initiative (URL 1),
+the SUSANNE Corpus is not a &quot;TEI-conformant&quot; resource.
+Various aspects of the annotation scheme were decided in
+such a way as to facilitate a 
+possible move to TEI conformance in later releases, but
+the working timetable of the Initiative meant that relevant aspects
+of the TEI Guidelines were not yet complete at the point when
+the SUSANNE Corpus was ready for release.  The TEI Guidelines are in
+any case very general, but at the time of writing it seems possible
+that the Ide/V&eacute;ronis &quot;Corpus Encoding Standard&quot; (URL 2) may
+become a special case of the TEI system which achieves
+recognition as a standard way of encoding this type of information.
+If that happens, it is my intention to circulate a CES-conformant version
+of SUSANNE alongside the current version.  (However,
+I believe many users will always prefer to work with the Corpus in
+its current fixed-field format.)
+<p>
+The brief description of the SUSANNE Corpus which follows cannot replace the
+very detailed statements to be found in <i>EFC</i>, and any
+user aiming to do serious work with the Corpus or its annotation scheme
+would need to consult the book.  Nevertheless, it may be useful to have
+a summary statement included with the electronic Corpus.
+<p>
+The present SUSANNE annotation scheme originated in work carried out by
+myself in collaboration with Prof. Geoffrey Leech FBA and others in the 
+years 1983-85 to produce a database of manually analysed sentences from the
+LOB Corpus of written British English, as a source of statistics for
+probabilistic automatic-parsing techniques; this database, which has not
+been (and will not now be) published, is described in Garside et al. 
+(1987: ch. 7).  The annotation scheme of this &quot;Lancaster-Leeds Treebank&quot; 
+represented surface grammar only, without indications of logical form.  It 
+subsequently seemed desirable to extend this scheme to include methods for 
+representing logical grammar, and to refine both surface and logical aspects 
+of the annotation scheme by applying it to a larger body of texts.  The only 
+way that a parsing scheme can in practice be made increasingly adequate is
+in the way that the English Common Law develops, by collecting and
+systematizing the body of precedents generated through detailed consideration
+of more and more individual cases that arise in real life.  Accordingly,
+the SUSANNE Project took a subset of the Brown Corpus of written American 
+English which had been manually analysed by Alvar Elleg&aring;rd's 
+group at Gothenburg (Elleg&aring;rd 1978), and reworked the annotations
+in this under-used resource in order to turn them into a scheme consistent
+with that used in the Lancaster-Leeds Treebank but including specifications
+of logical as well as surface structure:  several categories of information
+not indicated in either Lancaster-Leeds or Gothenburg schemes were 
+also added.&#178;  (For the Brown and LOB Corpora, see e.g. 
+Garside et al. (1987: 4-5), URL 3.)
+
+<p>
+The SUSANNE analytic scheme has thus been developed on the basis of
+samples of both British and American English.  It was initially oriented
+towards written language only, and the SUSANNE Corpus contains
+exclusively written-language samples.
+However, in later work sponsored first by the Royal Signals and Radar
+Establishment, and more recently by the Economic and Social Research
+Council, my team has produced extensions to the scheme for annotating
+the distinctive structural phenomena of the spoken language, and has
+applied these to samples of recent spontaneous spoken English
+(the CHRISTINE Corpus, URL 4).  The first stage of the CHRISTINE
+Corpus, comprising analyses of a demographically balanced cross-section
+of English spoken in all parts of the UK within the last decade,
+was released in August 1999 (URL 5), and is one of the first
+analysed speech corpora to become available anywhere in the English-speaking
+world (or, so far as I know, outside it).  The speech-related aspects
+of the analytic scheme are outlined in ch. 6 of <i>EFC</i>, 
+and discussed in greater detail in the CHRISTINE
+documentation file (which is available as a Web page
+at URL 6).
+
+<p>
+It should be noted that the SUSANNE analytic scheme has emerged
+through a process of detailed critical discussion of analytic standards
+by about a dozen people over almost twenty years.  Apart from myself,
+the leading role in the early years of these discussions was taken
+by Geoffrey Leech, whose standing as an English grammarian needs no
+emphasis.
+
+<p>
+The SUSANNE Corpus itself comprises an approximately 130,000-word subset
+of the Brown Corpus of American English, annotated in accordance with the 
+SUSANNE scheme.  The original motives for producing this database included 
+that of providing better statistics for probabilistic parsing; but in this 
+respect the SUSANNE Project was overtaken 
+after its inception by projects (notably 
+Mitchell Marcus's Pennsylvania Treebank project, cf. Marcus et al. (1993),
+URL 7) 
+which have used quasi-industrial methods to generate far
+larger bodies of grammatically-analysed material.  However, the SUSANNE scheme
+may be unparallelled in the extent to which its categories have been refined
+and tested through detailed consideration of the almost endless small quirks
+of the texts to which they have been applied, and in the degree of precision to
+which the resulting guidelines for using the categories have been documented
+- thus defining analytic standards which permit annotation of future material
+to be extremely self-consistent.  The SUSANNE scheme has been winning
+a measure of international recognition in this respect;
+for instance, a 1995 report of the European Union EAGLES language-engineering
+standards initiative described it as &quot;a unique achievement&quot;, and
+D. Terence Langendoen, then President of the Linguistic Society of
+America, wrote in 1997 that its &quot;detail ... is unrivalled&quot; (Langendoen
+1997: 600).&#179;
+
+<p>
+Accordingly the SUSANNE Corpus is offered
+to the research community primarily as a demonstration of the application
+of the parsing scheme, evidencing the fact that the scheme has survived the
+test of experience rather than being a merely aprioristic system.  The
+SUSANNE Corpus functions, as it were, like a collection of type specimens
+appended to a botanical taxonomy.
+
+<p>
+Although the Corpus itself was created as ancillary to the parsing
+scheme, it has been pleasing, during the years since its initial
+release, to find that it has been widely used as a research resource
+in its own right, often by researchers and groups very distant from
+the site where it was created.
+There are no legal restrictions on copying or using the SUSANNE Corpus,
+though it would not be a friendly act for an individual or agency other
+than the Oxford Text Archive to set up as an alternative distributor, or 
+(without permission) to exploit the information in the Corpus in order 
+to promote a rival annotation scheme.  Any person or group publishing work
+based on the SUSANNE Corpus is requested to acknowledge the roles of
+the Economic and Social Research Council (UK) as sponsor and the University
+of Sussex as grantholder.
+
+<p>
+Each successive release of the SUSANNE Corpus has eliminated errors
+discovered in earlier releases.  The number of errors found and
+corrected between releases has fallen very considerably as the years
+have gone by, but there will undoubtedly still be some left.
+I shall be extremely grateful if users discovering errors will log
+them and send me details.
+
+
+<h2>2.  Structure of the Corpus</h2>
+
+
+<p>
+Release 5 of the SUSANNE Corpus comprises 66 files:
+
+<ul>
+<li>the <tt>documentation</tt> file, a copy of which you are now reading
+
+<li>a <tt>lexicon</tt> file, listing the wordtypes represented 
+    in the Corpus
+
+<li>64 text files, each containing an annotated version of one 2000+ word
+   text from the Brown Corpus
+</ul>
+
+<p>
+Sixteen texts are drawn from each of the following Brown genre categories:
+<blockquote><table>
+<td>	A	<td>press reportage<tr>
+<td>	G	<td>belles lettres, biography, memoirs<tr>
+<td>	J	<td>learned (mainly scientific and technical) writing<tr>
+<td>	N	<td>adventure and Western fiction<tr>
+</table></blockquote>
+The Corpus thus samples each of the four broad genre groups established
+on the basis of word-frequency data by Hofland &amp; Johansson (1982: 27).
+For publication details of the original texts, 
+see &#167;7, &quot;Sources&quot;, below.
+
+<p>
+The text files average about 83 kilobytes in size; the entire Corpus
+totals about six megabytes.  The names of the text files 
+are those of the respective Brown texts, e.g. A01, N18.
+
+
+<p>
+The Corpus comprises data files only, structured in a way that makes 
+the task of extracting information as straightforward as possible.
+We do not see it as part of our task to produce special-purpose
+software for data extraction. We
+could not do that, since we have no way of knowing what sorts of questions
+future researchers will want to pose to our data. (SUSANNE has been used
+for various kinds of research that I had no thought of when I first put it into
+circulation.) 
+
+<p>
+This last point seems worth making, because since the first release
+of SUSANNE I have more than once encountered comments suggesting that,
+in failing to supply accompanying utility software, we left a job half
+done. In response, let me quote remarks I made in a recent book review
+(Sampson 1998: 365) about the approach which sees utility software as an
+essential accompaniment to corpus data:
+<BLOCKQUOTE>
+It is hard to see this as a wise policy for allocating scarce
+research resources. In practice there are usually two possibilities when
+one wants to exploit corpus data. Often, one wants to put very obvious
+and simple questions to the corpus; in that case, it is usually possible
+to get answers via general-purpose 
+Unix commands like <tt>grep</tt> and <tt>wc</tt>, avoiding
+the overhead of learning special-purpose software. Sometimes, the questions
+one wants to put are original and un-obvious; in those cases, the developer
+of a corpus utility is unlikely to have anticipated that anyone might want
+to ask them, so one has to write one's own program to extract the information.
+No doubt there are intermediate cases where a corpus utility will do the
+job and <tt>grep</tt> will not. 
+I am not convinced that these cases are common enough
+to justify learning to use such software, let alone writing it.
+</BLOCKQUOTE>
+
+
+
+<h2>3.  The Lexicon File</h2>
+
+<p>
+The <tt>lexicon</tt> file contains an alphabetized list of all pairs of wordform
+and wordtag that occur at least once in the Corpus.  This is an
+innovation in Release 5, prompted by a recommendation relating to
+speech corpora made by the EAGLES Spoken Language Working Group
+(Gibbon et al. 1997: 170, Recommendation 6).
+(For the EAGLES initiative, see URL 9.)
+Including such a list is potentially no less valuable for written-language
+than for speech corpora, and separate listing of grammatically-distinct
+uses of single wordforms is an obvious way of increasing its value.
+
+<p>
+Each line of the <tt>lexicon</tt> file contains a wordform followed by a wordtag,
+separated by a tab character, and terminated by a newline.  Wordforms
+differing only in the case of one or more letters are separately listed
+(e.g. <tt>OSLO</tt> and <tt>Oslo</tt> have separate entries).  The alphabetization
+uses the sequence A, a, B, b, ... (rather than A, B, ..., Z, a, b, ...).
+
+
+
+<h2>4.  The Text Files</h2>
+
+<h3>4.1  Field Structure</h3>
+
+<p>
+Each file has a line (terminating in a newline character) for each &quot;word&quot; of
+the original text; but &quot;words&quot; for SUSANNE purposes are often smaller than
+words in the ordinary orthographic sense, for instance punctuation marks
+and the apostrophe-s suffix are treated as separate words and assigned lines
+of their own.  (For details on the rules by which orthographic words
+are segmented, as well as on all other analytic matters mentioned below,
+see <i>EFC</i>.)
+
+<p>
+Each line of a SUSANNE file has six fields separated by tabs (that is,
+there is one tab after each of fields 1 to 5, but a newline after field 6).
+Each field on every line contains at least one character.  A typical
+short sequence of lines is:
+<blockquote>
+<pre>
+N06:0180.12	-	NN1u	Baldness&nbsp;	baldness	[S[Ns:s.Ns:s]
+N06:0180.15	-	VBDZ	was&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	be	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	[Vsu.
+N06:0180.18	-	VVGt	attacking	attack&nbsp;&nbsp;	.Vsu]
+N06:0180.21	-	APPGm	his&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	his&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	[Ns:o.
+N06:0180.24	-	NN1c	pate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	pate&nbsp;&nbsp;&nbsp;&nbsp;	.Ns:o]S]
+</pre>
+</blockquote>
+<p>
+The six fields on each line are:
+
+<ol>
+<li>	reference
+<li>	status
+<li>	wordtag
+<li>	word
+<li>	lemma
+<li>	parse
+</ol>
+
+<p>
+Apart from the tab and newline characters used to structure fields and
+records, all bytes in each of the 64 SUSANNE files are drawn from a subset of 
+the 94 graphic character allocations of the International Reference Version
+(&quot;IRV&quot;) of 
+ISO 646:1983 <i>Information Processing - ISO 7-bit coded character
+set for information interchange</i>, from hexadecimal 21 (exclamation mark)
+to hex 7E (tilde).  These codes are assumed for SUSANNE purposes to
+represent the graphic symbols assigned by the IRV system.
+Twelve members of the IRV character set are not used in the Corpus, namely
+(all codes hexadecimal):
+<blockquote><table>
+<tr><td>23	<td>gate
+<tr><td>24	<td>generalized currency unit
+<tr><td>27	<td>prime
+<tr><td>2F	<td>solidus
+<tr><td>5C	<td>reverse solidus
+<tr><td>5E	<td>circumflex
+<tr><td>5F	<td>underline
+<tr><td>60	<td>grave
+<tr><td>7B	<td>opening curly bracket
+<tr><td>7C	<td>vertical bar
+<tr><td>7D	<td>closing curly bracket
+<tr><td>7E	<td>tilde
+</table></blockquote>
+
+The space character, hex 20, which is classified by ISO 646 as a control code
+also does not occur in the SUSANNE Corpus.
+
+<p>
+Where text characters cannot be adequately represented directly within the
+resulting 82-member character set, they are represented by entity names
+within angle brackets.  Where possible these are drawn from Appendix D
+to ISO 8879:1986, <i>Information Processing - Text &amp; Office Systems -
+Standard Generalized Markup Language (SGML)</i>.  For instance, 
+<tt>&lt;eacute&gt;</tt>
+stands for <i>&eacute;</i>.  Symbols in angle brackets are
+used also to represent such things as typographical shifts, which for
+purposes of grammatical analysis are conveniently represented as items
+within the word-sequence:  e.g. <tt>&lt;bital&gt;</tt> stands for &quot;begin italics&quot;.  The complete set of such entity names used in SUSANNE
+Release 5 is listed in <i>EFC</i>, &#167;2.32,
+except for <tt>&lt;docbrk&gt;</tt>, which is new in Release 5 and is
+defined in &#167;5.4 of this document, below.
+
+<h3>4.2  Reference Field</h3>
+ 
+<p>
+The reference field contains eleven bytes which give each line a reference 
+number that is unique across the SUSANNE Corpus, e.g. <tt>N06:0180.15</tt>.
+The first three bytes (here <tt>N06</tt>) are the file name; the fourth byte is 
+always a colon; bytes 5 to 8 (here <tt>0180</tt>) are the number of the line in 
+the &quot;Bergen I&quot; version of the Brown Corpus on which the relevant
+word appears (Brown line numbers normally increment in tens, with occasional
+odd numbers interpolated); the ninth byte is always a full stop;
+and bytes 10 and 11 (here <tt>15</tt>) 
+are a two-digit number identifying the individual
+SUSANNE line, i.e. the individual word or punctuation mark
+(word numbers normally increment in threes, again with occasional
+intermediate numbers).  The word-numbering system is one of the respects
+in which Release 5 differs from previous SUSANNE releases.
+
+
+
+<h3>4.3  Status Field</h3>
+
+
+<p>
+The status field contains one byte.  The letters <tt>A</tt>
+and <tt>S</tt> show that the
+word is an &quot;abbreviation&quot; or &quot;symbol&quot;, respectively, as defined by Brown
+Corpus codes (Francis &amp; Ku&#269;era 1989: 12).
+The letter <tt>E</tt> shows that the word is (or is part of) a misprint or 
+solecism in the original text (for details see 
+"Errors in the Source Texts",
+&#167;6 below).  On the great majority of lines, to which none of these
+three categories apply, the status field contains a hyphen character (this
+applies to each line in the short SUSANNE extract displayed in &#167;4.1 above).
+
+
+
+<h3>4.4  Wordtag Field</h3>
+
+
+<p>
+The SUSANNE wordtag set is based on the &quot;Lancaster&quot; tagset listed in Garside
+et al. (1987: Appendix B), with some additional distinctions and
+modifications.
+In line <tt>N06:0180.15</tt> (see &#167;4.1 above), 
+the wordtag <tt>VBDZ</tt> applies to the
+word <i>was</i> (only).
+The SUSANNE tagset comprises 353 distinct wordtags, not counting tags for
+elements of &quot;grammatical idioms&quot; (see below); a few of these wordtags
+never occur in the SUSANNE Corpus.  The wordtags are listed, and their
+application rigorously defined, in <i>EFC</i> - in the case
+of closed wordclasses, by enumeration of their members, and in the case
+of open classes by rules for choice between alternative tags.  These rules
+refer to information in a specified published dictionary (the <i>Oxford
+Advanced Learner's Dictionary of Current English</i>, 3rd edition).
+
+<p>
+Note particularly that the tag <tt>YG</tt> appears in the wordtag field 
+to represent a &quot;ghost&quot; - the logical
+position of a constituent which has been shifted elsewhere, or deleted,
+in the surface grammatical structure.
+
+
+
+
+
+<h3>4.5  Word Field</h3>
+
+<p>
+The word field contains a segment of the text, often coinciding with a word
+in the orthographic sense but sometimes, as noted above, including only
+part of an orthographic word.  
+(In line <tt>N06:0180.15</tt> the word field contains <tt>was</tt>.)
+In general the word field represents all and
+only those typographical distinctions in the original documents which
+were recorded in the Brown Corpus (Francis &amp; Ku&#269;era 1989: 10-15), though
+in certain cases the SUSANNE Corpus has gone behind the Brown Corpus to
+reconstruct typographical details omitted from Brown.
+
+<p>
+Certain characters have special meanings in the word field, as follows:
+
+<blockquote>
+<table>
+<td valign=top><tt>+</tt>	
+<td>(occurs only as first byte of the word field) shows that the
+contents of the field were not separated in the original text
+from the immediately-preceding text segment by whitespace (e.g. in the
+case of a punctuation mark, or part of a hyphenated sequence split over
+successive SUSANNE lines);<tr>
+
+<td valign=top><tt>-</tt>	
+<td>the line corresponds to no text material (it represents the &quot;ghost&quot; or &quot;trace&quot;
+for a grammatically-moved element);<tr>
+
+<td valign=top><tt>&lt;...&gt;</tt>	
+<td>enclose entity names for special typographical features, as 
+listed in <i>EFC</i>, &#167;2.32.<tr>
+</table>
+</blockquote>
+
+
+
+<h3>4.6  Lemma Field</h3>
+
+
+<p>
+The lemma field shows the dictionary headword of which the text word is
+a form:  the field shows base forms for words which are inflected in
+the text, and eliminates typographical variations (such as 
+sentence-initial 
+capitalization) which are not inherent to the word but relate to
+its use in context. 
+(In line <tt>N06:0180.15</tt>, the lemma field contains <tt>be</tt> as
+the base form of <i>was</i>.) 
+In the case of &quot;words&quot; to which the dictionary-form
+concept is inappropriate, e.g. numerals and punctuation marks, the lemma
+field contains a hyphen.  Orthographic forms in the lemma field are those
+of a specified dictionary (the <i>Oxford
+Advanced Learner's Dictionary of Current English</i>, 3rd edition).
+
+<p>
+The SUSANNE project aimed also to indicate 
+the senses which polysemous words bear
+in context, via codes relating word-tokens to numbered subsenses in a
+specified dictionary.  The book <i>English for the Computer</i> provides a detailed
+coding scheme for representing this information.  Unfortunately, this aspect
+of the project's output proved to contain a number of inadequacies, and
+the information was not included in the finished Corpus.
+In the years since the initial release of SUSANNE, wordsense-coding
+has developed norms of its own, independent of our early work on
+the SUSANNE project (see e.g. Kilgarriff and Palmer 2000,
+URL 10),
+so it no longer seems appropriate to revise and incorporate that 
+material.
+
+
+
+<p>
+<h3>4.7  Parse Field</h3>
+
+
+<p>
+The contents of the sixth field represent the central raison d'&ecirc;tre
+of the SUSANNE Corpus.  They code the grammatical structure of texts as
+a sequence of labelled trees, having a leaf node for each Corpus line.
+
+<p>
+Each text is treated as a sequence of &quot;paragraphs&quot; separated by &quot;headings&quot;.
+A &quot;paragraph&quot; normally coincides with an ordinary orthographic paragraph;
+a &quot;heading&quot; may consist of actual verbal material, or may be merely a
+typographical paragraph division, symbolized <tt>&lt;minbrk&gt;</tt> 
+in the word field.
+(See &#167;5.4, "Subdivision of Texts", for more detail on 
+paragraphs and headings.)
+Conceptually, the 
+internal structure of each paragraph or heading is a labelled
+tree with root node labelled <tt>O</tt> (<tt>Oh</tt> for a heading), 
+and with a leaf node
+labelled with a wordtag for each SUSANNE word or trace, i.e. each line of
+the Corpus.  There will commonly be many intermediate labelled nodes.  
+
+<p>
+Such a tree is represented as a bracketed string in the ordinary way, with
+the labels of nonterminal nodes written &quot;inside&quot; both opening and closing
+brackets (that is, to the right of opening brackets and to the left of
+closing brackets).  This bracketed string is then adapted as follows for
+inclusion in successive SUSANNE parse fields.  Wherever an opening bracket
+immediate follows a closing bracket, the string is segmented, yielding one
+segment per leaf node; and within each such segment, the sequence
+opening-bracket + wordtag + closing-bracket, representing the leaf node,
+is replaced by full stop.  Thus each parse field contains exactly one full
+stop, corresponding to a terminal node labelled with the contents of
+the wordtag field, sometimes preceded by labelled opening bracket(s) and
+sometimes followed by labelled closing bracket(s), corresponding to higher
+tagmas which begin or end with the word on the line in question.
+In line <tt>N06:0180.15</tt>, the parse field entry <tt>[Vsu.</tt>
+shows that <i>was</i> is the first word of a tagma <i>was attacking</i>,
+which as a whole is a <tt>Vsu</tt>, i.e. a progressive verb group beginning
+with the word <i>was</i>.
+
+<p>
+Nonterminal node labels in the SUSANNE scheme contain up to three types of
+information:  a <strong>formtag</strong>, 
+a <strong>functiontag</strong>, and an <strong>index</strong>, in that order.
+In a label containing a formtag and one or both of the other two elements,
+a colon separates the formtag from the other elements.  A functiontag is
+always a single alphabetic character, and an index is a sequence of three
+digits; restrictions on valid combinations of elements within a node label
+mean that complex labels can always be unambiguously decomposed into their
+elements.
+
+<p>
+In total the parse-trees of Release 3 of SUSANNE comprised 267,046 nodes,
+of which 4383 were roots and 156,584 were leaves.  In Release 5, the
+number of leaf nodes is only marginally different at 156,622; 
+other parse nodes have not been re-counted, but their numbers are
+likely also to be very close to the figures for Release 3.
+
+
+
+<h3>4.8  Ranks of Constituent</h3>
+
+
+<p>
+Apart from nodes immediately dominating &quot;ghost&quot; elements, all nodes have 
+labels including formtags, which identify the internal properties of the word 
+or word-sequence dominated by the node.  The shape of a parse-tree is defined
+in terms of a hierarchy of formtag ranks:
+<ol>
+<li>wordrank formtags (begin with two capital letters; formtags
+		of all other ranks begin with one capital and contain 
+		no further capitals)
+
+<li>phrasetags (begin with one of: <tt>N V J R P D M G</tt>)
+
+<li>clausetags (begin with one of:  <tt>S F T Z L A W</tt>)
+
+<li>rootrank formtags (begin with one of:  <tt>O Q I</tt>)
+</ol>
+
+<p>
+Each grammatical clause, whether consisting of one or more words, is given
+a node labelled with a clausetag.  Each immediate constituent of
+a clause, whether there are one or more such constituents and whether the
+constituent consists of one or more words, is given a node labelled with
+a phrasetag, unless the constituent belongs to a wordrank
+category that has no corresponding phraserank category 
+(e.g. punctuation marks, conjunctions), or to a rootrank
+category (e.g. a direct quotation, formtagged <tt>Q</tt>).  Thus a clause consisting
+of one verb will be assigned a clausetag (e.g. <tt>Tg</tt> for present-
+participle clause) which singularily dominates a phrasetag 
+(e.g. <tt>Vg</tt> for &quot;verb group beginning with present participle&quot;) which in turn 
+singularily dominates a wordrank formtag (e.g. <tt>VVGi</tt> for &quot;present participle
+of intransitive verb&quot;).
+
+
+<p>
+Other than by these rules, and in certain other limited circumstances
+specified in <i>EFC</i>, singulary branching does not occur.
+An intermediate phrase node is inserted between a higher phrase
+node and a sequence of words dominated by it only if two or more of those
+words form a coherent constituent within the higher phrase.  A clause which
+fills a slot standardly filled by a phrase (e.g. a nominal clause as subject 
+or object) will not have a phrase node above the clause node unless the
+clause proper is preceded and/or followed by modifying elements that are
+not part of the clause.
+
+<p>
+Detailed rules for deciding constituency in various debatable cases,
+for placing items such as punctuation marks within parse trees, etc.
+are laid down in <i>EFC</i>.
+
+
+
+<h3>4.9  Functiontags and Indices</h3>
+
+
+<p>
+Functiontags, identifying roles such as surface subject, logical object,
+time adjunct, are assigned to all immediate constituents of clauses,
+except for their verb-group heads and certain other constituents for which
+function labelling is inappropriate.
+
+<p>
+Indices are assigned to pairs of nodes to show referential identity between
+items which are in certain defined grammatical relationships to one another.
+For instance, a phrase raised out of a lower clause to act as object in
+a higher clause, as in <i>John expected Mary to admit it</i>, will be
+assigned an index identical to that assigned to the ghost element which marks
+the logical position of the item in the lower clause.  The (artificial)
+example quoted would be represented as:
+<p><tt>
+[Nns:s John] expected [Nns:O999 Mary] [Ti:o [s999 GHOST] to admit [Ni:o it]]
+</tt></p>
+- where the index <tt>999</tt> shows that the ghost acting as logical subject
+(symbolized <tt>s</tt>) of the <i>admit</i> clause is coreferential with <i>Mary</i> which
+acts as surface object (<tt>O</tt>) of the <i>expected</i> clause; the logical object (<tt>o</tt>)
+of the <i>expected</i> clause being the 
+entire infinitival subordinate clause (<tt>Ti</tt>).
+
+In some cases, movement rules displace a constituent into a tagma within
+which it has no grammatical role (for instance, an adverb which is
+logically a clause constituent may interrupt the verb group - sequence
+of auxiliary verbs and main verb - of the clause):  in such cases
+the functiontag is <tt>G</tt> (&quot;guest&quot;).  Constituents which do not logically belong
+below the node which immediately dominates them in surface structure
+are always given <tt>G</tt> functiontags and indices linking them to their logical
+position.  With that exception (and with one other exception not discussed
+here relating to co-ordination), functiontagging is used only for 
+immediate constituents of clauses.
+
+<i>EFC</i> lists the categories of surface/logical-grammar
+discordance which are represented by the SUSANNE scheme, and the approved
+methods of representing them.  The SUSANNE analysis is always chosen so
+as to be as far as possible neutral as between alternative linguistic
+theories.
+
+
+
+<h3>4.10  The Formtags</h3>
+
+<p>
+The SUSANNE formtags are as follows:
+
+<blockquote>
+
+<p><strong>Rootrank Formtags</strong></p>
+<table>
+<td>	<tt>O</tt>	<td>paragraph<tr>
+<td>	<tt>Oh</tt>	<td>heading<tr>
+<td>	<tt>Ot</tt>	<td>title (e.g. of book)<tr>
+<td>	<tt>Q</tt>	<td>quotation<tr>
+<td>	<tt>I</tt>	<td>interpolation<tr>
+<td>	<tt>Iq</tt>	<td>tag question<tr>
+<td>	<tt>Iu</tt>	<td>technical reference<tr>
+</table>
+<p><strong>Clausetags</strong></p>
+<table>
+<td>	<tt>S</tt>	<td>main clause<tr>
+<td>	<tt>Ss</tt>	<td>embedded quoting clause<tr>
+<td>	<tt>Fa</tt>	<td>adverbial clause<tr>
+<td>	<tt>Fn</tt>	<td>nominal clause<tr>
+<td>	<tt>Fr</tt>	<td>relative clause<tr>
+<td>	<tt>Ff</tt>	<td>fused relative<tr>
+<td>	<tt>Fc</tt>	<td>comparative clause<tr>
+<td>	<tt>Tg</tt>	<td>present participle clause<tr>
+<td>	<tt>Tn</tt>	<td>past participle clause<tr>
+<td>	<tt>Ti</tt>	<td>infinitival clause<tr>
+<td>	<tt>Tf</tt>	<td><i>for-to</i> clause<tr>
+<td>	<tt>Tb</tt>	<td>bare nonfinite clause<tr>
+<td>	<tt>Tq</tt>	<td>infinitival relative clause<tr>
+<td>	<tt>W</tt>	<td><i>with</i> clause<tr>
+<td>	<tt>A</tt>	<td>special <i>as</i> clause<tr>
+<td>	<tt>Z</tt>	<td>reduced (&quot;whiz-deleted&quot;) relative<tr>
+<td>	<tt>L</tt>	<td>miscellaneous verbless clause<tr>
+</table>
+<p><strong>Phrasetags</strong></p>
+<table>
+<td>	<tt>V</tt>	<td>verb group<tr>
+<td>	<tt>N</tt>	<td>noun phrase<tr>
+<td>	<tt>J</tt>	<td>adjective phrase<tr>
+<td>	<tt>R</tt>	<td>adverb phrase<tr>
+<td>	<tt>P</tt>	<td>prepositional phrase<tr>
+<td>	<tt>D</tt>	<td>determiner phrase<tr>
+<td>	<tt>M</tt>	<td>numeral phrase<tr>
+<td>	<tt>G</tt>	<td>genitive phrase<tr>
+</table>
+</blockquote>
+
+<p>
+The various phrase categories take lower-case subcategory symbols
+which can be combined in any meaningful combination (e.g. the verb group
+<i>must have been noticed</i> would be formtagged <tt>Vcfp</tt>).  The phrase 
+subcategories are:
+<blockquote>
+<table>
+<td valign=top><tt>	Vo	</tt><td>operator section of verb group, 
+	when separated from remainder
+	of <tt>V</tt> e.g. by subject-auxiliary inversion<tr>
+<td valign=top><tt>	Vr	</tt><td>remainder of <tt>V</tt> from which 
+<tt>Vo</tt> has been separated<tr>
+<td valign=top><tt>	Vm	</tt><td><tt>V</tt> beginning with <i>am</i><tr>
+<td valign=top><tt>	Va	</tt><td><tt>V</tt> beginning with <i>are</i><tr>
+<td valign=top><tt>	Vs	</tt><td><tt>V</tt> beginning with <i>was</i><tr>
+<td valign=top><tt>	Vz	</tt><td><tt>V</tt> beginning with other 3rd-singular verb<tr>
+<td valign=top><tt>	Vw	</tt><td><tt>V</tt> beginning with <i>were</i><tr>
+<td valign=top><tt>	Vj	</tt><td><tt>V</tt> beginning with <i>be</i><tr>
+<td valign=top><tt>	Vd	</tt><td><tt>V</tt> beginning with past tense<tr>
+<td valign=top><tt>	Vi	</tt><td>infinitival <tt>V</tt><tr>
+<td valign=top><tt>	Vg	</tt><td><tt>V</tt> beginning with present participle<tr>
+<td valign=top><tt>	Vn	</tt><td><tt>V</tt> beginning with past participle<tr>
+<td valign=top><tt>	Vc	</tt><td><tt>V</tt> beginning with modal<tr>
+<td valign=top><tt>	Vk	</tt><td><tt>V</tt> containing emphatic <i>DO</i><tr>
+<td valign=top><tt>	Ve	</tt><td>negative <tt>V</tt><tr>
+<td valign=top><tt>	Vf	</tt><td>perfective <tt>V</tt><tr>
+<td valign=top><tt>	Vu	</tt><td>progressive <tt>V</tt><tr>
+<td valign=top><tt>	Vp	</tt><td>passive <tt>V</tt><tr>
+<td valign=top><tt>	Vb	</tt><td><tt>V</tt> ending with <i>BE</i><tr>
+<td valign=top><tt>	Vx	</tt><td><tt>V</tt> lacking main verb<tr>
+<td valign=top><tt>	Vt	</tt><td>catenative <tt>V</tt><tr>
+<td valign=top> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Nq	</tt><td><i>wh-</i> <tt>N</tt><tr>
+<td valign=top><tt>	Nv	</tt><td><i>wh...ever</i> <tt>N</tt><tr>
+<td valign=top><tt>	Ne	</tt><td><i>I/me</i> as whole or head<tr>
+<td valign=top><tt>	Ny	</tt><td><i>you</i> as whole or head<tr>
+<td valign=top><tt>	Ni	</tt><td><i>it</i> as whole or head<tr>
+<td valign=top><tt>	Nj	</tt><td>adjectival head<tr>
+<td valign=top><tt>	Nn	</tt><td>proper name<tr>
+<td valign=top><tt>	Nu	</tt><td>unit of measurement as head<tr>
+<td valign=top><tt>	Na	</tt><td>marked as subject<tr>
+<td valign=top><tt>	No	</tt><td>marked as nonsubject<tr>
+<td valign=top><tt>	Ns	</tt><td>marked as singular<tr>
+<td valign=top><tt>	Np	</tt><td>marked as plural<tr>
+<td valign=top> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Jq	</tt><td><i>wh-</i> <tt>J</tt><tr>
+<td valign=top><tt>	Jv	</tt><td><i>wh...ever</i> <tt>J</tt><tr>
+<td valign=top><tt>	Jx	</tt><td>measured absolute <tt>J</tt><tr>
+<td valign=top><tt>	Jr	</tt><td>measured comparative <tt>J</tt><tr>
+<td valign=top><tt>	Jh	</tt><td>&quot;heavy&quot; (postmodified) <tt>J</tt><tr>
+<td valign=top> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Rq	</tt><td><i>wh-</i> <tt>R</tt><tr>
+<td valign=top><tt>	Rv	</tt><td><i>wh...ever</i> <tt>R</tt><tr>
+<td valign=top><tt>	Rx	</tt><td>measured absolute <tt>R</tt><tr>
+<td valign=top><tt>	Rr	</tt><td>measured comparative <tt>R</tt><tr>
+<td valign=top><tt>	Rs	</tt><td>adverb conducive to asyndeton<tr>
+<td valign=top><tt>	Rw	</tt><td>quasi-nominal adverb<tr>
+<td valign=top> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Po	</tt><td><i>of</i> phrase<tr>
+<td valign=top><tt>	Pb	</tt><td><i>by</i> phrase<tr>
+<td valign=top><tt>	Pq	</tt><td><i>wh-</i> <tt>P</tt><tr>
+<td valign=top><tt>	Pv	</tt><td><i>wh...ever</i> <tt>P</tt><tr>
+<td> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Dq	</tt><td><i>wh-</i> <tt>D</tt><tr>
+<td valign=top><tt>	Dv	</tt><td><i>wh...ever</i> <tt>D</tt><tr>
+<td valign=top><tt>	Ds	</tt><td>marked as singular<tr>
+<td valign=top><tt>	Dp	</tt><td>marked as plural<tr>
+<td> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Ms	</tt><td><tt>M</tt> headed by <i>one</i><tr>
+<td> <td> <tr><td> <td> <tr>
+<td valign=top><tt>	Gq	</tt><td><i>wh-</i> <tt>G</tt><tr>
+<td valign=top><tt>	Gv	</tt><td><i>wh...ever</i> <tt>G</tt><tr>
+</table>
+</blockquote>
+
+<p>
+In later work (see &#167;13.3 of the CHRISTINE/I Documentation file),
+two further <tt>M</tt> subcategories were introduced which had been 
+omitted by oversight from the original SUSANNE scheme:
+<ul>
+<li><tt>Mp</tt> for numeral phrase marked as plural
+<li><tt>Mq</tt> for <i>wh-</i>marked numeral phrase
+</ul>
+- to which should logically be added <tt>Mv</tt> for <i>wh...ever</i> numeral
+phrase, though no case of that has been encountered.
+It has not so far been practical to include these retrospectively in the
+SUSANNE Corpus.
+</p>
+
+
+<h3>4.11  Non-alphanumeric Formtag Suffixes</h3>
+
+<p>
+Formtags may also contain non-alphanumeric symbols, including:
+
+<blockquote><table>
+<td><tt>	?	</tt><td>interrogative clause<tr>
+<td><tt>	*	</tt><td>imperative clause<tr>
+<td><tt>	%	</tt><td>subjunctive clause<tr>
+<td><tt>	!	</tt><td>exclamatory clause or other item<tr>
+<td><tt>	&quot;	</tt><td>vocative item<tr>
+</table></blockquote>
+
+<p>
+Other non-alphanumeric symbols represent co-ordination structure.  Under
+the SUSANNE scheme, second and subsequent conjuncts in a co-ordination
+are analysed as subordinate to the first conjunct; thus a co-ordination
+of the form:
+<blockquote>
+	chi, psi, and omega
+</blockquote>
+(whatever the grammatical rank of the word-sequences chi, psi, etc.) would 
+be assigned a structure of the form:
+<blockquote>
+	[chi, [psi], [and omega]]
+</blockquote>
+<p>
+The formtag of the entire co-ordination is determined by the
+properties of the first conjunct (except for singular/plural subcategories
+in the case of phrase categories to which these apply); the later 
+conjuncts (which will often be transformationally reduced) have nodes 
+of their own whose formtags mark them as 
+&quot;subordinate conjuncts&quot;.  The 
+following symbols relate to co-ordination (and apposition) structure:
+
+<blockquote><table>
+<td valign=top><tt>	+	</tt><td>subordinate conjunct introduced by conjunction<tr>
+<td valign=top><tt>	-	</tt><td>subordinate conjunct not introduced by conjunction<tr>
+<td valign=top><tt>	@	</tt><td>appositional element<tr>
+<td valign=top><tt>	&amp;	</tt><td>co-ordinate structure acting as first conjunct within a
+		higher co-ordination (marked in certain cases only)<tr>
+</table></blockquote>
+
+<p>
+Co-ordination is recognised as occurring between words as well as between
+higher-rank tagmas.  Therefore nonterminal nodes may have formtags consisting
+of wordtags followed by co-ordination symbols, thus (using <tt>WT</tt> to stand
+for an arbitrary wordtag):
+<blockquote><table>
+<td valign=top><tt>	WT&amp;	</tt><td>co-ordination of words<tr>
+<td valign=top><tt>	WT+	</tt><td>conjunct within wordlevel co-ordination that is introduced
+		by a conjunction<tr>
+<td valign=top><tt>	WT-	</tt><td>conjunct within wordlevel co-ordination not introduced by a
+		conjunction<tr>
+</table></blockquote>
+(A wordlevel co-ordination always takes an ampersand on its formtag; 
+phrase or clause co-ordinations do so only in very restricted circumstances.)
+
+<p>
+Also, certain sequences of orthographic words, in certain uses, are 
+regarded as functioning grammatically as single words (&quot;grammatical idioms&quot;).
+For instance, <i>none the less</i> would normally be treated as a grammatical
+idiom, equivalent to an adverb (for which the wordtag is <tt>RR</tt>).  In such
+cases, the nonterminal node dominating the sequence has a formtag
+consisting of an equals sign suffixed to the corresponding wordtag;
+and the individual words composing the grammatical idiom are not wordtagged
+in their own right, but receive tags with numerical suffixes reflecting
+their membership of an idiom.  (The sequence <i>none the less</i> would be 
+formtagged <tt>RR=</tt>, and the words <i>none</i>, <i>the</i>, and <i>less</i> in this context
+would be wordtagged <tt>RR31 RR32 RR33</tt>.)  <i>EFC</i> includes
+exhaustive listings of closed-class grammatical idioms.
+
+<p>
+Note that formtags of the forms <tt>WT&amp; WT+ WT- WT=</tt> count as wordrank formtags
+for the purposes of determining tree structure as discussed above.
+
+
+
+<h3>4.12  The Functiontags</h3>
+
+<p>
+Functiontags divide into <strong>complement</strong> 
+and <strong>adjunct</strong> tags:  broadly, a given
+complement tag can occur at most once in any clause, but a clause may contain
+multiple adjuncts of the same type.  The scheme of adjunct categories was
+developed from the classification of Quirk et al. (1985).
+
+<blockquote>
+<p><strong>Complement Functiontags</strong></p>
+	
+<table>
+<td valign=top><tt>	s	</tt><td>logical subject<tr>
+<td valign=top><tt>	o	</tt><td>logical direct object<tr>
+<td valign=top><tt>	i	</tt><td>indirect object<tr>
+<td valign=top><tt>	u	</tt><td>prepositional object<tr>
+<td valign=top><tt>	e	</tt><td>predicate complement of subject<tr>
+<td valign=top><tt>	j	</tt><td>predicate complement of object<tr>
+<td valign=top><tt>	a	</tt><td>agent of passive<tr>
+<td valign=top><tt>	S	</tt><td>surface (and not logical) subject<tr>
+<td valign=top><tt>	O	</tt><td>surface (and not logical) direct object<tr>
+<td valign=top><tt>	G	</tt><td>&quot;guest&quot; having no grammatical role within its tagma<tr>
+</table>
+
+<p><strong>Adjunct Functiontags</strong></p>
+<table>
+<td valign=top><tt>	p	</tt><td>place<tr>
+<td valign=top><tt>	q	</tt><td>direction<tr>
+<td valign=top><tt>	t	</tt><td>time<tr>
+<td valign=top><tt>	h	</tt><td>manner or degree<tr>
+<td valign=top><tt>	m	</tt><td>modality<tr>
+<td valign=top><tt>	c	</tt><td>contingency<tr>
+<td valign=top><tt>	r	</tt><td>respect<tr>
+<td valign=top><tt>	w	</tt><td>comitative<tr>
+<td valign=top><tt>	k	</tt><td>benefactive<tr>
+<td valign=top><tt>	b	</tt><td>absolute<tr>
+</table>
+<p><strong>Other Functiontags</strong></p>
+<table>
+<td valign=top><tt>	n	</tt><td>participle of phrasal verb<tr>
+<td valign=top><tt>	x	</tt><td>relative clause having higher clause as antecedent<tr>
+<td valign=top><tt>	z	</tt><td>complement of catenative<tr>
+</table>
+</blockquote>
+
+<p>
+Detailed guidelines for the application of these functional categories are
+included in <i>EFC</i>.
+
+
+
+<h2>5.  Innovations in Release 5</h2>
+
+<h3>5.1  Correction of Analytic Errors</h3>
+
+
+<p>
+As with other releases after the first, Release 5 includes a number of
+corrections of analytic errors in particular passages.  Relative to
+Release 4 there are twenty or so of these.  Many of this batch of errors
+were brought to my attention by Vladimir V. Gojol of the National
+Institute of Informatics, Bucharest, to whom I offer thanks.
+
+<p>
+There are also, however, a number of larger-scale differences between
+Release 5 and previous SUSANNE releases.
+
+<h3>5.2  Additional File</h3>
+
+<p>
+The <tt>lexicon</tt> file is new in Release 5; this has already been
+discussed in &#167;3 above.
+
+<h3>5.3  Reference Field Format</h3>
+
+<p>
+A &quot;structural&quot; difference between Release 5 and its predecessors relates
+to the format of the first field (the &quot;reference field&quot;) in each
+line.  The reference field gives each line of the SUSANNE Corpus
+(hence, each word or punctuation mark of the texts) a unique identifying
+code.  Up to Release 4, this had a format exemplified by <tt>N06:0180e</tt>,
+where <tt>N06</tt> is a Brown file name, <tt>0180</tt> is the number of a line in the
+Bergen I version of the Brown Corpus (which is a horizontal, i.e.
+many words per line, version), and <tt>e</tt> identifies the individual word
+within the Bergen I line - successive words were given successive
+lower-case letters.  In Release 5, the last byte is replaced by a
+full stop followed by a pair of digits:  <tt>N06:0180e</tt> becomes 
+<tt>N06:0180.15</tt>.  
+
+<p>
+The motive for this change is that, whenever
+the Corpus was corrected in a way that changed the division of the
+text into word-tokens (for instance, perhaps the analytic guidelines
+required a hyphenated word to be split across multiple lines), under
+the old system not only the lines immediately affected but many
+following lines had to be painstakingly edited, because the lettering
+was continuous.  By moving to two-digit line identifiers it becomes
+possible to leave gaps (the numbers usually go up in threes),
+so corrections to the Corpus are less arduous.  This is arguably
+a case of shutting the stable door, since I hope that far fewer
+corrections will be needed in future than the large number that have
+been made since the initial release.  Nevertheless, the change
+seemed worth making.
+
+<h3>5.4  Subdivision of Texts</h3>
+
+<p>
+The system by which texts are subdivided into paragraphs and larger
+units was not described adequately in previous versions of the
+Documentation file, and has been slightly changed for Release 5.
+
+<p>
+Text structure above the paragraph level was not central to the
+concerns either of the SUSANNE project, or of the Brown Corpus
+which provided our source material.  Brown (see Francis &amp;
+Ku&#269;era 1989: 10) recognized just two levels of text subdivision.
+For any particular 2000-word text extract, a &quot;major&quot; subdivision
+was defined as the highest-order division that happened to fall
+within the extract (for instance a chapter boundary, or a section boundary
+if the whole extract fell within one chapter); a &quot;minor&quot; subdivision
+was defined as any lower-order subdivision within that extract,
+down to and including paragraph boundaries.  This, at least, is
+how the Brown Manual describes their system.  Taken literally,
+though, it implies that paragraphs should be &quot;major&quot; subdivisions
+for extracts that contain no higher-order divisions, and every
+extract should include at least one major boundary.  In reality,
+only a minority of the 64 Brown texts used in SUSANNE include
+anything labelled as a &quot;major&quot; subdivision.
+Paragraph boundaries are always coded as minor subdivisions
+even in the many extracts that contain no higher-order divisions.
+
+<p>
+When a text subdivision is introduced by a heading, Brown codes
+it in a way that is translated in SUSANNE by surrounding the
+heading with the &quot;words&quot; 
+<tt>&lt;bmajhd&gt;...&lt;emajhd&gt;</tt> (for a major heading)
+or <tt>&lt;bminhd&gt;...&lt;eminhd&gt;</tt> (for a minor heading).  The wording of
+the heading is shown in Brown (and therefore also in SUSANNE) in
+all capitals, irrespective of the original typography.  When a
+subdivision has no heading, it is preceded by the SUSANNE
+&quot;word&quot; <tt>&lt;majbrk&gt;</tt> or <tt>&lt;minbrk&gt;</tt>
+- thus paragraphs are separated by <tt>&lt;minbrk&gt;</tt> symbols.
+
+<p>
+The text following a heading is not treated as a separate
+paragraph from the heading (the <tt>&lt;minbrk&gt;</tt> symbol never follows
+immediately after <tt>&lt;emajhd&gt;</tt> or 
+<tt>&lt;eminhd&gt;</tt> - nor does <tt>&lt;minbrk&gt;</tt>
+occur immediately before <tt>&lt;bmajhd&gt;</tt> 
+or <tt>&lt;bminhd&gt;</tt>).  There is no
+concept of balancing a &quot;beginning of subdivision&quot; marker with
+an &quot;end of subdivision&quot; marker, 
+akin to SGML <tt>&lt;p&gt;...&lt;/p&gt;</tt>.
+The Brown Corpus was compiled long before the creation of SGML
+and its descendant systems, and SUSANNE simply followed the logic
+of the Brown annotation in this area.
+
+<p>
+In one respect, however, Release 5 has introduced 
+a change.  Many of the 2000-word Brown &quot;texts&quot; 
+are made up of two or more short pieces from separate sources,
+grouped together to achieve a Corpus in which all &quot;texts&quot; are
+of roughly equal length for statistical convenience.
+(In SUSANNE this applies
+mainly, but not exclusively, to the newspaper texts of Category A.)
+A single &quot;text&quot; may include 
+the whole or parts of separate items from one issue of a
+newspaper, items from different issues, or even items from
+different newspapers.  (Details are given in 
+&#167;7, &quot;Sources&quot;, below.)
+In the Brown Corpus, junctions between separate items within one
+&quot;text&quot; were given no special marker.  If the following item began
+with a heading, it would start with (the Brown equivalent of) a
+<tt>&lt;bmajhd&gt;</tt> or <tt>&lt;bminhd&gt;</tt> element; 
+but often it was marked merely as
+a paragraph break.  In consequence, there are cases where, 
+illogically, a subdivision internal to a single item was marked as
+a more important break than the junction between what were originally
+entirely separate documents.
+
+<p>
+SUSANNE Release 5 addresses this problem by introducing a new
+symbol, <tt>&lt;docbrk&gt;</tt>, to mark junctions within SUSANNE files between
+separate documents (including separate news stories from the same
+issue of a newspaper).
+
+<p>
+If the material following a <tt>&lt;docbrk&gt;</tt> happens to be a heading, it will
+begin with a <tt>&lt;bmajhd&gt;</tt> or <tt>&lt;bminhd&gt;</tt> symbol as normal.  This is the only
+situation in the SUSANNE Corpus where <tt>&lt;...brk&gt;</tt> and <tt>&lt;...hd&gt;</tt> lines
+are adjacent.
+
+<p>
+A separate point worth mentioning about the SUSANNE heading and
+paragraph system is that it is arguably rather illogical for the
+beginning- and end-heading marks to be included as first and last
+daughters of <tt>Oh</tt> (heading) tagmas, and for break symbols to be 
+given <tt>Oh</tt> nodes above them.  Elsewhere in the grammatical annotation
+scheme, boundary markers are treated as sisters rather than
+daughters of the units they bound.  For instance, full stop and
+other sentence-final punctuation marks are right-sisters, not
+last daughters, of <tt>S</tt> tagmas.  However, it has not seemed worth
+revising the Corpus in this respect.  The linguistically-interesting
+top-level tagmas are those labelled <tt>O</tt> (paragraph) rather than
+<tt>Oh</tt>, and they would be unaffected by such a revision.
+
+
+<h3>5.5  Revisions to the Annotation Scheme</h3>
+
+<p>
+Work on the CHRISTINE speech corpus over the years up to 1999
+led to many additions and refinements to the annotation scheme
+of <i>English for the Computer</i>.  The bulk of these
+related to specifically spoken-language phenomena;
+but the work also uncovered various errors and inconsistencies
+in the guidelines on analysis of features that occur in
+written language.
+
+<p>
+New decisions about how to deal with these features
+were specified in &#167;15 of the CHRISTINE documentation file
+(URL 6), and Release 5 of SUSANNE has been brought into line
+with most of them.  Many of the points are rather trivial
+and are not listed separately here.  Certain points are
+discussed, however, because they proved problematic
+to implement for SUSANNE.
+
+<h4><i>as well as</i></h4>
+
+<p>
+The CHRISTINE documentation file describes it as a mistake
+in <i>EFC</i> that this idiom is
+classified as <tt>CC</tt> rather than <tt>II</tt>.
+That was a response to instances of <i>as well as</i>
+in CHRISTINE/I where the idiom functioned unmistakably
+as a preposition.  But the truth is that there are other cases
+where it is unmistakably a conjunction.  <i>As well as</i>
+should be tagged as <i>either</i> <tt>II=</tt> or <tt>CC=</tt>
+according to context (and there are many contexts where it is
+hard to make a choice one way or the other).
+
+<h4><tt>Vx</tt></h4>
+
+<p>
+The CHRISTINE documentation file, &#167;15, re p. 194 of
+<i>EFC</i> says that the definition of
+<tt>Vx</tt> should explicitly exclude verb groups in which
+<i>DO</i> replaces a more specific main verb, e.g.
+<i>you must do</i> (CHRISTINE T12.03913) for
+<i>you must remember</i>.  But this statement is itself
+insufficiently specific.  In <i>infiltrating the state as
+they did in the Republican administration</i> (SUSANNE
+A06:1580), the word <i>did</i> is tagged <tt>Vdx</tt>
+because <i>they did</i> could be seen as standing for
+<i>they did infiltrate</i>; in <i>you must do</i>
+(which I believe is a specifically British rather than
+American usage), <i>must do</i> is <tt>Vc</tt> rather
+than <tt>Vcx</tt> because it can only be seen as standing
+for <i>must infiltrate</i>, not *<i>must do infiltrate</i>.
+Likewise in <i>he will visit...as he never fails to do</i>
+(SUSANNE G06:0980), <i>to do</i> is <tt>Vi</tt> rather
+than <tt>Vix</tt> because <i>to do</i> can only be taken
+to stand for <i>to visit</i>, not *<i>to do visit</i>.
+
+<h4>appositional elements</h4>
+
+<p>
+<i>EFC</i>, &#167;4.501, noted that
+SUSANNE had not marked one-word appositional elements
+within phrases with <tt>...@</tt> tags, and noted that this
+was illogical and regrettable since one-word conjuncts
+within phrases are regularly given <tt>...+</tt> or
+<tt>...-</tt> nodes.  In CHRISTINE (&#167;15 of the 
+documentation file, re &#167;4.507 of <i>EFC</i>),
+quoted words or phrases which occur in apposition are
+regularly tagged <tt>Q@</tt>, and this was advocated
+as desirable for annotating written language also: 
+thus the example quoted in <i>EFC</i>, 
+<i>the word mug meant the object which ...</i>,
+would take the annotation 
+<tt>[Ns:s&nbsp;the&nbsp;word&nbsp;[Q@&nbsp;mug_NN1c]]&nbsp;...</tt>.
+Unfortunately it has not been practical to locate and change
+the various relevant passages in SUSANNE.
+
+<h4><tt>Mp</tt>, <tt>Mq</tt>, <tt>Mv</tt></h4>
+
+<p>
+I noted in &#167;4.10 above that SUSANNE Release 5 has not 
+applied these new numeral-phrase subcategories.
+
+<h4>left-grouped coordination</h4>
+
+<p>
+<i>EFC</i>, &#167;4.475, pointed out that the <tt>...&</tt>
+notation for left-grouped coordination had been applied
+in SUSANNE only to coordinations where the main conjunct
+is a clause rather than a phrase, though in subsequent work
+we have applied it across the board.  SUSANNE Release 5 has
+not corrected earlier SUSANNE versions in this respect.
+
+<h4>indices in reduced relative clauses</h4>
+
+<p>
+Our team has also made one new decision about analytic
+practice which was too recent to include in the
+CHRISTINE documentation file.  This relates to the
+use of the ghost and index system within postmodifying
+tagmas which logically are reduced relative clauses,
+tagged <tt>Tg</tt>, <tt>Ti</tt>, <tt>Tn</tt>, or <tt>Z</tt>.
+According to the <i>EFC</i> guidelines, these should resemble
+unreduced <tt>Fr</tt> clauses in containing ghosts indexed
+to their antecedents.
+
+<p>
+This proved to be an aspect of the scheme to which 
+analysts often found it difficult to conform in practice;
+and the indexing system adds no real information in the
+case of <tt>Tg</tt> and <tt>Tn</tt> postmodifiers,
+because the understood element of the clause, if represented
+as a ghost, will always be functiontagged <tt>:s</tt> in
+a <tt>Tg</tt> and <tt>:S</tt> in a <tt>Tn</tt>.  Therefore,
+in our current practice, ghosts are not included in
+postmodifying <tt>Tg</tt> or <tt>Tn</tt> tagmas.
+They are still included in <tt>Ti</tt> or <tt>Z</tt> 
+tagmas, where their functiontag is not straightforwardly
+predictable from the surrounding structure (and, in the
+case of postmodifying <tt>Ti</tt>'s, where there is a
+difference between instances which are reduced relative
+clauses, containing an understood element coreferential
+with the antecedent, and instances where no element is
+understood and no possibility of inserting a ghost arises).
+
+<p>
+There has been no attempt to rework SUSANNE in line with
+this recent change of practice.  The use of ghost elements
+in SUSANNE is believed to conform fairly well to the
+<i>EFC</i> standard, and it would
+be a pity to remove explicit, correct information from
+the files, even if it could be reconstructed 
+deterministically.
+
+
+
+<h2>6.  Errors in the Source Texts</h2>
+
+<p>
+The SUSANNE Corpus aims to reflect the incidence of errors found in
+real-life written English, and therefore to reproduce those errors which
+stem from the original texts on which the Brown Corpus was based, while
+correcting errors that were introduced into the Brown Corpus during the
+process of corpus-construction.  The SUSANNE Corpus was developed from
+the &quot;Bergen I&quot; version of the Brown Corpus; 
+whenever a form in Bergen I
+appeared erroneous (and is not discussed explicitly in the Brown Corpus
+Manual), the SUSANNE team checked whether the error reflected the original
+source.  (In some cases we went to the original publications; in many other
+cases we asked W. Nelson Francis and Andrew Mackie of Brown University
+to consult the copies of those publications 
+which had been used in compiling the Brown Corpus - their help is gratefully
+acknowledged.)  When an error (or apparent error) reflects the form found in 
+the original publication, it is preserved in the SUSANNE Corpus (flagged by 
+an <tt>E</tt> in the status field); 
+otherwise, the SUSANNE Corpus restores the text of
+the original publication and the status field ignores the error.
+Where errors are original, wordtagging and grammatical analysis is applied
+to the erroneous text as best it can be by analogy with correct forms
+(cf. <i>EFC</i>, &#167;4.26).
+
+<p>
+For the benefit of users of different versions of the Brown Corpus, a list
+is included below of all the apparent errors examined, both those which
+turned out to be original and those which were introduced subsequently and
+are corrected in SUSANNE.  In one or two cases it is open to question
+whether some odd usage found in the original sources is in fact a misprint
+or merely an unusual use of words.  In cases of doubt the SUSANNE policy
+was to assume that the original wording was intended, 
+and not to put <tt>E</tt> in
+the status field, but these cases too are listed below.
+
+<p>
+It is of course all too possible that the task of creating the SUSANNE
+Corpus may have introduced new errors in the word field, and that some
+errors in Bergen I which were not original have been allowed to stand
+by oversight.  Users who discover text errors not logged below are 
+encouraged to bring them to my attention for correction in subsequent releases.
+
+<p>
+In the following list, &quot;BgI&quot; represents 
+the Bergen I version of the Brown
+Corpus, &quot;BCUM&quot; represents the 1989 edition 
+of the Brown Manual (Francis
+&amp; Ku&#269;era 1989).  
+The simple comment &quot;X for Y&quot; means that the form
+X occurs in the original text and appears to be a mistake which should
+read Y; the form X stands in the SUSANNE Corpus, with <tt>E</tt> in the status
+field.  (Suggested corrections cannot be certain, and in a few cases may
+represent a misunderstanding of the writer's intention even assuming this
+was well-defined.)  BCUM attempts to list cases of this sort exhaustively;
+where such a case is not logged there, 
+the comment &quot;not logged in BCUM&quot;
+is added.  The comment &quot;BgI has X for Y&quot;, 
+on the other hand, means that
+the erroneous form X is not original but was introduced in the process
+of creating the Brown Corpus; SUSANNE has restored the original form Y,
+and the status field contains a hyphen.
+<br>
+<br>
+<table>
+<tr><td valign=top>A01:0370<td>	BgI omits double closing inverted commas between <i>money</i>
+		and full stop
+
+<tr><td valign=top>A02:0560<td>	BgI has <i>be to</i> for <i>to be</i>
+
+<tr><td valign=top>A02:0730<td>	<i>county</i> for <i>County</i> in <i>Lamar county Hospital District</i>
+
+<tr><td valign=top>A03:0840<td>	words are missing
+
+<tr><td valign=top>A04:0150<td>	<i>conspicious</i> for <i>conspicuous</i>
+
+<tr><td valign=top>A04:1880<td>	double closing inverted commas omitted between <i>problem</i>
+		and full stop (not logged in BCUM)
+
+<tr><td valign=top>A04:1900<td>	<i>ot</i> for <i>to</i>
+
+<tr><td valign=top>A04:1930<td>	<i>ond</i> for <i>and</i>
+
+<tr><td valign=top>A05:0200<td>	full stop for comma
+
+<tr><td valign=top>A06:0250<td>	<i>adminstration</i> for <i>administration</i>
+
+<tr><td valign=top>A06:0410<td>	<i>Nothing</i> for <i>Noting</i>
+
+<tr><td valign=top>A06:0670<td>	<i>rebound</i> appears to be malapropism for <i>redound</i> (not
+		logged in BCUM)
+
+<tr><td valign=top>A06:1680<td>	<i>alloted</i> for <i>allotted</i>
+
+<tr><td valign=top>A08:0470<td>	<i>statutes</i> for <i>statues</i>
+
+<tr><td valign=top>A08:0770<td>	<i>builtin</i> for <i>built-in</i>
+
+<tr><td valign=top>A08:0910<td>	full stop where there should be comma or no punctuation mark
+		(not logged in BCUM)
+
+<tr><td valign=top>A09:0350<td>	BgI has full stop for comma after <i>firms</i> (the copy of
+		text A09 held at Brown University is now too faded to be
+		sure that this error is not original, but it is assumed
+		to be an error of transcription)
+
+<tr><td valign=top>A09:0760<td>	<i>accomodations</i> for <i>accommodations</i>
+
+<tr><td valign=top>A09:1420<td>	<i>severly</i> for <i>severely</i>
+
+<tr><td valign=top>A10:0190<td>	<i>ritiuality</i> for (?) <i>rituality</i>
+
+<tr><td valign=top>A10:0580<td>	<i>in</i> grammatically redundant before <i>which</i>
+
+<tr><td valign=top>A10:0590<td>	double closing inverted commas omitted between <i>following</i>
+		and full stop (not logged in BCUM)
+
+<tr><td valign=top>A10:1330<td>	<i>Diety</i> for <i>Deity</i>
+
+<tr><td valign=top>A10:1890<td>	<i>conpired</i> for <i>conspired</i>
+
+<tr><td valign=top>A11:0060<td>	<i>draought</i> for <i>drought</i>
+
+<tr><td valign=top>A11:0060<td>	BgI has <i>3-to-o</i> for <i>3-to-0</i>
+
+<tr><td valign=top>A11:0090<td>	<i>righthandler</i> for <i>righthander</i>
+
+<tr><td valign=top>A11:0230<td>	It is not clear whether the form <i>A's</i> as an abbreviation
+		for <i>Athletics'</i> should be regarded as an error.  This
+		extract regularly abbreviates the team name <i>Athletics</i>
+		as <i>A's</i>, but in this line it occurs as a genitive;
+		it is an open question whether English orthography requires
+		a second apostrophe following the <i>s</i> in such a case.
+		(If it does, this would be the sole SUSANNE line calling
+		for two different markers in the status field.)
+
+<tr><td valign=top>A11:0820<td>	<i>rookie-of-the year</i> for <i>rookie-of-the-year</i>
+
+<tr><td valign=top>A11:0860<td>	<i>6-foot 3 inch</i> for (?) <i>6-foot-3-inch</i>
+
+<tr><td valign=top>A11:1120<td>	<i>Dimaggio</i> for (?) <i>DiMaggio</i>
+
+<tr><td valign=top>A11:1400<td>	BgI has redundant comma following initial 
+&quot;<i>B.</i>&quot; in <i>Norman B. Small</i>
+
+<tr><td valign=top>A11:1760<td>	<i>Wellsley College</i> for (?) <i>Wellesley College</i>
+
+<tr><td valign=top>A12:0210<td>	double closing inverted commas omitted between <i>training</i>
+		and full stop (not logged in BCUM)
+
+<tr><td valign=top>A12:1160<td>	<i>Owl's</i> for <i>Owls'</i> (not logged in BCUM)
+
+<tr><td valign=top>A12:1460<td>	<i>out linebackers</i> may be error for <i>our linebackers</i> but
+		SUSANNE Corpus assumes <i>out</i> was intended
+
+<tr><td valign=top>A13:0040<td>	noun missing after <i>countless</i> (not logged in BCUM) 
+
+<tr><td valign=top>A13:0140<td>	<i>Bear's</i> for <i>Bears'</i> (not logged in BCUM)
+
+<tr><td valign=top>A13:0140<td>	<i>gruonded</i> for <i>grounded</i>
+
+<tr><td valign=top>A13:0350<td>	<i>are</i> for <i>is</i> (not logged in BCUM)
+
+<tr><td valign=top>A13:1000<td>	Closing double inverted commas appear to be needed between
+		<i>gone</i> and full stop, but this is not an error in the original;
+		the Brown text consists of six short extracts from separate
+		news stories, and the extract ending on line 1000 breaks off
+		in the middle of a quotation.
+
+<tr><td valign=top>A13:1120<td>	closing double inverted commas omitted after <i>leaguer</i>
+
+<tr><td valign=top>A14:1060<td>	redundant space inserted between <i>diamond-</i> and <i>studded</i>
+
+<tr><td valign=top>A19:1260<td>	<i>Dresbach's</i> for <i>Dresbachs'</i> (not logged in BCUM)
+
+<tr><td valign=top>A19:1560<td>	BgI has <i>up to</i> for <i>up</i>
+
+<tr><td valign=top>A20:0970<td>	<i>advance</i> for <i>advanced</i>
+
+<tr><td valign=top>G01:1640<td>	<i>is</i> with plural subject (not logged in BCUM)
+
+<tr><td valign=top>G01:1680<td>	<i>Northeners</i> for <i>Northerners</i>
+
+<tr><td valign=top>G02:1370<td>	<i>socal</i> for <i>social</i>
+
+<tr><td valign=top>G03:1110, 1630<td>	two tokens of <i>preprepared</i> are assumed to be
+		intended, not misprints
+
+<tr><td valign=top>G04:0480<td>	<i>grazer</i> assumed to be error for <i>grazier</i>
+
+<tr><td valign=top>G05:0110<td>	<i>aromatick</i> occurs as archaism
+
+<tr><td valign=top>G05:0410<td>	BgI has <i>?t</i> for <i>It</i>
+
+<tr><td valign=top>G06:0630<td>	<i>Wozzek</i> for <i>Wozzeck</i> (title of an opera by Alban 
+		Berg) (not logged in BCUM)
+
+<tr><td valign=top>G06:1330<td>	closing single inverted comma missing after <i>Meinung</i>
+
+<tr><td valign=top>G06:1550<td>	BgI has double rather than single inverted comma
+		before <i>the angry</i>
+
+<tr><td valign=top>G09:1170<td>	comma missing after <i>light</i>
+
+<tr><td valign=top>G09:1290<td>	<i>kaleidescope</i> for <i>kaleidoscope</i>
+
+<tr><td valign=top>G10:0380-0450<td>	The original has a quotation immediately followed by a note in
+		square brackets, all set blocked.  The Brown Corpus
+		substitutes inverted commas for blocking to represent
+		quotation, by the policy discussed in <i>EFC</i>,
+&#167;2.25.  In BgI the <tt>&lt;minbrk&gt;</tt> for paragraph
+		boundary is shown as following the opening inverted commas
+		on line 0380; SUSANNE normalizes this to <tt>&lt;minbrk&gt;</tt> followed
+		by <tt>&lt;ldquo&gt;</tt>.
+
+<tr><td valign=top>G10:0390, 0410<td>	BgI has two instances of <i>Negroes</i> for original
+		<i>negroes</i>
+
+<tr><td valign=top>G10:0670<td>	<i>reremained</i> for <i>remained</i>
+
+<tr><td valign=top>G10:0840<td>	<i>differences</i> for <i>difference</i> (not logged in BCUM)
+
+<tr><td valign=top>G11:0310<td>	<i>Consitutional</i> for <i>Constitutional</i>
+
+<tr><td valign=top>G11:0510<td>	<i>discernable</i> for <i>discernible</i>
+
+<tr><td valign=top>G11:0870<td>	<i>terrestial</i> for <i>terrestrial</i>
+
+<tr><td valign=top>G11:1300<td>	<i>determing</i> for <i>determining</i>
+
+<tr><td valign=top>G12:0300<td>	BgI has &quot;<i>man;</i>&quot; for <i>man's</i>
+
+<tr><td valign=top>G13:1160<td>	<i>pyschiatrist</i> for <i>psychiatrist</i>
+
+<tr><td valign=top>G17:0330<td>	Original has 
+<tt>the Hound of &lt;bital&gt; Heaven's &lt;eital&gt;
+		pursuit</tt>; presumably all or none of <tt>[the] Hound of
+		Heaven</tt> (title of a poem by Francis Thompson) should
+		be in italics.
+
+<tr><td valign=top>G17:1050<td>	full stop for comma
+
+<tr><td valign=top>G17:1760<td>	BgI has <i>And</i> for <i>and</i>
+
+<tr><td valign=top>G18:0610<td>	original has <i>is</i> after plural subject <i>poems</i>
+
+<tr><td valign=top>G22:0370<td>	BgI has &quot;<i>man;</i>&quot; for <i>man's</i>
+
+<tr><td valign=top>J01:0190<td>	BgI has <i>1o</i> for <i>10</i>
+
+<tr><td valign=top>J01:0190<td>	BgI has <i>6oo&#186;</i> for <i>600&#186;</i>
+
+<tr><td valign=top>J02:0060<td>	BgI omits full stop after <i>energy</i>
+
+<tr><td valign=top>J02:0220<td>	BgI has <i>co0ling</i> for <i>cooling</i>
+
+<tr><td valign=top>J02:0350<td>	<i>up</i> for <i>up to</i> 
+before <tt>&lt;formul&gt;</tt> (not logged in BCUM)
+
+<tr><td valign=top>J02:0400<td>	BgI has <i>it</i> for <i>It</i>
+
+<tr><td valign=top>J02:0860<td>	BgI omits full stop after <i>30</i>
+
+<tr><td valign=top>J02:1030<td>	<i>has</i> for <i>gas</i> (not logged in BCUM)
+
+<tr><td valign=top>J02:1040<td>	space omitted between <i>to</i> and <i>the</i>
+
+<tr><td valign=top>J03:0570<td>	<i>as</i> for <i>is</i>
+
+<tr><td valign=top>J04:1370<td>	<i>electron</i> for <i>electrons</i>
+
+<tr><td valign=top>J05:1670<td>	<i>a</i> for <i>an</i>
+
+<tr><td valign=top>J06:1760<td>	BgI has <i>oserved</i> for <i>observed</i>
+
+<tr><td valign=top>J08:0170<td>	<i>areosol</i> for <i>aerosol</i>
+
+<tr><td valign=top>J08:0270<td>	<i>assesment</i> for <i>assessment</i>
+
+<tr><td valign=top>J08:0440<td>	<i>meterological</i> for <i>meteorological</i>
+
+<tr><td valign=top>J08:0560<td>	full stop for comma
+
+<tr><td valign=top>J08:0860<td>	<i>on-sure</i> for <i>on-shore</i>
+
+<tr><td valign=top>J08:1620<td>	<i>prowazwki</i> for <i>prowazekii</i> (not logged in BCUM)
+
+<tr><td valign=top>J09:0600<td>	<i>used</i> for <i>use</i>
+
+<tr><td valign=top>J09:0740<td>	BgI has <i>EEAE</i> for <i>DEAE</i>
+
+<tr><td valign=top>J09:0850<td>	BgI has <i>the</i> for <i>The</i>
+
+<tr><td valign=top>J10:1170<td>	BgI has full stop for comma after <i>honeybee</i>
+
+<tr><td valign=top>J12:1830<td>	BgI has <i>maybe</i> for <i>may be</i>
+
+<tr><td valign=top>J17:1210<td>	<i>parsympathetic</i> for <i>parasympathetic</i>
+
+<tr><td valign=top>J21:0250<td>	<i>meets</i> for <i>meet</i>
+
+<tr><td valign=topd>J21:0880<td>	Original lacks a comma after 
+<tt>&lt;formul&gt;</tt> where context
+		appears to call for it; BCUM logs this as a typographical
+		error, but SUSANNE assumes that the comma was deliberately
+		omitted to avoid confusion with the formula.
+
+<tr><td valign=top>J22:0700<td>	<i>of</i> for <i>or</i> (not logged in BCUM)
+
+<tr><td valign=top>J23:0770<td>	<i>humilation</i> for <i>humiliation</i>
+
+<tr><td valign=top>J23:0930-40<td>	BgI has <i>united states</i> for <i>United States</i>
+
+<tr><td valign=top>J23:1720<td>	BgI has <i>it</i> for <i>It</i>
+
+<tr><td valign=top>J24:1900<td>	BgI has <i>our</i> for <i>Our</i>
+
+<tr><td valign=top>N02:0560<td>	BgI has <i>two</i> for <i>Two</i>
+
+<tr><td valign=top>N02:1610<td>	BgI omits <i>he</i> after <i>where</i>
+
+<tr><td valign=top>N03:0100<td>	BgI has <i>My</i> for <i>my</i>
+
+<tr><td valign=top>N03:0550<td>	BgI omits opening double inverted commas before <i>Just</i>
+
+<tr><td valign=top>N03:1450<td>	BgI has <i>mike</i> for <i>Mike</i>
+
+<tr><td valign=top>N04:0140<td>	BgI omits opening double inverted commas before <i>The</i>
+
+<tr><td valign=top>N04:0550<td>	BgI omits full stop after <i>other</i>
+
+<tr><td valign=top>N06:0100<td>	<i>of</i> for <i>or</i>
+
+<tr><td valign=top>N07:1430<td>	The apostrophe after <i>dollars</i> is arguably redundant or
+		requires a following word such as <i>worth</i>, but the original
+		text is as shown; no <tt>E</tt> in status field since the
+		grammatical position is debatable
+
+<tr><td valign=top>N09:0330<td>	<i>ommission</i> for <i>omission</i>
+
+<tr><td valign=top>N09:1080<td>	BgI omits opening double inverted commas before <i>I'm</i>
+
+<tr><td valign=top>N10:0080<td>	<i>coosie's</i> for <i>cooky's</i> or <i>cookie's</i>
+
+<tr><td valign=top>N10:1280<td>	BgI has redundant space after the <i>h</i> of <i>Marshal</i>
+
+<tr><td valign=top>N12:1220<td>	<i>shout</i> for <i>shot</i>
+
+<tr><td valign=top>N13:1500<td>	<i>onct</i> in original is assumed not to be an error but to
+		represent a dialect pronunciation of <i>once</i>
+
+<tr><td valign=top>N14:1010<td>	BgI omits opening double inverted commas before <i>It'll</i>
+
+<tr><td valign=top>N14:1110<td>	original has redundant opening double inverted commas
+		before <i>Pat</i>
+
+<tr><td valign=top>N14:1160<td>	<i>down off</i> for <i>off down</i>
+
+<tr><td valign=top>N14:1600<td>	original lacks <i>was</i> before <i>pumping</i>
+
+<tr><td valign=top>N15:0090<td>	<i>opportunities</i> for <i>opportunity</i>
+</table>
+
+<h2>7.  Sources</h2>
+
+<p>
+The SUSANNE Corpus is based on 64 of the 500 texts of the Brown Corpus.
+The 64 SUSANNE texts are the following (publication details summarized
+from Francis &amp; Ku&#269;era (1989), dates shown in ISO yyyy.mm.dd
+order):
+<br>
+<br>
+
+<table>
+
+<tr><td valign=top>
+A01
+<td><dl><dt>
+<i>The Atlanta Constitution</i>
+<dd>	1961.11.04 issue, p. 1, 2 items<br>
+	1961.08.17 issue, p. 6, 2 items<br>
+	1961.03.06 issue, p. 1, 3 items; p. 18, 1 item
+</dl>
+
+<tr><td valign=top>
+A02
+<td><dl><dt>
+<i>The Dallas Morning News</i>
+<dd>	1961.02.17 issue, section 1, p. 5, 5 items; p. 12, 2 items
+<dt>
+<i>Chicago Daily Tribune</i>
+<dd>	1961.02.10 issue, part 1, p. 4, 1 item
+</dl>
+
+<tr><td valign=top>
+A03
+<td><dl><dt>
+<i>Chicago Daily Tribune</i>
+<dd>	1961.07.25 issue, p. 1, 3 items<br>
+	1961.02.10 issue, p. 1, 2 items
+</dl>
+
+<tr><td valign=top>A04
+<td><dl><dt>
+<i>The Christian Science Monitor</i>
+<dd>	1961.05.11 issue, p. 1, 3 items
+</dl>
+
+<tr><td valign=top>A05
+<td><dl><dt>
+<i>The Providence Journal</i>
+<dd>	1961.07.23 issue, p. 19, 1 item<br>
+	1961.07.16 issue, sec. 1, p. 9, 1 item<br>
+	1961.07.19 issue, p. 5, 1 item<br>
+	1961.07.20 issue, p. 5, 1 item<br>
+	1961.07.22 issue, p. 17, 1 item<br>
+</dl>
+
+<tr><td valign=top>A06
+<td><dl><dt>
+<i>Newark Evening News</i>
+<dd>	1961.03.22 issue, p. 25, 6 items
+</dl>
+
+<tr><td valign=top>A07
+<td><dl><dt>
+<i>The New York Times</i>
+<dd>	1961.06.19 issue, p. 1, 7 items
+</dl>
+
+<tr><td valign=top>A08
+<td><dl><dt>
+<i>The Times-Picayune</i> [New Orleans]
+<dd>	1961.01.01 issue, sec. 2, p. 3, 4 items
+</dl>
+
+<tr><td valign=top>A09
+<td><dl><dt>
+<i>The Philadelphia Inquirer</i>
+<dd>	1961.05.10 issue, p. 49, 4 items
+<dt>
+<i>Chicago Daily Tribune</i>
+<dd>	1961.02.10 issue, sec. F, p. 9, 1 item<br>
+	1961.10.25 issue, sec. I, p. 16, 1 item
+</dl>
+
+
+
+<tr><td valign=top>A10
+<td><dl><dt>
+<i>The Oregonian</i> [Portland]
+<dd>	1961.10.24 issue, p. 8, 5 items<br>
+	1961.11.29 issue, p. 12, 3 items<br>
+	1961.10.24 issue, p. 8, 1 item<br>
+</dl>
+
+
+
+<tr><td valign=top>A11
+<td><dl><dt>
+<i>The Sun</i> [Baltimore]
+<dd>	1961.03.18 issue, pp. 15 and 18, 6 items
+</dl>
+
+
+<tr><td valign=top>A12
+<td><dl><dt>
+<i>The Dallas Morning News</i>
+<dd>	<dl><dt>1961.10.10 issue, sec. 2
+		<dd>p. 1, 1 item<br>
+		p. 2, 1 item<br>
+		p. 3, 3 items</dl>
+</dl>
+
+<tr><td valign=top>A13
+<td><dl><dt>
+<i>Rocky Mountain News</i> [Denver, Colorado]</dt>
+<dd><dl><dt>1961.05.02 issue
+		<dd>p. 50, 3 items<br>
+		p. 51, 2 items</dl></dd>
+<dt><i>The Dallas Morning News</i></dt>
+	<dd>1961.10.10 issue, sec. 2, p. 1, 1 item</dd>
+</dd></dl></dd>
+
+<tr><td valign=top>A14
+<td><dl><dt>
+<i>The New York Times</i>
+<dd>	1961.01.24 issue, p. 23, 5 items
+</dl>
+
+<tr><td valign=top>A19
+<td><dl><dt>
+<i>The Sun</i> [Baltimore]
+<dd>	1961.01.08 issue, p. 36, 8 items<br>
+	1961.12.10 issue, sec. C, p. 1, 4 items
+</dl>
+
+<tr><td valign=top>A20
+<td><dl><dt>
+<i>Chicago Daily Tribune</i>
+	<dd><dl><dt>1961.02.10 issue
+		<dd>pp. 1 and 2, 1 item<br>
+		p. 9, 1 item<br>
+		p. 2, 2 items<br>
+		p. 9, 1 item</dl></dl>
+
+
+
+<tr><td valign=top>G01
+<td>
+Edward P. Lawton, &quot;Northern Liberals and Southern Bourbons&quot;, <i>The
+Georgia Review</i>, 15 (1961), 254-259
+
+<tr><td valign=top>G02
+<td>
+Arthur S. Miller, &quot;Toward a Concept of National Responsibility&quot;, 
+	<i>The Yale Review</i>, LI:2 (December 1961), 186-191
+
+<tr><td valign=top>G03
+<td>
+Peter Wyden, &quot;The Chances of Accidental War&quot;, 
+	<i>The Saturday Evening Post</i>,
+	1961.06.03, 18-19 and 60-61
+
+<tr><td valign=top>G04
+<td>
+Eugene Burdick, &quot;The Invisible Aborigine&quot;, 
+	<i>Harper's Magazine</i>, 223:1336
+	(September 1961), 70-72
+
+<tr><td valign=top>G05
+<td>
+Terence O'Donnell, &quot;Evenings at the Bridge&quot;, <i>Horizon</i>, III:5
+	(May 1961), 26-30
+
+<tr><td valign=top>G06
+<td><dl><dt>
+<i>The American-German Review</i>, October-November 1961
+<dd>	pp. 26-28:  Ruth Berges, &quot;William Steinberg, Pittsburgh's Dynamic
+		Conductor&quot;<br>
+	pp. 28-29:  Henry W. Koller, &quot;German Youth Looks at the Future&quot;
+</dl>
+<tr><td valign=top>G07
+<td>
+Richard B. Morris, &quot;Seven Who Set Our Destiny&quot;, <i>The New York Times
+	Magazine</i>, 1961.02.19, 9 and 69-70
+
+<tr><td valign=top>G08
+<td>
+Frank Murphy, &quot;New Southern Fiction: Urban or Agrarian?&quot;, <i>The Carolina
+	Quarterly</i>, 13:2 (Spring 1961), 18-25
+
+<tr><td valign=top>G09
+<td>
+Selma Jeanne Cohen, &quot;Avant-Garde Choreography&quot;, 
+	<i>Criticism A Quarterly for
+	Literature and the Arts</i>, vol. III, no. 1 (Winter 1961), 24-28
+
+<tr><td valign=top>G10
+<td>
+Clarence Streit, &quot;How the Civil War Kept You Sovereign&quot; [chapter 8 of
+	<i>Freedom's Frontier - Atlantic Union Now</i>], <i>Freedom and Union</i>,
+	16:2 (February 1961), 16-18
+
+<tr><td valign=top>G11
+<td>
+Frank Oppenheimer, &quot;Science and Fear - A Discussion of Some Fruits of
+	Scientific Understanding&quot;, <i>The Centennial Review</i>, 5:4
+	(Fall 1961), 404-409
+
+<tr><td valign=top>G12
+<td>
+Tom F. Driver, &quot;Beckett by the Madeleine&quot;, <i>Columbia University Forum</i>,
+	4:3 (Summer 1961), 21-24
+
+<tr><td valign=top>G13
+<td>
+Charles Glicksberg, &quot;Sex in Contemporary Literature&quot;, <i>The Colorado
+	Quarterly</i>, 9:3 (Winter 1961), 278-82
+
+<tr><td valign=top>G17
+<td>
+Randall Stewart, &quot;A Little History, a Little Honesty: A Southern
+	Viewpoint&quot;, <i>The Georgia Review</i>, 15:1 (Spring 1961), 10-15
+
+<tr><td valign=top>G18
+<td>
+Charles Wharton Stork, &quot;Verner von Heidenstam&quot;, <i>American-Scandinavian
+	Review</i>, 49:1 (March 1961), 39-43
+
+<tr><td valign=top>G22
+<td>
+Kenneth Reiner, &quot;Coping with Runaway Technology&quot;, <i>The Ethical Outlook</i>,
+	XLVII:3 (May-June 1961), 91-95
+
+<tr><td valign=top>J01
+<td>
+Cornell H. Mayer, &quot;Radio Emission of the Moon and Planets&quot;, in Gerard
+	P. Kuiper &amp; Barbara M. Middlehurst (eds.), <i>Planets and
+	Satellites</i>.  Vol. 3 of <i>The Solar System</i>.  University of
+	Chicago Press, 1961, pp. 442-446
+
+<tr><td valign=top>J02
+<td>
+Raymond C. Binder et al. (eds.), <i>Proceedings of the 1961 Heat Transfer
+	and Fluid Mechanics Institute</i>, Stanford University Press,
+	1961, pp. 193-196
+
+<tr><td valign=top>J03
+<td>
+Harry H. Hull, &quot;The Normal Forces and Their Thermodynamic Significance&quot;,
+	<i>Transactions of the Society of Rheology</i>, V (1961), 120-125
+
+<tr><td valign=top>J04
+<td>
+James A. Ibers et al., &quot;Proton magnetic resonance study of polycrystalline
+	HCrO<sub>2</sub>&quot;, <i>The Physical Review</i>, 121:6 (1961.03.15), 1620-1622
+
+<tr><td valign=top>J05
+<td>
+Jay C. Harris &amp; John R. Van Wazer, &quot;Detergent building&quot;, in
+	J.R. Van Wazer (ed.), <i>Phosphorus and its Compounds</i>, 
+	Interscience Publishers, Inc., 1961, pp. 1732-1737
+
+<tr><td valign=top>J06
+<td>
+Francis J. Johnston &amp; John E. Willard, &quot;The exchange reaction between
+	Chlorine and Carbon Tetrachloride&quot;, <i>Journal of Physical Chemistry</i>,
+	65 (February 1961), 317-318
+
+<tr><td valign=top>J07
+<td>
+J.F. Vedder, &quot;Micrometeorites&quot;, in Francis S. Johnson (ed.), <i>Satellite
+	Environment Handbook</i>, Stanford University Press, 1961, pp. 92-97
+
+<tr><td valign=top>J08
+<td>
+LeRoy Fothergill, &quot;Biological Warfare&quot;, in Peter Gray (ed.), <i>The
+	Encyclopedia of the Biological Sciences</i>, Reinhold Publishing
+	Corporation, 1961, pp. 145-149
+
+<tr><td valign=top>J09
+<td>
+M. Yokoyama et al., &quot;Chemical and serological characteristics of blood group
+	antibodies in the ABO and Rh systems&quot;, <i>The Journal of Immunology</i>,
+	87 (1961), 56-60
+
+<tr><td valign=top>J10
+<td>
+B.J.D. Meeuse, <i>The Story of Pollination</i>, The Ronald Press Company,
+	1961, pp. 104-108
+
+<tr><td valign=top>J12
+<td>
+Richard F. McLaughlin et al., &quot;A study of the subgross pulmonary anatomy
+	in various mammals&quot;, <i>The American Journal of Anatomy</i>,
+	108 (1961), 154-157
+
+<tr><td valign=top>J17
+<td>
+E. Gellhorn, &quot;Prolegomena to a theory of the emotions&quot;, <i>Perspectives in
+	Biology and Medicine</i>, 4 (1961), 426-431
+
+<tr><td valign=top>J21
+<td>
+C.R. Wylie, Jr., &quot;Line involutions in S<sub>3</sub> whose singular lines all
+	meet in a twisted curve&quot;, <i>Proceedings of the American Mathematical
+	Society</i>, 12 (1961), 335-339.
+
+<tr><td valign=top>J22
+<td>
+Max F. Millikan &amp; Donald L.M. Blackmer (eds.), <i>The Emerging Nations:
+	Their Growth and United States Policy</i>, Little, Brown and
+	Company, 1961, pp. 136-142
+
+<tr><td valign=top>J23
+<td>
+Joyce O. Hertzler, <i>American Social Institutions; A Sociological Analysis</i>,
+	Allyn and Bacon, Inc., 1961, pp. 478-482
+
+<tr><td valign=top>J24
+<td>
+Howard J. Parad, &quot;Preventive casework: problems and implications&quot;,
+	<i>The Social Welfare Forum</i>, 1961, Columbia University Press
+	for the National Conference on Social Welfare, 1961, pp. 186-191
+
+<tr><td valign=top>N01
+<td>
+Wayne D. Overholser, <i>The Killer Marshal</i>, Dell Publishing Co., 1963
+	[copyright 1961], pp. 53-58
+
+<tr><td valign=top>N02
+<td>
+Clifford Irving, <i>The Valley</i>, McGraw-Hill Book Company, Inc., 1961,
+	pp. 262-267
+
+<tr><td valign=top>N03
+<td>
+Cliff Farrell, <i>Trail of the Tattered Star</i>, Doubleday &amp; Company, 1961,
+	168-173
+
+<tr><td valign=top>N04
+<td>
+James D. Horan, <i>The Shadow Catcher</i>, Crown Publishers, Inc., 1961,
+	pp. 248-253
+
+<tr><td valign=top>N05
+<td>
+Richard Ferber, <i>Bitter Valley</i>, Dell Publishing Company, 1961, pp. 9-17
+
+<tr><td valign=top>N06
+<td>
+Thomas Anderson, <i>Here Comes Pete Now</i>, Random House, 1961, pp. 4-12
+
+<tr><td valign=top>N07
+<td>
+Todhunter Ballard, <i>The Night Riders</i>, Pocket Books, Inc., 1961, pp. 5-11
+
+<tr><td valign=top>N08
+<td>
+Mary Savage, <i>Just For Tonight</i>, Dodd, Mead &amp; Company, 1961, pp. 114-120
+
+<tr><td valign=top>N09
+<td>
+Jim Thompson, <i>The Transgressors</i>, The New American Library of World
+	Literature, Inc., 1961, pp. 9-13
+
+<tr><td valign=top>N10
+<td>
+Joseph Chadwick, <i>No Land Is Free</i>, Avon Book Division, Hearst Corporation,
+	1961, pp. 21-26
+
+<tr><td valign=top>N11
+<td>
+Gene Caesar,<i> Rifle For Rent</i>, Monarch Books, Inc., 1963 [copyright 1961],
+	pp. 46-51
+
+<tr><td valign=top>N12
+<td>
+Edwin Booth, <i>Outlaw Town</i>, Ballantine Books, Inc., 1961, pp. 103-108
+
+<tr><td valign=top>N13
+<td>
+Martha Ferguson McKeown, <i>Mountains Ahead</i>, G.P. Putnam's Sons, 
+	1961, pp. 390-395
+
+<tr><td valign=top>N14
+<td>
+Peter Field, <i>Rattlesnake Ridge</i>, Jefferson House, Inc., 1961, pp. 164-172
+
+<tr><td valign=top>N15
+<td>
+Donald J. Plantz, <i>Sweeney Squadron</i>, Dell Publishing Co., Inc.,
+	1961, pp. 133-138
+
+<tr><td valign=top>N18
+<td>
+Peter Bains, &quot;With Women...Education Pays Off&quot;, <i>Monsieur</i>, 4:2 (February
+	1961), 17 and 77-78
+
+</table>
+
+
+
+<h2>Notes</h2>
+
+<p>
+&#185;The support of the Economic and Social Research Council
+is gratefully acknowledged.  The SUSANNE Project, &quot;Construction of an
+Analysed Corpus of English&quot;, was funded by ESRC award
+no. R00023 1142, over the period 1988 to 1992.  &quot;SUSANNE&quot; stands for
+&quot;Surface and underlying structural analyses of naturalistic English&quot;.
+I should like to express my warmest thanks to the team who worked on the
+SUSANNE Project, namely Robin Haigh, H&eacute;l&egrave;ne Knight, Tim Willis,
+and Nancy Glaister.
+
+<p>
+&#178;I thank Alvar Elleg&aring;rd for permission to circulate a research
+resource derived from the work of his group.
+
+<p>
+&#179;This is not to suggest that the Pennsylvania Treebank analytic
+system is crude or ill-defined.  Although the Pennsylvania team
+began by focusing on quantity of material analysed, they have since
+published electronically a definition of their own analytic
+scheme (URL 8) which is very comparable in degree of refinement
+to that of <i>English for the Computer</i>.
+Having been first in the field, for me and my group it would now be
+difficult to consider abandoning the SUSANNE scheme 
+for a radically different one even if some
+alternative were to prove demonstrably superior.
+
+
+
+
+
+<h2>References</h2>
+
+
+<p>
+A. Elleg&aring;rd&nbsp;  (1978)&nbsp;  <i>The Syntactic Structure of English Texts</i>.  
+	Gothenburg Studies in English, 43.
+<p>
+W.N. Francis &amp; H. Ku&#269;era&nbsp;  (1989)&nbsp;  <i>Manual of Information to Accompany a
+	Standard Corpus of Present-Day Edited American English, for use
+	with Digital Computers</i> (corrected and revised edition).
+	Department of Linguistics, Brown University, Providence, Rhode Island.
+[In case of browsers which fail to display the appropriate Unicode subset,
+note that the third character of the second author's surname is c with
+the Czech hachek diacritic.]
+
+<p>
+R.G. Garside, G.N. Leech, &amp; G.R. Sampson, eds.&nbsp;  (1987)&nbsp;  <i>The Computational
+	Analysis of English</i>.  Longman.
+
+<p>
+D. Gibbon, R. Moore, &amp; R. Winski, eds.&nbsp;  (1997)&nbsp;  <i>Handbook 
+of Standards and Resources for
+	Spoken Language Systems</i>.  Mouton.  
+
+<p>
+K. Hofland &amp; S. Johansson&nbsp;  (1982)&nbsp;  <i>Word Frequencies in British and American
+	English</i>.  Longman.
+
+<p>
+A. Kilgarriff &amp; Martha Palmer, eds.&nbsp;  (2000)&nbsp;  <i>Computers
+and the Humanities</i>
+	special issue on Senseval, vol. 34, issues 1-2.
+
+<p>
+D.T. Langendoen&nbsp;  (1997)&nbsp;  Review of Sampson (1995).  
+<i>Language</i> 73.600-3.
+
+<p>
+M.P. Marcus, Beatrice Santorini, and Mary Ann Marcinkiewicz&nbsp;  (1993)&nbsp;  
+	&quot;Building a large annotated corpus of English:  the Penn Treebank&quot;.
+	<i>Computational Linguistics</i> 19.313-30.
+
+<p>
+R. Quirk, S. Greenbaum, G. Leech, &amp; J. Svartvik&nbsp;  (1985)&nbsp;  <i>A Comprehensive
+	Grammar of the English Language</i>.  Longman.
+
+<p>
+G.R. Sampson&nbsp;  (1992)&nbsp;  &quot;Probabilistic parsing&quot;.  In J. Svartvik, ed., 
+<i>Directions in Corpus Linguistics:  Proceedings of Nobel Symposium 82</i>,
+	Mouton de Gruyter.
+
+<p>
+G.R. Sampson&nbsp;  (1995)&nbsp;  <i>English for the Computer: The SUSANNE Corpus and
+	Analytic Scheme</i>.  Clarendon Press (Oxford University Press).
+
+<p>
+G.R. Sampson&nbsp; (1998)&nbsp; Review of S. Greenbaum, ed.,
+<i>Comparing English Worldwide</i>.  <i>Natural Language Engineering</i>
+4.363-5.
+
+<p>
+G.R. Sampson&nbsp; (2001)&nbsp;  <i>Empirical Linguistics</i>.  Continuum International.
+
+<h2>URL List</h2>
+
+<table>
+<td>1<td><tt>http://www.uic.edu/orgs/tei/</tt><tr>
+<td>2<td><tt>http://www.cs.vassar.edu/CES/</tt><tr>
+<td>3<td><tt>http://www.hd.uib.no/icame.html</tt><tr>
+<td>4<td><tt>http://www.cogs.susx.ac.uk/users/geoffs/RChristine.html</tt><tr>
+<td>5<td><tt>ftp://ftp.cogs.susx.ac.uk/pub/users/geoffs/CHRISTINE1.tar.Z</tt><tr>
+<td>6<td><tt>http://www.cogs.susx.ac.uk/users/geoffs/ChrisDoc.html</tt><tr>
+<td>7<td><tt>http://www.cis.upenn.edu/~treebank/home.html</tt><tr>
+<td>8<td><tt>ftp://ftp.cis.upenn.edu/pub/treebank/doc/manual/</tt><tr>
+<td>9<td><tt>http://www.ilc.pi.cnr.it/EAGLES/home.html</tt><tr>
+<td>10<td><tt>http://www.itri.brighton.ac.uk/events/senseval/</tt><tr>
+</table>
+
+</body>
+</html>
+
+
+

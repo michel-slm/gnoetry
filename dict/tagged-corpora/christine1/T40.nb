@@ -1,0 +1,103 @@
+<html>
+<body>
+
+<h1>Text T40</h1>
+
+<h2>Source</h2>
+<p>BNC file KSU
+
+<h2>Date</h2>
+<p>unknown, not later than Nov 1994 
+(recorded as &quot;1992&quot; 
+in the Speakers
+file as a best guess)
+
+<h2>Place</h2>
+<p>unknown, possibly South Essex (cf. s-unit 00168)
+
+<h2>Locale/activities</h2>
+<p>conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Peter146, m, 13, pupil, XX, AB
+<li>Linda147, f, 45, credit controller, XX, AB
+<li>Sadie148, f, 45, unemployed, XX, DE
+<li>Nick149, m, 21, unemployed, XX, XX
+</ul>
+
+<h2>Relationships</h2>
+<p>Peter146 and Nick149 are brothers.
+Peter146 is son of Linda147; it follows that Nick149 
+must also be her son,
+though BNC does not say so.
+Sadie148 is Nick149's aunt.
+
+
+<h2>Dialect Classification</h2>
+<p>No information about dialect is given in BNC 
+for any of these speakers.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Peter146 as AB, Linda147 and Sadie148 as DE, 
+and does not
+classify Nick149.  But Linda147 is SOC code 130, II, hence AB.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>00099:  <i>thingie</i> emended to <i>thingy</i>
+
+<p>00190:  Normally, numbers uttered by the speakers 
+are represented written
+out in words.  In this case, the BNC transcriptions contain
+&quot;85 135&quot; written digitally, both 
+numbers marked &quot;sic&quot;.  It is not at
+all clear what the speaker is referring to (and the way
+that &quot;135&quot; was said depends on what it referred 
+to -- it might have been <i>one three five</i>, <i>a hundred and
+thirty-five</i>, etc.).  Rather than leave the words in digital
+form, which would be likely to create problems for corpus
+users, I have conjectured that the speaker was giving a rough
+idea of the cost of her mascara, i.e. &quot;85p or &pound;1.35&quot;,
+and have accordingly represented the words as 
+<i>eighty-five</i>, <i>one thirty-five</i>.
+
+<p>00193:  <i>E F five</i> emended to <i>EFi</i>:  
+taken to be a reference to the Ford
+Orion 1.6EFi, introduced to the Ford car range
+in March 1991.  <i>EFi</i> probably stands for 
+&quot;electronic fuel injection&quot;, though I have not managed to
+confirm this.
+
+<p>00204:  BNC gives no information about 
+the location of this recording, but
+from the references in 00168 it would appear to be taking
+place in South Essex.  In that case, the name <i>Wickham</i> is
+mystifying:  there is no place with that name in the area.
+There is a Wickford north of Basildon, but this would be
+a surprising transcription error.  The BNC form has been left
+to stand in CHRISTINE.
+
+<p>00287:  <i>He int</i> emended to <i>He in't</i>
+
+<p>00346:  <i>fire engines</i> emended to <i>fire-engines</i>
+
+<p>00366:  <i>World title</i> emended to <i>world title</i>
+
+<p>00368:  BNC reads <i>to win that will back</i>; 
+in context, the word <i>will</i> is
+inexplicable and has been tagged FD (distorted word) in CHRISTINE.
+(A possibility is a truncated form of <i>world title</i>, but this would
+be so conjectural that there is no basis for changing the text.
+Another, perhaps less plausible possibility is <i>we'll back</i>, as
+a relative clause.)
+
+<p>00426:  <i>R S turbo</i> emended to <i>RS Turbo</i> 
+(a model within the Ford Escort and Fiesta ranges)
+
+</body>
+</html>
+

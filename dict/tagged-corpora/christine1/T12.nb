@@ -1,0 +1,99 @@
+<html>
+<body>
+
+<h1>Text T12</h1>
+
+<h2>Source</h2>
+<p>BNC file KCE
+
+<h2>Date</h2>
+<p>12 to 20 Mar 1992
+
+<h2>Place</h2>
+<p>Redditch, Worcs.
+
+<h2>Locale/activities</h2>
+<p>home, talking with friends/conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Eleanor054, f, 16, student, MD, C1
+<li>Zoe055, f, 16, student, SW, DE
+<li>Suzanne056, f, 13, student, SW, XX
+<li>Dean057, m, 19, student, SW, XX
+</ul>
+
+<h2>Relationships</h2>
+<p>Four friends.
+
+
+<h2>Dialect Classification</h2>
+<p>Redditch is only about 15 m. South of Birmingham; it is close to Trudgill's
+main &quot;North/South&quot; English isogloss, and one might expect people living
+there to group linguistically with Birmingham rather than with the &quot;Upper
+Southwest&quot; area which the BNC dialect codes assign to all the speakers but
+Eleanor054.  However, CHRISTINE follows these codes in classifying those
+three speakers as SW.  Eleanor054 is given the BNC code for &quot;Northeast
+Midlands&quot;; this is distant from Redditch, so she presumably is not local
+there and is unproblematically given the CHRISTINE MD code.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Eleanor054 as C2, Zoe055 as DE, and leaves the other two
+unclassified.  However, Eleanor054's mother is shown as a driving 
+instructor, SOC code 393, IIIN, so her classification has been changed
+to C1.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>03864:  <i>over excited</i> emended to <i>over-excited</i>
+
+<p>03883, 03933:  <i>Zo</i> is intended to represent a monosyllabic
+reduced version of the addressee's <i>nom de corpus</i> Zoe; the BNC original
+has a correspondingly reduced version of the addressee's real name.
+
+<p>03898:  <i>living room</i> emended to <i>living-room</i>
+
+<p>03921:  <i>polo</i> emended to <i>Polo</i> 
+(the speaker is more likely to be contemplating
+rectal insertion of a mint with a hole than a sport with horses)
+
+<p>03927:  <i>El-bel</i> is intended to represent a pet name based on
+the <i>nom de corpus</i> Eleanor.  In the original BNC passage, the
+corresponding pet name derived from the addressee's real name has been
+shown as two separate words, probably because the transcriber did not
+understand what the speaker meant.
+
+<p>03929:  In the BNC file, this s-unit contains two opening vocal shifts
+(for singing and shouting), but only one closing shift, at the
+end of the s-unit, which like other BNC closing vocal shift
+elements does not contain a specific descriptive attribute.
+It might be that the BNC conventions treat a single closing
+vocal shift as terminating all open shifts (the Manual is
+not clear on the subject, and I have not found other examples
+from which practice could be inferred); it seems to me that
+an utterance cannot be both sung and shouted simultaneously,
+so CHRISTINE assumes that a closing shift has been accidentally
+omitted before the second opening shift, and restores it. 
+
+<p>03982:  <i>sitting room</i> emended to <i>sitting-room</i>
+
+<p>04018:  <i>just got to close down</i>:  
+the lyric actually runs <i>they forgot
+to close down</i>, but it is as likely that the speaker got
+the words wrong as that the transcriber misheard.
+
+<p>04070:  <i>chewing gum</i> emended to <i>chewing-gum</i>
+
+<p>04088:  <i>a go slow</i> emended to <i>a go-slow</i>
+
+<p>04018:  <i>armageddon</i> emended to <i>Armageddon</i> (three times)
+
+<p>04108, 04111:  <i>the channel tunnel</i> emended to 
+<i>the Channel Tunnel</i>
+
+</body>
+</html>
+

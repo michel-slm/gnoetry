@@ -1,0 +1,101 @@
+<html>
+<body>
+
+<h1>Text T09</h1>
+
+<h2>Source</h2>
+<p>BNC file KC2
+
+<h2>Date</h2>
+<p>13 to 20 Mar 1992
+
+<h2>Place</h2>
+<p>Rushden, Northants.
+
+<h2>Locale/activities</h2>
+<p>home, taking tea/playing games
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Alf038, m, 77, retired, MD, DE
+<li>Beatrice039, f, 71, retired, MD, DE
+<li>Jeffrey040, m, 37, office manager, MD, AB
+<li>Jennifer041, f, 7, student, MD, AB
+<li>Sadie042, f, 39, housewife, MD, AB
+</ul>
+
+<h2>Relationships</h2>
+<p>Alf038 and Beatrice039 are man and wife.
+Jeffrey040 is their son.
+Sadie042 is their daughter-in-law (BNC does not state that she is
+Jeffrey040's wife).
+Jennifer041 is granddaughter of Alf038 and Beatrice039 (BNC says nothing
+about whose daughter she is).
+
+
+<h2>Dialect Classification</h2>
+<p>All speakers are given the BNC dialect code for &quot;Northeast Midlands&quot;.
+Rushden is 4 m. East of Wellingborough on the Northants./Beds. border,
+close to Trudgill's chief English isogloss between 
+&quot;North&quot; and &quot;South&quot;
+dialects, and on Trudgill's map it falls on the southern side of that
+isogloss, into the &quot;South Midlands&quot; 
+rather than &quot;Northeast Midlands&quot; area.
+Accordingly it might be more appropriate to give these speakers the
+CHRISTINE code SE, but they have been given MD in line with the BNC coding.
+(Note that another Rushden speaker in text T18 
+has been given the &quot;South
+Midlands&quot; BNC code; one would hope that the BNC compilers had a positive
+reason for making this difference, though we do not know what it was.)
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Alf038 and Beatrice039 as DE and leaves others unclassified.
+Jeffrey040's occupation is SOC code 139, II, therefore AB.  Sadie042 and
+Jennifer041 are also classified AB in CHRISTINE on the assumption that they
+are Jeffrey040's wife and daughter (this is not stated in the BNC file
+header, but Jennifer041 calls Jeffrey040 &quot;dad&quot; in source-unit 01875).
+
+
+<h2>Emendations and Comments</h2>
+
+<p>01946:  <i>Who's</i> emended to <i>Whose</i>
+
+<p>01980:  <i>penguin</i> emended to <i>Penguin</i> (trade name of a chocolate bar)
+
+<p>02097:  <i>Little red head</i> emended to <i>Little redhead</i>
+
+<p>02130:  <i>Cotswold news</i> emended to <i>Cotswold News</i>.  
+This phrase is taken to be the
+name of a local newspaper -- the wording could make sense if the
+speaker had a copy of a paper containing a coupon for a 
+supermarket promotional offer.  However, there are problems with
+this reading.  <i>Willings Press Guide</i>, vol. 1: United Kingdom, 
+for 1997 lists several papers with <i>Cotswold</i> in the title but
+no <i>Cotswold News</i>.  Furthermore, Rushden, Northants., where the
+recording took place and where the speakers were based, is quite
+distant from the circulation area of any newspaper based on
+the Cotswolds.
+
+<p>02139:  <i>cheddar</i> emended to <i>Cheddar</i>
+
+<p>02141:  <i>know</i> emended to <i>now</i>:  near-homonym, 
+and the substitution is needed to make
+sense in context
+
+<p>02144:  <i>the can can</i> emended to <i>the cancan</i>
+
+<p>01879-81:  <i>I don't no where</i> emended to <i>I don't know where</i>
+
+<p>01886:  <i>mustard</i> emended to <i>Mustard</i> (Cluedo playing piece, 
+<i>Colonel Mustard</i>)
+
+<p>01897, 01898:  <i>banner</i> emended to <i>spanner</i>, 
+<i>Banner</i> emended to <i>Spanner</i> (Cluedo 
+playing piece)
+
+<p>01900:  <i>Professor Plumb</i> emended to <i>Professor Plum</i> 
+(Cluedo playing piece)
+</body>
+</html>
+

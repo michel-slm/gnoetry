@@ -1,0 +1,67 @@
+<html>
+<body>
+
+<h1>Text T13</h1>
+
+<h2>Source</h2>
+<p>BNC file KCJ
+
+<h2>Date</h2>
+<p>3 to 6 April 1992
+
+<h2>Place</h2>
+<p>South Shields
+
+<h2>Locale/activities</h2>
+<p>at home, relaxing/conversation
+
+<h2>Identified Speakers</h2>
+<ul>
+<li>Charles058, m, 63, retired, NO, DE
+<li>Catherine059, f, 30, housewife, NO, XX
+
+</ul>
+
+<h2>Relationships</h2>
+<p>Catherine059 is daughter of Charles058.
+
+
+<h2>Dialect Classification</h2>
+<p>BNC gives both speakers the dialect code applicable to South Shields.
+
+
+<h2>Social Classification</h2>
+<p>BNC classifies Charles058 as DE and does not classify Catherine059; there
+is no evidence for alternative classifications.
+
+
+
+<h2>Emendations and Comments</h2>
+
+<p>00941:  <i>would of</i> emended to <i>would've</i>
+
+<p>00942:  <i>self raising flour</i> emended to <i>self-raising flour</i>
+
+<p>01033:  <i>an'all</i> emended to <i>an' all</i>
+
+<p>01074, 01144:  <i>must of</i> emended to <i>must've</i>
+
+<p>01118, 01122, 01132, 01157:  <i>yorkshire pudding(s)</i> 
+emended to <i>Yorkshire pudding(s)</i>
+
+<p>01144:  <i>what the call it</i> emended to <i>what they call it</i> 
+(in context, it seems a safe
+bet that this wording is an abbreviated version of <i>what do they
+call it</i>, in which case it is reasonable to assume that what the
+transcriber heard as <i>the</i> was intended as <i>they</i>)
+
+<p>01162:  <i>couldn't of</i> emended to <i>couldn't've</i>
+
+<p>01179:  <i>hoover</i> emended to <i>Hoover</i> 
+(proper name of a make of vacuum cleaner)
+
+<p>01180:  <i>it's there's</i> emended to <i>it's theirs</i>
+
+</body>
+</html>
+
