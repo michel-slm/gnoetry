@@ -529,7 +529,7 @@ py_phoneme_is_vowel (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "i", &phon))
         return NULL;
 
-    return Py_BuildValue ("i", PHONEME_IS_VOWEL (phon));
+    return PyBool_FromLong (PHONEME_IS_VOWEL (phon));
 }
 
 PyObject *
@@ -540,7 +540,7 @@ py_phoneme_is_consonant (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "i", &phon))
         return NULL;
 
-    return Py_BuildValue ("i", PHONEME_IS_CONSONANT (phon));
+    return PyBool_FromLong (PHONEME_IS_CONSONANT (phon));
 }
 
 PyObject *
@@ -551,7 +551,7 @@ py_phoneme_is_stressed (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "i", &phon))
         return NULL;
 
-    return Py_BuildValue ("i", PHONEME_IS_STRESSED (phon));
+    return PyBool_FromLong (PHONEME_IS_STRESSED (phon));
 }
 
 PyObject *
@@ -562,7 +562,7 @@ py_phoneme_is_xstressed (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "i", &phon))
         return NULL;
 
-    return Py_BuildValue ("i", PHONEME_IS_EXPLICITLY_STRESSED (phon));
+    return PyBool_FromLong (PHONEME_IS_EXPLICITLY_STRESSED (phon));
 }
 
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
@@ -653,7 +653,7 @@ py_phoneme_equal_mod_stress (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "ii", &p1, &p2))
         return NULL;
 
-    return Py_BuildValue ("i", PHONEME_EQ_MOD_STRESS (p1, p2));
+    return PyBool_FromLong (PHONEME_EQ_MOD_STRESS (p1, p2));
 }
 
 PyObject *
@@ -664,6 +664,6 @@ py_phoneme_equal_mod_slant (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "ii", &p1, &p2))
         return NULL;
 
-    return Py_BuildValue ("i", PHONEME_EQ_MOD_SLANT (p1, p2));
+    return PyBool_FromLong (PHONEME_EQ_MOD_SLANT (p1, p2));
 }
 

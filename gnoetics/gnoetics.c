@@ -11,6 +11,7 @@
 #include "token.h"
 #include "text.h"
 #include "tokenmodel.h"
+#include "trimodel.h"
 
 static PyMethodDef gnoetics_methods[] = {
 
@@ -168,22 +169,31 @@ static PyMethodDef gnoetics_methods[] = {
   { NULL, NULL, 0, NULL }
 };
 
+typedef void (*RegisterFunc) (PyObject *);
+static RegisterFunc register_funcs[] = {
+    py_meter_register,
+    py_token_register,
+    py_text_register,
+    py_token_model_register,
+    py_trimodel_register,
+    NULL
+};
+
+
 void
 initxxx_gnoetics (void)
 {
   PyObject *m, *d;
+  int i;
 
   m = Py_InitModule ("xxx_gnoetics", gnoetics_methods);
   d = PyModule_GetDict (m);
 
   fate_seed_from_time ();
-
   dictionary_init ();
-  py_meter_register (d);
-  py_token_register (d);
-  py_text_register (d);
-  py_token_model_register (d);
 
+  for (i = 0; register_funcs[i] != NULL; ++i)
+      register_funcs[i] (d);
 }
 
 

@@ -160,7 +160,7 @@ py_meter_is_valid (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "s", &a))
         return NULL;
 
-    return Py_BuildValue ("i", meter_is_valid (a));
+    return PyBool_FromLong (meter_is_valid (a));
 }
 
 PyObject *
@@ -171,7 +171,7 @@ py_metric_match_left (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "ss", &a, &b))
         return NULL;
 
-    return Py_BuildValue ("i", metric_match_left (a, b));
+    return PyBool_FromLong (metric_match_left (a, b));
 }
 
 PyObject *
@@ -182,7 +182,7 @@ py_metric_match_right (PyObject *self, PyObject *args)
     if (! PyArg_ParseTuple (args, "ss", &a, &b))
         return NULL;
 
-    return Py_BuildValue ("i", metric_match_right (a, b));
+    return PyBool_FromLong (metric_match_right (a, b));
 }
 
 PyObject *

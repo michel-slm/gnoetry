@@ -17,7 +17,7 @@ token_get_word (Token *t)
 {
     g_return_val_if_fail (t != NULL, NULL);
     if (token_is_break (t))
-        return "\n";
+        return "<x>";
     return t->word;
 }
 
@@ -142,6 +142,7 @@ token_lookup (const char *raw)
 
         if (! strcmp (raw, "*break*")) {
             tok->is_break = TRUE;
+            tok->syllables = 0;
         } else if (! strncmp (raw, "*punct*", 7)) {
             tok->word = g_strdup (raw+8);
             tok->is_punctuation = TRUE;
@@ -219,42 +220,42 @@ static PyObject *
 py_token_is_break (PyObject *self, PyObject *args)
 {
     Token *token = token_from_py (self);
-    return Py_BuildValue ("i", token_is_break (token));
+    return PyBool_FromLong (token_is_break (token));
 }
 
 static PyObject *
 py_token_is_punctuation (PyObject *self, PyObject *args)
 {
     Token *token = token_from_py (self);
-    return Py_BuildValue ("i", token_is_punctuation (token));
+    return PyBool_FromLong (token_is_punctuation (token));
 }
 
 static PyObject *
 py_token_is_wildcard (PyObject *self, PyObject *args)
 {
     Token *token = token_from_py (self);
-    return Py_BuildValue ("i", token_is_wildcard (token));
+    return PyBool_FromLong (token_is_wildcard (token));
 }
 
 static PyObject *
 py_token_in_dictionary (PyObject *self, PyObject *args)
 {
     Token *token = token_from_py (self);
-    return Py_BuildValue ("i", token_in_dictionary (token));
+    return PyBool_FromLong (token_in_dictionary (token));
 }
 
 static PyObject *
 py_token_has_left_glue (PyObject *self, PyObject *args)
 {
     Token *token = token_from_py (self);
-    return Py_BuildValue ("i", token_has_left_glue (token));
+    return PyBool_FromLong (token_has_left_glue (token));
 }
 
 static PyObject *
 py_token_has_right_glue (PyObject *self, PyObject *args)
 {
     Token *token = token_from_py (self);
-    return Py_BuildValue ("i", token_has_right_glue (token));
+    return PyBool_FromLong (token_has_right_glue (token));
 }
 
 static PyObject *

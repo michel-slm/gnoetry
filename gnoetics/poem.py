@@ -18,8 +18,8 @@ class Poem:
 
         ### Sanity-check
         assert len(self.__units) > 0
-        assert self.__units[0].must_be_head()
-        assert self.__units[-1].must_be_tail()
+        assert self.__units[0].is_head()
+        assert self.__units[-1].is_tail()
         assert self.__units[-1].is_end_of_line()
         assert self.__units[-1].is_end_of_stanza()
 
@@ -81,14 +81,17 @@ class Poem:
         i = self.__fix_index(i)
         assert self.__good_index(i)
         assert is_left is not None
-        assert not tok.is_break()
         assert not tok.is_wildcard()
 
-        orig = x.__units[i]
+        orig = self.__units[i]
         assert orig.is_not_bound()
         assert 0 <= tok.get_syllables() <= orig.get_syllables()
 
-        if is_left:
+        if tok.get_syllables() == orig.get_syllables():
+            site = orig
+            repl = None
+            bind_at = i
+        elif is_left:
             site = orig.pop_left(tok.get_syllables())
             repl = (site, orig)
             bind_at = i
@@ -98,16 +101,17 @@ class Poem:
             bind_at = i+1
 
         site.bind(tok)
-        self.__units[i:i+1] = repl
+        if repl:
+            self.__units[i:i+1] = repl
         return bind_at
 
 
     def bind_left(self, i, tok):
-        self.bind_left(i, tok, is_left=True)
+        self.bind(i, tok, is_left=True)
 
 
     def bind_right(self, i, tok):
-        self.bind_right(i, tok, is_left=False)
+        self.bind(i, tok, is_left=False)
 
 
     def unbind(self, i):
@@ -156,13 +160,13 @@ def _unit_magic(scheme):
             if x != "*":
                 args["rhyme"] = x
 
-        args["end_of_line"] = True
+        args["is_end_of_line"] = True
         if is_first:
-            args["must_be_head"] = True
+            args["is_head"] = True
         if is_last:
-            args["must_be_tail"] = True
+            args["is_tail"] = True
         if is_last or scheme[i+1] == " ":
-            args["end_of_stanza"] = True
+            args["is_end_of_stanza"] = True
 
         units.append(PoeticUnit(**args))
 

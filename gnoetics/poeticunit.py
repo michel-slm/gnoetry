@@ -14,12 +14,12 @@ class PoeticUnit:
                    meter=None,
                    rhyme=None,
                    
-                   end_of_line=False,      # Is this the end of a line?
-                   end_of_stanza=False,    # ...or a stanza?
+                   is_end_of_line=False,    # Is this the end of a line?
+                   is_end_of_stanza=False,  # ...or a stanza?
                    
-                   must_be_head=False,
-                   must_be_tail=False,
-                   
+                   is_head=False,
+                   is_tail=False,
+
                    iambs=None):       # Convenience: how many iambs?
 
         ### Sanity check arguments
@@ -47,8 +47,8 @@ class PoeticUnit:
             meter = gnoetics.METER_ANY * syllables
 
         # end of stanza implies end of line
-        if end_of_stanza:
-            end_of_line = True
+        if is_end_of_stanza:
+            is_end_of_line = True
 
         # Populate variables
             
@@ -56,17 +56,15 @@ class PoeticUnit:
         self.__meter = meter
         self.__rhyme = rhyme
 
-        self.__eol = end_of_line
-        self.__eostz = end_of_stanza
+        self.__eol = is_end_of_line
+        self.__eostz = is_end_of_stanza
 
-        self.__musthead = must_be_head
-        self.__musttail = must_be_tail
+        self.__ishead = is_head
+        self.__istail = is_tail
 
         # Initialize binding information
 
         self.__token = None
-        self.__ishead = False
-        self.__istail = False
 
     ###
     ### Accessors
@@ -96,20 +94,12 @@ class PoeticUnit:
         return self.__eostz
 
 
-    def must_be_head(self):
-        return self.__musthead
-
-
-    def must_be_tail(self):
-        return self.__musttail
-
-
     def is_head(self):
-        return self.__musthead or self.__ishead
+        return self.__ishead
 
 
     def is_tail(self):
-        return self.__musttail or self.__istail
+        return self.__istail
 
 
     def is_left_constrained(self):
@@ -139,45 +129,22 @@ class PoeticUnit:
         return self.__token
 
 
+    def is_break(self):
+        return self.is_bound() and self.get_binding().is_break()
+
+
     def bind(self, token):
         assert self.__token is None
-        if token.is_break():
-            assert self.get_syllables() == 0
-        else:
-            assert token.get_syllables() == self.get_syllables()
+        assert token.get_syllables() == self.get_syllables()
+        if self.is_head() or self.is_tail():
+            assert token.is_break()
         self.__token = token
-
-
-    def set_head(self):
-        assert self.is_bound()
-        self.__ishead = True
-
-
-    def set_tail(self):
-        assert self.is_bound()
-        self.__istail = True
 
 
     def unbind(self):
         assert self.__token is not None
         self.__token = None
-        self.__ishead = False
-        self.__istail = False
 
-    ###
-    ### Tokenification
-    ###
-
-    def get_tokens(self):
-        T = []
-        if self.is_head():
-            T.append(gnoetics.token_lookup_break())
-        if self.is_bound():
-            T.append(s.get_binding())
-        else:
-            T.append(gnoetics.token_lookup_wildcard())
-        if self.is_tail():
-            T.append(gnoetics.token_lookup_break())
 
     ###
     ### Stringification
@@ -186,7 +153,9 @@ class PoeticUnit:
     def to_string(self,
                   show_line_break_info=True,
                   highlight=False):
-        if self.is_bound():
+        if self.is_break():
+            s = "<x>"
+        elif self.is_bound():
             s = self.get_binding().get_word()
         else:
             s = self.get_meter()
@@ -199,13 +168,9 @@ class PoeticUnit:
             elif self.is_end_of_line():
                 s += "<ln>"
 
-        if self.must_be_head():
-            s = "[[[" + s
-        elif self.is_head():
+        if self.is_head():
             s = "[[" + s
-        if self.must_be_tail():
-            s = s + "]]]"
-        elif self.is_tail():
+        if self.is_tail():
             s = s + "]]"
 
         if highlight:
@@ -233,25 +198,32 @@ class PoeticUnit:
         L["meter"] = self.get_meter()[:n]
         R["meter"] = self.get_meter()[n:]
 
-        R["rhyme"] = self.get_rhyme()
+        # The rhyme should never end up attached to a
+        # zero-syllable unit.
+        if n < self.get_syllables():
+            R["rhyme"] = self.get_rhyme()
+        else:
+            L["rhyme"] = self.get_rhyme()
 
-        R["end_of_line"] = self.is_end_of_line()
-        R["end_of_stanza"] = self.is_end_of_stanza()
+        R["is_end_of_line"] = self.is_end_of_line()
+        R["is_end_of_stanza"] = self.is_end_of_stanza()
 
-        L["must_be_head"] = self.must_be_head()
-        R["must_be_tail"] = self.must_be_tail()
+        L["is_head"] = self.is_head()
+        R["is_tail"] = self.is_tail()
 
         return L, R
 
 
     def pop_left(self, n):
+        assert n < self.get_syllables()
         L, R = self.__split(n)
         self.__populate(**R)
         return PoeticUnit(**L)
 
 
     def pop_right(self, n):
-        L, R = self.__split(n)
+        assert n < self.get_syllables()
+        L, R = self.__split(self.get_syllables() - n)
         self.__populate(**L)
         return PoeticUnit(**R)
 
@@ -281,21 +253,21 @@ class PoeticUnit:
 
         J["rhyme"]         = right.get_rhyme()
 
-        J["end_of_line"]   = right.is_end_of_line()
-        J["end_of_stanza"] = right.is_end_of_stanza()
+        J["is_end_of_line"]   = right.is_end_of_line()
+        J["is_end_of_stanza"] = right.is_end_of_stanza()
 
-        J["must_be_head"]  = self.must_be_head()
-        J["must_be_tail"]  = right.must_be_tail()
+        J["is_head"]  = self.is_head()
+        J["is_tail"]  = right.is_tail()
 
         return J
 
 
     def append(self, right):
         J = self.__join(right)
-        self.__populate(J)
+        self.__populate(**J)
 
 
     def prepend(self, left):
         J = left.__join(self)
-        self.__populate(J)
+        self.__populate(**J)
 
