@@ -32,11 +32,16 @@ struct _Trimodel {
     REFCOUNT_BODY;
     PYBIND_BODY;
 
+    GPtrArray *all_tokens;
+
     GArray *array_AB_C;
     GArray *array_AC_B;
     GArray *array_BC_A;
 
-    gboolean is_sorted;
+    GHashTable *always_head;
+    GHashTable *always_tail;
+
+    gboolean is_prepped;
 
     GList *text_list;
 };

@@ -72,7 +72,7 @@ trimodel_new (void)
     tri->array_AC_B = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
     tri->array_BC_A = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
 
-    tri->is_sorted = FALSE;
+    tri->is_prepped = FALSE;
 
     return tri;
 }
@@ -85,6 +85,14 @@ trimodel_dealloc (Trimodel *tri)
     g_array_free (tri->array_AB_C, TRUE);
     g_array_free (tri->array_AC_B, TRUE);
     g_array_free (tri->array_BC_A, TRUE);
+
+    if (tri->all_tokens != NULL)
+        g_ptr_array_free (tri->all_tokens, TRUE);
+
+    if (tri->always_head != NULL)
+        g_hash_table_destroy (tri->always_head);
+    if (tri->always_tail != NULL)
+        g_hash_table_destroy (tri->always_tail);
     
     g_list_foreach (tri->text_list, (GFunc) text_unref, NULL);
     g_list_free (tri->text_list);
@@ -136,21 +144,6 @@ trimodel_sort_single_array (Trimodel *tri,
 }
 
 static void
-trimodel_do_sort (Trimodel *tri)
-{
-    g_return_if_fail (tri != NULL);
-
-    if (! tri->is_sorted) {
-
-        trimodel_sort_single_array (tri, tri->array_AB_C);
-        trimodel_sort_single_array (tri, tri->array_AC_B);
-        trimodel_sort_single_array (tri, tri->array_BC_A);
-
-        tri->is_sorted = TRUE;
-    }
-}
-
-static void
 trimodel_add_triple (Trimodel *tri,
                      Token    *a,
                      Token    *b,
@@ -181,7 +174,7 @@ trimodel_add_triple (Trimodel *tri,
     elt.soln = a;
     g_array_append_val (tri->array_BC_A, elt);
 
-    tri->is_sorted = FALSE;
+    tri->is_prepped = FALSE;
 }
 
 void
@@ -218,11 +211,121 @@ trimodel_add_text (Trimodel *tri,
     tri->text_list = g_list_append (tri->text_list, text_ref (txt));
 }
 
+static void
+trimodel_build_all_tokens_array (Trimodel *tri)
+{
+    GHashTable *uniq;
+    TrimodelElement *elt;
+    int i;
+
+    g_return_if_fail (tri != NULL);
+
+    if (tri->all_tokens != NULL)
+        g_ptr_array_free (tri->all_tokens, TRUE);
+
+    tri->all_tokens = g_ptr_array_new ();
+
+    uniq = g_hash_table_new (NULL, NULL);
+
+    elt = & g_array_index (tri->array_AB_C, TrimodelElement, 0);
+
+    for (i = 0; i < tri->array_AB_C->len; ++i) {
+
+        elt = & g_array_index (tri->array_AB_C, TrimodelElement, i);
+
+        /* We do a lot more work here than we need to... */
+
+        if (g_hash_table_lookup (uniq, elt->t1) == NULL) {
+            g_ptr_array_add (tri->all_tokens, elt->t1);
+            g_hash_table_insert (uniq, elt->t1, elt->t1);
+        }
+
+        if (g_hash_table_lookup (uniq, elt->t2) == NULL) {
+            g_ptr_array_add (tri->all_tokens, elt->t2);
+            g_hash_table_insert (uniq, elt->t2, elt->t2);
+        }
+        
+        if (g_hash_table_lookup (uniq, elt->soln) == NULL) {
+            g_ptr_array_add (tri->all_tokens, elt->soln);
+            g_hash_table_insert (uniq, elt->soln, elt->soln);
+        }
+    }
+}
+
+static void
+trimodel_build_always_head_tail_hashes (Trimodel *tri)
+{
+    GHashTable *not_head, *not_tail;
+    TrimodelElement *elt;
+    int i;
+
+    g_return_if_fail (tri != NULL);
+
+    if (tri->always_head != NULL)
+        g_hash_table_destroy (tri->always_head);
+
+    if (tri->always_tail != NULL)
+        g_hash_table_destroy (tri->always_tail);
+
+    tri->always_head = g_hash_table_new (NULL, NULL);
+    tri->always_tail = g_hash_table_new (NULL, NULL);
+
+    not_head = g_hash_table_new (NULL, NULL);
+    not_tail = g_hash_table_new (NULL, NULL);
+
+    for (i = 0; i < tri->array_AB_C->len; ++i) {
+        elt = &g_array_index (tri->array_AB_C, TrimodelElement, i);
+
+        if (!token_is_break (elt->t1) && !token_is_break (elt->t2)) {
+            if (g_hash_table_lookup (not_tail, elt->t1) == NULL)
+                g_hash_table_insert (not_tail, elt->t1, elt->t1);
+            if (g_hash_table_lookup (not_head, elt->t2) == NULL)
+                g_hash_table_insert (not_head, elt->t2, elt->t2);
+        }
+
+        if (!token_is_break (elt->t2) && !token_is_break (elt->soln)) {
+            if (g_hash_table_lookup (not_tail, elt->t2) == NULL)
+                g_hash_table_insert (not_tail, elt->t2, elt->t2);
+            if (g_hash_table_lookup (not_head, elt->soln) == NULL)
+                g_hash_table_insert (not_head, elt->soln, elt->soln);
+        }
+    }
+
+    for (i = 0; i < tri->all_tokens->len; ++i) {
+        Token *t = g_ptr_array_index (tri->all_tokens, i);
+
+        if (token_is_break (t))
+            continue;
+        
+        if (g_hash_table_lookup (not_head, t) == NULL) 
+            g_hash_table_insert (tri->always_head, t, t);
+
+        if (g_hash_table_lookup (not_tail, t) == NULL)
+            g_hash_table_insert (tri->always_tail, t, t);
+
+    }
+
+    g_hash_table_destroy (not_head);
+    g_hash_table_destroy (not_tail);
+}
+
 void
 trimodel_prepare (Trimodel *tri)
 {
     g_return_if_fail (tri != NULL);
-    trimodel_do_sort (tri);
+
+    if (tri->is_prepped)
+        return;
+
+    trimodel_sort_single_array (tri, tri->array_AB_C);
+    trimodel_sort_single_array (tri, tri->array_AC_B);
+    trimodel_sort_single_array (tri, tri->array_BC_A);
+
+    trimodel_build_all_tokens_array (tri);
+
+    trimodel_build_always_head_tail_hashes (tri);
+
+    /*    tri->is_prepped = TRUE;*/
 }
 
 static gboolean
@@ -247,7 +350,8 @@ trimodel_query_array (Trimodel *tri,
         && min_syllables > max_syllables)
         return FALSE;
 
-    trimodel_do_sort (tri);
+    if (! tri->is_prepped)
+        trimodel_prepare (tri);
 
     /* First, find a possible hit. */
 

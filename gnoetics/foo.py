@@ -15,10 +15,13 @@ time2 = time.time()
 print "load time:", time2-time1
 
 
-time1 = time.time()
-tri.prepare()
-time2 = time.time()
-print "prep time:", time2-time1
+while 1:
+    time1 = time.time()
+    tri.prepare()
+    time2 = time.time()
+    print "prep time:", time2-time1
+
+sys.exit(0)
 
 query_times = []
 
