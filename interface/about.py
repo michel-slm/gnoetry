@@ -62,7 +62,7 @@ def show_about_gnoetry():
         vbox = gtk.VBox(0, 0)
         img = red_pixbuf.get_widget("roussel")
         vbox.pack_start(img, expand=1, fill=1, padding=10)
-        
+
         for line in manifesto_lines:
             x = gtk.Label()
             x.set_markup(line)

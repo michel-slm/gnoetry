@@ -19,6 +19,9 @@ class PoemTextView(gtk.TextView,
         self.poem_changed(self.get_poem())
         self.set_buffer(self.__buffer)
 
+        self.set_left_margin(5)
+        self.set_right_margin(5)
+
 
     def __poem_to_nice_str(self, poem):
         lines = []

@@ -10,7 +10,7 @@ import sys, string, time
 sys.path.append("..") # add path for gnoetics library
 import gnoetics
 
-from appwindow import *
+import appwindow
 
 #############################################################################
 
@@ -26,7 +26,7 @@ count = 0
 for txt in gnoetics.Library(dir="../texts-ts"):
     tri.add_text(txt)
     count += 1
-    if count > 5:
+    if count > 995:
         break
 t2 = time.time()
 sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
@@ -128,7 +128,7 @@ def die_die_die(b, p):
 ############################################################################
 
 poem = gnoetics.BlankVerse(3, 4)
-appwin = AppWindow()
+appwin = appwindow.AppWindow()
 appwin.set_poem(poem)
 appwin.show_all()
 
@@ -142,6 +142,6 @@ def timeout_cb(p):
 
 
 
-gtk.timeout_add(100, timeout_cb, poem)
+gtk.timeout_add(50, timeout_cb, poem)
 
 gtk.main()

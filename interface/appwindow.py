@@ -8,16 +8,43 @@ import about
 from poemtileview import *
 from poemtextview import *
 
+###
+### Callbacks
+###
+
+def new_callback(app):
+    new = AppWindow()
+    new.set_poem(app.get_poem().copy())
+    new.show_all()
+    
+
+def close_callback(app):
+    # FIXME: check seqno
+    app.close_window()
+
+
+def clear_callback(app):
+    # FIXME: check seqno
+    app.get_poem().clear()
+
+
+###
+### AppWindow class
+###
+
 class AppWindow(gtk.Window):
 
     __total_app_window_count = 0
 
     def __init__(self):
         gtk.Window.__init__(self)
-        self.set_title("Gnoetry")
+        self.set_title("Gnoetry 0.2")
 
         AppWindow.__total_app_window_count += 1
-        self.connect("delete_event", lambda aw, ev: aw.__close_window())
+        self.connect("delete_event", lambda aw, ev: aw.close_window())
+
+        self.__poem = None
+        self.__save_seqno = -1
 
         self.__vbox = gtk.VBox(0, 0)
         self.add(self.__vbox)
@@ -41,21 +68,21 @@ class AppWindow(gtk.Window):
         self.__tileview = PoemTileView()
         self.__textview = PoemTextView()
 
-        vpaned = gtk.VPaned()
+        view_container = gtk.HBox(0, 10)
 
         sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         sw.add_with_viewport(self.__tileview)
 
-        vpaned.pack1(sw, 1, 1)
+        view_container.pack_start(sw, expand=1, fill=1)
        
         sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         sw.add_with_viewport(self.__textview)
 
-        vpaned.pack2(sw, 0, 1)
+        view_container.pack_start(sw, expand=1, fill=1)
 
-        self.__vbox.pack_start(vpaned, expand=1, fill=1)
+        self.__vbox.pack_start(view_container, expand=1, fill=1)
 
         ### Statusbar
         self.__statusbar = gtk.Statusbar()
@@ -67,9 +94,16 @@ class AppWindow(gtk.Window):
 
 
     def set_poem(self, p):
+        self.__poem = p
+        self.__save_seqno = -1
+        
         self.__tileview.set_poem(p)
         self.__textview.set_poem(p)
-        
+
+
+    def get_poem(self):
+        return self.__poem
+    
 
     def __assemble_menubar(self, bar):
         bar.add("/_File")
@@ -78,7 +112,8 @@ class AppWindow(gtk.Window):
 
         bar.add("/_File/_New",
                 stock=gtk.STOCK_NEW,
-                description="Open a new Gnoetry window")
+                description="Open a new Gnoetry window",
+                callback=new_callback)
         bar.add("/_File/_Save",
                 stock=gtk.STOCK_SAVE,
                 description="Save the current poem to a text file")
@@ -88,14 +123,13 @@ class AppWindow(gtk.Window):
         bar.add("/_File/sep", is_separator=1)
         bar.add("/_File/_Close",
                 stock=gtk.STOCK_CLOSE,
-                description="Close this window")
-        bar.add("/_File/_Quit",
-                stock=gtk.STOCK_QUIT,
-                description="Close all windows and exit Gnoetry")
+                description="Close this window",
+                callback=close_callback)
 
         bar.add("/_Edit/Clear",
                 stock=gtk.STOCK_CLEAR,
-                description="Clear this poem")
+                description="Clear this poem",
+                callback=clear_callback)
 
         bar.add("/_Help/About Gnoetry",
                 description="Learn more about Gnoetry",
@@ -112,12 +146,12 @@ class AppWindow(gtk.Window):
         pass
 
 
-    def __new_window(self):
+    def new_window(self):
         new_win = AppWindow()
         new_win.show_all()
         
 
-    def __close_window(self):
+    def close_window(self):
         self.destroy()
         AppWindow.__total_app_window_count -= 1
         if AppWindow.__total_app_window_count == 0:

@@ -19,7 +19,7 @@ token_filter_init (TokenFilter *filter)
     filter->meter_left = NULL;
     filter->meter_right = NULL;
     filter->metric_error_lower_threshold = 0;
-    filter->metric_error_upper_threshold = 1;
+    filter->metric_error_upper_threshold = 0;
 
     filter->rhymes_with = NULL;
     filter->rhyme_type_lower_threshold = RHYME_TRUE;
@@ -291,7 +291,7 @@ token_filter_test (TokenFilter *filter,
 
         if (metric_error > filter->metric_error_upper_threshold)
             return FILTER_RESULTS_REJECT;
-        if (metric_error > filter->metric_error_lower_threshold)
+        else if (metric_error > filter->metric_error_lower_threshold)
             results = FILTER_RESULTS_TOLERATE;
     }
 

@@ -4,6 +4,8 @@ import gnoetics
 
 class PoeticUnit:
 
+    __next_id = 1
+
 
     def __init__(self, **args):
         self.__populate(**args)
@@ -22,6 +24,8 @@ class PoeticUnit:
                    
                    is_head=False,
                    is_tail=False,
+
+                   id=None,
 
                    iambs=None):       # Convenience: how many iambs?
 
@@ -72,6 +76,11 @@ class PoeticUnit:
         self.__ishead = is_head
         self.__istail = is_tail
 
+        if id is None:
+            id = PoeticUnit.__next_id
+            PoeticUnit.__next_id += 1
+        self.__id = id
+
         # Initialize binding information
 
         self.__token = None
@@ -81,6 +90,25 @@ class PoeticUnit:
         self.__flag = False
         
 
+    def copy(self):
+        u = PoeticUnit(syllables=self.get_syllables(),
+                       meter=self.get_meter(),
+                       rhyme=self.get_rhyme(),
+                       is_beginning_of_line=self.is_beginning_of_line(),
+                       is_beginning_of_stanza=self.is_beginning_of_stanza(),
+                       is_end_of_line=self.is_end_of_line(),
+                       is_end_of_stanza=self.is_end_of_stanza(),
+                       is_head=self.is_head(),
+                       is_tail=self.is_tail())
+
+        if self.is_bound():
+            u.bind(self.get_binding())
+
+        u.set_flag(self.get_flag())
+
+        return u
+    
+    
     ###
     ### Accessors
     ###
@@ -123,6 +151,10 @@ class PoeticUnit:
 
     def is_tail(self):
         return self.__istail
+
+
+    def get_id(self):
+        return self.__id
 
 
     def is_left_constrained(self):
@@ -270,6 +302,9 @@ class PoeticUnit:
         L["is_head"] = self.is_head()
         R["is_tail"] = self.is_tail()
 
+        L["id"] = self.get_id()
+        R["id"] = self.get_id()
+
         return L, R
 
 
@@ -305,6 +340,8 @@ class PoeticUnit:
         # For debugging purposes, we do the above checks separately.
         assert self.can_combine(right)
 
+        assert self.get_id() == right.get_id()
+
         J = {}
 
         J["syllables"]     = self.get_syllables() + right.get_syllables()
@@ -320,6 +357,8 @@ class PoeticUnit:
 
         J["is_head"]  = self.is_head()
         J["is_tail"]  = right.is_tail()
+
+        J["id"] = self.get_id()
 
         return J
 

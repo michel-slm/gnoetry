@@ -19,6 +19,8 @@ class Poem(gobject.GObject):
         self.__form_name = form_name
         self.__units = units
 
+        self.__seqno = 0
+
         self.__freeze_changed_count = 0
         self.__freeze_changed_pending = False
 
@@ -30,6 +32,16 @@ class Poem(gobject.GObject):
         assert self.__units[-1].is_tail()
         assert self.__units[-1].is_end_of_line()
         assert self.__units[-1].is_end_of_stanza()
+
+    def copy(self):
+        return Poem(self.get_form_name(),
+                    map(lambda x: x.copy(), self.__units))
+
+    def get_seqno(self):
+        return self.__seqno
+
+    def get_form_name(self):
+        return self.__form_name
 
     def freeze_changed(self):
         assert self.__freeze_changed_count >= 0
@@ -101,6 +113,8 @@ class Poem(gobject.GObject):
                 did_work = True
             else:
                 i += 1
+        if did_work:
+            self.__seqno += 1
         return did_work
 
 
@@ -130,6 +144,9 @@ class Poem(gobject.GObject):
         site.bind(tok)
         if repl:
             self.__units[i:i+1] = repl
+
+        self.__seqno += 1
+            
         self.emit_changed()
         return bind_at
 
@@ -165,7 +182,21 @@ class Poem(gobject.GObject):
         u.unbind()
         self.combine_units() # FIXME: could be optimized
 
+        self.__seqno += 1
+
         self.emit_changed()
+
+
+    def clear(self):
+        did_work = False
+        for u in self.__units:
+            if u.is_bound():
+                u.unbind()
+                did_work = True
+        if did_work:
+            self.combine_units()
+            self.__seqno += 1
+            self.emit_changed()
 
 
     def get_flag(self, i):

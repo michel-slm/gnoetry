@@ -22,11 +22,14 @@ def massage_sentence(sentence):
         
 
 def valid_sentence(sentence):
-    txt = string.join(sentence, "/")
 
     # Drop sentences that are freakishly short.
     if len(sentence) < 5:
         #sys.stderr.write("sentence too short: %s\n" % txt)
+        return 0
+
+    # Drop sentences with leading punctuation.
+    if sentence[0].find("*punct*") != -1:
         return 0
 
     # Drop sentences w/ weird one-character words
