@@ -44,6 +44,11 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
                verbose=None,
                extra_filters=True):
 
+    # Copy list of leading and trailing tokens, so we can
+    # manipulate them freely
+    leading_tokens = list(leading_tokens)
+    trailing_tokens = list(trailing_tokens)
+
     if verbose is None:
         verbose = os.getenv("GNOETRY_DEBUG") is not None
 
@@ -258,6 +263,22 @@ class Solver:
         u = self.__poem[i]
         assert u.is_not_bound()
 
+        # If the stuff in our action queue isn't immediately
+        # adjacent to where we are now, obviously rolling back
+        # won't help us.
+        # FIXME: Obviously this will have to be more subtle once
+        # we have cross-line constraints.
+        if self.__actions and abs(self.__actions[-1][0] - i) > 1:
+            self.__actions = []
+
+        if u.get_syllables() == 0 and verbose:
+            print "Hit 0-length unit at %d" % i
+            for j in range(len(self.__poem)):
+                if i == j:
+                    print "*****",
+                print j, self.__poem[j]
+            print
+
         leading_tokens, trailing_tokens = self.__poem.extract_surrounding_tokens(i)
 
         left_solns, right_solns = gnoetics.solve_unit(self.__model,
@@ -266,7 +287,7 @@ class Solver:
                                                       trailing_tokens)
 
         # If we found no solutions, try again w/o the extra filters.
-        if not left_solns and not right_solns and not self.__actions:
+        if not left_solns and not right_solns:
             left_solns, right_solns = gnoetics.solve_unit(self.__model,
                                                           leading_tokens,
                                                           u,
@@ -325,8 +346,19 @@ class Solver:
             return
 
         self.__poem.bind_mandatory_breaks()
-    
+
+        verbose = os.getenv("GNOETRY_DEBUG") is not None
+
         i = self.__next_position()
+
+        if verbose:
+            print "Initial state (solving at %d):" % i
+            for j in range(len(self.__poem)):
+                if j == i:
+                    print "*****",
+                print j, self.__poem[j]
+            print
+    
         self.__solve_at(i)
 
 

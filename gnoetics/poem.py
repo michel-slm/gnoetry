@@ -239,11 +239,16 @@ class Poem(gobject.GObject):
         self.freeze_changed()
 
         # First, walk through and unflag zero-syllable "singletons"
-        # (i.e. punctuation w/o flagged adjacent units.)
+        # (i.e. punctuation w/o flagged adjacent units and breaks)
         for i, u in enumerate(self.__units):
-            if u.get_flag() and u.get_syllables() == 0:
-                prev_flag = i > 0 and self.__units[i-1].get_flag()
-                next_flag = i < len(self.__units)-1 and self.__units[i+1].get_flag()
+            if not u.get_flag():
+                continue
+            
+            if u.is_break():
+                u.set_flag(False)
+            elif u.get_syllables() == 0:
+                prev_flag = i > 0 and self.__units[i-1].get_flag() and self.__units[i-1].get_syllables() > 0
+                next_flag = i < len(self.__units)-1 and self.__units[i+1].get_flag() and self.__units[i+1].get_syllables() > 0
                 if not (next_flag or prev_flag):
                     u.set_flag(False)
                     self.emit("changed_flag", i)
@@ -261,6 +266,19 @@ class Poem(gobject.GObject):
                 self.unbind(i)
             else:
                 i += 1
+
+        # Next, walk through and pop off any remaining unbound
+        # zero-length units (since we know they are next to non-zero units,
+        # so everything will work out OK in the end.
+        i = 0
+        while i < len(self.__units):
+            u = self.__units[i]
+            if u.get_flag() and u.is_not_bound() and u.get_syllables() == 0:
+                self.__units.pop(i)
+                self.emit_changed()
+            else:
+                i += 1
+
         self.thaw_changed()
 
 
