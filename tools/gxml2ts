@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # This is -*- Python -*-
 
 import string, sys, xml.sax, xml.sax.handler, re
