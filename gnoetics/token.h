@@ -46,6 +46,7 @@ Token *token_lookup (const char *raw);
 Token *token_lookup_break    (void);
 Token *token_lookup_wildcard (void);
 
+unsigned token_count (void);
 
 void py_token_register (PyObject *dict);
 
@@ -56,6 +57,7 @@ int       py_token_check (PyObject *obj);
 PyObject *py_token_lookup          (PyObject *self, PyObject *args);
 PyObject *py_token_lookup_break    (PyObject *self, PyObject *args);
 PyObject *py_token_lookup_wildcard (PyObject *self, PyObject *args);
+PyObject *py_token_count           (PyObject *self, PyObject *args);
 
 
 

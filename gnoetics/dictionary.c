@@ -459,7 +459,8 @@ dictionary_foreach_by_tail (Phoneme     *decomp,
         if (node && PHONEME_IS_STRESSED (phon)) {
             GSList *iter = node->list;
             while (iter != NULL) {
-                fn ((DictionaryWord *) iter->data, user_data);
+                if (! fn ((DictionaryWord *) iter->data, user_data))
+                    break;
                 iter = iter->next;
             }
             return;

@@ -13,6 +13,7 @@ typedef struct _TrimodelElement TrimodelElement;
 struct _TrimodelElement {
     int key_offset;
     int syl_offset;
+
     Token *t1;
     Token *t2;
     Token *soln;
@@ -77,6 +78,229 @@ trimodel_element_cmp (gconstpointer x_ptr,
 
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
 
+typedef struct _RhymeTreeNode RhymeTreeNode;
+struct _RhymeTreeNode {
+    PhonemeCode code;
+    RhymeTreeNode *branch[PHONEME_LAST];
+    GSList *list;
+};
+
+static RhymeTreeNode *
+node_new (PhonemeCode code, GMemChunk *chunk)
+{
+    RhymeTreeNode *node;
+    node = g_chunk_new0 (RhymeTreeNode, chunk);
+    node->code = code;
+    return node;
+}
+
+static void
+node_index (RhymeTreeNode **root_ptr,
+            RhymeTreeNode **sroot_ptr,
+            Token          *token,
+            GMemChunk      *chunk,
+            GAllocator     *allocator)
+{
+    Phoneme *decomp;
+    RhymeTreeNode *node, *snode;
+    int i;
+    Phoneme phon;
+    PhonemeCode code, scode;
+    
+    g_assert (root_ptr != NULL);
+    g_assert (sroot_ptr != NULL);
+    g_assert (token != NULL);
+    g_assert (chunk != NULL);
+    g_assert (allocator != NULL);
+
+    decomp = token_get_decomp (token);
+    if (decomp == NULL)
+        return;
+
+    if (*root_ptr == NULL)
+        *root_ptr = node_new (0, chunk);
+    node = *root_ptr;
+
+    if (*sroot_ptr == NULL)
+        *sroot_ptr = node_new (0, chunk);
+    snode = *sroot_ptr;
+
+    for (i = 0; decomp[i]; ++i) {
+        phon = decomp[i];
+        code = PHONEME_TO_CODE (phon);
+        scode = PHONEME_IS_VOWEL (code) ? 0 : code;
+
+        if (node->branch[code] == NULL)
+            node->branch[code] = node_new (code, chunk);
+        node = node->branch[code];
+
+        if (snode->branch[scode] == NULL)
+            snode->branch[scode] = node_new (scode, chunk);
+        snode = snode->branch[scode];
+
+        if (PHONEME_IS_STRESSED (phon))
+            break;
+    }
+
+    if (decomp[i]) {
+        g_slist_push_allocator (allocator);
+        node->list  = g_slist_prepend (node->list,  token);
+        snode->list = g_slist_prepend (snode->list, token);
+        g_slist_pop_allocator ();
+    }
+}
+
+GSList *
+node_walk (RhymeTreeNode *node,
+           gboolean       is_slanted,
+           Token         *tok)
+{
+    Phoneme *decomp;
+    Phoneme phon;
+    PhonemeCode code;
+    int i;
+
+    decomp = token_get_decomp (tok);
+    if (decomp == NULL)
+        return NULL;
+
+    for (i = 0; decomp[i] && node; ++i) {
+        phon = decomp[i];
+        code = PHONEME_TO_CODE (phon);
+        if (is_slanted && PHONEME_IS_VOWEL (code))
+            code = 0;
+        
+        node = node->branch[code];
+
+        if (node && PHONEME_IS_STRESSED (phon))
+            return node->list;
+    }
+
+    return NULL;
+}
+
+/* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
+
+typedef struct _RhymeInfo RhymeInfo;
+struct _RhymeInfo {
+    Token *tok;
+    int count_slant;
+    int count_false;
+    int count_true;
+
+    double p_slant;
+    double p_false;
+    double p_true;
+};
+
+static RhymeInfo *
+rhyme_info_new (Token     *tok,
+                GMemChunk *chunk)
+{
+    RhymeInfo *info;
+    info = g_chunk_new0 (RhymeInfo, chunk);
+    info->tok = tok;
+    info->count_slant = 0;
+    info->count_false = 0;
+    info->count_true  = 0;
+    return info;
+}
+
+static void
+rhyme_info_incr (RhymeInfo *info,
+                 RhymeType  rt)
+{
+    switch (rt) {
+        /* We aren't breaking on purpose. */
+        case RHYME_TRUE:
+            ++info->count_true;
+        case RHYME_FALSE:
+            ++info->count_false;
+        case RHYME_SLANT:
+            ++info->count_slant;
+            break;
+        default:
+            /* do nothing */
+            break;
+    }
+}
+
+static int
+rhyme_info_get (RhymeInfo *info,
+                RhymeType  rt)
+{
+    switch (rt) {
+        case RHYME_SLANT:
+            return info->count_slant;
+        case RHYME_FALSE:
+            return info->count_false;
+        case RHYME_TRUE:
+            return info->count_true;
+        default:
+            return 0;
+    }
+}
+
+static void
+rhyme_info_set_p (RhymeInfo *info,
+                  RhymeType  rt,
+                  double     p)
+{
+    switch (rt) {
+        case RHYME_SLANT:
+            info->p_slant = p;
+            break;
+        case RHYME_FALSE:
+            info->p_false = p;
+            break;
+        case RHYME_TRUE:
+            info->p_true = p;
+            break;
+        default:
+            g_assert_not_reached ();
+            break;
+    }
+}
+
+static int
+rhyme_info_slant_cmp (RhymeInfo **a,
+                      RhymeInfo **b)
+{
+    return (*b)->count_slant - (*a)->count_slant;
+}
+
+static int
+rhyme_info_false_cmp (RhymeInfo **a,
+                      RhymeInfo **b)
+{
+    return (*b)->count_false - (*a)->count_false;
+}
+
+static int
+rhyme_info_true_cmp (RhymeInfo **a,
+                     RhymeInfo **b)
+{
+    return (*b)->count_true - (*a)->count_true;
+}
+
+static GCompareFunc
+rhyme_info_get_cmp_fn (RhymeType type)
+{
+    switch (type) {
+        case RHYME_SLANT:
+            return (GCompareFunc) rhyme_info_slant_cmp;
+        case RHYME_FALSE:
+            return (GCompareFunc) rhyme_info_false_cmp;
+        case RHYME_TRUE:
+            return (GCompareFunc) rhyme_info_true_cmp;
+        default:
+            g_assert_not_reached ();
+            return NULL;
+    }
+}
+
+/* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
+
 Trimodel *
 trimodel_new (void)
 {
@@ -91,6 +315,10 @@ trimodel_new (void)
     tri->array_AB_C = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
     tri->array_AC_B = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
     tri->array_BC_A = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
+
+    tri->rhyme_info_chunks = g_mem_chunk_create (RhymeInfo,
+                                                 1000, G_ALLOC_ONLY);
+    tri->rhyme_info_table = g_hash_table_new (NULL, NULL);
 
     tri->is_prepped = FALSE;
 
@@ -113,6 +341,9 @@ trimodel_dealloc (Trimodel *tri)
         g_hash_table_destroy (tri->is_leading);
     if (tri->is_trailing != NULL)
         g_hash_table_destroy (tri->is_trailing);
+
+    g_mem_chunk_destroy (tri->rhyme_info_chunks);
+    g_hash_table_destroy (tri->rhyme_info_table);
     
     g_list_foreach (tri->text_list, (GFunc) text_unref, NULL);
     g_list_free (tri->text_list);
@@ -274,14 +505,12 @@ trimodel_build_all_tokens_array (Trimodel *tri)
 
         elt = & g_array_index (tri->array_AB_C, TrimodelElement, i);
 
-        /* We do a lot more work here than we need to... */
-
-        if (g_hash_table_lookup (uniq, elt->t1) == NULL) {
+        if (i == 0 && g_hash_table_lookup (uniq, elt->t1) == NULL) {
             g_ptr_array_add (tri->all_tokens, elt->t1);
             g_hash_table_insert (uniq, elt->t1, elt->t1);
         }
 
-        if (g_hash_table_lookup (uniq, elt->t2) == NULL) {
+        if (i <= 1 && g_hash_table_lookup (uniq, elt->t2) == NULL) {
             g_ptr_array_add (tri->all_tokens, elt->t2);
             g_hash_table_insert (uniq, elt->t2, elt->t2);
         }
@@ -350,6 +579,104 @@ trimodel_build_leading_trailing (Trimodel *tri)
     g_hash_table_destroy (not_tail);
 }
 
+static void
+trimodel_build_rhyme_table (Trimodel *tri)
+{
+    RhymeTreeNode *root_rhyme_tree = NULL;
+    RhymeTreeNode *root_slanted_rhyme_tree = NULL;
+
+    GPtrArray *all_rhyme_info;
+
+    GMemChunk *rhyme_tree_chunks;
+    GAllocator *rhyme_tree_allocator;
+
+    int i, j, k;
+    RhymeType rt;
+
+    
+    /* Step 1: Build Rhyme tree for fast lookup of tokens by
+       the tails of their phoneme decompositions. */
+    
+    rhyme_tree_chunks = g_mem_chunk_create (RhymeTreeNode, 1000, G_ALLOC_ONLY);
+    rhyme_tree_allocator = g_allocator_new ("rhyme allocator", 1000);
+
+    for (i = 0; i < tri->all_tokens->len; ++i) {
+        Token *tok = g_ptr_array_index (tri->all_tokens, i);
+        node_index (&root_rhyme_tree, &root_slanted_rhyme_tree,
+                    tok, rhyme_tree_chunks, rhyme_tree_allocator);
+    }
+
+    /* Step 2: Compute the rhyme counts for each token. */
+
+    all_rhyme_info = g_ptr_array_sized_new (tri->all_tokens->len);
+
+    for (i = 0; i < tri->all_tokens->len; ++i) {
+        Token *tok = g_ptr_array_index (tri->all_tokens, i);
+        GSList *iter;
+        RhymeInfo *info;
+
+        info = rhyme_info_new (tok, tri->rhyme_info_chunks);
+        g_hash_table_insert (tri->rhyme_info_table, tok, info);
+        g_ptr_array_add (all_rhyme_info, info);
+
+        if (token_is_break (tok) || token_is_punctuation (tok))
+            continue;
+
+        iter = node_walk (root_slanted_rhyme_tree, TRUE, tok);
+        while (iter != NULL) {
+            Token *other = iter->data;
+
+            if (other != tok) {
+                rt = rhyme_get_type (token_get_decomp (other),
+                                     token_get_decomp (tok));
+                rhyme_info_incr (info, rt);
+            }
+            
+            iter = iter->next;
+        }
+    }
+
+    /* Step 3: Compute p-values */
+    
+    for (rt = RHYME_SLANT; rt <= RHYME_TRUE; ++rt) {
+        GCompareFunc sort_fn = NULL;
+
+        sort_fn = rhyme_info_get_cmp_fn (rt);
+        g_ptr_array_sort (all_rhyme_info, sort_fn);
+
+        g_assert (tri->all_tokens->len == all_rhyme_info->len);
+        i = 0;
+        while (i < all_rhyme_info->len) {
+            RhymeInfo *info_i = g_ptr_array_index (all_rhyme_info, i);
+            int count_i = rhyme_info_get (info_i, rt);
+            double p;
+
+            for (j = i+1; j < all_rhyme_info->len; ++j) {
+                RhymeInfo *info_j = g_ptr_array_index (all_rhyme_info, j);
+                int count_j = rhyme_info_get (info_j, rt);
+
+                if (count_i != count_j)
+                    break;
+            }
+
+            p = ((i + (i + j - 1))/2.0) / (double) tri->all_tokens->len;
+
+            for (k = i; k < j; ++k) {
+                RhymeInfo *info_k = g_ptr_array_index (all_rhyme_info, k);
+                rhyme_info_set_p (info_k, rt, p);
+            }
+
+            i = j;
+        }
+    }
+    
+    /* cleanup: */
+    /* Free all of the rhyme tree memory */
+    g_mem_chunk_destroy (rhyme_tree_chunks);
+    g_allocator_free (rhyme_tree_allocator);
+    g_ptr_array_free (all_rhyme_info, TRUE);
+}
+
 static gpointer
 trimodel_prepare_fn (gpointer data)
 {
@@ -366,6 +693,8 @@ trimodel_prepare_fn (gpointer data)
     trimodel_build_all_tokens_array (tri);
 
     trimodel_build_leading_trailing (tri);
+
+    trimodel_build_rhyme_table (tri);
 
     tri->is_prepped = TRUE;
 
@@ -396,6 +725,8 @@ trimodel_is_ready (Trimodel *tri)
     g_return_val_if_fail (tri != NULL, FALSE);
     return tri->is_prepped;
 }
+
+/* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
 
 static gboolean
 trimodel_query_array (Trimodel *tri,
@@ -535,6 +866,15 @@ trailing_test_cb (Token   *t,
     return trimodel_token_is_trailing (tri, t);
 }
 
+static double
+rhyme_p_value_cb (Token *t,
+                  RhymeType threshold,
+                  gpointer user_data)
+{
+    Trimodel *tri = user_data;
+    return trimodel_rhyme_p_value (tri, t, threshold);
+}
+
 gint
 trimodel_query (Trimodel       *tri,
                 Token          *token_a,
@@ -614,6 +954,7 @@ trimodel_query (Trimodel       *tri,
                                          elt->soln,
                                          leading_test_cb,
                                          trailing_test_cb,
+                                         rhyme_p_value_cb,
                                          tri);
 
 
@@ -634,6 +975,75 @@ trimodel_query (Trimodel       *tri,
     }
 
     return count;
+}
+
+gint
+trimodel_rhyme_count (Trimodel *tri,
+                      Token    *tok,
+                      RhymeType rhyme_type_threshold)
+{
+    RhymeInfo *info;
+
+    g_return_val_if_fail (tri != NULL, -1);
+    g_return_val_if_fail (tok != NULL, -1);
+
+    info = g_hash_table_lookup (tri->rhyme_info_table, tok);
+    if (info == NULL)
+        return -1;
+
+    switch (rhyme_type_threshold) {
+        
+        case RHYME_SLANT:
+            return info->count_slant;
+            
+        case RHYME_FALSE:
+            return info->count_false;
+
+        case RHYME_TRUE:
+            return info->count_true;
+
+        default:
+            g_assert_not_reached();
+            break;
+    }
+
+    g_assert_not_reached ();
+    return -1;
+}
+
+double
+trimodel_rhyme_p_value (Trimodel *tri,
+                        Token    *tok,
+                        RhymeType rhyme_type_threshold)
+{
+    RhymeInfo *info;
+
+    g_return_val_if_fail (tri != NULL, -1);
+    g_return_val_if_fail (tok != NULL, -1);
+
+    info = g_hash_table_lookup (tri->rhyme_info_table, tok);
+    if (info == NULL)
+        return -1;
+
+    switch (rhyme_type_threshold) {
+        
+        case RHYME_SLANT:
+            return info->p_slant;
+            
+        case RHYME_FALSE:
+            return info->p_false;
+
+        case RHYME_TRUE:
+            return info->p_true;
+
+        default:
+            g_assert_not_reached();
+            break;
+    }
+
+    g_assert_not_reached ();
+    return -1;
+    
 }
 
 gboolean
@@ -758,12 +1168,58 @@ py_trimodel_query (PyObject *self, PyObject *args)
     return PyInt_FromLong (count);
 }
 
+static PyObject *
+py_trimodel_rhyme_count (PyObject *self, PyObject *args)
+{
+    Trimodel *tri = trimodel_from_py (self);
+    PyObject *py_tok;
+    Token *tok;
+    int rhyme_level;
+
+    if (! PyArg_ParseTuple (args, "Oi", &py_tok, &rhyme_level))
+        return NULL;
+
+    if (! py_token_check (py_tok)) {
+        PyErr_SetString (PyExc_ValueError, "Expecting a token as first argument");
+        return NULL;
+    }
+    
+    tok = token_from_py (py_tok);
+    
+    return PyInt_FromLong (trimodel_rhyme_count (tri, tok,
+                                                 (RhymeType) rhyme_level));
+}
+
+static PyObject *
+py_trimodel_rhyme_p_value (PyObject *self, PyObject *args)
+{
+    Trimodel *tri = trimodel_from_py (self);
+    PyObject *py_tok;
+    Token *tok;
+    int rhyme_level;
+
+    if (! PyArg_ParseTuple (args, "Oi", &py_tok, &rhyme_level))
+        return NULL;
+
+    if (! py_token_check (py_tok)) {
+        PyErr_SetString (PyExc_ValueError, "Expecting a token as first argument");
+        return NULL;
+    }
+    
+    tok = token_from_py (py_tok);
+    
+    return PyFloat_FromDouble (trimodel_rhyme_p_value (tri, tok,
+                                                       (RhymeType) rhyme_level));
+}
+
 static PyMethodDef py_trimodel_methods[] = {
-    { "add_text",  py_trimodel_add_text,  METH_VARARGS },
-    { "get_texts", py_trimodel_get_texts, METH_NOARGS },
-    { "prepare",   py_trimodel_prepare,   METH_NOARGS  },
-    { "is_ready",  py_trimodel_is_ready,  METH_NOARGS  },
-    { "query",     py_trimodel_query,     METH_VARARGS },
+    { "add_text",      py_trimodel_add_text,      METH_VARARGS },
+    { "get_texts",     py_trimodel_get_texts,     METH_NOARGS  },
+    { "prepare",       py_trimodel_prepare,       METH_NOARGS  },
+    { "is_ready",      py_trimodel_is_ready,      METH_NOARGS  },
+    { "query",         py_trimodel_query,         METH_VARARGS },
+    { "rhyme_count",   py_trimodel_rhyme_count,   METH_VARARGS  },
+    { "rhyme_p_value", py_trimodel_rhyme_p_value, METH_VARARGS  },
 
     { NULL, NULL, 0 }
 

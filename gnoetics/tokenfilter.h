@@ -16,6 +16,10 @@ typedef enum {
     FILTER_RESULTS_FAVOR    =  2,
 } FilterResults;
 
+typedef double (*TokenRhymePValueFn) (Token *tok,
+                                      RhymeType threshold,
+                                      gpointer user_data);
+
 typedef struct _TokenFilter TokenFilter;
 struct _TokenFilter {
 
@@ -43,6 +47,9 @@ struct _TokenFilter {
 
     FilterResults leading_preference;
     FilterResults trailing_preference;
+
+    RhymeType     has_rhyme_threshold;
+    double        rhyme_p_threshold;
 };
 
 void token_filter_init              (TokenFilter *filter);
@@ -57,6 +64,7 @@ FilterResults token_filter_test (TokenFilter *filter,
                                  Token *token,
                                  TokenFn leading_test_cb,
                                  TokenFn trailing_test_cb,
+                                 TokenRhymePValueFn rhyme_count_cb,
                                  gpointer user_data);
 
 

@@ -8,6 +8,16 @@ from poeticunit import *
 
 class Poem(gobject.GObject):
 
+    def __sanity_check(self):
+        assert len(self.__units) > 0
+        assert self.__units[0].is_head()
+        assert self.__units[0].is_beginning_of_line()
+        assert self.__units[0].is_beginning_of_stanza()
+        assert self.__units[-1].is_tail()
+        assert self.__units[-1].is_end_of_line()
+        assert self.__units[-1].is_end_of_stanza()
+        
+
     def __init__(self, form_name, units=None, magic=None):
         gobject.GObject.__init__(self)
         if magic:
@@ -23,16 +33,10 @@ class Poem(gobject.GObject):
 
         self.__freeze_changed_count = 0
         self.__freeze_changed_pending = False
+        
+        self.__sanity_check()
 
-        ### Sanity-check
-        assert len(self.__units) > 0
-        assert self.__units[0].is_head()
-        assert self.__units[0].is_beginning_of_line()
-        assert self.__units[0].is_beginning_of_stanza()
-        assert self.__units[-1].is_tail()
-        assert self.__units[-1].is_end_of_line()
-        assert self.__units[-1].is_end_of_stanza()
-
+        
     def copy(self, clear=False):
         p = Poem(self.get_form_name(),
                  map(lambda x: x.copy(drop_binding=clear),
@@ -122,6 +126,9 @@ class Poem(gobject.GObject):
                 i += 1
         if did_work:
             self.__seqno += 1
+
+        self.__sanity_check()
+        
         return did_work
 
 
@@ -165,6 +172,8 @@ class Poem(gobject.GObject):
             self.__units[i:i+1] = repl
 
         self.__seqno += 1
+
+        self.__sanity_check()
             
         self.emit_changed()
         return bind_at
@@ -202,6 +211,8 @@ class Poem(gobject.GObject):
         self.combine_units() # FIXME: could be optimized
 
         self.__seqno += 1
+
+        self.__sanity_check()
 
         self.emit_changed()
 
@@ -289,6 +300,15 @@ class Poem(gobject.GObject):
                 i += 1
 
         self.thaw_changed()
+
+
+    def get_bound_rhyme(self, key):
+        if key is None:
+            return None
+        for u in self.__units:
+            if u.get_rhyme() == key and u.is_bound():
+                return u.get_binding()
+        return None
 
 
     def extract_surrounding_tokens(self, i):

@@ -27,6 +27,9 @@ token_filter_init (TokenFilter *filter)
 
     filter->leading_preference = FILTER_RESULTS_ACCEPT;
     filter->trailing_preference = FILTER_RESULTS_ACCEPT;
+    
+    filter->has_rhyme_threshold = RHYME_NONE;
+    filter->rhyme_p_threshold   = 1.0;
 }
 
 static gboolean
@@ -187,6 +190,11 @@ token_filter_init_from_py_dict (TokenFilter *filter,
     if (py_dict_get_int (py_dict, "trailing_preference", &x))
         filter->trailing_preference = (FilterResults) x;
 
+    if (py_dict_get_int (py_dict, "has_rhyme_threshold", &x))
+        filter->has_rhyme_threshold = x;
+    
+    py_dict_get_double (py_dict, "rhyme_p_threshold", &filter->rhyme_p_threshold);
+
     token_filter_optimize (filter);
 }
 
@@ -236,11 +244,12 @@ token_filter_clear (TokenFilter *filter)
 }
 
 FilterResults
-token_filter_test (TokenFilter *filter,
-                   Token       *token,
-                   TokenFn      leading_test_cb,
-                   TokenFn      trailing_test_cb,
-                   gpointer     user_data)
+token_filter_test (TokenFilter       *filter,
+                   Token             *token,
+                   TokenFn            leading_test_cb,
+                   TokenFn            trailing_test_cb,
+                   TokenRhymePValueFn rhyme_p_value_cb,
+                   gpointer           user_data)
 {
     int syl;
     double metric_error;
@@ -299,7 +308,7 @@ token_filter_test (TokenFilter *filter,
         Phoneme *p1 = token_get_decomp (filter->rhymes_with);
         Phoneme *p2 = token_get_decomp (token);
 
-        if (p1 == NULL || p2 == NULL)
+        if (p1 == NULL || p2 == NULL || filter->rhymes_with == token)
             return FILTER_RESULTS_REJECT;
 
         rhyme_type = rhyme_get_type (p1, p2);
@@ -320,6 +329,15 @@ token_filter_test (TokenFilter *filter,
         && results > filter->trailing_preference
         && trailing_test_cb (token, user_data))
         results = filter->trailing_preference;
+
+    if (rhyme_p_value_cb
+        && filter->has_rhyme_threshold != RHYME_NONE) {
+        double p = rhyme_p_value_cb (token,
+                                     filter->has_rhyme_threshold,
+                                     user_data);
+        if (p > filter->rhyme_p_threshold)
+            return FILTER_RESULTS_REJECT;
+    }
 
     return results;
 }

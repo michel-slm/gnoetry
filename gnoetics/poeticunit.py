@@ -351,7 +351,10 @@ class PoeticUnit:
         J["syllables"]     = self.get_syllables() + right.get_syllables()
         J["meter"]         = self.get_meter() + right.get_meter()
 
-        J["rhyme"]         = right.get_rhyme()
+        if right.get_syllables() > 0:
+            J["rhyme"] = right.get_rhyme()
+        else:
+            J["rhyme"] = self.get_rhyme()
 
         J["is_beginning_of_line"]   = self.is_beginning_of_line()
         J["is_beginning_of_stanza"] = self.is_beginning_of_stanza()

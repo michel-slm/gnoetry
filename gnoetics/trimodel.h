@@ -30,6 +30,9 @@ struct _Trimodel {
     GHashTable *is_leading;
     GHashTable *is_trailing;
 
+    GMemChunk  *rhyme_info_chunks;
+    GHashTable *rhyme_info_table;
+
     gboolean is_prepped;
 
     GList *text_list;
@@ -53,6 +56,14 @@ gint      trimodel_query (Trimodel       *tri,
                           Token          *token_c,
                           TokenFilter    *filter,
                           Ranker         *ranker);
+
+gint      trimodel_rhyme_count (Trimodel *tri,
+                                Token    *tok,
+                                RhymeType rhyme_type_threshold);
+
+double    trimodel_rhyme_p_value (Trimodel *tri,
+                                  Token    *tok,
+                                  RhymeType rhyme_type_threshold);
 
 gboolean  trimodel_token_is_leading  (Trimodel *tri, Token *tok);
 

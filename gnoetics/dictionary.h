@@ -16,7 +16,7 @@ struct _DictionaryWord {
     long     hash;
 };
 
-typedef void (*DictionaryFn) (DictionaryWord *, gpointer);
+typedef gboolean (*DictionaryFn) (DictionaryWord *, gpointer);
 
 DictionaryWord *dictionary_add_word   (const char      *word,
                                        Phoneme         *decomp);

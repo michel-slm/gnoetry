@@ -42,7 +42,7 @@ def find_leading_trailing(poem, i):
 
 
 
-def solve_unit(model, leading_tokens, unit, trailing_tokens,
+def solve_unit(poem, model, leading_tokens, unit, trailing_tokens,
                weights=None,
                allow_left_queries=True,
                allow_right_queries=False,
@@ -96,9 +96,17 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
     assert unit.is_not_bound()
 
     syl = unit.get_syllables()
+    if syl == 0:
+        print "*** Ouch!"
+        print leading_tokens
+        print unit
+        print trailing_tokens
+        print "*** Ouch!"
     assert syl > 0
     
     meter = unit.get_meter()
+    rhyme = unit.get_rhyme()
+    rhymes_with = poem.get_bound_rhyme(rhyme)
 
     word_count = 0
     punct_count = 0
@@ -156,6 +164,12 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
                          "max_syllables": syl,
                          "meter_left":    meter,
                          }
+
+            if rhymes_with:
+                Q_filter["rhymes_with"] = rhymes_with
+            elif rhyme:
+                Q_filter["has_rhyme_threshold"] = gnoetics.RHYME_FALSE
+                Q_filter["rhyme_p_threshold"] = 0.20
                 
             Q = (leading_tokens[-1],
                  gnoetics.token_lookup_wildcard(),
@@ -168,7 +182,7 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
     if leading_tokens and allow_left_queries:
         
         Q_filter = { "min_syllables": 0,
-                     "max_syllables": single_both(syl, syl-1),
+                     "max_syllables": syl-1,
                      "meter_left":    meter,
                      }
 
@@ -176,23 +190,59 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
              leading_tokens[-1],
              gnoetics.token_lookup_wildcard(),
              Q_filter)
-
         left_queries.append(Q)
+
+
+        if not have_both:
+            Q_filter = { "min_syllables": syl,
+                         "max_syllables": syl,
+                         "meter_left":    meter,
+                         }
+            if rhymes_with:
+                Q_filter["rhymes_with"] = rhymes_with
+            elif rhyme:
+                Q_filter["has_rhyme_threshold"] = gnoetics.RHYME_FALSE
+                Q_filter["rhyme_p_threshold"] = 0.20
+                
+            Q = (leading_tokens[-2],
+                 leading_tokens[-1],
+                 gnoetics.token_lookup_wildcard(),
+                 Q_filter)
+            left_queries.append(Q)
 
 
     if trailing_tokens and allow_right_queries:
 
         Q_filter = { "min_syllables": 0,
-                     "max_syllables": single_both(syl, syl-1),
+                     "max_syllables": syl-1,
                      "meter_right":   meter,
                      }
-
+        
         Q = (gnoetics.token_lookup_wildcard(),
              trailing_tokens[0],
              trailing_tokens[1],
              Q_filter)
-
         right_queries.append(Q)
+
+
+        if not have_both:
+            Q_filter = { "min_syllables": syl,
+                         "max_syllables": syl,
+                         "meter_left":    meter,
+                         }
+            if rhymes_with:
+                Q_filter["rhymes_with"] = rhymes_with
+            elif rhyme:
+                Q_filter["has_rhyme_threshold"] = gnoetics.RHYME_FALSE
+                Q_filter["rhyme_p_threshold"] = 0.20
+
+            Q = (gnoetics.token_lookup_wildcard(),
+                 trailing_tokens[0],
+                 trailing_tokens[1],
+                 Q_filter)
+            right_queries.append(Q)
+
+
 
 
     if discourage_punct or forbid_punct:
@@ -292,7 +342,8 @@ class Solver:
 
         leading_tokens, trailing_tokens = self.__poem.extract_surrounding_tokens(i)
 
-        left_solns, right_solns = gnoetics.solve_unit(self.__model,
+        left_solns, right_solns = gnoetics.solve_unit(self.__poem,
+                                                      self.__model,
                                                       leading_tokens,
                                                       u,
                                                       trailing_tokens,
@@ -300,7 +351,8 @@ class Solver:
 
         # If we found no solutions, try again w/o the extra filters.
         if not left_solns and not right_solns:
-            left_solns, right_solns = gnoetics.solve_unit(self.__model,
+            left_solns, right_solns = gnoetics.solve_unit(self.__poem,
+                                                          self.__model,
                                                           leading_tokens,
                                                           u,
                                                           trailing_tokens,

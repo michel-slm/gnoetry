@@ -79,7 +79,7 @@ struct RhymeForeachInfo {
     gpointer  user_data;
 };
 
-static void
+static gboolean
 rhyme_foreach_cb (DictionaryWord *dword, gpointer user_data)
 {
     struct RhymeForeachInfo *info = user_data;
@@ -87,7 +87,9 @@ rhyme_foreach_cb (DictionaryWord *dword, gpointer user_data)
 
     rt = rhyme_get_type (dword->decomp, info->decomp);
     if (rt && rt >= info->minimum)
-        info->fn (info->decomp, dword, rt, info->user_data);
+        return info->fn (info->decomp, dword, rt, info->user_data);
+
+    return TRUE;
 }
 
 void
@@ -109,15 +111,14 @@ rhyme_foreach (Phoneme  *decomp,
     dictionary_foreach_by_tail (decomp, rhyme_foreach_cb, &info);
 }
 
-/* It would be more efficient if we didn't implement this
-   in terms of rhyme_foreach */
+/* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
 
 struct RhymeExistsInfo {
     RhymeType minimum;
     gboolean flag;
 };
 
-void
+gboolean
 rhyme_exists_cb (Phoneme *decomp,
                  DictionaryWord *dword,
                  RhymeType type,
@@ -125,8 +126,12 @@ rhyme_exists_cb (Phoneme *decomp,
 {
     struct RhymeExistsInfo *info = user_data;
   
-    if (!info->flag && type >= info->minimum)
+    if (!info->flag && type >= info->minimum) {
         info->flag = TRUE;
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 gboolean
@@ -143,6 +148,28 @@ rhyme_exists (Phoneme *decomp, RhymeType minimum)
 }
 
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
+
+void
+py_rhyme_register (PyObject *dict)
+{
+    PyObject *x;
+
+    x = PyInt_FromLong (RHYME_NONE);
+    PyDict_SetItemString (dict, "RHYME_NONE", x);
+    Py_DECREF (x);
+
+    x = PyInt_FromLong (RHYME_SLANT);
+    PyDict_SetItemString (dict, "RHYME_SLANT", x);
+    Py_DECREF (x);
+
+    x = PyInt_FromLong (RHYME_FALSE);
+    PyDict_SetItemString (dict, "RHYME_FALSE", x);
+    Py_DECREF (x);
+
+    x = PyInt_FromLong (RHYME_TRUE);
+    PyDict_SetItemString (dict, "RHYME_TRUE", x);
+    Py_DECREF (x);
+}
 
 Phoneme *
 maybe_lookup_decomp (PyObject *py_word, gboolean *own_decomp)
@@ -194,7 +221,7 @@ py_rhyme_get_type (PyObject *self, PyObject *args)
     return retval;
 }
 
-static void
+static gboolean
 py_rhyme_get_all_cb (Phoneme        *decomp,
                      DictionaryWord *dword,
                      RhymeType       type,
@@ -203,6 +230,8 @@ py_rhyme_get_all_cb (Phoneme        *decomp,
     PyObject *py_list = user_data;
     PyObject *py_dword = dictionary_word_to_py (dword);
     PyList_Append (py_list, py_dword);
+
+    return TRUE;
 }
 
 PyObject *

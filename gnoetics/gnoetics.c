@@ -114,6 +114,7 @@ static PyMethodDef gnoetics_methods[] = {
   { "token_lookup",          py_token_lookup,          METH_VARARGS },
   { "token_lookup_break",    py_token_lookup_break,    METH_NOARGS },
   { "token_lookup_wildcard", py_token_lookup_wildcard, METH_NOARGS },
+  { "token_count",           py_token_count,           METH_NOARGS },
 
 #if 0
 
@@ -172,6 +173,7 @@ static PyMethodDef gnoetics_methods[] = {
 typedef void (*RegisterFunc) (PyObject *);
 static RegisterFunc register_funcs[] = {
     py_meter_register,
+    py_rhyme_register,
     py_token_register,
     py_text_register,
     py_ranker_register,

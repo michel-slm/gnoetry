@@ -192,6 +192,21 @@ token_lookup_wildcard (void)
     return wild;
 }
 
+unsigned
+token_count (void)
+{
+    unsigned N;
+
+    if (token_table == NULL)
+        return 0;
+
+    g_static_mutex_lock (&token_mutex);
+    N = g_hash_table_size (token_table);
+    g_static_mutex_unlock (&token_mutex);
+
+    return N;
+}
+
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
 
 /* Python Type Magic */
@@ -384,4 +399,10 @@ PyObject *
 py_token_lookup_wildcard (PyObject *self, PyObject *args)
 {
     return token_to_py (token_lookup_wildcard ());
+}
+
+PyObject *
+py_token_count (PyObject *self, PyObject *args)
+{
+    return PyInt_FromLong (token_count ());
 }

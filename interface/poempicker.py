@@ -58,6 +58,18 @@ class PoemChoice_Renga(PoemChoice):
         return gnoetics.Renga()
 
 
+class PoemChoice_Sonnet(PoemChoice):
+
+    def __init__(self):
+        PoemChoice.__init__(self, "Sonnet")
+
+    def get_description(self):
+        return "Sonnet!"
+
+    def build_poem(self):
+        return gnoetics.Sonnet()
+    
+
 class PoemChoice_BlankVerse(PoemChoice):
 
     def __init__(self):
@@ -178,6 +190,7 @@ class PoemPicker(gtk.Dialog):
         self.add(PoemChoice_Haiku())
         self.add(PoemChoice_Tanka())
         self.add(PoemChoice_Renga())
+        self.add(PoemChoice_Sonnet())
         self.add(PoemChoice_BlankVerse())
 
 
