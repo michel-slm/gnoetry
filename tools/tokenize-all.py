@@ -5,7 +5,7 @@ import sys, string, os
 def generate(filename, headers):
     sys.stderr.write("Processing %s\n" % filename)
     name, ext = os.path.splitext(filename)
-    out = file("../texts-ts/%s.ts" % name, "w")
+    out = file("../texts-ts/%s.ts" % os.path.basename(name), "w")
     for line in headers:
         out.write(line + "\n")
     for line in os.popen("./gxml2ts %s | ./tscleaner" % filename):
