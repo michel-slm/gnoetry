@@ -33,9 +33,14 @@ class Poem(gobject.GObject):
         assert self.__units[-1].is_end_of_line()
         assert self.__units[-1].is_end_of_stanza()
 
-    def copy(self):
-        return Poem(self.get_form_name(),
-                    map(lambda x: x.copy(), self.__units))
+    def copy(self, clear=False):
+        p = Poem(self.get_form_name(),
+                 map(lambda x: x.copy(drop_binding=clear),
+                     self.__units))
+        if clear:
+            p.combine_units()
+
+        return p
 
     def get_seqno(self):
         return self.__seqno
@@ -126,6 +131,18 @@ class Poem(gobject.GObject):
 
         orig = self.__units[i]
         assert orig.is_not_bound()
+
+        if not (0 <= tok.get_syllables() <= orig.get_syllables()):
+            print i, (is_left and "left") or "right"
+            print tok
+            print tok.get_syllables()
+            print orig
+            print orig.get_syllables()
+            print
+            for i, u in enumerate(self.__units):
+                print i, u
+                
+                                    
         assert 0 <= tok.get_syllables() <= orig.get_syllables()
 
         if tok.get_syllables() == orig.get_syllables():
@@ -216,6 +233,35 @@ class Poem(gobject.GObject):
         if x != u.get_flag():
             u.set_flag(x)
             self.emit("changed_flag", i)
+
+
+    def unbind_flagged(self):
+        self.freeze_changed()
+
+        # First, walk through and unflag zero-syllable "singletons"
+        # (i.e. punctuation w/o flagged adjacent units.)
+        for i, u in enumerate(self.__units):
+            if u.get_flag() and u.get_syllables() == 0:
+                prev_flag = i > 0 and self.__units[i-1].get_flag()
+                next_flag = i < len(self.__units)-1 and self.__units[i+1].get_flag()
+                if not (next_flag or prev_flag):
+                    u.set_flag(False)
+                    self.emit("changed_flag", i)
+
+        # Now actually unbind the flagged units.  If a bit of punctuation is
+        # flagged, also unbind any breaks that follow.
+        i = 0
+        while i < len(self.__units):
+            u = self.__units[i]
+            if u.get_flag() and u.is_bound():
+                if u.is_punctuation() and i+1 < len(self.__units):
+                    u2 = self.__units[i+1]
+                    if u2.is_break():
+                        self.unbind(i+1)
+                self.unbind(i)
+            else:
+                i += 1
+        self.thaw_changed()
 
 
     def extract_surrounding_tokens(self, i):

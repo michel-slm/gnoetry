@@ -220,7 +220,7 @@ token_filter_optimize (TokenFilter *filter)
         return;
     }
 
-    if (filter->max_syllables > 0
+    if (filter->max_syllables >= 0
         && filter->min_syllables > filter->max_syllables) {
         filter->is_impossible = TRUE;
     }
@@ -272,10 +272,10 @@ token_filter_test (TokenFilter *filter,
     if (syl == 0)
         return FILTER_RESULTS_REJECT;
 
-    if (filter->min_syllables > 0 && syl < filter->min_syllables)
+    if (filter->min_syllables >= 0 && syl < filter->min_syllables)
         return FILTER_RESULTS_REJECT;
 
-    if (filter->max_syllables > 0 && syl > filter->max_syllables)
+    if (filter->max_syllables >= 0 && syl > filter->max_syllables)
         return FILTER_RESULTS_REJECT;
 
     if (filter->meter_left || filter->meter_right) {

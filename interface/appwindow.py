@@ -1,3 +1,4 @@
+import os, tempfile
 
 import gnoetics
 
@@ -13,9 +14,30 @@ from poemtextview import *
 ###
 
 def new_callback(app):
-    new = AppWindow()
+    new = AppWindow(model=app.get_model())
+    new.set_poem(app.get_poem().copy(clear=True))
+    new.show_all()
+
+
+def copy_callback(app):
+    new = AppWindow(model=app.get_model())
     new.set_poem(app.get_poem().copy())
     new.show_all()
+
+
+def print_callback(app):
+    markup = app.get_poem().to_string(add_timestamp=True,
+                                      add_latex_markup=True,
+                                      add_latex_wrapper=True)
+    fh = tempfile.NamedTemporaryFile()
+    fh.write(markup)
+    fh.flush()
+
+    dvi_name = fh.name + ".dvi"
+
+    os.chdir("/tmp")
+    os.system("latex %s" % fh.name)
+    os.system("dvips %s" % dvi_name)
     
 
 def close_callback(app):
@@ -23,9 +45,9 @@ def close_callback(app):
     app.close_window()
 
 
-def clear_callback(app):
-    # FIXME: check seqno
-    app.get_poem().clear()
+def clear_selected_callback(app):
+    app.get_poem().unbind_flagged()
+    app.get_solver().full_solution()
 
 
 ###
@@ -36,14 +58,17 @@ class AppWindow(gtk.Window):
 
     __total_app_window_count = 0
 
-    def __init__(self):
+    def __init__(self, model):
         gtk.Window.__init__(self)
         self.set_title("Gnoetry 0.2")
 
         AppWindow.__total_app_window_count += 1
         self.connect("delete_event", lambda aw, ev: aw.close_window())
 
+        self.__model = model
         self.__poem = None
+        self.__solver = gnoetics.Solver(self.__model)
+
         self.__save_seqno = -1
 
         self.__vbox = gtk.VBox(0, 0)
@@ -93,12 +118,23 @@ class AppWindow(gtk.Window):
         self.__vbox.show_all()
 
 
+    def get_model(self):
+        return self.__model
+
+
+    def get_solver(self):
+        return self.__solver
+
+
     def set_poem(self, p):
         self.__poem = p
         self.__save_seqno = -1
         
         self.__tileview.set_poem(p)
         self.__textview.set_poem(p)
+        self.__solver.set_poem(p)
+
+        self.__solver.full_solution()
 
 
     def get_poem(self):
@@ -110,26 +146,31 @@ class AppWindow(gtk.Window):
         bar.add("/_Edit")
         bar.add("/_Help")
 
-        bar.add("/_File/_New",
+        bar.add("/_File/_New Window",
                 stock=gtk.STOCK_NEW,
                 description="Open a new Gnoetry window",
                 callback=new_callback)
+        bar.add("/_File/_Copy Window",
+                stock=gtk.STOCK_COPY,
+                description="Open a new Gnoetry window with the same poem",
+                callback=copy_callback)
         bar.add("/_File/_Save",
                 stock=gtk.STOCK_SAVE,
                 description="Save the current poem to a text file")
         bar.add("/_File/_Print",
                 stock=gtk.STOCK_PRINT,
-                description="Print the current poem")
+                description="Print the current poem",
+                callback=print_callback)
         bar.add("/_File/sep", is_separator=1)
         bar.add("/_File/_Close",
                 stock=gtk.STOCK_CLOSE,
                 description="Close this window",
                 callback=close_callback)
 
-        bar.add("/_Edit/Clear",
+        bar.add("/_Edit/Regenerate Selected Text",
                 stock=gtk.STOCK_CLEAR,
-                description="Clear this poem",
-                callback=clear_callback)
+                description="Remove the selected words and make new choices",
+                callback=clear_selected_callback)
 
         bar.add("/_Help/About Gnoetry",
                 description="Learn more about Gnoetry",

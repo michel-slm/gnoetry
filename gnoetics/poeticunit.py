@@ -26,6 +26,7 @@ class PoeticUnit:
                    is_tail=False,
 
                    id=None,
+                   flag=False,
 
                    iambs=None):       # Convenience: how many iambs?
 
@@ -87,10 +88,10 @@ class PoeticUnit:
 
         # Initialize flagging
 
-        self.__flag = False
+        self.__flag = flag
         
 
-    def copy(self):
+    def copy(self, drop_binding=False):
         u = PoeticUnit(syllables=self.get_syllables(),
                        meter=self.get_meter(),
                        rhyme=self.get_rhyme(),
@@ -99,12 +100,12 @@ class PoeticUnit:
                        is_end_of_line=self.is_end_of_line(),
                        is_end_of_stanza=self.is_end_of_stanza(),
                        is_head=self.is_head(),
-                       is_tail=self.is_tail())
+                       is_tail=self.is_tail(),
+                       id=self.get_id(),
+                       flag=self.get_flag())
 
-        if self.is_bound():
+        if self.is_bound() and not drop_binding:
             u.bind(self.get_binding())
-
-        u.set_flag(self.get_flag())
 
         return u
     
@@ -305,6 +306,9 @@ class PoeticUnit:
         L["id"] = self.get_id()
         R["id"] = self.get_id()
 
+        L["flag"] = self.get_flag()
+        R["flag"] = self.get_flag()
+
         return L, R
 
 
@@ -359,6 +363,7 @@ class PoeticUnit:
         J["is_tail"]  = right.is_tail()
 
         J["id"] = self.get_id()
+        J["flag"] = self.get_flag() or right.get_flag()
 
         return J
 

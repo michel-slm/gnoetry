@@ -41,73 +41,6 @@ sys.stderr.write("\n")
 
 #############################################################################
 
-###
-### Solver
-###
-
-# Actions are three-tuples of the form:
-#  (unit index, left_solns, right_solns)
-actions = []
-
-def solve_start(verse):
-
-    verse.bind_mandatory_breaks()
-    
-
-def solve_step(verse):
-
-    global actions
-    
-    if verse.is_not_fully_bound():
-
-        verse.bind_mandatory_breaks()
-
-        i = verse.find_first_unbound()
-        u = verse[i]
-
-        leading_tokens, trailing_tokens = verse.extract_surrounding_tokens(i)
-
-        left_solns, right_solns = gnoetics.solve_unit(tri,
-                                                      leading_tokens,
-                                                      u,
-                                                      trailing_tokens)
-
-        if left_solns:
-            actions.append([i, "left", left_solns, right_solns])
-        elif right_solns:
-            actions.append([i, "right", left_solns, right_solns])
-        else:
-            while 1:
-                assert actions
-                act = actions[-1]
-                i = act[0]
-                mode = act[1]
-                if mode == "left":
-                    verse.unbind(i)
-                else:
-                    verse.unbind(i+1)
-                left_solns = act[2]
-                right_solns = act[3]
-                if right_solns and not left_solns:
-                    act[1] = "right"
-                if left_solns or right_solns:
-                    break
-                actions.pop(-1)
-
-        if left_solns:
-            tok = left_solns.pop(0)
-            verse.bind_left(i, tok)
-        else:
-            tok = right_solns.pop(0)
-            verse.bind_right(i, tok)
-
-    if verse.is_fully_bound():
-        actions = []
-
-
-
-#############################################################################
-
 def die_die_die(b, p):
 
     i = 0
@@ -128,20 +61,8 @@ def die_die_die(b, p):
 ############################################################################
 
 poem = gnoetics.BlankVerse(3, 4)
-appwin = appwindow.AppWindow()
+appwin = appwindow.AppWindow(model=tri)
 appwin.set_poem(poem)
 appwin.show_all()
-
-solve_start(poem)
-
-def timeout_cb(p):
-    if p.is_not_fully_bound():
-        solve_step(p)
-    return True
-    
-
-
-
-gtk.timeout_add(50, timeout_cb, poem)
 
 gtk.main()

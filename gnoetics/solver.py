@@ -1,7 +1,8 @@
 # This is -*- Python -*-
 
-import gnoetics
+import time
 
+import gnoetics
 
 def find_leading_trailing(poem, i):
 
@@ -39,7 +40,9 @@ def find_leading_trailing(poem, i):
 
 def solve_unit(model, leading_tokens, unit, trailing_tokens,
                allow_left_queries=True,
-               allow_right_queries=False):
+               allow_right_queries=False,
+               verbose=False,
+               extra_filters=True):
 
     def token_list_is_valid(token_list, allow_break_at):
         if allow_break_at < 0:
@@ -96,8 +99,9 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
         return False
 
     forbid_punct = False
-    if punctution_between(leading_tokens, -2, -1) \
-           or punctution_between(trailing_tokens, 0, 1):
+    if extra_filters and \
+       (punctution_between(leading_tokens, -2, -1) \
+        or punctution_between(trailing_tokens, 0, 1)):
         forbid_punct = True
 
 
@@ -177,14 +181,170 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
 
 
     if left_queries:
+        if verbose:
+            print "Left queries:", left_queries
         left_solns = model.query(*left_queries)
+        if verbose:
+            uniq = {}
+            for x in left_solns:
+                uniq[x.get_word()] = 1
+            print "Left solns:", uniq.keys()
     else:
         left_solns = []
 
     if right_queries:
+        if verbose:
+            print "Right queries:", right_queries
         right_solns = model.query(*right_queries)
+        if verbose:
+            uniq = {}
+            for x in right_solns:
+                uniq[x.get_word()] = 1
+            print "Right solns:", uniq.keys()
     else:
         right_solns = []
 
     return left_solns, right_solns
-          
+
+#############################################################################
+
+class Solver:
+
+    def __init__(self, model):
+        self.__model = model
+        self.__actions = []
+        self.__poem = None
+
+
+    def set_poem(self, p):
+        self.__poem = p
+        self.__actions = []
+
+
+    def get_poem(self):
+        return self.__poem
+
+
+    def __next_position(self):
+        assert self.__poem
+        assert not self.__poem.is_fully_bound()
+        return self.__poem.find_first_unbound()
+
+
+    def __solve_at(self, i, verbose=False):
+
+        assert self.__poem
+        assert 0 <= i < len(self.__poem)
+
+        u = self.__poem[i]
+        assert u.is_not_bound()
+
+        if u.get_syllables() == 0: # oops!
+            print "oops!"
+            for j, u in enumerate(self.__units):
+                if i == j:
+                    print "****", 
+                print j, u
+            print
+
+        leading_tokens, trailing_tokens = self.__poem.extract_surrounding_tokens(i)
+
+        left_solns, right_solns = gnoetics.solve_unit(self.__model,
+                                                      leading_tokens,
+                                                      u,
+                                                      trailing_tokens)
+
+        # If we found no solutions, try again w/o the extra filters.
+        if not left_solns and not right_solns and not self.__actions:
+            left_solns, right_solns = gnoetics.solve_unit(self.__model,
+                                                          leading_tokens,
+                                                          u,
+                                                          trailing_tokens,
+                                                          extra_filters=False)
+
+
+        if verbose:
+            print "pos=%d left_solns=%d right_solns=%d" % (i,
+                                                           len(left_solns),
+                                                           len(right_solns))
+
+        if left_solns:
+            self.__actions.append([i, "left", left_solns, right_solns])
+        elif right_solns:
+            self.__actions.append([i, "right", left_solns, right_solns])
+        else:
+            while 1:
+                assert self.__actions
+                act = self.__actions[-1]
+                i = act[0]
+                mode = act[1]
+                if mode == "left":
+                    self.__poem.unbind(i)
+                    if verbose:
+                        print "left-unbind at %d" % i
+                else:
+                    self.__poem.unbind(i+1)
+                    if verbose:
+                        print "right-unbind at %d" % i
+                left_solns = act[2]
+                right_solns = act[3]
+                if right_solns and not left_solns:
+                    act[1] = "right"
+                if left_solns or right_solns:
+                    break
+                self.__actions.pop(-1)
+
+        if left_solns:
+            tok = left_solns.pop(0)
+            if verbose:
+                print "left-bind at %d" % i
+            self.__poem.bind_left(i, tok)
+        else:
+            tok = right_solns.pop(0)
+            if verbose:
+                print "right-bind at %d" % i
+            self.__poem.bind_right(i, tok)
+
+
+    def step(self):
+        if not self.__poem:
+            return
+
+        if self.__poem.is_fully_bound():
+            return
+
+        self.__poem.bind_mandatory_breaks()
+    
+        i = self.__next_position()
+        self.__solve_at(i)
+
+
+    def multistep(self, count=10, timeout=0.2):
+        if not self.__poem:
+            return
+
+        t1 = time.time()
+        N = 0
+        
+        self.__poem.freeze_changed()
+
+        while self.__poem.is_not_fully_bound():
+
+            if count is not None and count > 0 and N > count:
+                break
+
+            if timeout is not None:
+                t2 = time.time()
+                if t2 - t1 > timeout:
+                    break
+
+            self.step()
+
+            N += 1
+
+        self.__poem.thaw_changed()
+
+
+    def full_solution(self):
+        self.__actions = []
+        self.multistep(count=None, timeout=None)
