@@ -187,7 +187,7 @@ per_text_collapse (GPtrArray    *per_text_array_original,
         else
             g_assert_not_reached ();
 
-        if (array && array->len > 0) {
+        if (array && array->len > 0 && per_text->weight > 0) {
             total_weight += per_text->weight;
             fate_shuffle_ptr_array (array);
             g_ptr_array_add (per_text_array, per_text);
