@@ -68,6 +68,9 @@ static PyMethodDef gnoetics_methods[] = {
   { "meter_from_phoneme_decomp", py_meter_from_phoneme_decomp, METH_VARARGS,
     "Convert a phoneme decomposition into a meter string." },
 
+  { "meter_is_valid", py_meter_is_valid, METH_VARARGS,
+    "Check if a meter string is valid." },
+
   { "metric_match_left", py_metric_match_left, METH_VARARGS,
     "Check if two meters left-match." },
 
@@ -173,6 +176,7 @@ initxxx_gnoetics (void)
   d = PyModule_GetDict (m);
 
   dictionary_init ();
+  py_meter_register (d);
   py_token_register (d);
   py_text_register (d);
   py_token_model_register (d);

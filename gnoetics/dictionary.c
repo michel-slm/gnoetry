@@ -359,8 +359,8 @@ static const char *default_dictionary_paths[] = {
 #endif
     "dict/" PRONUNCIATION_DICTNAME,
     "../dict/" PRONUNCIATION_DICTNAME,
-    "../../dict" PRONUNCIATION_DICTNAME,
-    "../../../dict" PRONUNCIATION_DICTNAME,
+    "../../dict/" PRONUNCIATION_DICTNAME,
+    "../../../dict/" PRONUNCIATION_DICTNAME,
 #endif
     NULL
 };

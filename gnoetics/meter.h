@@ -27,6 +27,8 @@ typedef enum {
 
 Meter *meter_from_phoneme_decomp (Phoneme *);
 
+gboolean meter_is_valid (const Meter *a);
+
 gboolean metric_match_left  (const Meter *a, const Meter *b);
 gboolean metric_match_right (const Meter *a, const Meter *b);
 
@@ -35,7 +37,10 @@ double metric_error_right (const Meter *a, const Meter *b);
 
 /* Python Extensions */
 
+void py_meter_register (PyObject *);
+
 PyObject *py_meter_from_phoneme_decomp (PyObject *self, PyObject *args);
+PyObject *py_meter_is_valid (PyObject *self, PyObject *args);
 PyObject *py_metric_match_left (PyObject *self, PyObject *args);
 PyObject *py_metric_match_right (PyObject *self, PyObject *args);
 PyObject *py_metric_error_left (PyObject *self, PyObject *args);

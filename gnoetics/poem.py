@@ -1,206 +1,130 @@
-import string
-import form
+# This is -*- Python -*-
 
-CHUNK_FREE  = "free"   # ("free", i0, i1)
-CHUNK_WORD  = "word"   # ("word", i0, i1, token)
-CHUNK_ZERO  = "zero"   # ("zero", token)
-CHUNK_BREAK = "break"  # ("break",)
+import gnoetics
+from poeticunit import *
 
+class Poem:
 
-class SyllableBasedPoem:
+    def __init__(self, form_name, units=None, magic=None):
+        if magic:
+            assert units is None
+            units = _unit_magic(magic)
+        else:
+            units = list(units)
+        assert units
+        self.__form_name = form_name
+        self.__units = units
 
-    def __init__(self, form):
-        self.__form = form
-        self.__chunks = [(CHUNK_BREAK,)]
+        ### Sanity-check
+        assert len(self.__units) > 0
+        assert self.__units[-1].is_end_of_sentence()
 
-        i0 = 0
-        for i in range(len(form)):
-            syl = form[i]
-            if syl.is_word_terminal() \
-               or syl.is_sentence_terminal() \
-               or syl.is_line_terminal() \
-               or syl.is_stanza_terminal():
-                self.__chunks.append((CHUNK_FREE, i0, i))
-                if syl.is_sentence_terminal():
-                    self.__chunks.append((CHUNK_BREAK,))
-                i0 = i+1
+    def form_name(self):
+        return self.__form_name
 
-    def get_form(self):
-        return self.__form
+    def __len__(self):
+        return len(self.__units)
 
-    def to_string(self):
-        lines = []
-        this_line = []
+    def __getitem__(self, i):
+        assert 0 <= i < len(self.__units)
+        return self.__units[i]
 
-        for chunk in self.__chunks:
+    def replace(self, i, units):
+        assert 0 <= i < len(self.__units)
+        self.__units = self.__units[:i] + list(units) + self.__units[i+1:]
 
-            eol = 0
-            eostza = 0
+    def delete(self, i):
+        self.replace(i, [])
 
-            if chunk[0] == CHUNK_FREE:
-                i0, i1 = chunk[1:]
-                for syl in self.__form[i0:i1+1]:
-                    this_line.append(syl.to_string())
-                syl = self.__form[i1]
-                eol = syl.is_line_terminal()
-                eostza = syl.is_stanza_terminal()
-            elif chunk[0] == CHUNK_WORD:
-                i0, i1, token = chunk[1:]
-                s = "%s(%d)(%s)" % (token.get_word(),
-                                    token.get_syllables(),
-                                    token.get_meter())
-                this_line.append(s)
-                syl = self.__form[i1]
-                eol = syl.is_line_terminal()
-                eostza = syl.is_stanza_terminal()
-            elif chunk[0] == CHUNK_ZERO:
-                token = chunk[-1]
-                this_line.append(token.get_word())
+    def is_fully_bound(self):
+        for x in self.__units:
+            if not x.is_bound():
+                return 0
+        return 1
 
-            if eol:
-                lines.append(string.join(this_line, " "))
-                this_line = []
-            if eostza:
-                lines.append("")
+    def find_first_unbound(self):
+        for i in range(len(self.__units)):
+            if not self.__units[i].is_bound():
+                return i
+        return None
 
-        if this_line:
-            lines.append(string.join(this_line, " "))
-
-        return string.join(lines, "\n")
-
-    def spew_chunks(self):
-        for i in range(len(self.__chunks)):
-            print "%2d" % i, self.__chunks[i]
-
-    def __find_chunk_index(self, i):
-        for j in range(len(self.__chunks)):
-            chunk = self.__chunks[j]
-            if chunk[0] == CHUNK_FREE or chunk[0] == CHUNK_WORD:
-                i0, i1 = chunk[1:3]
-                if i0 <= i and i <= i1:
-                    return j
-        return -1
-
-    def _get_chunk(self, i):
-        return self.__chunks[i]
-
-    def _find_free_chunk(self):
-        for j in range(len(self.__chunks)):
-            chunk = self.__chunks[j]
-            if chunk[0] == CHUNK_FREE:
-                return j
-        return -1
-
-    def _study_free_chunk(self, j):
-        free = self.__chunks[j]
-        assert free[0] == CHUNK_FREE
-        f0, f1 = free[1:]
-        pred_tokens = []
-        succ_tokens = []
-
-        pred_brk = 0
-        succ_brk = 0
-        pred_zero = 0
-        succ_zero = 0
-
-        meter = []
-        for i in range(f0, f1+1):
-            meter.append( self.__form[i].get_meter())
-        meter = string.join(meter, "")
-
-        i = j-1
-        while i >= 0:
-            chunk = self.__chunks[i]
-            if chunk[0] == CHUNK_FREE:
-                break
-            if chunk[0] == CHUNK_BREAK:
-                pred_brk = 1
-                break
-            token = chunk[-1]
-            pred_tokens.insert(0, token)
-            pred_zero = (token.get_syllables() == 0)
-            i -= 1
-
-        i = j+1
-        while i < len(self.__chunks):
-            chunk = self.__chunks[i]
-            if chunk[0] == CHUNK_FREE:
-                break
-            if chunk[0] == CHUNK_BREAK:
-                succ_brk = 1
-                break
-            token = chunk[-1]
-            if not succ_tokens:
-                succ_zero = (token.get_syllables() == 0)
-            succ_tokens.append(token)
-            i += 1
-
-        info = {
-            "predecessors": pred_tokens,
-            "successors":   succ_tokens,
-            "pred_break":   pred_brk,
-            "succ_break":   succ_brk,
-            "pred_zero":    pred_zero,
-            "succ_zero":    succ_zero,
-            "syllables":    f1 - f0 + 1,
-            "meter":        meter,
-            }
-
-        return info
-        
-
-    def bind(self, chunk_index, token=None, right_bind=0,
-             insert_break=0):
-        j = chunk_index
-        assert 0 <= j < len(self.__chunks)
-
-        chunk = self.__chunks[j]
-        assert chunk[0] == CHUNK_FREE
-
-        if token is None and insert_break:
-            if right_bind:
-                self.__chunks.insert(j+1, (CHUNK_BREAK,))
+    def combine_units(self):
+        i = 0
+        did_work = 0
+        while i < len(self.__units)-1:
+            x = self.__units[i]
+            if x.get_syllables() == 0 and not x.is_bound():
+                self.__units.pop(i)
+                did_work = 1
             else:
-                self.__chunks.insert(j, (CHUNK_BREAK,))
-            return
-        assert not insert_break
+                c = combine_two_units(self.__units[i],
+                                      self.__units[i+1])
+                if c:
+                    self.__units[i:i+2] = [c]
+                    did_work = 1
+                else:
+                    i += 1
+        if did_work:
+            pass # FIXME: emit a signal, or something
 
-        i0, i1 = chunk[1:]
+    def dump(self):
+        for x in self.__units:
+            s = x.to_string(show_line_break_info=0)
+            print s,
+            if x.is_end_of_line():
+                print
+            if x.is_end_of_stanza():
+                print
 
-        n = token.get_syllables()
-        assert n <= i1-i0+1
 
-        if right_bind:
-            f0 = i0
-            f1 = i1-n
-            w0 = f1+1
-            w1 = i1
+##############################################################################
+
+def _unit_magic(scheme):
+    scheme = scheme.strip()
+    units = []
+    for i in range(len(scheme)):
+        is_last = (i == len(scheme)-1)
+        x = scheme[i]
+        if x == " ":
+            continue
+
+        args = {}
+
+        if x in "123456789":
+            args["syllables"] = int(x)
         else:
-            w0 = i0
-            w1 = w0+n-1
-            f0 = w1+1
-            f1 = i1
+            args["iambs"] = 5
+            if x != "*":
+                args["rhyme"] = x
 
-        if n == 0:
-            new_chunk = (CHUNK_ZERO, token)
-        else:
-            new_chunk = (CHUNK_WORD, w0, w1, token)
+        args["end_of_line"] = 1
+        if is_last:
+            args["end_of_sentence"] = 1
+        if is_last or scheme[i+1] == " ":
+            args["end_of_stanza"] = 1
 
-        if f0 <= f1:
-            new_free = (CHUNK_FREE, f0, f1)
-        else:
-            new_free = None
+        units.append(PoeticUnit(**args))
 
-        new_section = [new_chunk]
-        if new_free:
-            if right_bind:
-                new_section.insert(0, new_free)
-            else:
-                new_section.append(new_free)
-
-        self.__chunks = self.__chunks[:j] + new_section + self.__chunks[j+1:]
-
-
-
+    return units
         
+##############################################################################
 
+class SonnetStanza(Poem):
+    def __init__(self):
+        Poem.__init__(self, "Sonnet Stanza", magic="ABAB")
+
+class Sonnet(Poem):
+    def __init__(self):
+        Poem.__init__(self, "Sonnet", magic="ABAB CDCD EFEF GG")
+
+class Haiku(Poem):
+    def __init__(self):
+        Poem.__init__(self, "Haiku", magic="575")
+
+class Tanka(Poem):
+    def __init__(self):
+        Poem.__init__(self, "Tanka", magic="575 77")
+
+class Renga(Poem):
+    def __init__(self):
+        Poem.__init__(self, "Renga", magic="575 77 575")

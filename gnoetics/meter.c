@@ -30,6 +30,21 @@ meter_from_phoneme_decomp (Phoneme *p)
 }
 
 gboolean
+meter_is_valid (const Meter *a)
+{
+    g_return_val_if_fail (a != NULL, FALSE);
+
+    while (*a) {
+        if (*a != METER_STRESSED && *a != METER_UNSTRESSED
+            && *a != METER_UNKNOWN && *a != METER_ANY)
+            return FALSE;
+        ++a;
+    }
+
+    return TRUE;
+}
+
+gboolean
 metric_match_left (const Meter *a, const Meter *b)
 {
     g_return_val_if_fail (a != NULL, FALSE);
@@ -98,6 +113,28 @@ metric_error_right (const Meter *a, const Meter *b)
 
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
 
+void
+py_meter_register (PyObject *dict)
+{
+    PyObject *x;
+
+    x = PyString_FromFormat ("%c", METER_STRESSED);
+    PyDict_SetItemString (dict, "METER_STRESSED", x);
+    Py_DECREF (x);
+
+    x = PyString_FromFormat ("%c", METER_UNSTRESSED);
+    PyDict_SetItemString (dict, "METER_UNSTRESSED", x);
+    Py_DECREF (x);
+
+    x = PyString_FromFormat ("%c", METER_UNKNOWN);
+    PyDict_SetItemString (dict, "METER_UNKNOWN", x);
+    Py_DECREF (x);
+
+    x = PyString_FromFormat ("%c", METER_ANY);
+    PyDict_SetItemString (dict, "METER_ANY", x);
+    Py_DECREF (x);
+}
+
 PyObject *
 py_meter_from_phoneme_decomp (PyObject *self, PyObject *args)
 {
@@ -113,6 +150,17 @@ py_meter_from_phoneme_decomp (PyObject *self, PyObject *args)
     g_free (decomp);
 
     return Py_BuildValue ("s", m);
+}
+
+PyObject *
+py_meter_is_valid (PyObject *self, PyObject *args)
+{
+    Meter *a;
+    
+    if (! PyArg_ParseTuple (args, "s", &a))
+        return NULL;
+
+    return Py_BuildValue ("i", meter_is_valid (a));
 }
 
 PyObject *
