@@ -39,7 +39,7 @@ struct _Trimodel {
     GArray *array_BC_A;
 
     GHashTable *is_leading;
-    GHashTable *is_terminal;
+    GHashTable *is_trailing;
 
     gboolean is_prepped;
 
@@ -63,6 +63,10 @@ gint      trimodel_query (Trimodel       *tri,
                           TokenFilter    *filter,
                           FilterResultsFn match_fn,
                           gpointer        user_data);
+
+gboolean  trimodel_token_is_leading  (Trimodel *tri, Token *tok);
+
+gboolean  trimodel_token_is_trailing (Trimodel *tri, Token *tok);
 
 
 

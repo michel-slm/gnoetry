@@ -91,8 +91,8 @@ trimodel_dealloc (Trimodel *tri)
 
     if (tri->is_leading != NULL)
         g_hash_table_destroy (tri->is_leading);
-    if (tri->is_terminal != NULL)
-        g_hash_table_destroy (tri->is_terminal);
+    if (tri->is_trailing != NULL)
+        g_hash_table_destroy (tri->is_trailing);
     
     g_list_foreach (tri->text_list, (GFunc) text_unref, NULL);
     g_list_free (tri->text_list);
@@ -253,7 +253,7 @@ trimodel_build_all_tokens_array (Trimodel *tri)
 }
 
 static void
-trimodel_build_leading_terminal (Trimodel *tri)
+trimodel_build_leading_trailing (Trimodel *tri)
 {
     GHashTable *not_head, *not_tail;
     TrimodelElement *elt;
@@ -264,11 +264,11 @@ trimodel_build_leading_terminal (Trimodel *tri)
     if (tri->is_leading != NULL)
         g_hash_table_destroy (tri->is_leading);
 
-    if (tri->is_terminal != NULL)
-        g_hash_table_destroy (tri->is_terminal);
+    if (tri->is_trailing != NULL)
+        g_hash_table_destroy (tri->is_trailing);
 
     tri->is_leading = g_hash_table_new (NULL, NULL);
-    tri->is_terminal = g_hash_table_new (NULL, NULL);
+    tri->is_trailing = g_hash_table_new (NULL, NULL);
 
     not_head = g_hash_table_new (NULL, NULL);
     not_tail = g_hash_table_new (NULL, NULL);
@@ -301,7 +301,7 @@ trimodel_build_leading_terminal (Trimodel *tri)
             g_hash_table_insert (tri->is_leading, t, t);
 
         if (g_hash_table_lookup (not_tail, t) == NULL)
-            g_hash_table_insert (tri->is_terminal, t, t);
+            g_hash_table_insert (tri->is_trailing, t, t);
 
     }
 
@@ -323,7 +323,7 @@ trimodel_prepare (Trimodel *tri)
 
     trimodel_build_all_tokens_array (tri);
 
-    trimodel_build_leading_terminal (tri);
+    trimodel_build_leading_trailing (tri);
 
     tri->is_prepped = TRUE;
 }
@@ -454,14 +454,16 @@ static gboolean
 leading_test_cb (Token   *t,
                  gpointer user_data)
 {
-    return FALSE;
+    Trimodel *tri = user_data;
+    return trimodel_token_is_leading (tri, t);
 }
 
 static gboolean
 trailing_test_cb (Token   *t,
                   gpointer user_data)
 {
-    return FALSE;
+    Trimodel *tri = user_data;
+    return trimodel_token_is_trailing (tri, t);
 }
 
 gint
@@ -559,6 +561,26 @@ trimodel_query (Trimodel       *tri,
     }
 
     return count;
+}
+
+gboolean
+trimodel_token_is_leading (Trimodel *tri,
+                           Token    *tok)
+{
+    g_return_val_if_fail (tri != NULL, FALSE);
+    g_return_val_if_fail (tok != NULL, FALSE);
+
+    return g_hash_table_lookup (tri->is_leading, tok) != NULL;
+}
+
+gboolean
+trimodel_token_is_trailing (Trimodel *tri,
+                            Token    *tok)
+{
+    g_return_val_if_fail (tri != NULL, FALSE);
+    g_return_val_if_fail (tok != NULL, FALSE);
+
+    return g_hash_table_lookup (tri->is_trailing, tok) != NULL;
 }
 
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
@@ -727,7 +749,6 @@ py_trimodel_query (PyObject *self, PyObject *args)
         if (error_flag)
             goto finished;
     }
-
 
     py_results = PyList_New (0);
 
