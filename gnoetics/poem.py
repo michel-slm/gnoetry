@@ -18,21 +18,27 @@ class Poem(gobject.GObject):
         assert self.__units[-1].is_end_of_stanza()
         
 
-    def __init__(self, form_name, units=None, magic=None):
+    def __init__(self, form_name=None, units=None, magic=None, xml=None):
         gobject.GObject.__init__(self)
-        if magic:
-            assert units is None
-            units = _unit_magic(magic)
-        else:
-            units = list(units)
-        assert units
+
         self.__form_name = form_name
-        self.__units = units
-
         self.__seqno = 0
-
         self.__freeze_changed_count = 0
         self.__freeze_changed_pending = False
+
+        self.__units = []
+
+        if xml:
+            assert units is None
+            assert magic is None
+            self.__from_xml(xml)
+        elif magic:
+            assert units is None
+            self.__units = _unit_magic(magic)
+        else:
+            assert units
+            self.__units = list(units)
+
         
         self.__sanity_check()
 
@@ -463,6 +469,33 @@ class Poem(gobject.GObject):
             lines = map(quote_latex_special_chars, lines)
 
         return string.join(lines, "\n")
+
+
+    def to_xml(self, doc):
+
+        poem_node = doc.createElement("poem")
+
+        units_node = doc.createElement("units")
+        poem_node.appendChild(units_node)
+
+        for u in self.__units:
+            node = u.to_xml(doc)
+            units_node.appendChild(node)
+
+        return poem_node
+
+
+    def __from_xml(self, poem_node):
+
+        assert poem_node.localName == "poem"
+
+        for node in poem_node.childNodes:
+
+            if node.localName == "units":
+                units = map(lambda x: gnoetics.PoeticUnit(xml=x), node.childNodes)
+                self.__units = units
+            else:
+                assert 0
 
 
 

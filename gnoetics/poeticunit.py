@@ -8,7 +8,10 @@ class PoeticUnit:
 
 
     def __init__(self, **args):
-        self.__populate(**args)
+        if args.has_key("xml"):
+            self.__from_xml(args["xml"])
+        else:
+            self.__populate(**args)
 
 
     def __populate(self,
@@ -24,6 +27,7 @@ class PoeticUnit:
                    
                    is_head=False,
                    is_tail=False,
+
 
                    id=None,
                    flag=False,
@@ -380,3 +384,96 @@ class PoeticUnit:
         J = left.__join(self)
         self.__populate(**J)
 
+
+    def to_xml(self, doc):
+        node = doc.createElement("unit")
+
+        node.setAttribute("syllables", "%d" % self.get_syllables())
+        node.setAttribute("meter", self.get_meter())
+
+        if self.is_rhymed():
+            node.setAttribute("rhyme", str(self.get_rhyme()))
+
+        if self.is_beginning_of_line():
+            node.setAttribute("is_beginning_of_line", "1")
+
+        if self.is_beginning_of_stanza():
+            node.setAttribute("is_beginning_of_stanza", "1")
+
+        if self.is_end_of_line():
+            node.setAttribute("is_end_of_line", "1")
+
+        if self.is_end_of_stanza():
+            node.setAttribute("is_end_of_stanza", "1")
+
+        node.setAttribute("id", str(self.get_id()))
+
+        if self.is_head():
+            node.setAttribute("is_head", "1")
+
+        if self.is_tail():
+            node.setAttribute("is_tail", "1")
+
+        if self.is_bound():
+
+            node.setAttribute("is_bound", "1")
+            
+            if self.is_break():
+                node.setAttribute("binding_is_break", "1")
+            else:
+                node.setAttribute("binding", self.get_binding().get_word())
+
+            if self.is_punctuation():
+                node.setAttribute("binding_is_punctuation", "1")
+
+
+            if self.has_left_glue():
+                node.setAttribute("has_left_glue", "1")
+
+            if self.has_right_glue():
+                node.setAttribute("has_right_glue", "1")
+
+        return node
+
+
+    def __from_xml(self, node):
+
+        assert node.localName == "unit"
+
+        P = {}
+
+        P["syllables"] = int(node.getAttribute("syllables"))
+        P["meter"]     = node.getAttribute("meter")
+        
+        x = node.getAttribute("rhyme")
+        if x:
+            P["rhyme"] = x
+
+        P["is_beginning_of_line"]   = bool(node.getAttribute("is_beginning_of_line"))
+        P["is_beginning_of_stanza"] = bool(node.getAttribute("is_beginning_of_stanza"))
+        P["is_end_of_line"]         = bool(node.getAttribute("is_end_of_line"))
+        P["is_end_of_stanza"]       = bool(node.getAttribute("is_end_of_stanza"))
+
+        P["is_head"] = bool(node.getAttribute("is_head"))
+        P["is_tail"] = bool(node.getAttribute("is_tail"))
+
+        P["id"] = int(node.getAttribute("id"))
+
+        self.__populate(**P)
+
+        if node.getAttribute("is_bound"):
+            tok = None
+            if node.getAttribute("binding_is_break"):
+                tok = gnoetics.token_lookup_break()
+            else:
+                x = node.getAttribute("binding")
+                if node.getAttribute("binding_is_punctuation"):
+                    x = "*punct* %s" % x
+                tok = gnoetics.token_lookup(x)
+
+            assert tok.has_left_glue() == bool(node.getAttribute("has_left_glue"))
+            assert tok.has_right_glue() == bool(node.getAttribute("has_right_glue"))
+
+            if tok:
+                self.bind(tok)
+            

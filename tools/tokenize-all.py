@@ -6,6 +6,14 @@ def generate_from_xml(filename, headers):
     sys.stderr.write("Processing %s\n" % filename)
     name, ext = os.path.splitext(filename)
 
+    out_name = "../texts-ts/%s.ts" % os.path.basename(name)
+
+    if os.path.exists(out_name) \
+       and os.path.getmtime(filename) < os.path.getmtime(out_name):
+        sys.stderr.write("Skipping...\n")
+        return
+
+
     tokens = []
     for line in os.popen("./gxml2txt %s | ./txt2ts" % filename):
         tokens.append(line)
@@ -13,7 +21,7 @@ def generate_from_xml(filename, headers):
     if len(tokens) < 10:
         return
     
-    out = file("../texts-ts/%s.ts" % os.path.basename(name), "w")
+    out = file(out_name, "w")
     for line in headers:
         out.write(line + "\n")
     for line in tokens:
@@ -26,6 +34,12 @@ def generate_from_txt(filename):
     name, ext = os.path.splitext(filename)
 
     out_name = "../texts-ts/%s.ts" % os.path.basename(name)
+
+    if os.path.exists(out_name) \
+       and os.path.getmtime(filename) < os.path.getmtime(out_name):
+        sys.stderr.write("Skipping...\n")
+        return
+    
     os.system("./txt2ts %s > %s" % (filename, out_name))
     
     
