@@ -1,3 +1,5 @@
+# This is -*- Python -*-
+
 import os, tempfile, sys
 
 import gnoetics
@@ -6,8 +8,42 @@ import gtk
 import red_menubar, red_toolbar
 import about
 
+from textpicker   import *
 from poemtileview import *
 from poemtextview import *
+
+###
+### Launcher
+###
+
+def launch_window(is_first=False):
+
+    def text_picker_callback(text_list):
+        if text_list is None:
+            if is_first:
+                sys.exit(0)
+            return
+
+        tri = gnoetics.Trimodel()
+
+        for text in text_list:
+            print text
+            tri.add_text(text)
+
+        tri.prepare()
+
+        poem = gnoetics.BlankVerse(3, 4)
+
+        appwin = AppWindow(model=tri)
+        appwin.set_poem(poem)
+        appwin.show_all()
+
+    lib = gnoetics.Library("../texts-ts")
+    picker = TextPicker(lib, text_picker_callback)
+    picker.show_all()
+
+    
+        
 
 ###
 ### Callbacks
@@ -44,7 +80,9 @@ def print_callback(app):
 
     os.chdir("/tmp")
     os.system("latex %s" % fh.name)
-    os.system("dvips %s" % dvi_name)
+
+    lpr_cmd = os.getenv("GNOETRY_LPR") or "lpr"
+    os.system("dvips -f %s | %s" % (dvi_name, lpr_cmd))
     
 
 def close_callback(app):
@@ -388,7 +426,13 @@ class AppWindow(gtk.Window,
         if not words:
             words = ["poem"]
 
-        return string.join(words, "-") + ".txt"
+        name = string.join(words, "-") + ".txt"
+
+        dir = os.getenv("GNOETRY_SAVE_DIR")
+        if dir:
+            name = os.path.join(dir, name)
+
+        return name
 
 
     def save(self, target_filename, use_previous=True):

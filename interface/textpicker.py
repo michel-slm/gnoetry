@@ -2,9 +2,6 @@
 import gobject, gtk, gnoetics
 import sys, os, threading
 
-text_dirs = [ "../texts-ts" ]
-text_cache = []
-
 def _text_sort_fn(a, b):
 
     a = a.get_title().lower()
@@ -18,21 +15,6 @@ def _text_sort_fn(a, b):
     return cmp(a.strip(), b.strip())
 
 
-def get_all_texts():
-    global text_cache
-    if len(text_cache) == 0:
-        for dir in text_dirs:
-            for file in os.listdir(dir):
-                path = os.path.join(dir, file)
-                ext = os.path.splitext(file)[1]
-                if ext == ".ts":
-                    text = gnoetics.Text(path)
-                    text_cache.append(text)
-        text_cache.sort(_text_sort_fn)
-
-    return text_cache
-
-                                              
 class TextPicker(gtk.Dialog):
 
     COLUMN_FLAG = 0
@@ -40,20 +22,13 @@ class TextPicker(gtk.Dialog):
     COLUMN_AUTHOR = 2
     COLUMN_TEXT = 3
 
-    def __init__(self, model):
+    def __init__(self, lib, callback):
         gtk.Dialog.__init__(self, "Select Your Source Texts")
 
-        b = self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.__callback = callback
 
-        # If no texts are initially set in the model, don't allow the user
-        # to cancel out of the dialog.
-        if len(model.get_texts()) == 0:
-            b.set_sensitive(0)
-        
         self.__button_ok = self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
         self.connect("response", TextPicker.__response_handler)
-
-        self.__model = model
 
         self.__store = gtk.ListStore(gobject.TYPE_BOOLEAN,
                                      gobject.TYPE_STRING,
@@ -64,14 +39,14 @@ class TextPicker(gtk.Dialog):
         self.__count_label = gtk.Label("")
         
         self.__text_dict = {}
+
+        all_texts = lib.get_all()
+        all_texts.sort(_text_sort_fn)
         
-        for txt in get_all_texts():
-            flag = self.__text_in_model(txt)
-            if flag:
-                self.__flag_text(txt, 1)
+        for txt in all_texts:
             iter = self.__store.append()
             self.__store.set(iter,
-                             self.COLUMN_FLAG, flag,
+                             self.COLUMN_FLAG, False,
                              self.COLUMN_TITLE, txt.get_title(),
                              self.COLUMN_AUTHOR, txt.get_author(),
                              self.COLUMN_TEXT, txt)
@@ -111,6 +86,8 @@ class TextPicker(gtk.Dialog):
         swin.add_with_viewport(treeview)
         swin.show_all()
 
+        swin.set_size_request(-1, 500)
+
         self.vbox.pack_start(swin, expand=1, fill=1)
 
         self.__update_count()
@@ -120,8 +97,7 @@ class TextPicker(gtk.Dialog):
 
 
     def __flag_text(self, txt, flag):
-        old_flag = self.__text_dict.get(txt)
-        flag = (flag and 1) or 0
+        old_flag = self.__text_dict.get(txt, False)
         if flag != old_flag:
             self.__text_dict[txt] = flag
             if flag:
@@ -145,21 +121,15 @@ class TextPicker(gtk.Dialog):
         self.__button_ok.set_sensitive(self.__count > 0)
 
 
-    def __text_in_model(self, txt):
-        for t in self.__model.get_texts():
-            if t.get_title() == txt.get_title() \
-               and t.get_author() == txt.get_author():
-                return 1
-        return 0
-
-
     def __response_handler(self, id):
         if id == gtk.RESPONSE_CLOSE:
-            self.__model.clear()
-            for txt, flag in self.__text_dict.items():
+            texts = []
+            for text, flag in self.__text_dict.items():
                 if flag:
-                    print "Adding", txt
-                    self.__model.add_text(txt)
+                    texts.append(text)
+            self.__callback(texts)
+        else:
+            self.__callback(None)
         self.destroy()
 
             

@@ -10,7 +10,7 @@ import sys, string, time
 sys.path.append("..") # add path for gnoetics library
 import gnoetics
 
-import appwindow
+import appwindow, splash, textpicker
 
 #############################################################################
 
@@ -18,51 +18,37 @@ import appwindow
 ### Initial Set-up
 ###
 
-tri = gnoetics.Trimodel()
+def setup():
+    tri = gnoetics.Trimodel()
 
-sys.stderr.write("*** Loading... ")
-t1 = time.time()
-count = 0
-for txt in gnoetics.Library(dir="../texts-ts"):
-    tri.add_text(txt)
-    count += 1
-    if count > 5:
-        break
-t2 = time.time()
-sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
+    sys.stderr.write("*** Loading... ")
+    t1 = time.time()
+    count = 0
+    for txt in gnoetics.Library(dir="../texts-ts"):
+        tri.add_text(txt)
+        count += 1
 
-sys.stderr.write("*** Preparing model... ")
-t1 = time.time()
-tri.prepare()
-t2 = time.time()
-sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
+    t2 = time.time()
+    sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
 
-sys.stderr.write("\n")
+    sys.stderr.write("*** Preparing model... ")
+    t1 = time.time()
+    tri.prepare()
+    t2 = time.time()
+    sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
+    
+    sys.stderr.write("\n")
 
-#############################################################################
+    poem = gnoetics.BlankVerse(3, 4)
 
-def die_die_die(b, p):
+    appwin = appwindow.AppWindow(model=tri)
+    appwin.set_poem(poem)
+    appwin.show_all()
 
-    i = 0
-    p.freeze_changed()
-    while i < len(p):
-        u = p[i]
-        if u.get_flag() and u.is_bound():
-            u.set_flag(False)
-            if u.is_punctuation() and i+1 < len(p):
-                u2 = p[i+1]
-                if u2.is_break():
-                    poem.unbind(i+1)
-            poem.unbind(i)
-        else:
-            i += 1
-    p.thaw_changed()
-            
-############################################################################
+def post_splash_cb():
+    appwindow.launch_window(is_first=True)
+splash.splash(4, post_splash_cb)
 
-poem = gnoetics.BlankVerse(3, 4)
-appwin = appwindow.AppWindow(model=tri)
-appwin.set_poem(poem)
-appwin.show_all()
+
 
 gtk.main()

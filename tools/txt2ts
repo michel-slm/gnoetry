@@ -224,6 +224,9 @@ sentences = tokens_to_sentences(tokens)
 
 sys.stderr.write("Found %d sentences.\n" % len(sentences))
 
+if not sentences:
+    sys.exit(0)
+
 good_sentences = []
 bad_sentences = []
 
@@ -238,9 +241,12 @@ sys.stderr.write("Dropping %d suspicious sentences. (%.1f%%)\n" % (len(bad_sente
 
 for line in header:
     print line
-    
-for s in good_sentences:
-    write_sentence_as_tokens(s)
+
+if len(good_sentences) > 10:
+    for s in good_sentences:
+        write_sentence_as_tokens(s)
+else:
+    sys.stderr.write("Ignoring: Too few good sentences.\n")
 
 
 

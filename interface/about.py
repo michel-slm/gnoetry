@@ -63,6 +63,19 @@ def show_about_gnoetry():
         img = red_pixbuf.get_widget("roussel")
         vbox.pack_start(img, expand=1, fill=1, padding=10)
 
+        info_lines = ("<big><big><b>Gnoetry 0.2</b></big></big>",
+                      "Copyright (C) 2001-2004 Beard of Bees Press",
+                      "By Jon Trowbridge &lt;trow@beardofbees.com&gt;",
+                      "and Eric Elshtain &lt;elshtain@beardofbees.com&gt;",
+                      )
+
+        for line in info_lines:
+            x = gtk.Label()
+            x.set_markup(line)
+            vbox.pack_start(x, expand=1, fill=1)
+
+        vbox.pack_start(gtk.HBox(), fill=1, padding=10) # padding
+
         for line in manifesto_lines:
             x = gtk.Label()
             x.set_markup(line)

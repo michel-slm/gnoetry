@@ -25,5 +25,8 @@ class Library:
                 return txt
         return None
 
+    def get_all(self):
+        return list(self.__texts)
+
     def __iter__(self):
         return iter(self.__texts)
