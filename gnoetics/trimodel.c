@@ -318,7 +318,7 @@ trimodel_new (void)
 
     tri->rhyme_info_chunks = g_mem_chunk_create (RhymeInfo,
                                                  1000, G_ALLOC_ONLY);
-    tri->rhyme_info_table = g_hash_table_new (NULL, NULL);
+    tri->rhyme_info_table = NULL;
 
     tri->is_prepped = FALSE;
 
@@ -343,7 +343,8 @@ trimodel_dealloc (Trimodel *tri)
         g_hash_table_destroy (tri->is_trailing);
 
     g_mem_chunk_destroy (tri->rhyme_info_chunks);
-    g_hash_table_destroy (tri->rhyme_info_table);
+    if (tri->rhyme_info_table)
+        g_hash_table_destroy (tri->rhyme_info_table);
     
     g_list_foreach (tri->text_list, (GFunc) text_unref, NULL);
     g_list_free (tri->text_list);
@@ -593,6 +594,9 @@ trimodel_build_rhyme_table (Trimodel *tri)
     int i, j, k;
     RhymeType rt;
 
+    g_assert (tri->rhyme_info_table == NULL);
+
+    tri->rhyme_info_table = g_hash_table_new (NULL, NULL);
     
     /* Step 1: Build Rhyme tree for fast lookup of tokens by
        the tails of their phoneme decompositions. */
@@ -694,7 +698,8 @@ trimodel_prepare_fn (gpointer data)
 
     trimodel_build_leading_trailing (tri);
 
-    trimodel_build_rhyme_table (tri);
+    /* We build the rhyme table on first use, so non-rhyming forms
+       don't incur the costs. */
 
     tri->is_prepped = TRUE;
 
@@ -987,6 +992,9 @@ trimodel_rhyme_count (Trimodel *tri,
     g_return_val_if_fail (tri != NULL, -1);
     g_return_val_if_fail (tok != NULL, -1);
 
+    if (tri->rhyme_info_table == NULL)
+        trimodel_build_rhyme_table (tri);
+
     info = g_hash_table_lookup (tri->rhyme_info_table, tok);
     if (info == NULL)
         return -1;
@@ -1020,6 +1028,9 @@ trimodel_rhyme_p_value (Trimodel *tri,
 
     g_return_val_if_fail (tri != NULL, -1);
     g_return_val_if_fail (tok != NULL, -1);
+
+    if (tri->rhyme_info_table == NULL)
+        trimodel_build_rhyme_table (tri);
 
     info = g_hash_table_lookup (tri->rhyme_info_table, tok);
     if (info == NULL)
