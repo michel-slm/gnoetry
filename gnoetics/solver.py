@@ -1,6 +1,6 @@
 # This is -*- Python -*-
 
-import time
+import time, os
 
 import gnoetics
 
@@ -41,8 +41,11 @@ def find_leading_trailing(poem, i):
 def solve_unit(model, leading_tokens, unit, trailing_tokens,
                allow_left_queries=True,
                allow_right_queries=False,
-               verbose=False,
+               verbose=None,
                extra_filters=True):
+
+    if verbose is None:
+        verbose = os.getenv("GNOETRY_DEBUG") is not None
 
     def token_list_is_valid(token_list, allow_break_at):
         if allow_break_at < 0:
@@ -54,8 +57,21 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
                 return False # Breaks only where we say it is OK!
         return True
 
-    assert token_list_is_valid(leading_tokens, allow_break_at=0)
-    assert token_list_is_valid(trailing_tokens, allow_break_at=-1)
+    lead_ok = token_list_is_valid(leading_tokens, allow_break_at=0)
+    trail_ok = token_list_is_valid(trailing_tokens, allow_break_at=-1)
+
+    if (not lead_ok) and verbose:
+        print "Bad leading tokens!"
+        print leading_tokens
+        print
+
+    if (not trail_ok) and verbose:
+        print "Bad trailing tokens!"
+        print trailing_tokens
+        print
+
+    assert lead_ok
+    assert trail_ok
 
     # Double leading/trailing breaks
     
@@ -231,7 +247,10 @@ class Solver:
         return self.__poem.find_first_unbound()
 
 
-    def __solve_at(self, i, verbose=False):
+    def __solve_at(self, i, verbose=None):
+
+        if verbose is None:
+            verbose = os.getenv("GNOETRY_DEBUG") is not None
 
         assert self.__poem
         assert 0 <= i < len(self.__poem)
@@ -338,5 +357,11 @@ class Solver:
 
 
     def full_solution(self):
+        verbose = os.getenv("GNOETRY_DEBUG") is not None
+        if verbose:
+            print
+            print "-" * 50
+            print
+            
         self.__actions = []
         self.multistep(count=None, timeout=None)
