@@ -1,0 +1,56 @@
+#!/usr/bin/python2.3
+
+# This is -*- Python -*-
+
+import sys, string
+
+sys.path.append("..")
+import gnoetics
+
+def text_stats(txt):
+    N = txt.get_length()
+    uniq = {}
+    known = 0
+    non_punct = 0
+    for i in xrange(N):
+        t = txt.get_token(i)
+        if t.is_punctuation():
+            continue
+        non_punct += 1
+        j = uniq.get(t.get_word(), 0)
+        if j == 0 and t.in_dictionary():
+            known += 1
+        uniq[t.get_word()] = j+1
+
+    n = len(uniq)
+
+    r = non_punct/float(n)
+    kp = 100*known/float(n)
+
+    punct_r = non_punct/float(N - non_punct)
+
+    freq = uniq.items()
+    freq.sort(lambda a, b: cmp(b[1], a[1]))
+    sum = 0
+    for i in xrange(int(n*0.10)):
+        sum += freq[i][1]
+    p10 = 100*sum/non_punct
+    sum = 0
+    for i in xrange(int(n*0.05)):
+        sum += freq[i][1]
+    p05 = 100*sum/non_punct
+
+    title = txt.get_title()
+    if title[:4].lower() == "the ":
+        title = title[4:]
+    if len(title) > 20:
+        title = title[:17] + "..."
+
+        
+    print "%20s | %6d %5d | %4.1f | %3.1f | %2.0f%% | %2.0f%%  %2.0f%%" % (title, non_punct, n, r, punct_r, kp, p10, p05)
+
+lib = gnoetics.Library("../texts-ts")
+
+for txt in lib:
+    text_stats(txt)
+

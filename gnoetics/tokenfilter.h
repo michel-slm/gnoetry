@@ -16,8 +16,6 @@ typedef enum {
     FILTER_RESULTS_FAVOR    =  2,
 } FilterResults;
 
-typedef gboolean (*FilterResultsFn) (Token *, FilterResults, gpointer);
-
 typedef struct _TokenFilter TokenFilter;
 struct _TokenFilter {
 
@@ -55,7 +53,6 @@ void token_filter_optimize (TokenFilter *filter);
 
 void token_filter_clear    (TokenFilter *filter);
 
-/* return FALSE if we need to filter out the token */
 FilterResults token_filter_test (TokenFilter *filter,
                                  Token *token,
                                  TokenFn leading_test_cb,

@@ -1,0 +1,29 @@
+#!/usr/bin/python2.3
+
+import sys, string
+import gnoetics
+
+lib = gnoetics.Library("../texts-ts")
+model = gnoetics.Trimodel()
+
+count = 0
+for txt in lib:
+    model.add_text(txt)
+    count += 1
+    if count > 5:
+        break
+
+model.prepare()
+solver = gnoetics.Solver(model)
+
+for i in range(5000):
+
+    poem = gnoetics.BlankVerse(2, 3)
+    solver.set_poem(poem)
+    solver.full_solution()
+    print poem.to_string()
+    print
+    print "-" * 40
+    print
+
+    

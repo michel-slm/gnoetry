@@ -10,6 +10,7 @@
 #include "meter.h"
 #include "token.h"
 #include "text.h"
+#include "ranker.h"
 #include "trimodel.h"
 
 static PyMethodDef gnoetics_methods[] = {
@@ -173,6 +174,7 @@ static RegisterFunc register_funcs[] = {
     py_meter_register,
     py_token_register,
     py_text_register,
+    py_ranker_register,
     py_trimodel_register,
     NULL
 };

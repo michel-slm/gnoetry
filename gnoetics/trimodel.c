@@ -9,7 +9,25 @@
 
 #define CMP(x, y) (((x) > (y)) - ((x) < (y)))
 
-int
+typedef struct _TrimodelElement TrimodelElement;
+struct _TrimodelElement {
+    int key_offset;
+    int syl_offset;
+    Token *t1;
+    Token *t2;
+    Token *soln;
+
+    Text  *text; /* source text */
+    int    pos;  /* position of soln in that text */
+};
+
+/* 
+   Note: We don't hold a reference to the text in the TrimodelElement
+   structure, since the Trimodel itself will hold a reference in the
+   text_list.
+*/
+
+static int
 trimodel_element_cmp_pair (const TrimodelElement *elt,
                            const Token           *t1,
                            const Token           *t2)
@@ -29,7 +47,7 @@ trimodel_element_cmp_pair (const TrimodelElement *elt,
     return 0;
 }
 
-int
+static int
 trimodel_element_cmp (gconstpointer x_ptr,
                       gconstpointer y_ptr)
 {
@@ -145,6 +163,8 @@ trimodel_sort_single_array (Trimodel *tri,
 
 static void
 trimodel_add_triple (Trimodel *tri,
+                     Text     *text,
+                     int       pos_of_a,
                      Token    *a,
                      Token    *b,
                      Token    *c)
@@ -162,16 +182,22 @@ trimodel_add_triple (Trimodel *tri,
     elt.t1 = a;
     elt.t2 = b;
     elt.soln = c;
+    elt.text = text;
+    elt.pos  = pos_of_a + 2;
     g_array_append_val (tri->array_AB_C, elt);
 
     elt.t1 = a;
     elt.t2 = c;
     elt.soln = b;
+    elt.text = text;
+    elt.pos  = pos_of_a + 1;
     g_array_append_val (tri->array_AC_B, elt);
 
     elt.t1 = b;
     elt.t2 = c;
     elt.soln = a;
+    elt.text = text;
+    elt.pos = pos_of_a;
     g_array_append_val (tri->array_BC_A, elt);
 
     tri->is_prepped = FALSE;
@@ -186,6 +212,8 @@ trimodel_add_text (Trimodel *tri,
 
     g_return_if_fail (tri != NULL);
     g_return_if_fail (txt != NULL);
+
+    tri->text_list = g_list_append (tri->text_list, text_ref (txt));
 
     brk = token_lookup_break ();
     g_assert (brk != NULL);
@@ -203,12 +231,11 @@ trimodel_add_text (Trimodel *tri,
             window[0] = window[1];
             window[1] = window[2];
             window[2] = tok;
-            trimodel_add_triple (tri, window[0], window[1], window[2]);
+            trimodel_add_triple (tri, txt, i-2+j, 
+                                 window[0], window[1], window[2]);
             ++j;
         } while (j < 2 && token_is_break (tok));
     }
-
-    tri->text_list = g_list_append (tri->text_list, text_ref (txt));
 }
 
 static void
@@ -472,8 +499,7 @@ trimodel_query (Trimodel       *tri,
                 Token          *token_b,
                 Token          *token_c,
                 TokenFilter    *filter,
-                FilterResultsFn results_fn,
-                gpointer        user_data)
+                Ranker         *ranker)
 {
 
     int i0, i1, i, count;
@@ -554,8 +580,13 @@ trimodel_query (Trimodel       *tri,
 
 
         if (results != FILTER_RESULTS_REJECT) {
-            if (results_fn)
-                results_fn (elt->soln, results, user_data);
+            if (ranker != NULL) {
+                ranker_add_solution (ranker,
+                                     elt->soln,
+                                     elt->text,
+                                     elt->pos,
+                                     results);
+            }
             ++count;
         }
     }
@@ -609,6 +640,25 @@ py_trimodel_add_text (PyObject *self, PyObject *args)
 }
 
 static PyObject *
+py_trimodel_get_texts (PyObject *self, PyObject *args)
+{
+    Trimodel *tri = trimodel_from_py (self);
+    GList *iter;
+    PyObject *py_list;
+
+    py_list = PyList_New (0);
+
+    for (iter = tri->text_list; iter != NULL; iter = iter->next) {
+        Text *txt = iter->data;
+        PyObject *py_txt = text_to_py (txt);
+        PyList_Append (py_list, py_txt);
+        Py_DECREF (py_txt);
+    }
+
+    return py_list;
+}
+
+static PyObject *
 py_trimodel_prepare (PyObject *self, PyObject *args)
 {
     Trimodel *tri = trimodel_from_py (self);
@@ -618,175 +668,52 @@ py_trimodel_prepare (PyObject *self, PyObject *args)
     return Py_None;
 }
 
-struct QueryInfo {
-    GPtrArray *results_favored;
-    GPtrArray *results_accepted;
-    GPtrArray *results_tolerated;
-};
-
-#define DEFAULT_SIZE 100
-
-static gboolean
-query_results_cb (Token        *tok,
-                  FilterResults results,
-                  gpointer      user_data)
-{
-    struct QueryInfo *info = user_data;
-    GPtrArray *target = NULL;
-
-    if (results == FILTER_RESULTS_FAVOR) {
-        if (info->results_favored == NULL)
-            info->results_favored = g_ptr_array_sized_new (DEFAULT_SIZE);
-        target = info->results_favored;
-    } else if (results == FILTER_RESULTS_ACCEPT) {
-        if (info->results_accepted == NULL)
-            info->results_accepted = g_ptr_array_sized_new (DEFAULT_SIZE);
-        target = info->results_accepted;
-    } else if (results == FILTER_RESULTS_TOLERATE) {
-        if (info->results_tolerated == NULL)
-            info->results_tolerated = g_ptr_array_sized_new (DEFAULT_SIZE);
-        target = info->results_tolerated;
-    } else {
-        g_assert_not_reached ();
-    }
-
-    g_ptr_array_add (target, tok);
-    return TRUE;
-}
-
-static void
-array_uniq_to_py (GPtrArray  *array,
-                  GHashTable *uniq,
-                  PyObject   *py_list)
-{
-    Token *tok;
-    int i, N;
-
-    fate_shuffle_ptr_array (array);
-
-    N = array->len;
-    for (i = 0; i < N; ++i) {
-        tok = g_ptr_array_index (array, i);
-        if (g_hash_table_lookup (uniq, tok) == NULL) {
-            PyObject *py_tok = token_to_py (tok);
-            PyList_Append (py_list, py_tok);
-            Py_DECREF (py_tok);
-            g_hash_table_insert (uniq, tok, tok);
-        }
-    }
-}
-
 static PyObject *
 py_trimodel_query (PyObject *self, PyObject *args)
 {
     Trimodel *tri = trimodel_from_py (self);
+
+    PyObject *py_t1, *py_t2, *py_t3, *py_filter, *py_ranker;
+
     Token *t1, *t2, *t3;
     TokenFilter filter;
-    
-    struct QueryInfo info;
+    Ranker *ranker;
 
-    GHashTable *uniq = NULL;
-    PyObject *py_results = NULL;
-    gboolean error_flag = FALSE;
-    int i, N;
+    int count;
 
-    info.results_favored   = NULL;
-    info.results_accepted  = NULL;
-    info.results_tolerated = NULL;
+    if (! PyArg_ParseTuple (args, "OOOOO",
+                            &py_t1, &py_t2, &py_t3,
+                            &py_filter,
+                            &py_ranker))
+        return NULL;
 
-    N = PySequence_Size (args);
-    if (N == 0) /* i.e. an empty query */
-        goto finished;
-
-    for (i = 0; i < N; ++i) {
-        PyObject *query = PySequence_GetItem (args, i);
-
-        PyObject *py_t1 = NULL, *py_t2 = NULL, *py_t3 = NULL;
-        PyObject *py_filter = NULL;
-
-        if (! (PySequence_Check (query) && PySequence_Size (query) == 4)) {
-            PyErr_Format (PyExc_ValueError,
-                          "Badly-formed query at arg %d",
-                          i+1);
-            error_flag = TRUE;
-            goto cleanup_this_query;
-        }
-
-        py_t1 = PySequence_GetItem (query, 0);
-        py_t2 = PySequence_GetItem (query, 1);
-        py_t3 = PySequence_GetItem (query, 2);
-
-        py_filter = PySequence_GetItem (query, 3);
-
-        if (! (py_token_check (py_t1)
-               && py_token_check (py_t2)
-               && py_token_check (py_t3)
-               && PyDict_Check (py_filter))) {
-            PyErr_Format (PyExc_ValueError,
-                          "Badly-formed query at arg %d",
-                          i+1);
-            error_flag = TRUE;
-            goto cleanup_this_query;
-        }
-
-        t1 = token_from_py (py_t1);
-        t2 = token_from_py (py_t2);
-        t3 = token_from_py (py_t3);
-
-        token_filter_init_from_py_dict (&filter, py_filter);
-
-        trimodel_query (tri,
-                        t1, t2, t3, &filter,
-                        query_results_cb, &info);
-
-    cleanup_this_query:
-        if (py_t1)     { Py_DECREF (py_t1); }
-        if (py_t2)     { Py_DECREF (py_t2); }
-        if (py_t3)     { Py_DECREF (py_t3); }
-        if (py_filter) { Py_DECREF (py_filter); }
-        Py_DECREF (query);
-
-        if (error_flag)
-            goto finished;
+    if (! (py_token_check (py_t1)
+           && py_token_check (py_t2)
+           && py_token_check (py_t3)
+           && PyDict_Check (py_filter)
+           && py_ranker_check (py_ranker))) {
+        PyErr_SetString (PyExc_ValueError, "Badly-formed query");
+        return NULL;
     }
 
-    py_results = PyList_New (0);
+    t1 = token_from_py (py_t1);
+    t2 = token_from_py (py_t2);
+    t3 = token_from_py (py_t3);
 
-    uniq = g_hash_table_new (NULL, NULL);
+    token_filter_init_from_py_dict (&filter, py_filter);
 
-    if (info.results_favored != NULL)
-        array_uniq_to_py (info.results_favored, uniq, py_results);
+    ranker = ranker_from_py (py_ranker);
 
-    if (info.results_accepted != NULL)
-        array_uniq_to_py (info.results_accepted, uniq, py_results);
+    count = trimodel_query (tri, t1, t2, t3, &filter, ranker);
 
-    if (info.results_tolerated != NULL)
-        array_uniq_to_py (info.results_tolerated, uniq, py_results);
-
- finished:
-
-    if (info.results_favored != NULL)
-        g_ptr_array_free (info.results_favored, TRUE);
-
-    if (info.results_accepted != NULL)
-        g_ptr_array_free (info.results_accepted, TRUE);
-
-    if (info.results_tolerated != NULL)
-        g_ptr_array_free (info.results_tolerated, TRUE);
-
-    if (uniq != NULL)
-        g_hash_table_destroy (uniq);
-
-    if (py_results == NULL && !error_flag)
-        py_results = PyList_New (0);
-
-    return py_results;
+    return PyInt_FromLong (count);
 }
 
 static PyMethodDef py_trimodel_methods[] = {
-    { "add_text", py_trimodel_add_text, METH_VARARGS },
-    { "prepare",  py_trimodel_prepare,  METH_NOARGS  },
-    { "query",    py_trimodel_query,    METH_VARARGS },
+    { "add_text",  py_trimodel_add_text, METH_VARARGS },
+    { "get_texts", py_trimodel_get_texts, METH_NOARGS },
+    { "prepare",   py_trimodel_prepare,  METH_NOARGS  },
+    { "query",     py_trimodel_query,    METH_VARARGS },
 
     { NULL, NULL, 0 }
 

@@ -14,6 +14,17 @@ class Library:
         txt = Text(filename)
         self.__texts.append(txt)
 
+        def sort_fn(a, b):
+            def canon(x):
+                x = x.get_title().lower().strip()
+                if x[:4] == "the ":
+                    x = x[4:]
+                if x[:2] == "a ":
+                    x = x[2:]
+                return x
+            return cmp(canon(a), canon(b))
+        self.__texts.sort(sort_fn)
+
     def add_from_directory(self, dirname):
         for fn in os.listdir(dirname):
             if os.path.splitext(fn)[1] == ".ts":

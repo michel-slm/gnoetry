@@ -12,20 +12,7 @@
 #include "token.h"
 #include "tokenfilter.h"
 #include "text.h"
-
-typedef struct _TrimodelElement TrimodelElement;
-struct _TrimodelElement {
-    int key_offset;
-    int syl_offset;
-    Token *t1;
-    Token *t2;
-    Token *soln;
-};
-
-int trimodel_element_cmp_pair (const TrimodelElement *,
-                               const Token *t1,
-                               const Token *t2);
-int trimodel_element_cmp      (gconstpointer, gconstpointer);
+#include "ranker.h"
 
 typedef struct _Trimodel Trimodel;
 struct _Trimodel {
@@ -61,8 +48,7 @@ gint      trimodel_query (Trimodel       *tri,
                           Token          *token_b,
                           Token          *token_c,
                           TokenFilter    *filter,
-                          FilterResultsFn match_fn,
-                          gpointer        user_data);
+                          Ranker         *ranker);
 
 gboolean  trimodel_token_is_leading  (Trimodel *tri, Token *tok);
 

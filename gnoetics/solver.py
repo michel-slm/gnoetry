@@ -208,24 +208,24 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
     if left_queries:
         if verbose:
             print "Left queries:", left_queries
-        left_solns = model.query(*left_queries)
+        ranker = gnoetics.Ranker()
+        for t1, t2, t3, filter in left_queries:
+            model.query(t1, t2, t3, filter, ranker)
+        left_solns = ranker.get_solutions()
         if verbose:
-            uniq = {}
-            for x in left_solns:
-                uniq[x.get_word()] = 1
-            print "Left solns:", uniq.keys()
+            print "Left solns:", map(lambda x: x.get_word(), left_solns)
     else:
         left_solns = []
 
     if right_queries:
         if verbose:
             print "Right queries:", right_queries
-        right_solns = model.query(*right_queries)
+        ranker = gnoetics.Ranker()
+        for t1, t2, t3, filter in right_queries:
+            model.query(t1, t2, t3, filter, ranker)
+        right_solns = ranker.get_solutions()
         if verbose:
-            uniq = {}
-            for x in right_solns:
-                uniq[x.get_word()] = 1
-            print "Right solns:", uniq.keys()
+            print "Right solns:", map(lambda x: x.get_word(), right_solns)
     else:
         right_solns = []
 
