@@ -15,11 +15,14 @@ class PoemTileView(gtk.DrawingArea,
         self.__x_spacing = 4
         self.__tiny_x_spacing = 1
         self.__y_spacing = 4
-        self.__stanza_spacing = 3 * self.__y_spacing
+        self.__stanza_spacing = 5 * self.__y_spacing
 
         self.__word_x_left_pad = 4
         self.__word_x_right_pad = 3
         self.__word_y_pad = 2
+
+        self.__x_size = 0
+        self.__y_size = 0
 
         # Base color scheme
         self.__bg_color = self.get_colormap().alloc_color("lightgreen")
@@ -39,24 +42,49 @@ class PoemTileView(gtk.DrawingArea,
         self.__hisel_bg_color = self.get_colormap().alloc_color("yellow")
 
         self.__pixmap = None
-        self.__tile_info = []
+        self.__tile_info = None
+        self.__tile_info_index = {}
+
+        self.__pointer_x   = None
+        self.__pointer_y   = None
+        self.__pointing_at = None
         
         self.connect("size_request",        PoemTileView.__size_request_handler)
         self.connect("configure_event",     PoemTileView.__configure_handler)
         self.connect("expose_event",        PoemTileView.__expose_handler)
+        self.connect("motion_notify_event", PoemTileView.__motion_notify_handler)
+        self.connect("enter_notify_event",  PoemTileView.__enter_notify_handler)
+        self.connect("leave_notify_event",  PoemTileView.__leave_notify_handler)
+        self.connect("button_press_event",  PoemTileView.__button_press_handler)
+
+        self.set_events(gtk.gdk.EXPOSURE_MASK |
+                        gtk.gdk.ENTER_NOTIFY_MASK |
+                        gtk.gdk.LEAVE_NOTIFY_MASK |
+                        gtk.gdk.BUTTON_PRESS_MASK |
+                        gtk.gdk.POINTER_MOTION_MASK |
+                        gtk.gdk.POINTER_MOTION_HINT_MASK)
+
 
 
     def __assemble_tile_info(self):
+
+        if self.__tile_info is not None:
+            return
+        
         self.__tile_info = []
+        self.__tile_info_index = {}
 
         poem = self.get_poem()
         if not poem:
+            self.__x_size = 0
+            self.__y_size = 0
             return
 
         x = self.__x_start
         y = self.__y_start
 
         line_h = 0
+        max_x, max_y = 0, 0
         i = 0
         last_was_break = False
 
@@ -106,16 +134,50 @@ class PoemTileView(gtk.DrawingArea,
 
                     if x != self.__x_start:
                         x += x_skip
-                    self.__tile_info.append((i, x, y, w, h, txt))
+
+                    info = (i, x, y, w, h, txt, layout)
+                    self.__tile_info.append(info)
+                    self.__tile_info_index[i] = info
+
+                    max_x = max(max_x, x+w)
+                    max_y = max(max_y, y+h)
+
                     i += 1
                     x += w
                     line_h = max(line_h, h)
 
+        self.__x_size = max_x + self.__x_start
+        self.__y_size = max_y + self.__y_start
+
+
+    def __find_tile_at(self, posx, posy):
+        self.__assemble_tile_info()
+        for i, x, y, w, h, txt, layout in self.__tile_info:
+            if x <= posx < x+w and y <= posy < y+h:
+                return i
+        return None
                 
 
-    def __render_one_tile(self, i, x, y, w, h, txt):
-        fg = self.__word_fg_color
-        bg = self.__word_bg_color
+    def __render_one_tile(self, i,
+                          queue_redraw=False):
+
+        i, x, y, w, h, txt, layout = self.__tile_info_index[i]
+
+        highlighted = (i == self.__pointing_at)
+        selected = False
+
+        if highlighted and selected:
+            fg = self.__hisel_fg_color
+            bg = self.__hisel_bg_color
+        elif highlighted:
+            fg = self.__hi_fg_color
+            bg = self.__hi_bg_color
+        elif selected:
+            fg = self.__sel_fg_color
+            bg = self.__sel_bg_color
+        else:
+            fg = self.__word_fg_color
+            bg = self.__word_bg_color
 
         draw_box = True
         x_pad = self.__word_x_left_pad
@@ -128,9 +190,6 @@ class PoemTileView(gtk.DrawingArea,
         gc.set_foreground(fg)
         gc.set_background(bg)
 
-        layout = pango.Layout(self.get_pango_context())
-        layout.set_markup(txt)
-
         self.__pixmap.draw_layout(gc,
                                   x + x_pad,
                                   y + self.__word_y_pad,
@@ -140,18 +199,44 @@ class PoemTileView(gtk.DrawingArea,
         gc.set_foreground(old_fg)
         gc.set_background(old_bg)
 
+        if queue_redraw:
+            self.queue_draw_area(x, y, w, h)
+
         
 
     def __render(self):
-        for i, x, y, w, h, txt in self.__tile_info:
-            self.__render_one_tile(i, x, y, w, h, txt)
+        self.__assemble_tile_info()
+        self.__pointing_at = None
+        for i, x, y, w, h, txt, layout in self.__tile_info:
+            if self.__pointer_x and self.__pointer_y:
+                j = self.__find_tile_at(self.__pointer_x, self.__pointer_y)
+                self.__point_at(j)
+            self.__render_one_tile(i)
 
+
+    def __unpoint_at(self, i):
+        self.__render_one_tile(i, queue_redraw=True)
+
+
+    def __point_at(self, i):
+        if self.__pointing_at == i:
+            return
+        if self.__pointing_at is not None:
+            j = self.__pointing_at
+            self.__pointing_at = None
+            self.__unpoint_at(j)
+        self.__pointing_at = i
+
+        if self.__pointing_at is None:
+            return
+        
+        self.__render_one_tile(i, queue_redraw=True)
+        
 
     def __size_request_handler(self, req):
-        #w, h = self.__get_total_size()
-        w, h = 400, 300
-        req.width = w
-        req.height = h
+        self.__assemble_tile_info()
+        req.width = self.__x_size
+        req.height = self.__y_size
         return gtk.TRUE
 
 
@@ -179,7 +264,42 @@ class PoemTileView(gtk.DrawingArea,
         return gtk.FALSE
 
 
+    def __motion_notify_handler(self, ev):
+        if ev.is_hint:
+            x, y, state = ev.window.get_pointer()
+        else:
+            x, y = ev.x, ev.y
+            state = ev.state
+
+        self.__pointer_x = x
+        self.__pointer_y = y
+
+        i = self.__find_tile_at(x, y)
+        self.__point_at(i)
+        
+        return gtk.TRUE
+
+
+    def __enter_notify_handler(self, ev):
+        return gtk.TRUE
+
+
+    def __leave_notify_handler(self, ev):
+        self.__pointer_x = None
+        self.__pointer_y = None
+        self.__point_at(None)
+        
+        return gtk.TRUE
+
+
+    def __button_press_handler(self, ev):
+        if self.__pointing_at is not None:
+            print "clicked on %d" % self.__pointing_at
+        return gtk.TRUE
+
+
     def poem_changed(self, poem):
-        self.__assemble_tile_info()
+        self.__tile_info = None
         self.__render()
         self.queue_resize()
+
