@@ -76,4 +76,4 @@ class PoemTextView(gtk.TextView,
         txt = ""
         if poem:
             txt = poem.to_string()
-        self.__buffer.set_text(txt)
+        self.__buffer.set_text("\n" + txt)

@@ -48,8 +48,7 @@ def launch_window(is_first=False):
 
                 gtk.idle_add(do_it)
 
-        win = gtk.MessageDialog(None,
-                                gtk.DIALOG_NO_SEPARATOR,
+        win = gtk.MessageDialog(None, 0,
                                 gtk.MESSAGE_INFO,
                                 gtk.BUTTONS_NONE,
                                 " Building statistical model")
@@ -188,7 +187,7 @@ class AppWindow(gtk.Window,
 
 
         view_container = gtk.HBox(0, 10)
-        view_container.set_size_request(-1, 300)
+        view_container.set_size_request(-1, 400)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
