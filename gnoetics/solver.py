@@ -239,14 +239,6 @@ class Solver:
         u = self.__poem[i]
         assert u.is_not_bound()
 
-        if u.get_syllables() == 0: # oops!
-            print "oops!"
-            for j, u in enumerate(self.__units):
-                if i == j:
-                    print "****", 
-                print j, u
-            print
-
         leading_tokens, trailing_tokens = self.__poem.extract_surrounding_tokens(i)
 
         left_solns, right_solns = gnoetics.solve_unit(self.__model,
