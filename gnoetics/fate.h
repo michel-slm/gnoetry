@@ -12,6 +12,8 @@ void     fate_seed_from_time    (void);
 
 unsigned fate_random            (unsigned N);
 
+double   fate_random_uniform    (double a, double b);
+
 void     fate_shuffle_ptr_array (GPtrArray *array);
 
 

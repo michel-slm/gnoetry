@@ -145,86 +145,154 @@ by_results_add (ByResults    *byres,
     g_ptr_array_add (array, token);
 }
 
-static void
-by_results_shuffle (ByResults *byres)
-{
-    g_return_if_fail (byres != NULL);
+typedef struct _PerText PerText;
+struct _PerText {
+    Text      *text;
+    ByResults *by_results;
+    double     weight;
 
-    if (byres->favored)
-        fate_shuffle_ptr_array (byres->favored);
-    if (byres->accepted)
-        fate_shuffle_ptr_array (byres->accepted);
-    if (byres->tolerated)
-        fate_shuffle_ptr_array (byres->tolerated);
-}
+    /* some scratch variables */
+    GPtrArray *array;
+    int        i;
+};
 
 static void
-merge_unique (GPtrArray  *src,
-              GHashTable *uniq,
-              GPtrArray  *dest)
+per_text_collapse (GPtrArray    *per_text_array_original,
+                   GHashTable   *uniq,
+                   FilterResults results,
+                   GPtrArray    *soln_array)
 {
+    GPtrArray *per_text_array;
+    PerText *per_text;
+    Token *token;
+    double total_weight = 0.0;
+    double wt;
+
+    GPtrArray *array = NULL;
     int i;
 
-    g_return_if_fail (uniq != NULL);
-    g_return_if_fail (dest != NULL);
+    per_text_array = g_ptr_array_sized_new (per_text_array_original->len);
 
-    if (src == NULL)
-        return;
+    /* First, we build up an array of the PerText items with solutions
+       at this results level. */
+    for (i = 0; i < per_text_array_original->len; ++i) {
+        per_text = g_ptr_array_index (per_text_array_original, i);
+        
+        if (results == FILTER_RESULTS_FAVOR)
+            array = per_text->by_results->favored;
+        else if (results == FILTER_RESULTS_ACCEPT)
+            array = per_text->by_results->accepted;
+        else if (results == FILTER_RESULTS_TOLERATE)
+            array = per_text->by_results->tolerated;
+        else
+            g_assert_not_reached ();
 
-    for (i = 0; i < src->len; ++i) {
-        gpointer ptr = g_ptr_array_index (src, i);
-        if (g_hash_table_lookup (uniq, ptr) == NULL) {
-            g_ptr_array_add (dest, ptr);
-            g_hash_table_insert (uniq, ptr, ptr);
+        if (array && array->len > 0) {
+            total_weight += per_text->weight;
+            fate_shuffle_ptr_array (array);
+            g_ptr_array_add (per_text_array, per_text);
+            per_text->array = array;
+            per_text->i = 0;
         }
     }
+
+    while (per_text_array->len > 0) {
+
+        per_text = NULL;
+
+        /* First, pick a text to extract from */
+        if (per_text_array->len > 1) {
+            wt = fate_random_uniform (0, total_weight);
+            i = -1;
+            while (wt >= 0) {
+                ++i;
+                per_text = g_ptr_array_index (per_text_array, i);
+                wt -= per_text->weight;
+            }
+        } else {
+            /* If there is only one, there is no need for anything
+               fancy. */
+            i = 0;
+            per_text = g_ptr_array_index (per_text_array, 0);
+        }
+
+        g_assert (per_text != NULL);
+
+        /* Get the next solution, and add it to our solution array
+           if we haven't seen it before. */
+        
+        token = g_ptr_array_index (per_text->array, per_text->i);
+        if (g_hash_table_lookup (uniq, token) == NULL) {
+            g_ptr_array_add (soln_array, token);
+            g_hash_table_insert (uniq, token, token);
+        }
+
+        /* Increment the solution pointer.  If that was the last solution,
+           remove this text's items from consideration. */
+        ++per_text->i;
+        if (per_text->i >= per_text->array->len) {
+            total_weight -= per_text->weight;
+            g_ptr_array_remove_index_fast (per_text_array, i);
+        }
+    }
+
+    g_ptr_array_free (per_text_array, TRUE);
 }
 
-static GPtrArray *
-by_results_collapse (ByResults *byres)
-{
-    GPtrArray *array;
-    GHashTable *uniq;
-
-    g_return_val_if_fail (byres != NULL, NULL);
-
-    uniq = g_hash_table_new (NULL, NULL);
-    array = g_ptr_array_new ();
-
-    by_results_shuffle (byres);
-
-    merge_unique (byres->favored, uniq, array);
-    merge_unique (byres->accepted, uniq, array);
-    merge_unique (byres->tolerated, uniq, array);
-
-    g_hash_table_destroy (uniq);
-
-    return array;
-}
 
 
 GPtrArray *
 ranker_get_solutions (Ranker *ranker)
 {
-    ByResults *byres;
     GPtrArray *solns;
     RankerSolution *elt;
     int i;
+
+    PerText    *per_text;
+    GPtrArray  *per_text_array;
+    GHashTable *per_text_hash;
+    GHashTable *uniq;
        
     g_return_val_if_fail (ranker != NULL, NULL);
 
-    byres = by_results_new ();
+    per_text_array = g_ptr_array_new ();
+    per_text_hash = g_hash_table_new (NULL, NULL);
 
     if (ranker->all_solns) {
         for (i = 0; i < ranker->all_solns->len; ++i) {
             elt = & g_array_index (ranker->all_solns, RankerSolution, i);
-            by_results_add (byres, elt->token, elt->results);
+
+            per_text = g_hash_table_lookup (per_text_hash, elt->text);
+            if (per_text == NULL) {
+                per_text = g_new0 (PerText, 1);
+                per_text->text = elt->text;
+                per_text->by_results = by_results_new ();
+                per_text->weight = 1.0;
+
+                g_hash_table_insert (per_text_hash, elt->text, per_text);
+                g_ptr_array_add (per_text_array, per_text);
+            }
+
+            by_results_add (per_text->by_results, elt->token, elt->results);
         }
     }
 
-    solns = by_results_collapse (byres);
+    solns = g_ptr_array_new ();
+    uniq = g_hash_table_new (NULL, NULL);
 
-    by_results_free (byres);
+    per_text_collapse (per_text_array, uniq, FILTER_RESULTS_FAVOR, solns);
+    per_text_collapse (per_text_array, uniq, FILTER_RESULTS_ACCEPT, solns);
+    per_text_collapse (per_text_array, uniq, FILTER_RESULTS_TOLERATE, solns);
+
+    /* Clean up */
+    g_hash_table_destroy (uniq);
+    for (i = 0; i < per_text_array->len; ++i) {
+        per_text = g_ptr_array_index (per_text_array, i);
+        by_results_free (per_text->by_results);
+        g_free (per_text);
+    }
+    g_ptr_array_free (per_text_array, TRUE);
+    g_hash_table_destroy (per_text_hash);
 
     return solns;
 }

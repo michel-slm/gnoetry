@@ -56,6 +56,14 @@ fate_random (unsigned N)
     return random () % N;
 }
 
+double
+fate_random_uniform (double a, double b)
+{
+    double t;
+    t = random () / (double)RAND_MAX;
+    return a + (b-a)*t;
+}
+
 void
 fate_shuffle_ptr_array (GPtrArray *array)
 {
