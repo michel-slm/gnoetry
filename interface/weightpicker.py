@@ -4,32 +4,20 @@ import sys, os, threading
 
 class WeightPicker(gtk.Dialog):
 
-    def __init__(self, weights,
-                 callback=None,
-                 callback_args=()):
-        gtk.Dialog.__init__(self)
-
-        self.__callback = callback
-        self.__callback_args = callback_args
-
-        def response_cb(w, code):
-            if self.__callback:
-                self.__callback(w, *self.__callback_args)
-        self.connect("response", response_cb)
-
-        def delete_event_cb(w, ev):
-            if self.__callback:
-                self.__callback(w, *self.__callback_args)
-            return True
-        self.connect("delete_event", delete_event_cb)
+    def __init__(self, weights):
+        gobject.GObject.__init__(self)
 
         self.set_title("Weight Your Source Texts")
 
         self.__weights = weights
 
-        self.__button_ok = self.add_button(gtk.STOCK_OK,
-                                           gtk.RESPONSE_CLOSE)
-        
+        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
+        self.connect("response", WeightPicker.__response_handler)
+
+        ###
+        ### Assemble the widget
+        ###
+
         all_texts = self.__weights.keys()
         all_texts.sort(lambda x, y: cmp(x.get_sort_title(),
                                         y.get_sort_title()))
@@ -87,7 +75,28 @@ class WeightPicker(gtk.Dialog):
             x = self.__weights[txt]
             label.set_text("%.1f  %4.1f%%" % (x, 100*x/total))
 
+
     def set_weight(self, txt, wt):
         self.__weights[txt] = wt
+        self.emit("changed_weights", txt, float(wt))
 
 
+    def __response_handler(self, id):
+        self.emit("finished")
+        self.destroy()
+
+
+
+gobject.type_register(WeightPicker)
+
+gobject.signal_new("changed_weights",
+                   WeightPicker,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT, gobject.TYPE_DOUBLE))
+
+gobject.signal_new("finished",
+                   WeightPicker,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   ())

@@ -8,6 +8,7 @@ import gtk
 import red_menubar, red_toolbar
 import about
 
+from poempicker   import *
 from textpicker   import *
 from weightpicker import *
 from poemtileview import *
@@ -17,18 +18,29 @@ from poemtextview import *
 ### Launcher
 ###
 
-master_lib = None
 def launch(is_first=False):
+
+    picker = PoemPicker()
+    picker.connect("finished", poem_picker_finished_cb, is_first)
+    picker.show_all()
+
+master_lib = None
+def poem_picker_finished_cb(pp, poem, is_first):
+    if poem is None:
+        if is_first:
+            sys.exit(0)
+        return
+    
     global master_lib
     if master_lib is None:
         master_lib = gnoetics.Library("../texts-ts")
 
     picker = TextPicker(master_lib)
-    picker.connect("finished", text_picker_finished_cb, is_first)
+    picker.connect("finished", text_picker_finished_cb, poem, is_first)
     picker.show_all()
     
 
-def text_picker_finished_cb(picker, text_list, is_first):
+def text_picker_finished_cb(picker, text_list, poem, is_first):
     if text_list is None:
         if is_first:
             sys.exit(0)
@@ -47,40 +59,38 @@ def text_picker_finished_cb(picker, text_list, is_first):
         weights[txt] = 1.0
 
     if len(text_list) > 1:
-        wp = WeightPicker(weights,
-                          weight_picker_finished_cb,
-                          (tri, weights))
+        wp = WeightPicker(weights)
         wp.show_all()
+        wp.connect("finished", weight_picker_finished_cb, poem, tri, weights)
     else:
-        weight_picker_finished_cb(None, tri, weights)
+        weight_picker_finished_cb(None, poem, tri, weights)
 
-def weight_picker_finished_cb(picker, model, weights):
+def weight_picker_finished_cb(picker, poem, model, weights):
 
     if picker:
         picker.destroy()
         
     if model.is_ready():
-        launch_appwindow(model, weights, None)
+        launch_appwindow(poem, model, weights, None)
     else:
         win = gtk.MessageDialog(None, 0,
                                 gtk.MESSAGE_INFO,
                                 gtk.BUTTONS_NONE,
                                 " Building statistical model")
         win.show_all()
-        gtk.timeout_add(100, wait_for_model_cb, model, weights, win)
+        gtk.timeout_add(100, wait_for_model_cb, poem, model, weights, win)
     
 
-def wait_for_model_cb(model, weights, win):
+def wait_for_model_cb(poem, model, weights, win):
     if model.is_ready():
-        launch_appwindow(model, weights, win)
+        launch_appwindow(poem, model, weights, win)
         return False
     return True
 
 
-def launch_appwindow(model, weights, win):
+def launch_appwindow(poem, model, weights, win):
     if win:
         win.destroy()
-    poem = gnoetics.BlankVerse(3, 4)
     appwin = AppWindow(model=model,
                        weights=weights)
     appwin.set_poem(poem)
@@ -454,9 +464,8 @@ class AppWindow(gtk.Window,
             app.__weight_picker = None
             picker.destroy()
 
-        wp = WeightPicker(self.__weights,
-                          finished_cb,
-                          (self,))
+        wp = WeightPicker(self.__weights)
+        wp.connect("finished", finished_cb, self)
         wp.show_all()
 
         self.__weight_picker = wp

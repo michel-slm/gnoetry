@@ -1,7 +1,7 @@
 # This is -*- Python -*-
 
-#import gnoetics
-import gtk
+import gnoetics
+import gobject, gtk
 import red_pixbuf
 
 class PoemChoice:
@@ -28,7 +28,10 @@ class PoemChoice_Haiku(PoemChoice):
         PoemChoice.__init__(self, "Haiku")
 
     def get_description(self):
-        return "Classic Japanese 5-7-5 stuff"
+        return "5-7-5"
+
+    def build_poem(self):
+        return gnoetics.Haiku()
 
 
 class PoemChoice_Tanka(PoemChoice):
@@ -37,7 +40,22 @@ class PoemChoice_Tanka(PoemChoice):
         PoemChoice.__init__(self, "Tanka")
 
     def get_description(self):
-        return "Classic Japanese 5-7-5 7-7 stuff"
+        return "5-7-5\n7-7"
+
+    def build_poem(self):
+        return gnoetics.Tanka()
+
+
+class PoemChoice_Renga(PoemChoice):
+
+    def __init__(self):
+        PoemChoice.__init__(self, "Renga")
+
+    def get_description(self):
+        return "5-7-5\n7-7\n5-7-5"
+
+    def build_poem(self):
+        return gnoetics.Renga()
 
 
 class PoemChoice_BlankVerse(PoemChoice):
@@ -45,98 +63,145 @@ class PoemChoice_BlankVerse(PoemChoice):
     def __init__(self):
         PoemChoice.__init__(self, "Blank Verse")
 
-    def get_description(self):
-        return "If it is good enough for Milton,\nit is good enough for me!"
-
     def get_widget(self):
-        stanza_adj = gtk.Adjustment()
-        stanza_b = gtk.Entry()
-        #stanza_b.set_range(1, 10)
-        #stanza_b.set_value(3)
-        #stanza_b.set_increments(1, 1)
+        self.__stanza_adj = gtk.Adjustment(3, 1, 10, 1)
+        stanza_b = gtk.SpinButton(self.__stanza_adj)
 
-        lines_adj = gtk.Adjustment(4, 2, 15, 1)
-        lines_b = gtk.SpinButton(lines_adj)
+        self.__lines_adj = gtk.Adjustment(4, 2, 15, 1)
+        lines_b = gtk.SpinButton(self.__lines_adj)
 
-        box = gtk.HBox()
-        box.pack_start(stanza_b)
-        box.pack_start(gtk.Label("stanzas, each with"))
-        box.pack_start(lines_b)
-        box.pack_start(gtk.Label("lines."))
+        box1 = gtk.HBox()
+        box1.pack_start(stanza_b, False, False, 3)
+        box1.pack_start(gtk.Label("stanzas, each with"), False, False, 3)
+
+        box2 = gtk.HBox()
+        box2.pack_start(lines_b, False, False, 3)
+        box2.pack_start(gtk.Label("lines."), False, False, 3)
+
+        box = gtk.VBox()
+        box.pack_start(box1, 0, 0, 3)
+        box.pack_start(box2, 0, 0, 3)
 
         return box
+
+    def build_poem(self):
+        num_stanzas = int(self.__stanza_adj.get_value())
+        num_lines = int(self.__lines_adj.get_value())
+        return gnoetics.BlankVerse(num_stanzas, num_lines)
         
 
-class PoemPicker(gtk.VBox):
+class PoemPicker(gtk.Dialog):
 
     def __init__(self):
-        gtk.VBox.__init__(self)
+        gobject.GObject.__init__(self)
+        self.set_title("Choose a Base Form")
         self.__first = None
         self.__choices = []
 
+        self.__table = gtk.Table(0, 2)
+        self.vbox.add(self.__table)
+
+        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
+
+        self.connect("response", PoemPicker.__response_handler)
+
+        self.__assemble()
+
+
     def add(self, pc):
+
         rb = gtk.RadioButton(self.__first)
+        w = pc.get_widget()
+
         if self.__first is None:
             self.__first = rb
+        elif w:
+            w.set_sensitive(False)
 
-        box = gtk.VBox()
-
-        w = gtk.Label()
-        w.set_markup("<b>%s</b>" % pc.get_label())
-        w.set_alignment(0, 0.5)
-        box.pack_start(w, expand=True, fill=True)
-
-        w = pc.get_widget()
+        self.__choices.append((pc, rb, w))
+        
         if not w:
             desc = pc.get_description()
             if desc:
                 w = gtk.Label()
                 w.set_markup(desc)
+                w.set_alignment(0, 0.5)
 
-        if w:
-            box.pack_start(w, expand=True, fill=True, padding=3)
+        n = len(self.__choices)
 
-        rb.add(box)
+        box = gtk.VBox()
 
-        if self.__choices:
-            w = gtk.HSeparator()
-            w.show_all()
-            self.pack_start(w, expand=False, fill=True, padding=3)
+        lab = gtk.Label()
+        lab.set_markup("<b>%s</b>" % pc.get_label())
+        lab.set_alignment(0, 0.5)
 
-        self.pack_start(rb)
+
+        def sensitize_cb(b, pp):
+            for pc, rb, w in pp.__choices:
+                if w:
+                    w.set_sensitive(rb == b)
+            
+        rb.connect_after("toggled", sensitize_cb, self)
+
+        self.__table.resize(2*n-1, 3)
+
+        if n > 1:
+            sep = gtk.HSeparator()
+            self.__table.attach(sep,
+                                0, 3, 2*n-3, 2*n-2,
+                                gtk.EXPAND | gtk.FILL, 0,
+                                1, 3)
+            sep.show_all()
+
+        self.__table.attach(rb,
+                            0, 1, 2*n-2, 2*n-1,
+                            0, 0,
+                            3, 3)
+
+        self.__table.attach(lab,
+                            1, 2, 2*n-2, 2*n-1,
+                            0, 0,
+                            3, 3)
+
+        self.__table.attach(w,
+                            2, 3, 2*n-2, 2*n-1,
+                            gtk.EXPAND | gtk.FILL, 0,
+                            3, 3)
+
         rb.show_all()
-
-        self.__choices.append((pc, rb))
-
-
-    def get_poem(self):
-        for pc, rb in self.__choices:
-            if rb.get_active():
-                return pc.get_poem()
-        return None
+        lab.show_all()
+        w.show_all()
 
 
+    def __assemble(self):
+        self.add(PoemChoice_Haiku())
+        self.add(PoemChoice_Tanka())
+        self.add(PoemChoice_Renga())
+        self.add(PoemChoice_BlankVerse())
 
 
-win = gtk.Window()
-box = gtk.VBox()
-win.add(box)
+    def __response_handler(self, id):
+        choice = None
+        if id == gtk.RESPONSE_CLOSE:
+            for pc, rb, w in self.__choices:
+                if rb.get_active():
+                    choice = pc.build_poem()
+                    break
 
-pp = PoemPicker()
-pp.add(PoemChoice_Haiku())
-pp.add(PoemChoice_Tanka())
-pp.add(PoemChoice_BlankVerse())
-box.pack_start(pp)
+        self.emit("finished", choice)
 
-b = gtk.Button("Foo!")
-box.pack_start(b)
+        self.destroy()
 
-def foo_cb(b, pp):
-    print pp.get_poem()
-b.connect("clicked", foo_cb, pp)
 
-win.show_all()
+gobject.type_register(PoemPicker)
 
-gtk.main()
+gobject.signal_new("finished",
+                   PoemPicker,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT,))
+
+
 
     
