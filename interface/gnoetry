@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # This is -*- Python -*-
 
+import sys, string, time
+
+sys.path.append("/opt/pygtk/lib/python2.3/site-packages")
 import pygtk
 pygtk.require("2.0")
 import gtk
-
-import sys, string, time
 
 sys.path.append("..") # add path for gnoetics library
 import gnoetics

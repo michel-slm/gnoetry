@@ -27,7 +27,6 @@ def launch_window(is_first=False):
         tri = gnoetics.Trimodel()
 
         for text in text_list:
-            print text
             tri.add_text(text)
 
         tri.prepare()
