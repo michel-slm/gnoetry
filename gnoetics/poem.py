@@ -19,6 +19,8 @@ class Poem:
         ### Sanity-check
         assert len(self.__units) > 0
         assert self.__units[0].is_head()
+        assert self.__units[0].is_beginning_of_line()
+        assert self.__units[0].is_beginning_of_stanza()
         assert self.__units[-1].is_tail()
         assert self.__units[-1].is_end_of_line()
         assert self.__units[-1].is_end_of_stanza()
@@ -113,7 +115,6 @@ class Poem:
     def bind_right(self, i, tok):
         self.bind(i, tok, is_left=False)
 
-
     def unbind(self, i):
         i = self.__fix_index(i)
         assert self.__good_index(i)
@@ -125,17 +126,37 @@ class Poem:
         self.combine_units() # FIXME: could be optimized
 
 
-    def dump(self, highlight=None):
+    def to_string(self, highlight=None, show_line_break_info=False):
+        out_str = ""
         if highlight is not None:
             highlight = self.__fix_index(highlight)
-        for i, x in enumerate(self.__units):
-            s = x.to_string(show_line_break_info=False,
-                            highlight=(highlight==i))
-            print s,
-            if x.is_end_of_line():
-                print
-            if x.is_end_of_stanza():
-                print
+        last_was_break = False
+        suppress_space = False
+        for i, u in enumerate(self.__units):
+
+            if not u.is_beginning_of_line() \
+               and not u.has_left_glue() \
+               and not suppress_space:
+                out_str += " "
+
+            if u.is_bound():
+                if not u.is_break():
+                    s = u.get_binding().get_word()
+                    if last_was_break:
+                        s = s[0].upper() + s[1:]
+                    out_str += s
+            else:
+                out_str += "<%s>" % u
+            
+            if u.is_end_of_line():
+                out_str += "\n"
+            if u.is_end_of_stanza():
+                out_str += "\n"
+
+            suppress_space = u.is_beginning_of_line() and u.is_break()
+            last_was_break = u.is_break()
+
+        return out_str
 
 
 ##############################################################################
@@ -160,11 +181,14 @@ def _unit_magic(scheme):
             if x != "*":
                 args["rhyme"] = x
 
+        args["is_beginning_of_line"] = True
         args["is_end_of_line"] = True
         if is_first:
             args["is_head"] = True
         if is_last:
             args["is_tail"] = True
+        if is_first or scheme[i-1] == " ":
+            args["is_beginning_of_stanza"] = True
         if is_last or scheme[i+1] == " ":
             args["is_end_of_stanza"] = True
 

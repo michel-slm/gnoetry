@@ -13,6 +13,9 @@ class PoeticUnit:
                    syllables=None,
                    meter=None,
                    rhyme=None,
+
+                   is_beginning_of_line=False,   # Is this a line's beginning?
+                   is_beginning_of_stanza=False, # ...or a stanza's?
                    
                    is_end_of_line=False,    # Is this the end of a line?
                    is_end_of_stanza=False,  # ...or a stanza?
@@ -46,6 +49,10 @@ class PoeticUnit:
         elif syllables is not None and meter is None:
             meter = gnoetics.METER_ANY * syllables
 
+        # beginning of stanza implies beginning of line
+        if is_beginning_of_stanza:
+            is_beginning_of_line = True
+
         # end of stanza implies end of line
         if is_end_of_stanza:
             is_end_of_line = True
@@ -55,6 +62,9 @@ class PoeticUnit:
         self.__syllables = syllables
         self.__meter = meter
         self.__rhyme = rhyme
+
+        self.__bol = is_beginning_of_line
+        self.__bostz = is_beginning_of_stanza
 
         self.__eol = is_end_of_line
         self.__eostz = is_end_of_stanza
@@ -86,6 +96,14 @@ class PoeticUnit:
         return self.__rhyme
 
 
+    def is_beginning_of_line(self):
+        return self.__bol
+
+
+    def is_beginning_of_stanza(self):
+        return self.__bostz
+
+
     def is_end_of_line(self):
         return self.__eol
 
@@ -103,7 +121,9 @@ class PoeticUnit:
 
 
     def is_left_constrained(self):
-        return self.is_head()
+        return self.is_beginning_of_line() \
+               or self.is_beginning_of_stanza() \
+               or self.is_head()
     
 
     def is_right_constrained(self):
@@ -133,6 +153,18 @@ class PoeticUnit:
         return self.is_bound() and self.get_binding().is_break()
 
 
+    def is_punctuation(self):
+        return self.is_bound() and self.get_binding().is_punctuation()
+
+
+    def has_left_glue(self):
+        return self.is_bound() and self.get_binding().has_left_glue()
+
+
+    def has_right_glue(self):
+        return self.is_bound() and self.get_binding().has_right_glue()
+
+
     def bind(self, token):
         assert self.__token is None
         assert token.get_syllables() == self.get_syllables()
@@ -151,7 +183,7 @@ class PoeticUnit:
     ###
 
     def to_string(self,
-                  show_line_break_info=True,
+                  show_line_break_info=False,
                   highlight=False):
         if self.is_break():
             s = "<x>"
@@ -162,16 +194,21 @@ class PoeticUnit:
 
         if self.is_rhymed():
             s += "(%s)" % self.get_rhyme()
-        if show_line_break_info:
-            if self.is_end_of_stanza():
-                s += "<stz>"
-            elif self.is_end_of_line():
-                s += "<ln>"
 
         if self.is_head():
             s = "[[" + s
         if self.is_tail():
             s = s + "]]"
+            
+        if show_line_break_info:
+            if self.is_beginning_of_line():
+                s = "<line>" + s
+            if self.is_beginning_of_stanza():
+                s = "<stanza>" + s
+            if self.is_end_of_line():
+                s += "</line>"
+            if self.is_end_of_stanza():
+                s += "</stanza>"
 
         if highlight:
             s = " ((( %s ))) " % s
@@ -204,6 +241,9 @@ class PoeticUnit:
             R["rhyme"] = self.get_rhyme()
         else:
             L["rhyme"] = self.get_rhyme()
+
+        L["is_beginning_of_line"] = self.is_beginning_of_line()
+        L["is_beginning_of_stanza"] = self.is_beginning_of_stanza()
 
         R["is_end_of_line"] = self.is_end_of_line()
         R["is_end_of_stanza"] = self.is_end_of_stanza()
@@ -252,6 +292,9 @@ class PoeticUnit:
         J["meter"]         = self.get_meter() + right.get_meter()
 
         J["rhyme"]         = right.get_rhyme()
+
+        J["is_beginning_of_line"]   = left.is_beginning_of_line()
+        J["is_beginning_of_stanza"] = left.is_beginning_of_stanza()
 
         J["is_end_of_line"]   = right.is_end_of_line()
         J["is_end_of_stanza"] = right.is_end_of_stanza()
