@@ -7,7 +7,8 @@ sys.path.insert(0, path)
 from xxx_gnoetics import *
 sys.path.pop(0)
 
-from token import *
+from token   import *
+from library import *
 
 from poeticunit import *
 from poem       import *
