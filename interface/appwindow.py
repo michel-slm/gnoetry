@@ -499,7 +499,7 @@ class AppWindow(gtk.Window,
         self.destroy()
         AppWindow.__total_app_window_count -= 1
         if AppWindow.__total_app_window_count == 0:
-            gtk.mainquit()
+            gtk.main_quit()
         return gtk.TRUE
 
 
