@@ -87,10 +87,22 @@ def save_as_callback(app):
 
 def print_callback(app):
     markup = app.get_poem().to_string(add_timestamp=True,
-                                      add_latex_markup=True,
-                                      add_latex_wrapper=True)
+                                      add_latex_markup=True)
+
     fh = tempfile.NamedTemporaryFile()
+
+    fh.write("\\documentclass[12pt]{article}\n")
+    fh.write("\\pagestyle{empty}\n")
+    fh.write("\\begin{document}\n")
+
     fh.write(markup)
+
+    fh.write("{\\tiny\\vskip 2ex \\parindent=0in\n")
+    fh.write("Texts:\\par\n")
+    for txt in app.get_model().get_texts():
+        fh.write("%s, {\\it %s}\\par\n" % (txt.get_author(), txt.get_title()))
+    fh.write("}\n\\end{document}\n")
+    
     fh.flush()
 
     dvi_name = fh.name + ".dvi"
@@ -473,6 +485,9 @@ class AppWindow(gtk.Window,
 
         fh = file(target_filename, "w")
         fh.write(p.to_string(add_timestamp=True))
+        fh.write("\n\n\nTexts:\n")
+        for txt in self.get_model().get_texts():
+            fh.write("%s, %s\n" % (txt.get_author(), txt.get_title()))
         fh.close()
 
         self.__save_seqno = p.get_seqno()
