@@ -1,5 +1,6 @@
 # This is -*- Python -*-
 
+import string
 import gnoetics
 from poeticunit import *
 
@@ -55,6 +56,9 @@ class Poem:
             if x.is_not_bound():
                 return False
         return True
+
+    def is_not_fully_bound(self):
+        return not self.is_fully_bound()
 
 
     def find_first_unbound(self):
@@ -131,13 +135,24 @@ class Poem:
         if highlight is not None:
             highlight = self.__fix_index(highlight)
         last_was_break = False
-        suppress_space = False
+        need_end_of_line = False
+        need_end_of_stanza = False
         for i, u in enumerate(self.__units):
+
+            if u.is_not_bound() or not u.is_punctuation():
+                if need_end_of_line:
+                    out_str += "\n"
+                    need_end_of_line = False
+                if need_end_of_stanza:
+                    out_str += "\n"
+                    need_end_of_stanza = False
 
             if not u.is_beginning_of_line() \
                and not u.has_left_glue() \
-               and not suppress_space:
+               and out_str \
+               and out_str[-1] != "\n":
                 out_str += " "
+
 
             if u.is_bound():
                 if not u.is_break():
@@ -149,12 +164,17 @@ class Poem:
                 out_str += "<%s>" % u
             
             if u.is_end_of_line():
-                out_str += "\n"
+                need_end_of_line = True
             if u.is_end_of_stanza():
-                out_str += "\n"
+                need_end_of_stanza = True
 
-            suppress_space = u.is_beginning_of_line() and u.is_break()
             last_was_break = u.is_break()
+
+        if need_end_of_line:
+            out_str += "\n"
+        if need_end_of_stanza:
+            out_str += "\n"
+        
 
         return out_str
 
@@ -217,3 +237,10 @@ class Tanka(Poem):
 class Renga(Poem):
     def __init__(self):
         Poem.__init__(self, "Renga", magic="575 77 575")
+
+class BlankVerse(Poem):
+    def __init__(self, stanzas, lines_per_stanza):
+        magic = string.join(("*"*lines_per_stanza,)*stanzas, " ")
+        Poem.__init__(self,
+                      "Blank Verse (%d/%d)" % (stanzas, lines_per_stanza),
+                      magic=magic)

@@ -293,8 +293,8 @@ class PoeticUnit:
 
         J["rhyme"]         = right.get_rhyme()
 
-        J["is_beginning_of_line"]   = left.is_beginning_of_line()
-        J["is_beginning_of_stanza"] = left.is_beginning_of_stanza()
+        J["is_beginning_of_line"]   = self.is_beginning_of_line()
+        J["is_beginning_of_stanza"] = self.is_beginning_of_stanza()
 
         J["is_end_of_line"]   = right.is_end_of_line()
         J["is_end_of_stanza"] = right.is_end_of_stanza()

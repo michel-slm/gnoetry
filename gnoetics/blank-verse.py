@@ -22,112 +22,83 @@ tri.prepare()
 t2 = time.time()
 sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
 
+sys.stderr.write("\n")
+
 ##############################################################################
 
-lines_per_stanza = 4
-stanzas = 6
+for i in range(5):
 
-lines = lines_per_stanza * stanzas
+    t1 = time.time()
 
-line_meter = (gnoetics.METER_UNSTRESSED+gnoetics.METER_STRESSED)*5
-line_len = len(line_meter)
+    verse = gnoetics.BlankVerse(4, 4)
 
-brk  = gnoetics.token_lookup_break()
-wild = gnoetics.token_lookup_wildcard()
-
-
-
-syl = 0
-poem = [ [brk] ]
-
-while syl < lines * line_len:
-
-    assert poem
-
-    t2 = poem[-1][0]
-    if t2.is_break():
-        t1 = t2
-    else:
-        t1 = poem[-2][0]
-
-    i = -1
-    sentence_len = 0
-    punct_count = 0
-    while 1:
-        x = poem[i][0]
-        if x.is_break():
-            break
-        i -= 1
-        if x.is_punctuation():
-            punct_count += 1
+    i = 0
+    while i < len(verse):
+        u = verse[i]
+        if u.is_not_bound() and u.is_head():
+            verse.bind_left(i, gnoetics.token_lookup_break())
+            i += 1
+        elif u.is_not_bound() and u.is_tail():
+            verse.bind_right(i, gnoetics.token_lookup_break())
         else:
-            sentence_len += 1
-
-    punct_ratio = 1
-    if sentence_len > 0:
-        punct_ratio = punct_ratio / float(sentence_len)
-
-    tokfilt = {}
-    tokfilt["max_syllables"] = line_len - (syl % line_len)
-    tokfilt["meter_left"] = line_meter[syl % line_len:]
-
-    if sentence_len < 3:
-        tokfilt["trailing_preference"] = -1
-    elif sentence_len < 6:
-        tokfilt["trailing_preference"] = 0
-    elif sentence_len > 10:
-        tokfilt["trailing_preference"] = 2
-
-    soln = tri.query((t1, t2, wild, tokfilt))
-
-    if soln:
-        for x in soln:
-            assert x.get_syllables() <= tokfilt["max_syllables"]
-        poem.append(soln)
-        syl += soln[0].get_syllables()
-    else:
-        while 1:
-            syl -= poem[-1][0].get_syllables()
-            poem[-1].pop(0)
-            if poem[-1]:
-                syl += poem[-1][0].get_syllables()
-                break
-            else:
-                poem.pop(-1)
+            i += 1
 
 
-###
-### Print the poem
-###
+    # Actions are three-tuples of the form:
+    #  (unit index, left_solns, right_solns)
+    actions = []
 
-poem_str = ""
+    while verse.is_not_fully_bound():
 
-syl = 0
-capitalize_next = 1
-for L in poem:
-    t = L[0]
-    if syl > 0 and t.get_syllables() > 0 and syl % line_len == 0:
-        poem_str += "\n"
-        if syl % ((line_len*lines)/stanzas) == 0:
-            poem_str += "\n"
-            
-    if t.is_break():
-        capitalize_next = 1
-    else:
-        if not t.has_left_glue():
-            poem_str += " "
-        w = t.get_word()
-        if capitalize_next:
-            w = w[0].upper() + w[1:]
-        poem_str += w
-        capitalize_next = 0
+        i = verse.find_first_unbound()
+        u = verse[i]
 
-    syl += t.get_syllables()
+        leading_tokens, trailing_tokens = \
+                        gnoetics.find_leading_trailing(verse, i)
 
-print poem_str
+        left_solns, right_solns = gnoetics.solve_unit(tri,
+                                                      leading_tokens,
+                                                      u,
+                                                      trailing_tokens)
+
+        if left_solns:
+            actions.append([i, "left", left_solns, right_solns])
+        elif right_solns:
+            actions.append([i, "right", left_solns, right_solns])
+        else:
+            while 1:
+                assert actions
+                act = actions[-1]
+                i = act[0]
+                mode = act[1]
+                if mode == "left":
+                    verse.unbind(i)
+                else:
+                    verse.unbind(i+1)
+                left_solns = act[2]
+                right_solns = act[3]
+                if right_solns and not left_solns:
+                    act[1] = "right"
+                if left_solns or right_solns:
+                    break
+                actions.pop(-1)
+
+        if left_solns:
+            tok = left_solns.pop(0)
+            verse.bind_left(i, tok)
+        else:
+            tok = right_solns.pop(0)
+            verse.bind_right(i, tok)
 
 
-    
+    t2 = time.time()
+
+    print verse.to_string()
+
+    print "(Generated poem in %.2fs)\n\n" % (t2-t1)
+
+
+
 
 
 
