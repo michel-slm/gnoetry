@@ -43,6 +43,7 @@ def find_leading_trailing(poem, i):
 
 
 def solve_unit(model, leading_tokens, unit, trailing_tokens,
+               weights=None,
                allow_left_queries=True,
                allow_right_queries=False,
                verbose=None,
@@ -209,6 +210,9 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
         if verbose:
             print "Left queries:", left_queries
         ranker = gnoetics.Ranker()
+        if weights is not None:
+            for txt, wt in weights.items():
+                ranker.set_weight(txt, wt)
         for t1, t2, t3, filter in left_queries:
             model.query(t1, t2, t3, filter, ranker)
         left_solns = ranker.get_solutions()
@@ -221,6 +225,9 @@ def solve_unit(model, leading_tokens, unit, trailing_tokens,
         if verbose:
             print "Right queries:", right_queries
         ranker = gnoetics.Ranker()
+        if weights is not None:
+            for txt, wt in weights.items():
+                ranker.set_weight(txt, wt)
         for t1, t2, t3, filter in right_queries:
             model.query(t1, t2, t3, filter, ranker)
         right_solns = ranker.get_solutions()
@@ -256,7 +263,7 @@ class Solver:
         return self.__poem.find_first_unbound()
 
 
-    def __solve_at(self, i, verbose=None):
+    def __solve_at(self, i, weights=None, verbose=None):
 
         if verbose is None:
             verbose = os.getenv("GNOETRY_DEBUG") is not None
@@ -288,7 +295,8 @@ class Solver:
         left_solns, right_solns = gnoetics.solve_unit(self.__model,
                                                       leading_tokens,
                                                       u,
-                                                      trailing_tokens)
+                                                      trailing_tokens,
+                                                      weights=weights)
 
         # If we found no solutions, try again w/o the extra filters.
         if not left_solns and not right_solns:
@@ -296,7 +304,8 @@ class Solver:
                                                           leading_tokens,
                                                           u,
                                                           trailing_tokens,
-                                                          extra_filters=False)
+                                                          extra_filters=False,
+                                                          weights=weights)
 
 
         if verbose:
@@ -343,7 +352,7 @@ class Solver:
             self.__poem.bind_right(i, tok)
 
 
-    def step(self):
+    def step(self, weights=None):
         if not self.__poem:
             return
 
@@ -364,10 +373,10 @@ class Solver:
                 print j, self.__poem[j]
             print
     
-        self.__solve_at(i)
+        self.__solve_at(i, weights=weights)
 
 
-    def multistep(self, count=10, timeout=0.2):
+    def multistep(self, count=10, timeout=0.2, weights=None):
         if not self.__poem:
             return
 
@@ -386,14 +395,14 @@ class Solver:
                 if t2 - t1 > timeout:
                     break
 
-            self.step()
+            self.step(weights=weights)
 
             N += 1
 
         self.__poem.thaw_changed()
 
 
-    def full_solution(self):
+    def full_solution(self, weights=None):
         verbose = os.getenv("GNOETRY_DEBUG") is not None
         if verbose:
             print
@@ -401,4 +410,4 @@ class Solver:
             print
             
         self.__actions = []
-        self.multistep(count=None, timeout=None)
+        self.multistep(count=None, timeout=None, weights=weights)

@@ -86,6 +86,8 @@ trimodel_new (void)
     REFCOUNT_INIT (tri);
     PYBIND_INIT (tri);
 
+    tri->lock = g_mutex_new ();
+
     tri->array_AB_C = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
     tri->array_AC_B = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
     tri->array_BC_A = g_array_new (FALSE, FALSE, sizeof (TrimodelElement));
@@ -207,34 +209,46 @@ void
 trimodel_add_text (Trimodel *tri,
                    Text     *txt)
 {
+    g_return_if_fail (tri != NULL);
+    g_return_if_fail (txt != NULL);
+
+    g_assert (! tri->is_prepped);
+    tri->text_list = g_list_append (tri->text_list, text_ref (txt));
+}
+
+static void
+trimodel_study_texts (Trimodel *tri)
+{
+    GList *iter;
     Token *brk, *tok, *window[3];
     int i, j, N;
 
     g_return_if_fail (tri != NULL);
-    g_return_if_fail (txt != NULL);
-
-    tri->text_list = g_list_append (tri->text_list, text_ref (txt));
 
     brk = token_lookup_break ();
     g_assert (brk != NULL);
 
-    window[0] = brk;
-    window[1] = brk;
-    window[2] = brk;
-    
-    N = text_get_length (txt);
-    for (i = 0; i < N; ++i) {
-        tok = text_get_token (txt, i);
+    for (iter = tri->text_list; iter != NULL; iter = iter->next) {
+        Text *txt = iter->data;
 
-        j = 0;
-        do {
-            window[0] = window[1];
-            window[1] = window[2];
-            window[2] = tok;
-            trimodel_add_triple (tri, txt, i-2+j, 
-                                 window[0], window[1], window[2]);
-            ++j;
-        } while (j < 2 && token_is_break (tok));
+        window[0] = brk;
+        window[1] = brk;
+        window[2] = brk;
+    
+        N = text_get_length (txt);
+        for (i = 0; i < N; ++i) {
+            tok = text_get_token (txt, i);
+            
+            j = 0;
+            do {
+                window[0] = window[1];
+                window[1] = window[2];
+                window[2] = tok;
+                trimodel_add_triple (tri, txt, i-2+j, 
+                                     window[0], window[1], window[2]);
+                ++j;
+            } while (j < 2 && token_is_break (tok));
+        }
     }
 }
 
@@ -336,13 +350,14 @@ trimodel_build_leading_trailing (Trimodel *tri)
     g_hash_table_destroy (not_tail);
 }
 
-void
-trimodel_prepare (Trimodel *tri)
+static gpointer
+trimodel_prepare_fn (gpointer data)
 {
-    g_return_if_fail (tri != NULL);
+    Trimodel *tri = data;
 
-    if (tri->is_prepped)
-        return;
+    g_mutex_lock (tri->lock);
+
+    trimodel_study_texts (tri);
 
     trimodel_sort_single_array (tri, tri->array_AB_C);
     trimodel_sort_single_array (tri, tri->array_AC_B);
@@ -353,6 +368,33 @@ trimodel_prepare (Trimodel *tri)
     trimodel_build_leading_trailing (tri);
 
     tri->is_prepped = TRUE;
+
+    g_mutex_unlock (tri->lock);
+
+    trimodel_unref (tri);
+    return NULL;
+}
+
+void
+trimodel_prepare (Trimodel *tri)
+{
+    g_return_if_fail (tri != NULL);
+
+    if (! tri->is_prepped) {
+        g_mutex_lock (tri->lock);
+        if (! tri->is_prepped) {
+            trimodel_ref (tri);
+            g_thread_create (trimodel_prepare_fn, tri, FALSE, NULL);
+        }
+        g_mutex_unlock (tri->lock);
+    }
+}
+
+gboolean
+trimodel_is_ready (Trimodel *tri)
+{
+    g_return_val_if_fail (tri != NULL, FALSE);
+    return tri->is_prepped;
 }
 
 static gboolean
@@ -669,6 +711,13 @@ py_trimodel_prepare (PyObject *self, PyObject *args)
 }
 
 static PyObject *
+py_trimodel_is_ready (PyObject *self, PyObject *args)
+{
+    Trimodel *tri = trimodel_from_py (self);
+    return PyBool_FromLong (trimodel_is_ready (tri));
+}
+
+static PyObject *
 py_trimodel_query (PyObject *self, PyObject *args)
 {
     Trimodel *tri = trimodel_from_py (self);
@@ -710,10 +759,11 @@ py_trimodel_query (PyObject *self, PyObject *args)
 }
 
 static PyMethodDef py_trimodel_methods[] = {
-    { "add_text",  py_trimodel_add_text, METH_VARARGS },
+    { "add_text",  py_trimodel_add_text,  METH_VARARGS },
     { "get_texts", py_trimodel_get_texts, METH_NOARGS },
-    { "prepare",   py_trimodel_prepare,  METH_NOARGS  },
-    { "query",     py_trimodel_query,    METH_VARARGS },
+    { "prepare",   py_trimodel_prepare,   METH_NOARGS  },
+    { "is_ready",  py_trimodel_is_ready,  METH_NOARGS  },
+    { "query",     py_trimodel_query,     METH_VARARGS },
 
     { NULL, NULL, 0 }
 

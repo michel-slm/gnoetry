@@ -9,6 +9,7 @@ import red_menubar, red_toolbar
 import about
 
 from textpicker   import *
+from weightpicker import *
 from poemtileview import *
 from poemtextview import *
 
@@ -16,50 +17,74 @@ from poemtextview import *
 ### Launcher
 ###
 
-def launch_window(is_first=False):
+master_lib = None
+def launch(is_first=False):
+    global master_lib
+    if master_lib is None:
+        master_lib = gnoetics.Library("../texts-ts")
 
-    def text_picker_callback(text_list):
-        if text_list is None:
-            if is_first:
-                sys.exit(0)
-            return
+    picker = TextPicker(master_lib)
+    picker.connect("finished", text_picker_finished_cb, is_first)
+    picker.show_all()
+    
 
-        class LaunchThread(threading.Thread):
+def text_picker_finished_cb(picker, text_list, is_first):
+    if text_list is None:
+        if is_first:
+            sys.exit(0)
+        return
 
-            def __init__(self, msg_win):
-                threading.Thread.__init__(self)
-                self.__msg_win = msg_win
+    # Create a model, add the texts and start preparing it (which will
+    # happen in another thread).
+    tri = gnoetics.Trimodel()
+    for txt in text_list:
+        tri.add_text(txt)
+    tri.prepare()
 
-            def run(self):
-                time.sleep(0.1) # time for gtk to display the message window
-                tri = gnoetics.Trimodel()
-                for text in text_list:
-                    tri.add_text(text)
+    # Create initial dict of weights
+    weights = {}
+    for txt in text_list:
+        weights[txt] = 1.0
 
-                tri.prepare()
+    if len(text_list) > 1:
+        wp = WeightPicker(weights,
+                          weight_picker_finished_cb,
+                          (tri, weights))
+        wp.show_all()
+    else:
+        weight_picker_finished_cb(None, tri, weights)
 
-                def do_it():
-                    poem = gnoetics.BlankVerse(3, 4)
-                    appwin = AppWindow(model=tri)
-                    appwin.set_poem(poem)
-                    appwin.show_all()
-                    self.__msg_win.destroy()
-                    return False
+def weight_picker_finished_cb(picker, model, weights):
 
-                gtk.idle_add(do_it)
-
+    if picker:
+        picker.destroy()
+        
+    if model.is_ready():
+        launch_appwindow(model, weights, None)
+    else:
         win = gtk.MessageDialog(None, 0,
                                 gtk.MESSAGE_INFO,
                                 gtk.BUTTONS_NONE,
                                 " Building statistical model")
         win.show_all()
-        LaunchThread(win).start()
-
-    lib = gnoetics.Library("../texts-ts")
-    picker = TextPicker(lib, text_picker_callback)
-    picker.show_all()
-
+        gtk.timeout_add(100, wait_for_model_cb, model, weights, win)
     
+
+def wait_for_model_cb(model, weights, win):
+    if model.is_ready():
+        launch_appwindow(model, weights, win)
+        return False
+    return True
+
+
+def launch_appwindow(model, weights, win):
+    if win:
+        win.destroy()
+    poem = gnoetics.BlankVerse(3, 4)
+    appwin = AppWindow(model=model,
+                       weights=weights)
+    appwin.set_poem(poem)
+    appwin.show_all()
         
 
 ###
@@ -132,6 +157,10 @@ def clear_selection_callback(app):
         p.set_flag(i, False)
 
 
+def modify_weights_callback(app):
+    app.modify_weights()
+
+
 def regenerate_selected_callback(app):
     app.save_for_undo()
     p = app.get_poem()
@@ -140,7 +169,7 @@ def regenerate_selected_callback(app):
     p.unbind_flagged()
 
     try:
-        app.get_solver().full_solution()
+        app.solve()
     except gnoetics.SolveFailed:
         sys.stderr.write("Oops!\n")
         app.set_poem(p_copy)
@@ -157,7 +186,9 @@ class AppWindow(gtk.Window,
 
     __total_app_window_count = 0
 
-    def __init__(self, model):
+    def __init__(self, model,
+                 weights=None):
+        
         gtk.Window.__init__(self)
         
         self.set_title("Gnoetry 0.2")
@@ -167,6 +198,9 @@ class AppWindow(gtk.Window,
 
         self.__model = model
         self.__solver = gnoetics.Solver(self.__model)
+
+        self.__weights = weights or {}
+        self.__weight_picker = None
 
         self.__save_filename = None
         self.__save_seqno = -1
@@ -248,6 +282,9 @@ class AppWindow(gtk.Window,
     def get_solver(self):
         return self.__solver
 
+    def solve(self):
+        self.__solver.full_solution(weights=self.__weights)
+
 
     def set_poem(self, p):
         gnoetics.PoemListener.set_poem(self, p)
@@ -257,7 +294,7 @@ class AppWindow(gtk.Window,
         self.__textview.set_poem(p)
         self.__solver.set_poem(p)
 
-        self.__solver.full_solution()
+        self.solve()
 
 
     def __assemble_menubar(self, bar):
@@ -315,6 +352,11 @@ class AppWindow(gtk.Window,
                 sensitive_fn=contains_flagged_check,
                 callback=clear_selection_callback)
         bar.add("/_Edit/sep2", is_separator=True)
+        bar.add("/_Edit/Modify Text Weights",
+                description="Adjust the weighting of the source texts",
+                sensitive_fn=lambda: len(self.__weights) > 1,
+                callback=modify_weights_callback)
+        bar.add("/_Edit/sep3", is_separator=True)
         bar.add("/_Edit/Regenerate",
                 description="Remove the selected words and make new choices",
                 pixbuf_name="regenerate_16",
@@ -399,7 +441,26 @@ class AppWindow(gtk.Window,
             p = self.__redo_history.pop(-1)
             self.save_for_undo(clear_redo=False)
             self.set_poem(p)
-            
+
+    def modify_weights(self):
+        if not self.__weights:
+            return
+
+        if self.__weight_picker:
+            self.__weight_picker.present()
+            return
+
+        def finished_cb(picker, app):
+            app.__weight_picker = None
+            picker.destroy()
+
+        wp = WeightPicker(self.__weights,
+                          finished_cb,
+                          (self,))
+        wp.show_all()
+
+        self.__weight_picker = wp
+        
 
     def new_window(self):
         new_win = AppWindow()

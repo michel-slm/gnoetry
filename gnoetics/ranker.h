@@ -18,6 +18,8 @@ struct _Ranker {
     REFCOUNT_BODY;
     PYBIND_BODY;
 
+    GHashTable *weights;
+
     GArray *all_solns;
 };
 
@@ -26,6 +28,10 @@ PYBIND_HEADERS (Ranker, ranker);
 
 Ranker    *ranker_new (void);
 
+void       ranker_set_weight (Ranker *ranker,
+                              Text   *text,
+                              double  wt);
+                              
 void       ranker_clear (Ranker *);
 
 void       ranker_add_solution (Ranker       *ranker,

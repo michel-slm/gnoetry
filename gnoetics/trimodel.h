@@ -19,6 +19,8 @@ struct _Trimodel {
     REFCOUNT_BODY;
     PYBIND_BODY;
 
+    GMutex *lock;
+
     GPtrArray *all_tokens;
 
     GArray *array_AB_C;
@@ -42,6 +44,8 @@ void      trimodel_add_text (Trimodel *tri,
                              Text     *txt);
 
 void      trimodel_prepare (Trimodel *tri);
+
+gboolean  trimodel_is_ready (Trimodel *tri);
 
 gint      trimodel_query (Trimodel       *tri,
                           Token          *token_a,

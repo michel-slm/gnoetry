@@ -33,11 +33,41 @@ ranker_dealloc (Ranker *ranker)
 }
 
 void
+ranker_set_weight (Ranker *ranker,
+                   Text   *txt,
+                   double  wt)
+{
+    double *wt_ptr;
+
+    g_return_if_fail (ranker != NULL);
+    g_return_if_fail (txt != NULL);
+
+    if (ranker->weights == NULL)
+        ranker->weights = g_hash_table_new (NULL, NULL);
+
+    wt = MAX (wt, 0.001);
+
+    wt_ptr = g_hash_table_lookup (ranker->weights, txt);
+    if (wt_ptr == NULL) {
+        wt_ptr = g_new (double, 1);
+        g_hash_table_insert (ranker->weights, txt, wt_ptr);
+    }
+
+    *wt_ptr = wt;
+}
+
+void
 ranker_clear (Ranker *ranker)
 {
     if (ranker->all_solns) {
         g_array_free (ranker->all_solns, TRUE);
         ranker->all_solns = NULL;
+    }
+
+    if (ranker->weights) {
+        /* FIXME: leaking the values! */
+        g_hash_table_destroy (ranker->weights);
+        ranker->weights = NULL;
     }
 }
 
@@ -252,6 +282,7 @@ ranker_get_solutions (Ranker *ranker)
     GPtrArray  *per_text_array;
     GHashTable *per_text_hash;
     GHashTable *uniq;
+    double *wt_ptr;
        
     g_return_val_if_fail (ranker != NULL, NULL);
 
@@ -267,7 +298,11 @@ ranker_get_solutions (Ranker *ranker)
                 per_text = g_new0 (PerText, 1);
                 per_text->text = elt->text;
                 per_text->by_results = by_results_new ();
-                per_text->weight = 1.0;
+
+                wt_ptr = NULL;
+                if (ranker->weights)
+                    wt_ptr = g_hash_table_lookup (ranker->weights, elt->text);
+                per_text->weight = wt_ptr ? *wt_ptr : 1.0;
 
                 g_hash_table_insert (per_text_hash, elt->text, per_text);
                 g_ptr_array_add (per_text_array, per_text);
@@ -304,6 +339,24 @@ REFCOUNT_CODE (Ranker, ranker);
 /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** */
 
 PYBIND_CODE (Ranker, ranker);
+
+static PyObject *
+py_ranker_set_weight (PyObject *self, PyObject *args)
+{
+    Ranker *ranker = ranker_from_py (self);
+    PyObject *py_txt;
+    Text *txt;
+    double wt;
+
+    if (! PyArg_ParseTuple (args, "Od", &py_txt, &wt))
+        return NULL;
+
+    txt = text_from_py (py_txt);
+    ranker_set_weight (ranker, txt, wt);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
 
 static PyObject *
 py_ranker_clear (PyObject *self, PyObject *args)
@@ -373,6 +426,7 @@ py_ranker_get_solutions (PyObject *self, PyObject *args)
 }
 
 static PyMethodDef py_ranker_methods[] = {
+    { "set_weight",    py_ranker_set_weight,    METH_VARARGS },
     { "clear",         py_ranker_clear,         METH_NOARGS },
     { "add_solution",  py_ranker_add_solution,  METH_VARARGS },
     { "get_solutions", py_ranker_get_solutions, METH_NOARGS },

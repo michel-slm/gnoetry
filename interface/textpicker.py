@@ -9,10 +9,10 @@ class TextPicker(gtk.Dialog):
     COLUMN_AUTHOR = 2
     COLUMN_TEXT = 3
 
-    def __init__(self, lib, callback):
-        gtk.Dialog.__init__(self, "Select Your Source Texts")
+    def __init__(self, lib):
+        gobject.GObject.__init__(self)
 
-        self.__callback = callback
+        self.set_title("Select Your Source Texts")
 
         self.__button_ok = self.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)
         self.connect("response", TextPicker.__response_handler)
@@ -110,21 +110,21 @@ class TextPicker(gtk.Dialog):
 
 
     def __response_handler(self, id):
+        texts = None
         if id == gtk.RESPONSE_CLOSE:
             texts = []
             for text, flag in self.__text_dict.items():
                 if flag:
                     texts.append(text)
-            self.__callback(texts)
-        else:
-            self.__callback(None)
+        self.emit("finished", texts)
         self.destroy()
 
             
 
-            
-                                 
-            
-    
+gobject.type_register(TextPicker)
 
-
+gobject.signal_new("finished",
+                   TextPicker,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT,))

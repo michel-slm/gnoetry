@@ -49,7 +49,7 @@ def setup():
     appwin.show_all()
 
 def post_splash_cb():
-    appwindow.launch_window(is_first=True)
+    appwindow.launch(is_first=True)
 
 splash.splash(4, post_splash_cb)
 
