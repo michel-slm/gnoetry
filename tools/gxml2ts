@@ -6,7 +6,8 @@ import string, sys, xml.sax, xml.sax.handler, re
 dash_re = re.compile(" *--+")
 ellipsis_re = re.compile(" *(\. *){3,}")
 
-abbrev_list = ("dr.", "mr.", "ms.", "mrs.", "m.")
+abbrev_list = ("dr.", "mr.", "ms.", "mrs.", "m.", "st.")
+
 def is_abbrev(word):
     return word.lower() in abbrev_list
 
@@ -15,11 +16,17 @@ def is_terminal(word):
         return not is_abbrev(word)
     return word[-1] in ("?", "!")
 
+def strip_tailing_punctuation(word):
+    word = word.strip()
+    while word and word[-1] in (".", ",", ";", ":", "-"):
+        word = word[:-1].strip()
+    return word
+
 def split_punctuation(word):
     if word[-1] in (",", ";", ":", "-"):
-        return word[:-1], word[-1]
+        return strip_tailing_punctuation(word[:-1]), word[-1]
     elif word[-3:] == "...":
-        return word[:-3], word[-3:]
+        return strip_tailing_punctuation(word[:-3]), word[-3:]
     else:
         return word, None
 
@@ -144,7 +151,8 @@ class TextScanner_XML(TextScanner,
         #line = line.replace("--", " *mdash* ")
 
         # fix hyphenated lines.  Also should be a regexp
-        #line = line.replace("- ", "") 
+        #line = line.replace("- ", "")
+
         self.process_chunk(line)
 
 
