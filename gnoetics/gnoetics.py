@@ -10,7 +10,7 @@ sys.path.pop(0)
 from token   import *
 from library import *
 
-from poeticunit import *
-from poem       import *
-from action     import *
-from solver     import *
+from poeticunit   import *
+from poem         import *
+from poemlistener import *
+from solver       import *

@@ -15,23 +15,6 @@ class AppWindow(gtk.Window):
         AppWindow.__total_app_window_count += 1
         self.connect("delete_event", lambda aw, ev: aw.__close_window())
 
-        self.__token_model = gnoetics.TokenModel(3)
-        self.__tile_model = tilemodel.TileModel(5)
-        for i in range(self.__tile_model.get_line_count()):
-            if i == 3:
-                self.__tile_model.append_tile(i, "stanza break")
-                continue
-            self.__tile_model.append_tile(i, "foo")
-            for j in range(random.randrange(3, 5)):
-                t = gnoetics.token_lookup("line %d" % i)
-                self.__tile_model.append_tile(i, t)
-                t = gnoetics.token_lookup("*punct* ,")
-                self.__tile_model.append_tile(i, t)
-
-            self.__tile_model.append_tile(i, "u-u-u-")
-            self.__tile_model.append_tile(i, gnoetics.token_lookup("bar"))
-            self.__tile_model.append_tile(i, gnoetics.token_lookup("*punct* !"))
-        
         vbox = gtk.VBox()
         self.add(vbox)
 
@@ -39,21 +22,17 @@ class AppWindow(gtk.Window):
         vbox.pack_start(menubar, expand=0, fill=0)
 
 
-        self.__tile_view = tileview.TileView(self.__tile_model)
-
-        self.__tile_text_view = tiletextview.TileTextView(self.__tile_model)
-
         vpaned = gtk.VPaned()
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sw.add_with_viewport(self.__tile_view)
+        #sw.add_with_viewport(self.__tile_view)
 
         vpaned.pack1(sw, 1, 1)
        
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sw.add_with_viewport(self.__tile_text_view)
+        #sw.add_with_viewport(self.__tile_text_view)
 
         vpaned.pack2(sw, 0, 1)
 

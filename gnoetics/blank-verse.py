@@ -26,14 +26,9 @@ sys.stderr.write("\n")
 
 ##############################################################################
 
-while 1:
+def generate_poem(verse):
 
     t1 = time.time()
-
-    verse = gnoetics.BlankVerse(4, 4)
-
-    def foo(x):
-        print "foo!"
 
     verse.bind_mandatory_breaks()
 
@@ -86,6 +81,8 @@ while 1:
     t2 = time.time()
 
     print verse.to_string()
+    print
+    print verse.to_list_with_breaks()
 
     print "(Generated poem in %.2fs)\n\n" % (t2-t1)
     print

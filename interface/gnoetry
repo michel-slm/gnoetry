@@ -1,17 +1,129 @@
 #!/usr/bin/python
+# This is -*- Python -*-
 
 import pygtk
 pygtk.require("2.0")
 import gtk
 
-import sys
+import sys, string, time
 
 sys.path.append("..") # add path for gnoetics library
 import gnoetics
 
-import textpicker, appwindow
+from poemtileview import *
+from poemtextview import *
 
-win = appwindow.AppWindow()
+#############################################################################
+
+###
+### Initial Set-up
+###
+
+tri = gnoetics.Trimodel()
+
+sys.stderr.write("*** Loading... ")
+t1 = time.time()
+count = 0
+for txt in gnoetics.Library(dir="../texts-ts"):
+    tri.add_text(txt)
+    count += 1
+    if count > 5:
+        break
+t2 = time.time()
+sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
+
+sys.stderr.write("*** Preparing model... ")
+t1 = time.time()
+tri.prepare()
+t2 = time.time()
+sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
+
+sys.stderr.write("\n")
+
+#############################################################################
+
+###
+### Solver
+###
+
+# Actions are three-tuples of the form:
+#  (unit index, left_solns, right_solns)
+actions = []
+
+def solve_start(verse):
+
+    verse.bind_mandatory_breaks()
+    
+
+def solve_step(verse):
+
+    global actions
+    
+    if verse.is_not_fully_bound():
+
+        i = verse.find_first_unbound()
+        u = verse[i]
+
+        leading_tokens, trailing_tokens = verse.extract_surrounding_tokens(i)
+
+        left_solns, right_solns = gnoetics.solve_unit(tri,
+                                                      leading_tokens,
+                                                      u,
+                                                      trailing_tokens)
+
+        if left_solns:
+            actions.append([i, "left", left_solns, right_solns])
+        elif right_solns:
+            actions.append([i, "right", left_solns, right_solns])
+        else:
+            while 1:
+                assert actions
+                act = actions[-1]
+                i = act[0]
+                mode = act[1]
+                if mode == "left":
+                    verse.unbind(i)
+                else:
+                    verse.unbind(i+1)
+                left_solns = act[2]
+                right_solns = act[3]
+                if right_solns and not left_solns:
+                    act[1] = "right"
+                if left_solns or right_solns:
+                    break
+                actions.pop(-1)
+
+        if left_solns:
+            tok = left_solns.pop(0)
+            verse.bind_left(i, tok)
+        else:
+            tok = right_solns.pop(0)
+            verse.bind_right(i, tok)
+
+
+
+#############################################################################
+
+poem = gnoetics.BlankVerse(3, 4)
+solve_start(poem)
+
+def timeout_cb(p):
+    solve_step(p)
+    return not p.is_fully_bound()
+    
+win = gtk.Window()
 win.show_all()
+tv = PoemTileView(poem)
+tv.show_all()
+win.add(tv)
+
+win = gtk.Window()
+win.show_all()
+tv = PoemTextView(poem)
+tv.show_all()
+win.add(tv)
+
+
+gtk.timeout_add(100, timeout_cb, poem)
 
 gtk.main()

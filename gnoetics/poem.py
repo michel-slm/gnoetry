@@ -252,6 +252,39 @@ class Poem(gobject.GObject):
         return out_str
 
 
+    def to_list_with_breaks(self):
+        L = []
+        for u in self.__units:
+            if u.is_bound():
+                L.append(u.get_binding())
+            else:
+                L.append(u)
+            if u.is_end_of_stanza():
+                L.append("end of stanza")
+            elif u.is_end_of_line():
+                L.append("end of line")
+
+        i = 0
+        while i < len(L)-1:
+            a = L[i]
+            b = L[i+1]
+            swap = False
+
+            if a in ("end of stanza", "end of line"):
+                if type(b) == gnoetics.Token and \
+                   (b.is_punctuation() or b.is_break()):
+                    swap = True
+
+            if swap:
+                L[i:i+2] = L[i+1], L[i]
+                i -= 1
+            else:
+                i += 1
+
+        return L
+
+
+
 ##############################################################################
 
 def _unit_magic(scheme):

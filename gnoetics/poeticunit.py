@@ -218,6 +218,9 @@ class PoeticUnit:
     def __str__(self):
         return self.to_string()
 
+    def __repr__(self):
+        return "<PoeticUnit: %s>" % self.to_string()
+
     ###
     ### Subdivision
     ###
