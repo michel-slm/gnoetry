@@ -172,14 +172,18 @@ token_filter_optimize (TokenFilter *filter)
 
     if (filter->meter_left) {
         int len = strlen (filter->meter_left);
-        if (len > filter->min_syllables)
-            filter->min_syllables = len;
+        if (filter->min_syllables > len) {
+            filter->impossible = TRUE;
+            return;
+        }
     }
 
     if (filter->meter_right) {
         int len = strlen (filter->meter_right);
-        if (len > filter->min_syllables)
-            filter->min_syllables = len;
+        if (filter->min_syllables > len) {
+            filter->impossible = TRUE;
+            return;
+        }
     }
 
     if (filter->rhymes_with != NULL

@@ -25,10 +25,12 @@ class Syllable:
     def is_word_terminal(self):
         return self.__word_terminal \
                or self.__line_terminal \
-               or self.__stanza_terminal
+               or self.__stanza_terminal \
+               or self.__sentence_terminal
 
     def is_sentence_terminal(self):
-        return self.__sentence_terminal 
+        return self.__sentence_terminal \
+               or self.__stanza_terminal
 
     def is_line_terminal(self):
         return self.__line_terminal \
@@ -176,6 +178,7 @@ class SonnetStanza(SyllableBasedForm):
 
 
 class BlankVerseStanza(SyllableBasedForm):
+
     def __init__(self):
         SyllableBasedForm.__init__(self)
 

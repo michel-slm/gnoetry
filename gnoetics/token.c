@@ -16,6 +16,8 @@ const char *
 token_get_word (Token *t)
 {
     g_return_val_if_fail (t != NULL, NULL);
+    if (token_is_break (t))
+        return "\n";
     return t->word;
 }
 
@@ -185,7 +187,7 @@ token_lookup_wildcard (void)
 {
     static Token *wild = NULL;
     if (wild == NULL)
-        wild = token_lookup ("*wild*");
+        wild = token_lookup ("*wildcard*");
     return wild;
 }
 
@@ -369,4 +371,16 @@ py_token_lookup (PyObject *self, PyObject *args)
         return NULL;
     token = token_lookup (raw);
     return token_to_py (token);
+}
+
+PyObject *
+py_token_lookup_break (PyObject *self, PyObject *args)
+{
+    return token_to_py (token_lookup_break ());
+}
+
+PyObject *
+py_token_lookup_wildcard (PyObject *self, PyObject *args)
+{
+    return token_to_py (token_lookup_wildcard ());
 }

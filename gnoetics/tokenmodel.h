@@ -20,7 +20,7 @@ struct _TokenModel {
 
     unsigned N;
     GPtrArray *all_tokens;
-    SeqModel *seq_model;
+    SeqModel **seq_model_array;
     GList *texts;
 };
 
@@ -28,6 +28,8 @@ REFCOUNT_HEADERS (TokenModel, token_model);
 PYBIND_HEADERS   (TokenModel, token_model);
 
 TokenModel *token_model_new   (unsigned N);
+
+#define token_model_get_N(tm) ((tm)->N)
 
 void        token_model_clear (TokenModel *);
 
@@ -37,6 +39,7 @@ Token      *token_model_pick (TokenModel  *model,
                               TokenFilter *filter);
 
 int         token_model_solve (TokenModel       *model,
+                               unsigned          tuple_len,
                                Token           **tuple,
                                TokenFilter      *filter,
                                TokenFn           callback,

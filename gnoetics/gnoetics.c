@@ -106,8 +106,9 @@ static PyMethodDef gnoetics_methods[] = {
 
   /* Token Methods */
   
-  { "token_lookup", py_token_lookup, METH_VARARGS,
-    "Fetch a token object for the given string." },
+  { "token_lookup",          py_token_lookup,          METH_VARARGS },
+  { "token_lookup_break",    py_token_lookup_break,    METH_NOARGS },
+  { "token_lookup_wildcard", py_token_lookup_wildcard, METH_NOARGS },
 
 #if 0
 

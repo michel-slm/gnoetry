@@ -18,14 +18,20 @@ token_seq_atom_hash (SeqAtom a)
 static void
 token_model_fill_in (TokenModel *model)
 {
+    int n;
+
     model->all_tokens = g_ptr_array_new ();
     
-    model->seq_model = seq_model_new (model->N,
-                                      token_lookup_break (),
-                                      token_lookup_wildcard (),
-                                      token_seq_atom_eq,
-                                      token_seq_atom_hash,
-                                      NULL, NULL);
+    model->seq_model_array = g_new0 (SeqModel *, model->N-1);
+
+    for (n = 2; n <= model->N; ++n) {
+        model->seq_model_array[n-2] = seq_model_new (n,
+                                                     token_lookup_break (),
+                                                     token_lookup_wildcard (),
+                                                     token_seq_atom_eq,
+                                                     token_seq_atom_hash,
+                                                     NULL, NULL);
+    }
 
     model->texts = NULL;
 }
@@ -33,11 +39,20 @@ token_model_fill_in (TokenModel *model)
 static void
 token_model_hollow_out (TokenModel *model)
 {
-    g_ptr_array_free (model->all_tokens, TRUE);
-    model->all_tokens = NULL;
+    int i;
 
-    seq_model_unref (model->seq_model);
-    model->seq_model = NULL;
+    if (model->all_tokens) {
+        g_ptr_array_free (model->all_tokens, TRUE);
+        model->all_tokens = NULL;
+    }
+
+    if (model->seq_model_array) {
+        for (i = 0; i < model->N-1; ++i) {
+            seq_model_unref (model->seq_model_array[i]);
+        }
+        g_free (model->seq_model_array);
+        model->seq_model_array = NULL;
+    }
 
     g_list_foreach (model->texts, (GFunc) text_unref, NULL);
     model->texts = NULL;
@@ -82,7 +97,7 @@ token_model_add_text (TokenModel *model,
                       Text       *txt)
 {
     Token *buf[1024];
-    int i, j, N;
+    int i, j, k, N;
 
     g_return_if_fail (model != NULL);
     g_return_if_fail (txt != NULL);
@@ -109,7 +124,10 @@ token_model_add_text (TokenModel *model,
 
         if (j < N) {
 
-            seq_model_add_sentence (model->seq_model, (SeqAtom *)buf, j-i);
+            for (k = 0; k < model->N-1; ++k) {
+                seq_model_add_sentence (model->seq_model_array[k],
+                                        (SeqAtom *)buf, j-i);
+            }
          
             ++j; /* skip past the break */
 
@@ -192,24 +210,48 @@ solve_cb (SeqAtom atom, gpointer user_data)
 
 int
 token_model_solve (TokenModel  *model,
+                   unsigned     tuple_len,
                    Token      **tuple,
                    TokenFilter *filter,
                    TokenFn      callback,
                    gpointer     user_data)
 {
-    struct SolveInfo info;
     int N;
 
     g_return_val_if_fail (model != NULL, -1);
-    g_return_val_if_fail (tuple != NULL, -1);
     g_return_val_if_fail (callback != NULL, -1);
+    g_return_val_if_fail (tuple_len <= model->N, -1);
+    if (tuple_len > 1)
+        g_return_val_if_fail (tuple != NULL, -1);
 
-    info.filter     = filter;
-    info.callback   = callback;
-    info.user_data  = user_data;
-    info.soln_count = 0;
+    if (tuple_len < 2) {
 
-    N = seq_model_solve (model->seq_model, (SeqAtom *) tuple, solve_cb, &info);
+        Token *tok;
+        int i;
+
+        N = 0;
+        for (i = 0; i < model->all_tokens->len; ++i) {
+            tok = g_ptr_array_index (model->all_tokens, i);
+            if (token_filter_test (filter, tok)) {
+                callback (tok, user_data);
+                ++N;
+            }
+        }
+
+    } else {
+
+        struct SolveInfo info;
+        SeqModel *seq_model;
+
+        info.filter     = filter;
+        info.callback   = callback;
+        info.user_data  = user_data;
+        info.soln_count = 0;
+
+        seq_model = model->seq_model_array[tuple_len-2];
+        N = seq_model_solve (seq_model, (SeqAtom *) tuple, solve_cb, &info);
+
+    }
 
     return N;
 }
@@ -233,6 +275,13 @@ py_token_model_assemble (PyObject *args, PyObject *kwdict)
     g_assert (N > 1); /* FIXME */
 
     return token_model_new (N);
+}
+
+static PyObject *
+py_token_model_get_N (PyObject *self, PyObject *args)
+{
+    TokenModel *model = token_model_from_py (self);
+    return PyInt_FromLong (model->N);
 }
 
 static PyObject *
@@ -323,10 +372,11 @@ py_token_model_solve (PyObject *self, PyObject *args, PyObject *kwdict)
     }
 
     len = PySequence_Size (py_seq);
-    if (len != model->seq_model->N) {
+
+    if (len > model->N) {
         PyErr_Format (PyExc_ValueError,
-                      "Token tuple must have length %d",
-                      model->seq_model->N);
+                      "Token tuple length exceeds max of %d",
+                      model->N);
         return NULL;
     }
 
@@ -342,15 +392,19 @@ py_token_model_solve (PyObject *self, PyObject *args, PyObject *kwdict)
     token_filter_init_from_py_dict (&filter, kwdict);
     token_filter_optimize (&filter);
 
-    tuple = g_new (Token *, len);
-    for (i = 0; i < len; ++i) {
-        PyObject *py_token = PySequence_Fast_GET_ITEM (py_seq, i);
-        tuple[i] = token_from_py (py_token);
+    if (len >= 2) {
+        tuple = g_new (Token *, len);
+        for (i = 0; i < len; ++i) {
+            PyObject *py_token = PySequence_Fast_GET_ITEM (py_seq, i);
+            tuple[i] = token_from_py (py_token);
+        }
+    } else {
+        tuple = NULL;
     }
 
     soln = PyList_New (0);
     
-    token_model_solve (model, tuple, &filter,
+    token_model_solve (model, len, tuple, &filter,
                        py_solve_cb, soln);
     g_free (tuple);
 
@@ -360,6 +414,7 @@ py_token_model_solve (PyObject *self, PyObject *args, PyObject *kwdict)
 }
 
 static PyMethodDef py_token_model_methods[] = {
+    { "get_N",        py_token_model_get_N,     METH_NOARGS },
     { "clear",        py_token_model_clear,     METH_NOARGS  },
     { "add_text",     py_token_model_add_text,  METH_VARARGS },
     { "get_texts",    py_token_model_get_texts, METH_NOARGS },

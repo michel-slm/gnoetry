@@ -10,6 +10,7 @@ class AppWindow(gtk.Window):
 
     def __init__(self):
         gtk.Window.__init__(self)
+        self.set_title("Gnoetry")
 
         AppWindow.__total_app_window_count += 1
         self.connect("delete_event", lambda aw, ev: aw.__close_window())
@@ -138,11 +139,13 @@ class AppWindow(gtk.Window):
 
         about_item = gtk.MenuItem("About Gnoetry")
         help_subm.append(about_item)
-        about_item.set_sensitive(0) # FIXME
+        about_item.connect("activate",
+                           lambda mi: about.show_about_gnoetry())
 
         about_bob_item = gtk.MenuItem("About Beard of Bees")
         help_subm.append(about_bob_item)
-        about_bob_item.set_sensitive(0) # FIXME
+        about_bob_item.connect("activate",
+                               lambda mi: about.show_about_beard_of_bees())
 
         about_ubu_item = gtk.MenuItem("About Ubu Roi")
         help_subm.append(about_ubu_item)
