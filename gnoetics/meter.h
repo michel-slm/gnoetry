@@ -33,8 +33,9 @@ gboolean meter_is_valid (const Meter *a);
 gboolean metric_match_left  (const Meter *a, const Meter *b);
 gboolean metric_match_right (const Meter *a, const Meter *b);
 
-double metric_error_left (const Meter *a, const Meter *b);
-double metric_error_right (const Meter *a, const Meter *b);
+double metric_error_left    (const Meter *a, const Meter *b);
+double metric_error_right   (const Meter *a, const Meter *b);
+double metric_error_unknown (int num_syllables);
 
 /* Python Extensions */
 

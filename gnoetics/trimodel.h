@@ -56,13 +56,13 @@ void      trimodel_add_text (Trimodel *tri,
 
 void      trimodel_prepare (Trimodel *tri);
 
-gint      trimodel_query (Trimodel    *tri,
-                          Token       *token_a,
-                          Token       *token_b,
-                          Token       *token_c,
-                          TokenFilter *filter,
-                          TokenFn      match_fn,
-                          gpointer     user_data);
+gint      trimodel_query (Trimodel       *tri,
+                          Token          *token_a,
+                          Token          *token_b,
+                          Token          *token_c,
+                          TokenFilter    *filter,
+                          FilterResultsFn match_fn,
+                          gpointer        user_data);
 
 
 

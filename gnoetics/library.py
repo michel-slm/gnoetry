@@ -12,7 +12,6 @@ class Library:
 
     def add(self, filename):
         txt = Text(filename)
-        sys.stderr.write("Adding '%s'\n" % txt.get_title())
         self.__texts.append(txt)
 
     def add_from_directory(self, dirname):

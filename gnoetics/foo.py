@@ -6,10 +6,12 @@ import gnoetics
 tri = gnoetics.Trimodel()
 
 time1 = time.time()
-for n in ("emma", "moby-dick", "oliver-twist", "origin-of-species",
-          "tale-of-two-cities", "red-badge-of-courage"):
-    txt = gnoetics.Text("../texts-ts/%s.ts" % n)
+count = 0
+for txt in gnoetics.Library(dir="../texts-ts"):
     tri.add_text(txt)
+    count += 1
+    if count > 55:
+        break
 time2 = time.time()
 
 print "load time:", time2-time1
@@ -32,11 +34,34 @@ def babble():
     tokfilt = { }
 
     syl = 0
+    syl_since_punct = 0
 
     token_list = []
 
     while 1:
         time1 = time.time()
+
+        if syl > 18:
+            tokfilt["break_preference"] = 1
+        elif syl > 10:
+            tokfilt["break_preference"] = 0
+        else:
+            tokfilt["break_preference"] = -1
+            
+
+        if syl_since_punct < 7:
+            tokfilt["punctuation_preference"] = 0
+        else:
+            tokfilt["punctuation_preference"] = 1
+
+        if syl == 0:
+            tokfilt["rhymes_with"] = "mouse"
+            tokfilt["punctuation_preference"] = -1
+        else:
+            tokfilt["rhymes_with"] = None
+
+
+
         if syl % 2 == 0:
             tokfilt["meter_left"] = "u-" * 20
         else:
@@ -47,20 +72,24 @@ def babble():
         if not results:
             return 0
         t = results[0]
+        if t.is_punctuation():
+            syl_since_punct = 0
         if t.is_break():
             break
         token_list.append(t)
+
         syl += t.get_syllables()
+        syl_since_punct += t.get_syllables()
 
         t1 = t2
         t2 = t
 
-    print string.join(map(lambda x: x.get_word(), token_list), " ")
+    print gnoetics.token_list_to_str(token_list)
 
     return 1
 
 
-for i in range(100):
+for i in range(5):
     while not babble(): pass
     print
 

@@ -450,14 +450,28 @@ trimodel_query_array (Trimodel *tri,
     return TRUE;
 }
 
+static gboolean
+leading_test_cb (Token   *t,
+                 gpointer user_data)
+{
+    return FALSE;
+}
+
+static gboolean
+trailing_test_cb (Token   *t,
+                  gpointer user_data)
+{
+    return FALSE;
+}
+
 gint
-trimodel_query (Trimodel    *tri,
-                Token       *token_a,
-                Token       *token_b,
-                Token       *token_c,
-                TokenFilter *filter,
-                TokenFn      match_fn,
-                gpointer     user_data)
+trimodel_query (Trimodel       *tri,
+                Token          *token_a,
+                Token          *token_b,
+                Token          *token_c,
+                TokenFilter    *filter,
+                FilterResultsFn results_fn,
+                gpointer        user_data)
 {
 
     int i0, i1, i, count;
@@ -466,7 +480,7 @@ trimodel_query (Trimodel    *tri,
     GArray *array = NULL;
     const TrimodelElement *elt;
     Token *prev_soln;
-    gboolean ok;
+    FilterResults results;
 
     g_return_val_if_fail (tri != NULL, -1);
     g_return_val_if_fail (token_a != NULL, -1);
@@ -517,31 +531,29 @@ trimodel_query (Trimodel    *tri,
     g_assert (i0 <= i1);
 
     prev_soln = NULL;
-    ok = FALSE;
+    results = FILTER_RESULTS_REJECT;
     count = 0;
     for (i = i0; i <= i1; ++i) {
         elt = &g_array_index (array, TrimodelElement, i);
         if (filter == NULL) {
-            ok = TRUE;
+            results = FILTER_RESULTS_ACCEPT;
         } else if (elt->soln == prev_soln) {
-            /* retain previous value of ok */
+            /* retain previous value of results */
         } else {
-            ok = token_filter_test (filter, elt->soln);
-            /* check non-local properties */
-            if (ok) {
-                if ((!filter->allow_leading
-                     && g_hash_table_lookup (tri->is_leading, elt->soln))
-                    ||
-                    (!filter->allow_terminal
-                     && g_hash_table_lookup (tri->is_terminal, elt->soln)))
-                    ok = FALSE;
-            }
+            results = token_filter_test (filter,
+                                         elt->soln,
+                                         leading_test_cb,
+                                         trailing_test_cb,
+                                         tri);
+
+
             prev_soln = elt->soln;
         }
 
-        if (ok) {
-            if (match_fn)
-                match_fn (elt->soln, user_data);
+
+        if (results != FILTER_RESULTS_REJECT) {
+            if (results_fn)
+                results_fn (elt->soln, results, user_data);
             ++count;
         }
     }
@@ -584,12 +596,62 @@ py_trimodel_prepare (PyObject *self, PyObject *args)
     return Py_None;
 }
 
+struct QueryInfo {
+    GPtrArray *results_favored;
+    GPtrArray *results_accepted;
+    GPtrArray *results_tolerated;
+};
+
+#define DEFAULT_SIZE 100
+
 static gboolean
-query_token_cb (Token *t, gpointer user_data)
+query_results_cb (Token        *tok,
+                  FilterResults results,
+                  gpointer      user_data)
 {
-    GPtrArray *results_array = user_data;
-    g_ptr_array_add (results_array, t);
+    struct QueryInfo *info = user_data;
+    GPtrArray *target = NULL;
+
+    if (results == FILTER_RESULTS_FAVOR) {
+        if (info->results_favored == NULL)
+            info->results_favored = g_ptr_array_sized_new (DEFAULT_SIZE);
+        target = info->results_favored;
+    } else if (results == FILTER_RESULTS_ACCEPT) {
+        if (info->results_accepted == NULL)
+            info->results_accepted = g_ptr_array_sized_new (DEFAULT_SIZE);
+        target = info->results_accepted;
+    } else if (results == FILTER_RESULTS_TOLERATE) {
+        if (info->results_tolerated == NULL)
+            info->results_tolerated = g_ptr_array_sized_new (DEFAULT_SIZE);
+        target = info->results_tolerated;
+    } else {
+        g_assert_not_reached ();
+    }
+
+    g_ptr_array_add (target, tok);
     return TRUE;
+}
+
+static void
+array_uniq_to_py (GPtrArray  *array,
+                  GHashTable *uniq,
+                  PyObject   *py_list)
+{
+    Token *tok;
+    int i, N;
+
+    fate_shuffle_ptr_array (array);
+
+    N = array->len;
+    for (i = 0; i < N; ++i) {
+        tok = g_ptr_array_index (array, i);
+        if (g_hash_table_lookup (uniq, tok) == NULL) {
+            PyObject *py_tok = token_to_py (tok);
+            PyList_Append (py_list, py_tok);
+            Py_DECREF (py_tok);
+            g_hash_table_insert (uniq, tok, tok);
+        }
+    }
 }
 
 static PyObject *
@@ -599,17 +661,20 @@ py_trimodel_query (PyObject *self, PyObject *args)
     Token *t1, *t2, *t3;
     TokenFilter filter;
     
-    GPtrArray *results_array = NULL;
+    struct QueryInfo info;
+
     GHashTable *uniq = NULL;
-    PyObject *results = NULL;
+    PyObject *py_results = NULL;
     gboolean error_flag = FALSE;
-    int i, j, N;
+    int i, N;
+
+    info.results_favored   = NULL;
+    info.results_accepted  = NULL;
+    info.results_tolerated = NULL;
 
     N = PySequence_Size (args);
     if (N == 0) /* i.e. an empty query */
         goto finished;
-
-    results_array = g_ptr_array_sized_new (500);
 
     for (i = 0; i < N; ++i) {
         PyObject *query = PySequence_GetItem (args, i);
@@ -650,7 +715,7 @@ py_trimodel_query (PyObject *self, PyObject *args)
 
         trimodel_query (tri,
                         t1, t2, t3, &filter,
-                        query_token_cb, results_array);
+                        query_results_cb, &info);
 
     cleanup_this_query:
         if (py_t1)     { Py_DECREF (py_t1); }
@@ -663,46 +728,38 @@ py_trimodel_query (PyObject *self, PyObject *args)
             goto finished;
     }
 
-    if (results_array->len == 0)
-        goto finished;
 
-    /* Shuffle results */
-    N = results_array->len;
-    for (i = 0; i < N-1; ++i) {
-        j = i + fate_random (N-i);
-        if (i != j) {
-            Token *tmp = g_ptr_array_index (results_array, i);
-            g_ptr_array_index (results_array, i) = 
-                g_ptr_array_index (results_array, j);
-            g_ptr_array_index (results_array, j) = tmp;
-        }
-    }
+    py_results = PyList_New (0);
 
-    /* Uniqueify array */
-    results = PyList_New (0);
     uniq = g_hash_table_new (NULL, NULL);
-    for (i = 0; i < N; ++i) {
-        Token *tok = g_ptr_array_index (results_array, i);
-        if (g_hash_table_lookup (uniq, tok) == NULL) {
-            PyObject *py_tok = token_to_py (tok);
-            PyList_Append (results, py_tok);
-            Py_DECREF (py_tok);
-            g_hash_table_insert (uniq, tok, tok);
-        }
-    }
+
+    if (info.results_favored != NULL)
+        array_uniq_to_py (info.results_favored, uniq, py_results);
+
+    if (info.results_accepted != NULL)
+        array_uniq_to_py (info.results_accepted, uniq, py_results);
+
+    if (info.results_tolerated != NULL)
+        array_uniq_to_py (info.results_tolerated, uniq, py_results);
 
  finished:
 
-    if (results_array != NULL)
-        g_ptr_array_free (results_array, TRUE);
+    if (info.results_favored != NULL)
+        g_ptr_array_free (info.results_favored, TRUE);
+
+    if (info.results_accepted != NULL)
+        g_ptr_array_free (info.results_accepted, TRUE);
+
+    if (info.results_tolerated != NULL)
+        g_ptr_array_free (info.results_tolerated, TRUE);
 
     if (uniq != NULL)
         g_hash_table_destroy (uniq);
 
-    if (results == NULL && !error_flag)
-        results = PyList_New (0);
+    if (py_results == NULL && !error_flag)
+        py_results = PyList_New (0);
 
-    return results;
+    return py_results;
 }
 
 static PyMethodDef py_trimodel_methods[] = {

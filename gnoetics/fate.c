@@ -55,3 +55,21 @@ fate_random (unsigned N)
     g_return_val_if_fail (N > 1, 0);
     return random () % N;
 }
+
+void
+fate_shuffle_ptr_array (GPtrArray *array)
+{
+    int i, j, N;
+    g_return_if_fail (array != NULL);
+    N = array->len;
+    if (N < 2)
+        return;
+    for (i = 0; i < N-1; ++i) {
+        j = i + fate_random (N-i);
+        if (i != j) {
+            gpointer tmp = g_ptr_array_index (array, i);
+            g_ptr_array_index (array, i) = g_ptr_array_index (array, j);
+            g_ptr_array_index (array, j) = tmp;
+        }
+    }
+}

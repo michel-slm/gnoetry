@@ -91,6 +91,14 @@ metric_error_left (const Meter *a, const Meter *b)
 }
 
 double
+metric_error_unknown (int num_syllables)
+{
+    g_return_val_if_fail (num_syllables >= 0, 0);
+
+    return METER_UNKNOWN_PENALTY * num_syllables;
+}
+
+double
 metric_error_right (const Meter *a, const Meter *b)
 {
     int ia, ib;
