@@ -13,6 +13,8 @@ import gnoetics
 
 import appwindow, splash, textpicker
 
+gtk.threads_init()
+
 #############################################################################
 
 ###
@@ -48,8 +50,8 @@ def setup():
 
 def post_splash_cb():
     appwindow.launch_window(is_first=True)
-splash.splash(4, post_splash_cb)
 
+splash.splash(4, post_splash_cb)
 
 
 gtk.main()

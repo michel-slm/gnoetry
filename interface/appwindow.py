@@ -1,6 +1,6 @@
 # This is -*- Python -*-
 
-import os, tempfile, sys
+import os, tempfile, sys, threading, time
 
 import gnoetics
 
@@ -24,18 +24,37 @@ def launch_window(is_first=False):
                 sys.exit(0)
             return
 
-        tri = gnoetics.Trimodel()
+        class LaunchThread(threading.Thread):
 
-        for text in text_list:
-            tri.add_text(text)
+            def __init__(self, msg_win):
+                threading.Thread.__init__(self)
+                self.__msg_win = msg_win
 
-        tri.prepare()
+            def run(self):
+                time.sleep(0.1) # time for gtk to display the message window
+                tri = gnoetics.Trimodel()
+                for text in text_list:
+                    tri.add_text(text)
 
-        poem = gnoetics.BlankVerse(3, 4)
+                tri.prepare()
 
-        appwin = AppWindow(model=tri)
-        appwin.set_poem(poem)
-        appwin.show_all()
+                def do_it():
+                    poem = gnoetics.BlankVerse(3, 4)
+                    appwin = AppWindow(model=tri)
+                    appwin.set_poem(poem)
+                    appwin.show_all()
+                    self.__msg_win.destroy()
+                    return False
+
+                gtk.idle_add(do_it)
+
+        win = gtk.MessageDialog(None,
+                                gtk.DIALOG_NO_SEPARATOR,
+                                gtk.MESSAGE_INFO,
+                                gtk.BUTTONS_NONE,
+                                " Building statistical model")
+        win.show_all()
+        LaunchThread(win).start()
 
     lib = gnoetics.Library("../texts-ts")
     picker = TextPicker(lib, text_picker_callback)
