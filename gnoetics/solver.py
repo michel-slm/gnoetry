@@ -1,207 +1,151 @@
+# This is -*- Python -*-
 
-import random
 import gnoetics
+import random
 
-POS_TAG_BREAK = gnoetics.pos_from_string("(x)")
-POS_TAG_WILDCARD = gnoetics.pos_from_string("(*)")
 
-def clean_options(L):
-    random.shuffle(L)
-    seen = {}
-    i = 0
-    while i < len(L):
-        x = L[i]
-        if seen.has_key(x):
-            L.pop(i)
+class GenericSolver:
+
+
+    def __init__(self):
+        self.__action_list = []
+
+
+    # Returns the index of the next unit to solve, along w/ the
+    # left/right binding type.
+    def next_pos(self, poem):
+        assert False
+
+
+    # Given an index and left/right, return an Action item,
+    # or None if no solutions are found.
+    def find_action(self, poem, i, is_left=True):
+        assert False
+
+
+    def step(self, poem):
+        if poem.is_fully_bound():
+            return False
+        i, is_left = self.next_pos(poem)
+        assert 0 <= i < len(poem)
+        assert poem[i].is_not_bound()
+        act = self.find_action(poem, i, is_left=is_left)
+        if act and act.has_solution():
+            act.apply()
+            self.__action_list.append(act)
+            return +1 # found solution by stepping forward
+        found_soln = False
+        while self.__action_list and not found_soln:
+            act = self.__action_list[-1]
+            act.revert()
+            if act.has_solution():
+                act.apply()
+                found_soln = True
+            else:
+                self.__action_list.pop(-1)
+        if found_soln:
+            return -1 # found solution by stepping back
         else:
-            seen[x] = 1
-            i += 1
+            return 0  # No solutions found
+        
 
-###
-### Case: --n--
-###
-def solve_free(model, bag, our_poem, chunk_num, info):
-    assert 0
-    meter = info["meter"]
-    all_pos = words_by_pos.keys()
-    random.shuffle(all_pos)
-    for pos in all_pos:
-        word = words_by_pos[pos].pick_by_meter_left(meter)
-        if word:
-            our_poem.bind(chunk_num, pos=pos, word=word)
-            return 1
-    return 0
-    
-###
-### Cases: (x) --n--
-###        (x) A B C --n--
-###        A B C --n--
-###
-def solve_leading(model, bag, our_poem, chunk_num, info):
-    N = model.get_N()
-    vec = [POS_TAG_BREAK]*N
-    vec.extend(info["predecessors"])
-    vec.append(POS_TAG_WILDCARD)
-    vec = vec[-N:]
-    options = model.solve(vec)
-    if not options:
-        return 0
-    clean_options(options)
-    for pos in options:
-        if pos == POS_TAG_BREAK:
-            our_poem.bind(chunk_num, insert_break=1)
-            return 1
-        else:
-            min_syl = 0
-            if info["pred_zero"]:
-                min_syl = 1
-            word = bag.pick_by_meter_left(pos, min_syl, info["meter"])
-            if word:
-                our_poem.bind(chunk_num, pos=pos, word=word)
-                return 1
-    return 0
+    def solve(self, poem):
+        while not poem.is_fully_bound() and self.step(poem) != 0:
+            pass
 
-###
-### Cases: --n-- (x)
-###        (x) --n-- (x)
-###        (x) A B C --n-- (x)
-###        A B C --n-- (x)
-###
-def solve_trailing_break(model, bag, our_poem, chunk_num, info):
-    vec = [POS_TAG_WILDCARD] + [POS_TAG_BREAK]*(model.get_N()-1)
-    options = model.solve(vec)
-    if not options:
-        return 0
-    clean_options(options)
-    for pos in options:
-        if pos == POS_TAG_BREAK: # we should never get adjacent breaks
-            assert 0
-        else:
-            word = bag.pick_by_meter_right(pos, 0, info["meter"])
-            if word:
-                our_poem.bind(chunk_num, pos=pos, word=word, right_bind=1)
-                return 1
-    return 0
 
-###
-### Case: --n-- A B C (x)
-###
-def solve_trailing(model, bag, chunk_num, info):
-    assert 0
+############################################################################
 
-###
-### Cases: (x) --n-- A B C (x)
-###        (x) A B C --n-- D E F (x)
-###        (x) A B C --n-- D E F
-###        A B C --n-- D E F (x)
-###
-def solve_pinch(model, bag, our_poem, chunk_num, info):
-    N = model.get_N()
 
-    vec1 = []
-    if info["pred_break"]:
-        vec1 = [POS_TAG_BREAK] * N
-    vec1.extend(info["predecessors"])
+# FIXME: needs to be changed to reflect changes to GenericSolver,
+# PoeticUnit, Poem, etc.
+class SimpleSolver(GenericSolver):
 
-    vec2 = info["successors"]
-    if info["succ_break"]:
-        vec2.extend([POS_TAG_BREAK] * N)
+    def __init__(self, model):
+        assert model.get_N() >= 3
+        self.__model = model
 
-    leading_options = []
-    if len(vec1) >= N-1:
-        leading_vec = vec1[-(N-1):] + [POS_TAG_WILDCARD]
-        leading_options = model.solve(leading_vec)
+    def solve_at(self, poem, i, right=0):
+        u = poem[i]
+        assert u.is_not_bound()
 
-    pinched_options = []
-    for i in range(1, N-1):
-        pinch_vec = vec1[-i:] + [POS_TAG_WILDCARD] + vec2[:(N-1-i)]
-        if len(pinch_vec) == N:
-            pinched_options.extend(model.solve(pinch_vec))
+        print "i=%d, right=%d" % (i, right)
+        
+        t_break = gnoetics.token_lookup_break()
+        t_wild  = gnoetics.token_lookup_wildcard()
 
-    all_options = []
-    all_options.extend(map(lambda x:(x, 0), leading_options))
-    all_options.extend(map(lambda x:(x, 1), pinched_options))
-    clean_options(all_options)
+        query1 = []
+        filter1 = {}
 
-    for pos, is_pinched in all_options:
+        query2 = []
+        filter2 = {}
 
-        if is_pinched:
+        t_prev = None
+        if i == 0:
+            t_prev = t_break
+        elif poem[i-1].is_bound():
+            t_prev = poem[i-1].get_binding()
 
-            # Don't allow breaks on the "full pinch".
-            if pos != POS_TAG_BREAK:
-                word = bag.pick_by_meter_left(pos, len(info["meter"]),
-                                              info["meter"])
-                if word:
-                    our_poem.bind(chunk_num, pos=pos, word=word)
-                    return 1
-            
-        else:
-            if pos == POS_TAG_BREAK:
-                our_poem.bind(chunk_num, insert_break=1)
-                return 1
+        t_next = None
+        if i == len(poem)-1:
+            t_next = t_break
+        elif poem[i+1].is_bound():
+            t_next = poem[i+1].get_binding()
 
-            min_syl = 0
-            if info["pred_zero"]:
-                min_syl = 1
-            word = bag.pick_by_meter_left(pos, min_syl, info["meter"][:-1])
-            if word:
-                our_poem.bind(chunk_num, pos=pos, word=word)
-                return 1
+        print "prev:", t_prev
+        print "next:", t_next
 
-    return 0
+        if t_prev is None and t_next is None:
+            query1 = [t_wild]
+            filter1["min_syllables"] = 0
+            filter1["max_syllables"] = u.get_syllables()
+        elif right:
+            query1 = [t_wild, t_next]
+            filter1["min_syllables"] = 0
+            filter1["max_syllables"] = u.get_syllables()
+            if t_next and t_next.get_syllables() == 0:
+                filter1["min_syllables"] = 1
+            if t_prev:
+                filter1["max_syllables"] -= 1
+                query2 = [t_prev, t_wild, t_next]
+                filter2["min_syllables"] = u.get_syllables()
+                filter2["max_syllables"] = u.get_syllables()
+        else: # left
+            query1 = [t_prev, t_wild]
+            filter1["min_syllables"] = 0
+            filter1["max_syllables"] = u.get_syllables()
+            if t_prev and t_prev.get_syllables() == 0:
+                filter1["min_syllables"] = 1
+            if t_next:
+                filter1["max_syllables"] -= 1
+                query2 = [t_prev, t_wild, t_next]
+                filter2["min_syllables"] = u.get_syllables()
+                filter2["max_syllables"] = u.get_syllables()
 
-    
+        query1 = filter(lambda x: x is not None, query1)
+        query2 = filter(lambda x: x is not None, query2)
 
-def solve(model, bag, our_poem, chunk_num):
+        soln_raw = []
+        if query1:
+            print "Q1:", query1, filter1
+            soln_raw.extend(self.__model.solve(query1, **filter1))
+        if query2:
+            print "Q2:", query2, filter2
+            soln_raw.extend(self.__model.solve(query2, **filter2))
 
-    info = our_poem._study_free_chunk(chunk_num)
+        act = None
+        if soln_raw:
+            random.shuffle(soln_raw)
+            uniq = {}
+            soln = []
+            for x in soln_raw:
+                if not uniq.has_key(x.get_word()):
+                    soln.append(x)
+                    uniq[x.get_word()] = 1
+            act = gnoetics.Action(poem, i, soln, right=right)
 
-    args = (model, bag, our_poem, chunk_num, info)
+        return act
 
-    pred_break   = info["pred_break"]
-    succ_break   = info["succ_break"]
-    predecessors = info["predecessors"]
-    successors   = info["successors"]
-
-    loud = 0
-
-    if not predecessors and not successors \
-       and not pred_break and not succ_break:
-        if loud:
-            print "solve_free"
-        return solve_free(*args)
-
-    if not successors and succ_break:
-        # in this case we don't care about any predecessors
-        if loud:
-            print "solve_trailing_break"
-        return solve_trailing_break(*args)
-
-    if not successors and not succ_break:
-        assert predecessors or pred_break
-        if loud:
-            print "solve_leading"
-        return solve_leading(*args)
-
-    if not predecessors and not pred_break:
-        assert successors or succ_break
-        if loud:
-            print "solve_trailing"
-        return solve_trailing(*args)
-
-    if (predecessors or pred_break) and successors:
-        if loud:
-            print "solve_pinch"
-        return solve_pinch(*args)
-
-    print "We Fell through!"
-    print "predecessors =", predecessors
-    print "  pred_break =", pred_break
-    print "  successors =", successors
-    print "  succ_break =", succ_break
-    print
-
-    return 0
-    
-          
-          
+        
+                
+        
