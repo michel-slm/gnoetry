@@ -10,6 +10,10 @@ Author: Charles Dickens
 Title: The Merry Adventures of Robin Hood
 Author: Howard Pyle
 
+2yb4m10.xml
+Title: Two Years Before the Mast
+Author: Richard Henry Dana
+
 advsh10.xml
 Title: The Adventures of Sherlock Holmes
 Author: Arthur Conan Doyle
@@ -46,17 +50,42 @@ hfinn10.xml
 Title: Huckleberry Finn
 Author: Mark Twain.
 
+kdnpd10.xml
+Title: Kidnapped
+Author: Robert Louis Stevenson
+
+lvfnd10v2.xml
+Title: Love and Friendship
+Author: Jane Austen
+
 #lwfan10.xml
 #Title: Lady Windermere's Fan
 #Author: Oscar Wilde
+
+masac10.xml
+Title: The Mysterious Affair at Styles
+Author: Agatha Christie
+
 
 masque.xml
 Title: The Masque of the Red Death
 Author: Edgar Allan Poe
 
+milnd10.xml
+Title: The Mysterious Island
+Author: Jules Verne
+
 moby10.xml
 Title: Moby Dick
 Author: Herman Melvilleq
+
+mohic10.xml
+Title: The Last of the Mohicans
+Author: James Fenimore Cooper
+
+notun10.xml
+Title: Notes from the Underground
+Author: Feodor Dostoevsky
 
 olivr10.xml
 Title: Oliver Twist
@@ -65,6 +94,10 @@ Author: Charles Dickens
 otoof10.xml
 Title: On the Origin of Species
 Author: Charles Darwin
+
+pandp10.xml
+Title: Pride and Prejudice
+Author: Jane Austen
 
 prsjn10.xml
 Title: Prester John
@@ -81,9 +114,21 @@ sawyr10.xml
 Title: Tom Sawyer
 Author: Mark Twain
 
+sense11.xml
+Title: Sense and Sensibility
+Author: Jane Austen
+
+taras10.xml
+Title: Taras Bulba and Other Tales
+Author: Nikolai Vasilievich Gogol
+
 timem11.xml
 Title: The Time Machine
 Author: H. G. Wells
+
+treas10.xml
+Title: Treasure Island
+Author: Robert Louis Stevenson
 
 usher10.xml
 Title: The Fall of the House of Usher
