@@ -31,6 +31,8 @@ def strip_trailing_punctuation(word):
 
 def split_punctuation(word):
     word = strip_single_quotes(word)
+    if word == "":
+        return word, None
     if word[-1] in (",", ";", ":", "-"):
         return strip_trailing_punctuation(word[:-1]), word[-1]
     elif word[-3:] == "...":
@@ -49,6 +51,10 @@ def break_token():
 
 ###############################################################################
 
+basic_tags = ("p", "br", "b", "i", "h1", "h2", "h3", "h4", "strong",
+              "html", "head", "body", "title", "meta")
+entity_re = re.compile ("&[A-Za-z0-9]+;");
+
 def process_line(line):
 
     line = line.strip().lower()
@@ -62,6 +68,12 @@ def process_line(line):
     line = line.replace('`', "")
     line = line.replace('*', "")
     line = line.replace('_', "")
+
+    # strip out basic html
+    for tag in basic_tags:
+        line = line.replace("<%s>" % tag, "");
+        line = line.replace("</%s>" % tag, "");
+    line = entity_re.sub("", line);
 
     # Better handling for adjacent punctuation and single-quotes
     line = line.replace(",'", ",' ")
