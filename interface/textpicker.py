@@ -2,19 +2,6 @@
 import gobject, gtk, gnoetics
 import sys, os, threading
 
-def _text_sort_fn(a, b):
-
-    a = a.get_title().lower()
-    b = b.get_title().lower()
-
-    if a[:4] == "the ":
-        a = a[4:]
-    if b[:4] == "the ":
-        b = b[4:]
-
-    return cmp(a.strip(), b.strip())
-
-
 class TextPicker(gtk.Dialog):
 
     COLUMN_FLAG = 0
@@ -41,7 +28,8 @@ class TextPicker(gtk.Dialog):
         self.__text_dict = {}
 
         all_texts = lib.get_all()
-        all_texts.sort(_text_sort_fn)
+        all_texts.sort(lambda x, y: cmp(x.get_sort_title(),
+                                        y.get_sort_title()))
         
         for txt in all_texts:
             iter = self.__store.append()

@@ -28,15 +28,25 @@ text_load_from_file (Text *txt, gboolean metadata_only)
         g_strstrip (buffer);
 
         if (metadata) {
-            if (!strncasecmp (buffer, "author:", 7)) {
+            if (!g_ascii_strncasecmp (buffer, "author:", 7)) {
                 if (txt->author == NULL) {
                     txt->author = g_strdup (buffer+7);
                     g_strstrip (txt->author);
                 }
-            } else if (!strncasecmp (buffer, "title:", 6)) {
+            } else if (!g_ascii_strncasecmp (buffer, "title:", 6)) {
                 if (txt->title == NULL) {
                     txt->title = g_strdup (buffer+6);
                     g_strstrip (txt->title);
+                }
+            } else if (!g_ascii_strncasecmp (buffer, "sortauthor:", 11)) {
+                if (txt->sort_author == NULL) {
+                    txt->sort_author = g_ascii_strdown (buffer+11, -1);
+                    g_strstrip (txt->sort_author);
+                }
+            } else if (!g_ascii_strncasecmp (buffer, "sorttitle:", 10)) {
+                if (txt->sort_title == NULL) {
+                    txt->sort_title = g_ascii_strdown (buffer+10, -1);
+                    g_strstrip (txt->sort_title);
                 }
             } else {
                 metadata = FALSE;
@@ -101,6 +111,8 @@ text_dealloc (Text *txt)
     g_free (txt->filename);
     g_free (txt->title);
     g_free (txt->author);
+    g_free (txt->sort_title);
+    g_free (txt->sort_author);
     g_free (txt->token_stream);
     g_free (txt);
 }
@@ -124,6 +136,54 @@ text_get_author (Text *txt)
 {
     g_return_val_if_fail (txt != NULL, NULL);
     return txt->author ? txt->author : "Unknown Author";
+}
+
+const char *
+text_get_sort_title (Text *txt)
+{
+    const char *title;
+
+    g_return_val_if_fail (txt != NULL, NULL);
+    if (txt->sort_title == NULL) {
+
+        title = text_get_title (txt);
+        if (! g_ascii_strncasecmp (title, "the ", 4))
+            title += 4;
+        else if (! g_ascii_strncasecmp (title, "a ", 2))
+            title += 2;
+
+        txt->sort_title = g_ascii_strdown (title, -1);
+
+        g_strstrip (txt->sort_title);
+    }
+
+    return txt->sort_title;
+}
+
+const char *
+text_get_sort_author (Text *txt)
+{
+    const char *author;
+    const char *last_space;
+    g_return_val_if_fail (txt != NULL, NULL);
+    if (txt->sort_author == NULL) {
+
+        author = text_get_author (txt);
+        last_space = rindex (author, ' ');
+        if (last_space) {
+            char *tmp1 = g_strndup (author, last_space-author);
+            char *tmp2 = g_strdup_printf ("%s %s", last_space+1, tmp1);
+            txt->sort_author = g_ascii_strdown (tmp2, -1);
+            g_free (tmp1);
+            g_free (tmp2);
+        } else {
+            txt->sort_author = g_ascii_strdown (author, -1);
+        }
+
+        g_strstrip (txt->sort_author);
+    }
+
+    return txt->sort_author;
 }
 
 int
@@ -211,6 +271,20 @@ py_text_get_author (PyObject *self, PyObject *args)
 }
 
 static PyObject *
+py_text_get_sort_title (PyObject *self, PyObject *args)
+{
+    Text *txt = text_from_py (self);
+    return PyString_FromString (text_get_sort_title (txt));
+}
+
+static PyObject *
+py_text_get_sort_author (PyObject *self, PyObject *args)
+{
+    Text *txt = text_from_py (self);
+    return PyString_FromString (text_get_sort_author (txt));
+}
+
+static PyObject *
 py_text_get_length (PyObject *self, PyObject *args)
 {
     Text *txt = text_from_py (self);
@@ -239,12 +313,14 @@ py_text_preload (PyObject *self, PyObject *args)
 }
 
 static PyMethodDef py_text_methods[] = {
-    { "get_filename", py_text_get_filename, METH_NOARGS },
-    { "get_title",    py_text_get_title,    METH_NOARGS },
-    { "get_author",   py_text_get_author,   METH_NOARGS },
-    { "get_length",   py_text_get_length,   METH_NOARGS },
-    { "get_token",    py_text_get_token,    METH_VARARGS },
-    { "preload",      py_text_preload,      METH_NOARGS },
+    { "get_filename",    py_text_get_filename,    METH_NOARGS },
+    { "get_title",       py_text_get_title,       METH_NOARGS },
+    { "get_author",      py_text_get_author,      METH_NOARGS },
+    { "get_sort_title",  py_text_get_sort_title,  METH_NOARGS },
+    { "get_sort_author", py_text_get_sort_author, METH_NOARGS },
+    { "get_length",      py_text_get_length,      METH_NOARGS },
+    { "get_token",       py_text_get_token,       METH_VARARGS },
+    { "preload",         py_text_preload,         METH_NOARGS },
 
     { NULL, NULL, 0 }
 };

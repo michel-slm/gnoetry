@@ -23,6 +23,9 @@ struct _Text {
     char *title;
     char *author;
 
+    char *sort_title;
+    char *sort_author;
+
     int length;
     Token **token_stream;
 };
@@ -32,9 +35,11 @@ PYBIND_HEADERS (Text, text);
 
 Text *text_new (const char *filename);
 
-const char *text_get_filename (Text *txt);
-const char *text_get_title    (Text *txt);
-const char *text_get_author   (Text *txt);
+const char *text_get_filename    (Text *txt);
+const char *text_get_title       (Text *txt);
+const char *text_get_author      (Text *txt);
+const char *text_get_sort_title  (Text *txt);
+const char *text_get_sort_author (Text *txt);
 
 int    text_get_length    (Text *txt);
 Token *text_get_token     (Text *txt, int i);
