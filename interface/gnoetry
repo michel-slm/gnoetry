@@ -26,7 +26,7 @@ count = 0
 for txt in gnoetics.Library(dir="../texts-ts"):
     tri.add_text(txt)
     count += 1
-    if count > 995:
+    if count > 5:
         break
 t2 = time.time()
 sys.stderr.write("done. (%.1fs)\n" % (t2-t1))

@@ -16,6 +16,7 @@
 ###
 
 import gtk
+import red_pixbuf
 
 class Toolbar(gtk.Toolbar):
 

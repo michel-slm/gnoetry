@@ -40,6 +40,8 @@ class Poem(gobject.GObject):
         if clear:
             p.combine_units()
 
+        p.__seqno = self.__seqno
+
         return p
 
     def get_seqno(self):

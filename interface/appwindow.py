@@ -20,9 +20,16 @@ def new_callback(app):
 
 
 def copy_callback(app):
-    new = AppWindow(model=app.get_model())
-    new.set_poem(app.get_poem().copy())
+    new = app.copy()
     new.show_all()
+
+
+def save_callback(app):
+    app.save(None)
+
+
+def save_as_callback(app):
+    app.save(None, use_previous=False)
 
 
 def print_callback(app):
@@ -41,7 +48,6 @@ def print_callback(app):
     
 
 def close_callback(app):
-    # FIXME: check seqno
     app.close_window()
 
 
@@ -95,6 +101,7 @@ class AppWindow(gtk.Window,
         self.__model = model
         self.__solver = gnoetics.Solver(self.__model)
 
+        self.__save_filename = None
         self.__save_seqno = -1
 
         self.__undo_history = []
@@ -153,6 +160,20 @@ class AppWindow(gtk.Window,
         gnoetics.PoemListener.__init__(self)
 
 
+    def copy(self):
+        cpy = AppWindow(model=self.get_model())
+
+        # We explicitly *don't* copy the save filename
+        #cpy.__save_filename = self.__save_filename
+        
+        cpy.__save_seqno = self.__save_seqno
+        cpy.__undo_history = map(lambda x: x.copy(), self.__undo_history)
+        cpy.__redo_history = map(lambda x: x.copy(), self.__redo_history)
+        cpy.set_poem(self.get_poem().copy())
+
+        return cpy
+
+
     def get_model(self):
         return self.__model
 
@@ -190,14 +211,21 @@ class AppWindow(gtk.Window,
                 stock=gtk.STOCK_COPY,
                 description="Open a new Gnoetry window with the same poem",
                 callback=copy_callback)
+        bar.add("/_File/sep1", is_separator=True)
         bar.add("/_File/_Save",
                 stock=gtk.STOCK_SAVE,
-                description="Save the current poem to a text file")
+                description="Save the current poem",
+                callback=save_callback)
+        bar.add("/_File/_Save AS",
+                stock=gtk.STOCK_SAVE_AS,
+                description="Save the current poem with a different name",
+                callback=save_as_callback)
+        bar.add("/_File/sep2", is_separator=True)
         bar.add("/_File/_Print",
                 stock=gtk.STOCK_PRINT,
                 description="Print the current poem",
                 callback=print_callback)
-        bar.add("/_File/sep", is_separator=True)
+        bar.add("/_File/sep3", is_separator=True)
         bar.add("/_File/_Close",
                 stock=gtk.STOCK_CLOSE,
                 description="Close this window",
@@ -216,20 +244,22 @@ class AppWindow(gtk.Window,
         bar.add("/_Edit/sep1", is_separator=True)
         bar.add("/_Edit/Deselect",
                 description="Deselect all currently selected words",
+                pixbuf_name="deselect_16",
                 sensitive_fn=contains_flagged_check,
                 callback=clear_selection_callback)
         bar.add("/_Edit/sep2", is_separator=True)
         bar.add("/_Edit/Regenerate",
                 description="Remove the selected words and make new choices",
+                pixbuf_name="regenerate_16",
                 sensitive_fn=contains_flagged_check,
                 callback=regenerate_selected_callback)
 
         bar.add("/_Help/About Gnoetry",
                 description="Learn more about Gnoetry",
                 callback=lambda x: about.show_about_gnoetry())
-        bar.add("/_Help/About Beard of Bees",
-                description="Learn more about Beard of Bees",
-                callback=lambda x: about.show_about_beard_of_bees())
+        ###bar.add("/_Help/About Beard of Bees",
+        ###        description="Learn more about Beard of Bees",
+        ###        callback=lambda x: about.show_about_beard_of_bees())
         bar.add("/_Help/About Ubu Roi",
                 description="Learn more about Ubu Roi",
                 callback=lambda x: about.show_about_ubu_roi())
@@ -256,13 +286,13 @@ class AppWindow(gtk.Window,
 
         bar.add("Deselect",
                 "Clear current selection",
-                stock=gtk.STOCK_CLEAR,
+                pixbuf_name="deselect_24",
                 sensitive_fn=contains_flagged_check,
                 callback=clear_selection_callback)
 
         bar.add("Regenerate",
                 "Remove the selected words and make new choices",
-                stock=gtk.STOCK_CONVERT,
+                pixbuf_name="regenerate_24",
                 sensitive_fn=contains_flagged_check,
                 callback=regenerate_selected_callback)
 
@@ -309,10 +339,81 @@ class AppWindow(gtk.Window,
         new_win.show_all()
         
 
-    def close_window(self):
+    def close_window(self, require_confirmation=True):
+        if require_confirmation and self.has_unsaved_changes():
+            warn = gtk.MessageDialog(self,
+                                     gtk.DIALOG_MODAL,
+                                     gtk.MESSAGE_WARNING,
+                                     gtk.BUTTONS_NONE,
+                                     "You have unsaved changes.\n"
+                                     "Are you sure you want to quit?")
+            warn.add_button("Don't Save", 0)
+            warn.add_button(gtk.STOCK_CANCEL, 1)
+            warn.add_button(gtk.STOCK_SAVE, 2)
+            warn.show_all()
+            x = warn.run()
+            warn.destroy()
+
+            if x == 1:
+                return gtk.TRUE
+            elif x == 2:
+                self.save(None)
+
         self.destroy()
         AppWindow.__total_app_window_count -= 1
         if AppWindow.__total_app_window_count == 0:
             gtk.mainquit()
         return gtk.TRUE
+
+
+    def has_unsaved_changes(self):
+        return self.__save_seqno != self.get_poem().get_seqno()
+
+
+    def get_default_filename(self):
+        words = []
+        i = 0
+        p = self.get_poem()
+        while i < len(p):
+            u = p[i]
+            if u.is_bound() \
+               and not u.is_punctuation() \
+               and not u.is_break():
+                words.append(u.get_binding().get_word())
+            if u.is_end_of_line():
+                break
+            i += 1
+            
+
+        if not words:
+            words = ["poem"]
+
+        return string.join(words, "-") + ".txt"
+
+
+    def save(self, target_filename, use_previous=True):
+        p = self.get_poem()
+
+        if target_filename is None and use_previous:
+            target_filename = self.__save_filename
+
+        if target_filename is None:
+            filesel = gtk.FileSelection("Save Your Timeless Work of Art")
+            guess = self.__save_filename or self.get_default_filename()
+            filesel.set_filename(guess)
+            x = filesel.run()
+            target_filename = filesel.get_filename()
+            filesel.destroy()
+            if x == gtk.RESPONSE_CANCEL:
+                return
+
+
+        self.__save_filename = target_filename
+
+        fh = file(target_filename, "w")
+        fh.write(p.to_string(add_timestamp=True))
+        fh.close()
+
+        self.__save_seqno = p.get_seqno()
+        
             
