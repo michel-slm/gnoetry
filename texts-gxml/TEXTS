@@ -10,9 +10,9 @@ Author: Charles Dickens
 Title: The Merry Adventures of Robin Hood
 Author: Howard Pyle
 
-2yb4m10.xml
-Title: Two Years Before the Mast
-Author: Richard Henry Dana
+#2yb4m10.xml
+#Title: Two Years Before the Mast
+#Author: Richard Henry Dana
 
 advsh10.xml
 Title: The Adventures of Sherlock Holmes
@@ -54,9 +54,9 @@ kdnpd10.xml
 Title: Kidnapped
 Author: Robert Louis Stevenson
 
-lvfnd10v2.xml
-Title: Love and Friendship
-Author: Jane Austen
+#lvfnd10v2.xml
+#Title: Love and Friendship
+#Author: Jane Austen
 
 #lwfan10.xml
 #Title: Lady Windermere's Fan
@@ -79,9 +79,9 @@ moby10.xml
 Title: Moby Dick
 Author: Herman Melvilleq
 
-mohic10.xml
-Title: The Last of the Mohicans
-Author: James Fenimore Cooper
+#mohic10.xml
+#Title: The Last of the Mohicans
+#Author: James Fenimore Cooper
 
 notun10.xml
 Title: Notes from the Underground
@@ -95,9 +95,9 @@ otoof10.xml
 Title: On the Origin of Species
 Author: Charles Darwin
 
-pandp10.xml
-Title: Pride and Prejudice
-Author: Jane Austen
+#pandp10.xml
+#Title: Pride and Prejudice
+#Author: Jane Austen
 
 prsjn10.xml
 Title: Prester John
@@ -106,17 +106,17 @@ Author: John Buchan
 ### rbcru10.xml
 ### rbcr210.xml
 
-rime10.xml
-Title: The Rime of the Ancient Mariner
-Author: Samuel Taylor Coleridge
+#rime10.xml
+#Title: The Rime of the Ancient Mariner
+#Author: Samuel Taylor Coleridge
 
 sawyr10.xml
 Title: Tom Sawyer
 Author: Mark Twain
 
-sense11.xml
-Title: Sense and Sensibility
-Author: Jane Austen
+#sense11.xml
+#Title: Sense and Sensibility
+#Author: Jane Austen
 
 taras10.xml
 Title: Taras Bulba and Other Tales
