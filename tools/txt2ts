@@ -1,0 +1,247 @@
+#!/usr/bin/python
+# This is -*- Python -*-
+
+import string, sys, re
+
+dash_re = re.compile(" *--+")
+ellipsis_re = re.compile(" *(\. *){3,}")
+
+abbrev_list = ("dr.", "mr.", "ms.", "mrs.", "m.", "st.")
+
+def is_abbrev(word):
+    return word.lower() in abbrev_list
+
+def is_terminal(word):
+    if word[-1] == "." and (len(word) == 1 or word[-2] != "."):
+        return not is_abbrev(word)
+    return word[-1] in ("?", "!")
+
+def strip_single_quotes(word):
+    while word and word[0] == "'":
+        word = word[1:].strip()
+    while word and word[-1] == "'" and word[-2:] != "s'":
+        word = word[:-2].strip()
+    return word
+
+def strip_trailing_punctuation(word):
+    word = word.strip()
+    while word and word[-1] in (".", ",", ";", ":", "-", "!", "?"):
+        word = word[:-1].strip()
+    return strip_single_quotes(word)
+
+def split_punctuation(word):
+    word = strip_single_quotes(word)
+    if word[-1] in (",", ";", ":", "-"):
+        return strip_trailing_punctuation(word[:-1]), word[-1]
+    elif word[-3:] == "...":
+        return strip_trailing_punctuation(word[:-3]), word[-3:]
+    else:
+        return word, None
+
+def punct_token(p):
+    return "*punct* %s" % p
+
+def is_punct_token(t):
+    return t[:7] == "*punct*"
+
+def break_token():
+    return "*break*"
+
+###############################################################################
+
+def process_line(line):
+
+    line = line.strip().lower()
+    if not line:
+        return []
+
+    line_tokens = []
+
+    # strip out quotes and other misc. punctuation
+    line = line.replace('"', "")
+    line = line.replace('`', "")
+    line = line.replace('*', "")
+    line = line.replace('_', "")
+
+    # Better handling for adjacent punctuation and single-quotes
+    line = line.replace(",'", ",' ")
+    line = line.replace(".'", ".' ")
+    line = line.replace("?'", "?' ")
+    line = line.replace("!'", "!' ")
+
+    # remove/ single quotes, but only on word boundaries
+    i = 0
+    while i != -1:
+        i = line.find("'", i)
+        if i != -1:
+            if (i == 0 or line[i-1] == " ") or \
+                   (i == len(line)-1 or line[i+1] == " "):
+                line = line[:i] + line[i+1:]
+            else:
+                i += 1
+                
+    # Better handling for adjacent punctuation and single-quotes
+    line = line.replace(",'", ",' ")
+    line = line.replace(".'", ".' ")
+    line = line.replace("?'", "?' ")
+    line = line.replace("!'", "!' ")
+
+
+    # map -- to commas, in a semi-intelligent way
+    if line.find("--") != -1:
+        line = dash_re.sub(", ", line)
+
+    # do something smart with ellipses
+    if line.find(". .") != -1:
+        line = ellipsis_re.sub("... ", line)
+
+    # remove square brackets
+    line = line.replace("[", "")
+    line = line.replace("]", "")
+    
+    # map parens to commas
+    line = line.replace(")", ", ")
+    line = line.replace("(", ", ")
+    
+    tokens = line.split()
+
+    for token in tokens:
+        token = token.strip()
+        if token:
+            if is_terminal(token):
+                if len(token) > 1:
+                    line_tokens.append(token[:-1])
+                    line_tokens.append(punct_token(token[-1]))
+                    line_tokens.append(break_token())
+            else:
+                word, punc = split_punctuation(token)
+                if word:
+                    line_tokens.append(word)
+                if punc:
+                    line_tokens.append(punct_token(punc))
+
+    return line_tokens
+
+###############################################################################
+
+def sentence_looks_reasonable(sentence):
+
+    # We don't like short sentences.
+    if len(sentence) < 5:
+        return False
+
+    # We don't like leading punctuation.
+    if is_punct_token(sentence[0]):
+        return False
+
+    # We don't like a lack of trailing punctuation.
+    if not is_punct_token(sentence[-1]):
+        return False
+
+    # We don't like weird one-character words.
+    for word in sentence:
+        if len(word) == 1 and word not in "aio0123456789&":
+            return False
+
+    # We don't like adjacent punctuation.
+    i = 0
+    for i in range(len(sentence)-1):
+        if is_punct_token(sentence[i]) and is_punct_token(sentence[i+1]):
+            return False
+        i += 1
+
+    return True
+
+
+def clean_sentence(sentence):
+    sentence = list(sentence)
+
+    # Remove adjacent duplicate punctuation
+    i = 0
+    while i < len(sentence)-1:
+        if is_punct_token(sentence[i]) and sentence[i] == sentence[i+1]:
+            sentence.pop(i)
+        else:
+            i += 1
+
+    # Merge hyphenated words
+    i = 0
+    while i < len(sentence)-2:
+        if is_punct_token(sentence[i+1]) \
+           and sentence[i+1][-1] == "-":
+            t = sentence[i] + "-" + sentence[i+2]
+            sentence[i] = t
+            sentence.pop(i+1)
+            sentence.pop(i+1)
+        else:
+            i += 1
+
+    return sentence
+    
+
+def tokens_to_sentences(token_list):
+    brk = break_token()
+    sentences = []
+    this_sentence = []
+    for t in token_list:
+        if t == brk:
+            if this_sentence:
+                this_sentence = clean_sentence(this_sentence)
+                sentences.append(this_sentence)
+            this_sentence = []
+        else:
+            this_sentence.append(t)
+    return sentences
+
+
+def write_sentence_as_tokens(sentence):
+    for t in sentence:
+        print t
+    print break_token()
+
+###############################################################################
+
+if len(sys.argv) > 1:
+    f = file(sys.argv[1])
+else:
+    f = sys.stdin
+
+tokens = []
+header = []
+in_header = False
+for line in f:
+    line = line.strip()
+    if line[:13] == "@BEGIN_HEADER":
+        in_header = True
+    elif line[:11] == "@END_HEADER":
+        in_header = False
+    elif in_header:
+        header.append(line)
+    else:
+        tokens.extend(process_line(line))
+
+sentences = tokens_to_sentences(tokens)
+
+sys.stderr.write("Found %d sentences.\n" % len(sentences))
+
+good_sentences = []
+bad_sentences = []
+
+for s in sentences:
+    if sentence_looks_reasonable(s):
+        good_sentences.append(s)
+    else:
+        bad_sentences.append(s)
+
+bad_p = 100.0*len(bad_sentences)/len(sentences)
+sys.stderr.write("Dropping %d suspicious sentences. (%.1f%%)\n" % (len(bad_sentences), bad_p))
+
+for line in header:
+    print line
+    
+for s in good_sentences:
+    write_sentence_as_tokens(s)
+
+
+
+

@@ -4,6 +4,10 @@ import time, os
 
 import gnoetics
 
+class SolveFailed:
+    pass
+
+
 def find_leading_trailing(poem, i):
 
     assert 0 <= i < len(poem)
@@ -306,7 +310,8 @@ class Solver:
             self.__actions.append([i, "right", left_solns, right_solns])
         else:
             while 1:
-                assert self.__actions
+                if not self.__actions:
+                    raise SolveFailed
                 act = self.__actions[-1]
                 i = act[0]
                 mode = act[1]

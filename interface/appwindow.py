@@ -1,4 +1,4 @@
-import os, tempfile
+import os, tempfile, sys
 
 import gnoetics
 
@@ -53,12 +53,26 @@ def redo_callback(app):
     app.redo()
 
 
-def clear_selected_callback(app):
+def clear_selection_callback(app):
+    p = app.get_poem()
+    for i in range(len(p)):
+        p.set_flag(i, False)
+
+
+def regenerate_selected_callback(app):
     app.save_for_undo()
-    app.get_poem().freeze_changed()
-    app.get_poem().unbind_flagged()
-    app.get_solver().full_solution()
-    app.get_poem().thaw_changed()
+    p = app.get_poem()
+    p_copy = p.copy()
+    p.freeze_changed()
+    p.unbind_flagged()
+
+    try:
+        app.get_solver().full_solution()
+    except gnoetics.SolveFailed:
+        sys.stderr.write("Oops!\n")
+        app.set_poem(p_copy)
+        
+    p.thaw_changed()
 
 
 ###
@@ -199,11 +213,16 @@ class AppWindow(gtk.Window,
                 description="Redo the previously undone changes",
                 sensitive_fn=lambda: self.can_redo(),
                 callback=redo_callback)
-        bar.add("/_Edit/sep", is_separator=True)
-        bar.add("/_Edit/Regenerate Selected Text",
+        bar.add("/_Edit/sep1", is_separator=True)
+        bar.add("/_Edit/Deselect",
+                description="Deselect all currently selected words",
+                sensitive_fn=contains_flagged_check,
+                callback=clear_selection_callback)
+        bar.add("/_Edit/sep2", is_separator=True)
+        bar.add("/_Edit/Regenerate",
                 description="Remove the selected words and make new choices",
                 sensitive_fn=contains_flagged_check,
-                callback=clear_selected_callback)
+                callback=regenerate_selected_callback)
 
         bar.add("/_Help/About Gnoetry",
                 description="Learn more about Gnoetry",
@@ -218,6 +237,11 @@ class AppWindow(gtk.Window,
 
     def __assemble_toolbar(self, bar):
 
+        def contains_flagged_check():
+            p = self.get_poem()
+            return p and p.contains_flagged()
+
+
         bar.add("Undo",
                 "Undo the previous changes",
                 stock=gtk.STOCK_UNDO,
@@ -230,8 +254,23 @@ class AppWindow(gtk.Window,
                 sensitive_fn=lambda: self.can_redo(),
                 callback=redo_callback)
 
+        bar.add("Deselect",
+                "Clear current selection",
+                stock=gtk.STOCK_CLEAR,
+                sensitive_fn=contains_flagged_check,
+                callback=clear_selection_callback)
+
+        bar.add("Regenerate",
+                "Remove the selected words and make new choices",
+                stock=gtk.STOCK_CONVERT,
+                sensitive_fn=contains_flagged_check,
+                callback=regenerate_selected_callback)
+
 
     def poem_changed(self, p):
+        self.__toolbar.sensitize_toolbar_items()
+
+    def poem_changed_flag(self, p, i):
         self.__toolbar.sensitize_toolbar_items()
 
 
@@ -239,6 +278,8 @@ class AppWindow(gtk.Window,
         p = self.get_poem()
         if p and p.is_fully_bound():
             self.__undo_history.append(p.copy())
+            if len(self.__undo_history) > 100:
+                self.__undo_history.pop(0)
             if clear_redo:
                 self.__redo_history = []
         self.__toolbar.sensitize_toolbar_items()
