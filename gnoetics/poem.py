@@ -235,6 +235,13 @@ class Poem(gobject.GObject):
             self.emit("changed_flag", i)
 
 
+    def contains_flagged(self):
+        for u in self.__units:
+            if u.get_flag():
+                return True
+        return False
+
+
     def unbind_flagged(self):
         self.freeze_changed()
 

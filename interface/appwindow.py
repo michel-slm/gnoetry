@@ -45,31 +45,46 @@ def close_callback(app):
     app.close_window()
 
 
+def undo_callback(app):
+    app.undo()
+
+
+def redo_callback(app):
+    app.redo()
+
+
 def clear_selected_callback(app):
+    app.save_for_undo()
+    app.get_poem().freeze_changed()
     app.get_poem().unbind_flagged()
     app.get_solver().full_solution()
+    app.get_poem().thaw_changed()
 
 
 ###
 ### AppWindow class
 ###
 
-class AppWindow(gtk.Window):
+class AppWindow(gtk.Window,
+                gnoetics.PoemListener):
 
     __total_app_window_count = 0
 
     def __init__(self, model):
         gtk.Window.__init__(self)
+        
         self.set_title("Gnoetry 0.2")
 
         AppWindow.__total_app_window_count += 1
         self.connect("delete_event", lambda aw, ev: aw.close_window())
 
         self.__model = model
-        self.__poem = None
         self.__solver = gnoetics.Solver(self.__model)
 
         self.__save_seqno = -1
+
+        self.__undo_history = []
+        self.__redo_history = []
 
         self.__vbox = gtk.VBox(0, 0)
         self.add(self.__vbox)
@@ -84,16 +99,19 @@ class AppWindow(gtk.Window):
         self.__vbox.pack_start(self.__menubar, expand=0, fill=1)
 
         ### Toolbar
-        #self.__toolbar = red_toolbar.Toolbar()
-        #self.__assemble_toolbar(self.__toolbar)
-        #self.__vbox.pack_start(self.__toolbar, expand=0, fill=1)
+        self.__toolbar = red_toolbar.Toolbar()
+        self.__toolbar.set_user_data(self)
+        self.__assemble_toolbar(self.__toolbar)
+        self.__vbox.pack_start(self.__toolbar, expand=0, fill=1)
 
 
         ### The poem views
         self.__tileview = PoemTileView()
         self.__textview = PoemTextView()
 
+
         view_container = gtk.HBox(0, 10)
+        view_container.set_size_request(-1, 300)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
@@ -117,6 +135,9 @@ class AppWindow(gtk.Window):
 
         self.__vbox.show_all()
 
+        # Yes, we are doing this last on purpose.
+        gnoetics.PoemListener.__init__(self)
+
 
     def get_model(self):
         return self.__model
@@ -127,7 +148,7 @@ class AppWindow(gtk.Window):
 
 
     def set_poem(self, p):
-        self.__poem = p
+        gnoetics.PoemListener.set_poem(self, p)
         self.__save_seqno = -1
         
         self.__tileview.set_poem(p)
@@ -137,11 +158,12 @@ class AppWindow(gtk.Window):
         self.__solver.full_solution()
 
 
-    def get_poem(self):
-        return self.__poem
-    
-
     def __assemble_menubar(self, bar):
+
+        def contains_flagged_check():
+            p = self.get_poem()
+            return p and p.contains_flagged()
+        
         bar.add("/_File")
         bar.add("/_Edit")
         bar.add("/_Help")
@@ -161,15 +183,26 @@ class AppWindow(gtk.Window):
                 stock=gtk.STOCK_PRINT,
                 description="Print the current poem",
                 callback=print_callback)
-        bar.add("/_File/sep", is_separator=1)
+        bar.add("/_File/sep", is_separator=True)
         bar.add("/_File/_Close",
                 stock=gtk.STOCK_CLOSE,
                 description="Close this window",
                 callback=close_callback)
 
+        bar.add("/_Edit/Undo",
+                stock=gtk.STOCK_UNDO,
+                description="Undo the previous changes",
+                sensitive_fn=lambda: self.can_undo(),
+                callback=undo_callback)
+        bar.add("/_Edit/Redo",
+                stock=gtk.STOCK_REDO,
+                description="Redo the previously undone changes",
+                sensitive_fn=lambda: self.can_redo(),
+                callback=redo_callback)
+        bar.add("/_Edit/sep", is_separator=True)
         bar.add("/_Edit/Regenerate Selected Text",
-                stock=gtk.STOCK_CLEAR,
                 description="Remove the selected words and make new choices",
+                sensitive_fn=contains_flagged_check,
                 callback=clear_selected_callback)
 
         bar.add("/_Help/About Gnoetry",
@@ -184,8 +217,51 @@ class AppWindow(gtk.Window):
 
 
     def __assemble_toolbar(self, bar):
-        pass
 
+        bar.add("Undo",
+                "Undo the previous changes",
+                stock=gtk.STOCK_UNDO,
+                sensitive_fn=lambda: self.can_undo(),
+                callback=undo_callback)
+
+        bar.add("Redo",
+                "Redo the previously undone changes",
+                stock=gtk.STOCK_REDO,
+                sensitive_fn=lambda: self.can_redo(),
+                callback=redo_callback)
+
+
+    def poem_changed(self, p):
+        self.__toolbar.sensitize_toolbar_items()
+
+
+    def save_for_undo(self, clear_redo=True):
+        p = self.get_poem()
+        if p and p.is_fully_bound():
+            self.__undo_history.append(p.copy())
+            if clear_redo:
+                self.__redo_history = []
+        self.__toolbar.sensitize_toolbar_items()
+            
+    def can_undo(self):
+        return len(self.__undo_history) > 0
+
+    def undo(self):
+        if self.can_undo():
+            self.__redo_history.append(self.get_poem().copy())
+            p = self.__undo_history.pop(-1)
+            self.set_poem(p)
+            
+
+    def can_redo(self):
+        return len(self.__redo_history) > 0
+
+    def redo(self):
+        if self.can_redo():
+            p = self.__redo_history.pop(-1)
+            self.save_for_undo(clear_redo=False)
+            self.set_poem(p)
+            
 
     def new_window(self):
         new_win = AppWindow()

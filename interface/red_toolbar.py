@@ -25,6 +25,12 @@ class Toolbar(gtk.Toolbar):
         self.update_pending = 0
 
         self.items = []
+        self.user_data = None
+
+
+    def set_user_data(self, x):
+        self.user_data = x
+
 
     def add(self,
             text,
@@ -52,7 +58,7 @@ class Toolbar(gtk.Toolbar):
         else:
             image = None
 
-        w = self.append_item(text, tooltip, None, image, callback)
+        w = self.append_item(text, tooltip, None, image, lambda x: callback(self.user_data))
         w.set_sensitive(0)
 
         item = {"text":text,
