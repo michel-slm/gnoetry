@@ -32,17 +32,10 @@ while 1:
 
     verse = gnoetics.BlankVerse(4, 4)
 
-    i = 0
-    while i < len(verse):
-        u = verse[i]
-        if u.is_not_bound() and u.is_head():
-            verse.bind_left(i, gnoetics.token_lookup_break())
-            i += 1
-        elif u.is_not_bound() and u.is_tail():
-            verse.bind_right(i, gnoetics.token_lookup_break())
-        else:
-            i += 1
+    def foo(x):
+        print "foo!"
 
+    verse.bind_mandatory_breaks()
 
     # Actions are three-tuples of the form:
     #  (unit index, left_solns, right_solns)
@@ -53,8 +46,7 @@ while 1:
         i = verse.find_first_unbound()
         u = verse[i]
 
-        leading_tokens, trailing_tokens = \
-                        gnoetics.find_leading_trailing(verse, i)
+        leading_tokens, trailing_tokens = verse.extract_surrounding_tokens(i)
 
         left_solns, right_solns = gnoetics.solve_unit(tri,
                                                       leading_tokens,

@@ -1,13 +1,15 @@
 # This is -*- Python -*-
 
 import string
+import gobject
+
 import gnoetics
 from poeticunit import *
 
-class Poem:
-
+class Poem(gobject.GObject):
 
     def __init__(self, form_name, units=None, magic=None):
+        gobject.GObject.__init__(self)
         if magic:
             assert units is None
             units = _unit_magic(magic)
@@ -16,6 +18,9 @@ class Poem:
         assert units
         self.__form_name = form_name
         self.__units = units
+
+        self.__freeze_changed_count = 0
+        self.__freeze_changed_pending = False
 
         ### Sanity-check
         assert len(self.__units) > 0
@@ -26,6 +31,22 @@ class Poem:
         assert self.__units[-1].is_end_of_line()
         assert self.__units[-1].is_end_of_stanza()
 
+    def freeze_changed(self):
+        assert self.__freeze_changed_count >= 0
+        self.__freeze_changed_count += 1
+
+    def thaw_changed(self):
+        assert self.__freeze_changed_count > 0
+        self.__freeze_changed_count -= 1
+        if self.__freeze_changed_count == 0 and self.__freeze_changed_pending:
+            self.__freeze_changed_pending = False
+            self.emit_changed()
+
+    def emit_changed(self):
+        if self.__freeze_changed_count == 0:
+            self.emit("changed")
+        else:
+            self.__freeze_changed_pending = True
 
     def form_name(self):
         return self.__form_name
@@ -109,6 +130,7 @@ class Poem:
         site.bind(tok)
         if repl:
             self.__units[i:i+1] = repl
+        self.emit_changed()
         return bind_at
 
 
@@ -119,6 +141,20 @@ class Poem:
     def bind_right(self, i, tok):
         self.bind(i, tok, is_left=False)
 
+    
+    def bind_mandatory_breaks(self):
+        i = 0
+        while i < len(self.__units):
+            u = self.__units[i]
+            if u.is_not_bound() and u.is_head():
+                self.bind_left(i, gnoetics.token_lookup_break())
+                i += 1
+            elif u.is_not_bound() and u.is_tail():
+                self.bind_right(i, gnoetics.token_lookup_break())
+            else:
+                i += 1
+                
+
     def unbind(self, i):
         i = self.__fix_index(i)
         assert self.__good_index(i)
@@ -128,6 +164,43 @@ class Poem:
 
         u.unbind()
         self.combine_units() # FIXME: could be optimized
+
+        self.emit_changed()
+
+
+    def extract_surrounding_tokens(self, i):
+
+        assert 0 <= i < len(self.__units)
+
+        u = self.__units[i]
+        assert u.is_not_bound()
+
+        leading_tokens = []
+        trailing_tokens = []
+
+        j = i-1
+        while 0 <= j:
+            u = self.__units[j]
+            if u.is_not_bound():
+                break
+            tok = u.get_binding()
+            leading_tokens.insert(0, tok)
+            if tok.is_break():
+                break
+            j -= 1
+
+        j = i+1
+        while j < len(self.__units):
+            u = self.__units[j]
+            if u.is_not_bound():
+                break
+            tok = u.get_binding()
+            trailing_tokens.append(tok)
+            if tok.is_break():
+                break
+            j += 1
+
+        return leading_tokens, trailing_tokens
 
 
     def to_string(self, highlight=None, show_line_break_info=False):
@@ -215,6 +288,14 @@ def _unit_magic(scheme):
         units.append(PoeticUnit(**args))
 
     return units
+
+gobject.type_register(Poem)
+
+gobject.signal_new("changed",
+                   Poem,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   ())
         
 ##############################################################################
 
@@ -244,3 +325,6 @@ class BlankVerse(Poem):
         Poem.__init__(self,
                       "Blank Verse (%d/%d)" % (stanzas, lines_per_stanza),
                       magic=magic)
+
+
+
