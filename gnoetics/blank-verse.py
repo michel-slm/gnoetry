@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python2.3
 
 import random, sys, string, time
 import gnoetics
 
 tri = gnoetics.Trimodel()
 
-sys.stderr.write("Loading... ")
+sys.stderr.write("*** Loading... ")
 t1 = time.time()
 count = 0
 for txt in gnoetics.Library(dir="../texts-ts"):
@@ -16,7 +16,7 @@ for txt in gnoetics.Library(dir="../texts-ts"):
 t2 = time.time()
 sys.stderr.write("done. (%.1fs)\n" % (t2-t1))
 
-sys.stderr.write("Preparing model... ")
+sys.stderr.write("*** Preparing model... ")
 t1 = time.time()
 tri.prepare()
 t2 = time.time()
@@ -26,7 +26,7 @@ sys.stderr.write("\n")
 
 ##############################################################################
 
-for i in range(5):
+while 1:
 
     t1 = time.time()
 
@@ -96,9 +96,14 @@ for i in range(5):
     print verse.to_string()
 
     print "(Generated poem in %.2fs)\n\n" % (t2-t1)
+    print
 
+    print "Press return for another poem: ",
+    sys.stdin.readline()
 
-
+    print
+    print
+    print
 
 
 
