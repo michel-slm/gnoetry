@@ -200,7 +200,7 @@ class PoemPicker(gobject.GObject):
         self.add(PoemChoice_Haiku())
         self.add(PoemChoice_Tanka())
         self.add(PoemChoice_Renga())
-        self.add(PoemChoice_Sonnet())
+        #self.add(PoemChoice_Sonnet())
         self.add(PoemChoice_BlankVerse())
 
 
