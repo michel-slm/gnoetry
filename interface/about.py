@@ -79,7 +79,7 @@ def show_about_gnoetry():
         for line in manifesto_lines:
             x = gtk.Label()
             x.set_markup(line)
-            x.set_line_wrap(gtk.TRUE)
+            x.set_line_wrap(True)
             x.set_justify(gtk.JUSTIFY_CENTER)
             vbox.pack_start(x, expand=1, fill=1)
         vbox.show_all()

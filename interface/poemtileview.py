@@ -193,7 +193,7 @@ class PoemTileView(gtk.DrawingArea,
         old_fg = gc.foreground
         old_bg = gc.background
         gc.set_foreground(bg)
-        self.__pixmap.draw_rectangle(gc, gtk.TRUE, x, y, w-1, h-1)
+        self.__pixmap.draw_rectangle(gc, True, x, y, w-1, h-1)
         gc.set_foreground(fg)
         gc.set_background(bg)
 
@@ -202,7 +202,7 @@ class PoemTileView(gtk.DrawingArea,
                                   y + self.__word_y_pad,
                                   layout)
         if draw_box:
-            self.__pixmap.draw_rectangle(gc, gtk.FALSE, x, y, w-1, h-1)
+            self.__pixmap.draw_rectangle(gc, False, x, y, w-1, h-1)
         gc.set_foreground(old_fg)
         gc.set_background(old_bg)
 
@@ -244,7 +244,7 @@ class PoemTileView(gtk.DrawingArea,
         self.__assemble_tile_info()
         req.width = self.__x_size
         req.height = self.__y_size
-        return gtk.TRUE
+        return True
 
 
     def __configure_handler(self, ev):
@@ -256,23 +256,23 @@ class PoemTileView(gtk.DrawingArea,
         gc = self.get_style().bg_gc[gtk.STATE_NORMAL]
         fg = gc.foreground
         gc.set_foreground(self.__bg_color)
-        self.__pixmap.draw_rectangle(gc, gtk.TRUE, 0, 0, w, h)
+        self.__pixmap.draw_rectangle(gc, True, 0, 0, w, h)
         gc.set_foreground(fg)
 
         self.__render()
 
-        return gtk.TRUE
+        return True
 
 
     def __expose_handler(self, ev):
         x, y, w, h = ev.area
         gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
         self.window.draw_drawable(gc, self.__pixmap, x, y, x, y, w, h)
-        return gtk.FALSE
+        return False
 
 
     def __enter_notify_handler(self, ev):
-        return gtk.TRUE
+        return True
 
 
     def __leave_notify_handler(self, ev):
@@ -280,7 +280,7 @@ class PoemTileView(gtk.DrawingArea,
         self.__pointer_y = None
         self.__point_at(None)
         
-        return gtk.TRUE
+        return True
 
 
     def __motion_notify_handler(self, ev):
@@ -301,7 +301,7 @@ class PoemTileView(gtk.DrawingArea,
             poem = self.get_poem()
             poem.set_flag(i, flag)
         
-        return gtk.TRUE
+        return True
 
 
     def __button_press_handler(self, ev):
@@ -310,7 +310,7 @@ class PoemTileView(gtk.DrawingArea,
             flag = not (ev.state & gtk.gdk.SHIFT_MASK)
             poem.set_flag(self.__pointing_at, flag)
 
-        return gtk.TRUE
+        return True
 
 
     def poem_changed(self, poem):

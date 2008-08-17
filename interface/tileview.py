@@ -240,7 +240,7 @@ class TileView(gtk.DrawingArea,
         old_fg = gc.foreground
         old_bg = gc.background
         gc.set_foreground(bg)
-        self.__pixmap.draw_rectangle(gc, gtk.TRUE, x, y, w-1, h-1)
+        self.__pixmap.draw_rectangle(gc, True, x, y, w-1, h-1)
         gc.set_foreground(fg)
         gc.set_background(bg)
         layout = self.__get_layout(txt)
@@ -250,7 +250,7 @@ class TileView(gtk.DrawingArea,
                                   y + self.__word_y_pad,
                                   layout)
         if draw_box:
-            self.__pixmap.draw_rectangle(gc, gtk.FALSE, x, y, w-1, h-1)
+            self.__pixmap.draw_rectangle(gc, False, x, y, w-1, h-1)
         gc.set_foreground(old_fg)
         gc.set_background(old_bg)
 
@@ -302,7 +302,7 @@ class TileView(gtk.DrawingArea,
         w, h = self.__get_total_size()
         req.width = w
         req.height = h
-        return gtk.TRUE
+        return True
     
 
     def __configure_handler(self, ev):
@@ -314,19 +314,19 @@ class TileView(gtk.DrawingArea,
         gc = self.get_style().bg_gc[gtk.STATE_NORMAL]
         fg = gc.foreground
         gc.set_foreground(self.__bg_color)
-        self.__pixmap.draw_rectangle(gc, gtk.TRUE, 0, 0, w, h)
+        self.__pixmap.draw_rectangle(gc, True, 0, 0, w, h)
         gc.set_foreground(fg)
 
         self.__draw_all()
 
-        return gtk.TRUE
+        return True
 
 
     def __expose_handler(self, ev):
         x, y, w, h = ev.area
         gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
         self.window.draw_drawable(gc, self.__pixmap, x, y, x, y, w, h)
-        return gtk.FALSE
+        return False
 
 
     def __motion_notify_handler(self, ev):
@@ -347,7 +347,7 @@ class TileView(gtk.DrawingArea,
                 self.__model.set_selection_flag(line_num, col_num, flag)
         self.__highlight_tile(line_num, col_num)
 
-        return gtk.TRUE
+        return True
 
 
     def __button_press_handler(self, ev):
@@ -369,12 +369,12 @@ class TileView(gtk.DrawingArea,
         line_num, col_num, tile = self.__point_to_tile(x, y)
         if line_num is not None:
             self.__highlight_tile(line_num, col_num)
-        return gtk.TRUE
+        return True
         
 
     def __leave_notify_handler(self, ev):
         self.__highlight_tile(None, None)
-        return gtk.TRUE
+        return True
 
     
     def do_changed_line(self, line_num):

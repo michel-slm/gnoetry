@@ -1,9 +1,9 @@
-#!/usr/bin/python2.3
+#!/usr/bin/python
 # This is -*- Python -*-
 
 import sys, string, time
 
-sys.path.append("/opt/pygtk/lib/python2.3/site-packages")
+#sys.path.append("/opt/pygtk/lib/python2.3/site-packages")
 import pygtk
 pygtk.require("2.0")
 import pango, gtk
@@ -13,7 +13,7 @@ import gnoetics
 
 import appwindow, splash, textpicker, poemtextview, poemtileview
 
-gtk.threads_init()
+gtk.gdk.threads_init()
 
 # A hack: read a font off of the command line
 if len(sys.argv) == 2:
@@ -57,7 +57,9 @@ def setup():
 def post_splash_cb():
     appwindow.launch(is_first=True)
 
-splash.splash(4, post_splash_cb)
+# No splash screen, just go straight to the callback.
+#splash.splash(4, post_splash_cb)
+post_splash_cb()
 
 
 gtk.main()

@@ -78,7 +78,7 @@ def weight_picker_finished_cb(picker, poem, model, weights):
                                 gtk.BUTTONS_NONE,
                                 " Building statistical model")
         win.show_all()
-        gtk.timeout_add(100, wait_for_model_cb, poem, model, weights, win)
+        gobject.timeout_add(100, wait_for_model_cb, poem, model, weights, win)
     
 
 def wait_for_model_cb(poem, model, weights, win):
@@ -492,7 +492,7 @@ class AppWindow(gtk.Window,
             warn.destroy()
 
             if x == 1:
-                return gtk.TRUE
+                return True
             elif x == 2:
                 self.save(None)
 
@@ -500,7 +500,7 @@ class AppWindow(gtk.Window,
         AppWindow.__total_app_window_count -= 1
         if AppWindow.__total_app_window_count == 0:
             gtk.main_quit()
-        return gtk.TRUE
+        return True
 
 
     def has_unsaved_changes(self):

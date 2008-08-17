@@ -163,7 +163,7 @@ class PoemPicker(gobject.GObject):
         self.__first = None
         self.__choices = []
 
-        self.__table = gtk.Table(0, 2)
+        self.__table = gtk.Table(1, 2)
         self.__d.vbox.add(self.__table)
 
         self.__d.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
