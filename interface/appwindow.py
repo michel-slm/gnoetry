@@ -142,6 +142,8 @@ Texts:
 """
 
 def print_callback(app):
+    # Save anything we print to /home/gnoetry/printed.
+    app.save("/home/gnoetry/printed/%s" % app.get_default_filename())
     markup = app.get_poem().to_string(add_timestamp=True,
                                       add_latex_markup=True)
 
@@ -571,7 +573,6 @@ class AppWindow(gtk.Window,
             filesel.destroy()
             if x == gtk.RESPONSE_CANCEL:
                 return
-
 
         self.__save_filename = target_filename
 
