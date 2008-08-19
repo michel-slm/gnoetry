@@ -94,6 +94,11 @@ def launch_appwindow(poem, model, weights, win):
     appwin = AppWindow(model=model,
                        weights=weights)
     appwin.set_poem(poem)
+    num_lines = poem.num_lines()
+    # Boost for stanzas
+    num_lines += poem.num_stanzas() - 1
+    # Sketchy hardwired sizes.  Very gross!
+    appwin.set_size_request(-1, min(1000, 250 + int(36 * num_lines)))
     appwin.show_all()
         
 
@@ -262,7 +267,6 @@ class AppWindow(gtk.Window,
 
 
         view_container = gtk.HBox(0, 10)
-        view_container.set_size_request(-1, 900)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
@@ -291,8 +295,10 @@ class AppWindow(gtk.Window,
         # Yes, we are doing this last on purpose.
         gnoetics.PoemListener.__init__(self)
 
+
     def fix_position(self):
         self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
+
 
     def copy(self):
         cpy = AppWindow(model=self.get_model())

@@ -386,6 +386,22 @@ class Poem(gobject.GObject):
 
         return L
 
+    
+    def num_lines(self):
+        count = 0
+        for u in self.__units:
+            if u.is_end_of_line():
+                count += 1
+        return count
+
+
+    def num_stanzas(self):
+        count = 0
+        for u in self.__units:
+            if u.is_end_of_stanza():
+                count += 1
+        return count
+
 
     def to_string(self,
                   add_timestamp=False,
