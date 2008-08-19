@@ -1,6 +1,6 @@
 
 import string
-import gtk, pango
+import gtk, gobject, pango
 import red_pixbuf, manifesto
 
 _about_dict = {}

@@ -290,7 +290,7 @@ class AppWindow(gtk.Window,
         gnoetics.PoemListener.__init__(self)
 
     def fix_position(self):
-        self.set_position(gtk.WIN_POS_CENTER)
+        self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
 
     def copy(self):
         cpy = AppWindow(model=self.get_model())
