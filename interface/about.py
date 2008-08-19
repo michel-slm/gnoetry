@@ -34,7 +34,7 @@ def _show_about_window(title):
     def show_dialog(w):
         w.show_all()
         return 0
-    gtk.idle_add(show_dialog, about)
+    gobject.idle_add(show_dialog, about)
     
     return about.vbox
 

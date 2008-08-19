@@ -120,24 +120,40 @@ def save_as_callback(app):
     app.save(None, use_previous=False)
 
 
+_TEX_DOCUMENT = """
+\\documentclass[12pt]{article}
+\\usepackage{fancyhdr}
+\\pagestyle{fancy}
+\\headheight 18pt
+\\lhead{\\large\\tt Beard of Bees Press}
+\\rhead{\\tt www.beardofbees.com}
+\\cfoot{\\relax}
+\\begin{document}
+\\null\\vskip 6ex minus 4ex
+
+%(markup)s
+\\tiny
+\\vskip 2ex
+\\parindent=0in
+Texts:
+\par
+%(texts)s
+\\end{document}
+"""
+
 def print_callback(app):
     markup = app.get_poem().to_string(add_timestamp=True,
                                       add_latex_markup=True)
 
-    fh = tempfile.NamedTemporaryFile()
-
-    fh.write("\\documentclass[12pt]{article}\n")
-    fh.write("\\pagestyle{empty}\n")
-    fh.write("\\begin{document}\n")
-
-    fh.write(markup)
-
-    fh.write("{\\tiny\\vskip 2ex \\parindent=0in\n")
-    fh.write("Texts:\\par\n")
+    texts_list = []
     for txt in app.get_model().get_texts():
-        fh.write("%s, {\\it %s}\\par\n" % (txt.get_author(), txt.get_title()))
-    fh.write("}\n\\end{document}\n")
-    
+        texts_list.append("%s, {\\it %s}" % (
+                txt.get_author(), txt.get_title()))
+    texts = '\\par\n'.join(texts_list)
+
+    fh = tempfile.NamedTemporaryFile()
+    fh.write(_TEX_DOCUMENT % {'markup': markup,
+                              'texts': texts})
     fh.flush()
 
     dvi_name = fh.name + ".dvi"
@@ -147,7 +163,7 @@ def print_callback(app):
 
     lpr_cmd = os.getenv("GNOETRY_LPR") or "lpr"
     os.system("dvips -f %s | %s" % (dvi_name, lpr_cmd))
-    
+
 
 def close_callback(app):
     app.close_window()
@@ -185,6 +201,7 @@ def regenerate_selected_callback(app):
         app.set_poem(p_copy)
         
     p.thaw_changed()
+    app.fix_position()
 
 
 ###
@@ -243,7 +260,7 @@ class AppWindow(gtk.Window,
 
 
         view_container = gtk.HBox(0, 10)
-        view_container.set_size_request(-1, 400)
+        view_container.set_size_request(-1, 900)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
@@ -267,9 +284,13 @@ class AppWindow(gtk.Window,
 
         self.__vbox.show_all()
 
+        self.fix_position()
+
         # Yes, we are doing this last on purpose.
         gnoetics.PoemListener.__init__(self)
 
+    def fix_position(self):
+        self.set_position(gtk.WIN_POS_CENTER)
 
     def copy(self):
         cpy = AppWindow(model=self.get_model())
@@ -474,6 +495,7 @@ class AppWindow(gtk.Window,
     def new_window(self):
         new_win = AppWindow()
         new_win.show_all()
+        new_win.fix_position()
         
 
     def close_window(self, require_confirmation=True):
