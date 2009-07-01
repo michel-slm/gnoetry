@@ -2,6 +2,10 @@
 import gobject, gtk, gnoetics
 import sys, os, threading
 
+
+TEXT_PICKER_WINDOW_HEIGHT = 600
+
+
 class TextPicker(gobject.GObject):
 
     COLUMN_FLAG = 0
@@ -85,7 +89,7 @@ class TextPicker(gobject.GObject):
         swin.add_with_viewport(treeview)
         swin.show_all()
 
-        swin.set_size_request(-1, 1000)
+        swin.set_size_request(-1, TEXT_PICKER_WINDOW_HEIGHT)
 
         self.__d.vbox.pack_start(swin, expand=1, fill=1)
 
