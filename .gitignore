@@ -1,0 +1,14 @@
+# Temporary files
+*~
+*\#*\#
+*.\#*
+
+# Python bytecodes
+*.pyc
+
+# The C module
+gnoetics/*.so
+gnoetics/build
+
+# Generated files
+texts-ts
