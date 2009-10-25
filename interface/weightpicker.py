@@ -10,13 +10,13 @@ class WeightPicker(gobject.GObject):
         self.__d = gtk.Dialog("Weight Your Source Texts")
         self.__weights = weights
 
-        b = self.__d.add_button("Shuffle", gtk.RESPONSE_NONE)
+        b = self.__d.add_button("_Shuffle", gtk.RESPONSE_NONE)
         b.connect("clicked", lambda b: self.__shuffle_weights())
         
-        b = self.__d.add_button("Randomize", gtk.RESPONSE_NONE)
+        b = self.__d.add_button("_Randomize", gtk.RESPONSE_NONE)
         b.connect("clicked", lambda b: self.__randomize_weights())
 
-        b = self.__d.add_button("Reset", gtk.RESPONSE_NONE)
+        b = self.__d.add_button("R_eset", gtk.RESPONSE_NONE)
         b.connect("clicked", lambda b: self.__reset_weights())
 
         self.__d.add_button(gtk.STOCK_OK, gtk.RESPONSE_CLOSE)

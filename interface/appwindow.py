@@ -350,8 +350,8 @@ class AppWindow(gtk.Window,
                 stock=gtk.STOCK_NEW,
                 description="Open a new Gnoetry window",
                 callback=new_callback)
-        bar.add("/_File/_Copy Window",
-                stock=gtk.STOCK_COPY,
+        bar.add("/_File/C_opy Window",
+                #stock=gtk.STOCK_COPY,
                 description="Open a new Gnoetry window with the same poem",
                 callback=copy_callback)
         bar.add("/_File/sep1", is_separator=True)
@@ -359,8 +359,8 @@ class AppWindow(gtk.Window,
                 stock=gtk.STOCK_SAVE,
                 description="Save the current poem",
                 callback=save_callback)
-        bar.add("/_File/_Save AS",
-                stock=gtk.STOCK_SAVE_AS,
+        bar.add("/_File/Save _As...",
+                #stock=gtk.STOCK_SAVE_AS,
                 description="Save the current poem with a different name",
                 callback=save_as_callback)
         bar.add("/_File/sep2", is_separator=True)
@@ -514,7 +514,7 @@ class AppWindow(gtk.Window,
                                      gtk.BUTTONS_NONE,
                                      "You have unsaved changes.\n"
                                      "Are you sure you want to quit?")
-            warn.add_button("Don't Save", 0)
+            warn.add_button("_Don't Save", 0)
             warn.add_button(gtk.STOCK_CANCEL, 1)
             warn.add_button(gtk.STOCK_SAVE, 2)
             warn.show_all()
