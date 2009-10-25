@@ -106,8 +106,14 @@ text_new (const char *filename)
 static void
 text_dealloc (Text *txt)
 {
-    g_mutex_unlock (txt->lock);
-    g_mutex_free (txt->lock);
+    // make sure this is the thread that owns the lock,
+    // before attempting to unlock and free it
+    if (g_mutex_trylock (txt->lock)) {
+        g_mutex_unlock (txt->lock);
+        g_mutex_free (txt ->lock);
+    } else {
+        g_error("Cannot free a lock owned by another thread.\n");
+    }
     g_free (txt->filename);
     g_free (txt->title);
     g_free (txt->author);
