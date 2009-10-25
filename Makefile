@@ -8,9 +8,9 @@ clean-lib:
 clean-texts:
 	-rm -rf texts-ts
 
-gnoetics/xxx_gnoetics.so: gnoetics/gnoetics.c
+gnoetics/xxx_gnoetics.so: gnoetics/*.h gnoetics/*.c
 	(cd gnoetics && python setup.py build && \
-	ln -s build/lib*/xxx_gnoetics.so .)
+	ln -sf build/lib*/xxx_gnoetics.so .)
 
 texts-ts:
 	mkdir texts-ts
