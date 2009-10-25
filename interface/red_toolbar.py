@@ -59,7 +59,10 @@ class Toolbar(gtk.Toolbar):
         else:
             image = None
 
-        w = self.append_item(text, tooltip, None, image, lambda x: callback(self.user_data))
+        w = gtk.ToolButton(image, text)
+        w.set_tooltip_text(tooltip)
+        w.connect('clicked', lambda x: callback(self.user_data))
+        self.insert(w, -1) # append at the end
         w.set_sensitive(0)
 
         item = {"text":text,
